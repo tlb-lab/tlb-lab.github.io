@@ -1,0 +1,491 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" />
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  
+  <title>graphein.protein.features.nodes.dssp &mdash; Graphein 0.0.1 documentation</title>
+  
+
+  
+  <link rel="stylesheet" href="../../../../../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../../../../../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../../../../../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../../../../../_static/css/theme.css" type="text/css" />
+
+  
+  
+
+  
+  
+
+  
+
+  
+  <!--[if lt IE 9]>
+    <script src="../../../../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../../../../../" src="../../../../../_static/documentation_options.js"></script>
+        <script data-url_root="../../../../../" id="documentation_options" src="../../../../../_static/documentation_options.js"></script>
+        <script src="../../../../../_static/jquery.js"></script>
+        <script src="../../../../../_static/underscore.js"></script>
+        <script src="../../../../../_static/doctools.js"></script>
+        <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    
+    <script type="text/javascript" src="../../../../../_static/js/theme.js"></script>
+
+    
+    <link rel="index" title="Index" href="../../../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../../../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../../../../../index.html" class="icon icon-home"> Graphein
+          
+
+          
+            
+            <img src="../../../../../_static/graphein.png" class="logo" alt="Logo"/>
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">Getting Started</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../../../getting_started/installation.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../../getting_started/introduction.html">Graphein</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../../license.html">License</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Tutorials</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../../../notebooks_index.html">Notebooks</a></li>
+</ul>
+<p class="caption"><span class="caption-text">API Reference</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../../../modules/graphein.protein.html">graphein.protein</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../../modules/graphein.ml.html">graphein.ml</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../../modules/graphein.ppi.html">graphein.ppi</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../../modules/graphein.grn.html">graphein.grn</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../../modules/graphein.rna.html">graphein.rna</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../../modules/graphein.diffusion.html">graphein.diffusion</a></li>
+</ul>
+
+            
+          
+        </div>
+        
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../../../index.html">Graphein</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../../../../../index.html" class="icon icon-home"></a> &raquo;</li>
+        
+          <li><a href="../../../../index.html">Module code</a> &raquo;</li>
+        
+      <li>graphein.protein.features.nodes.dssp</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <h1>Source code for graphein.protein.features.nodes.dssp</h1><div class="highlight"><pre>
+<span></span><span class="sd">&quot;&quot;&quot;Featurization functions for graph nodes using DSSP predicted features.&quot;&quot;&quot;</span>
+<span class="c1"># Graphein</span>
+<span class="c1"># Author: Arian Jamasb &lt;arian@jamasb.io&gt;, Charlie Harris</span>
+<span class="c1"># License: MIT</span>
+<span class="c1"># Project Website: https://github.com/a-r-j/graphein</span>
+<span class="c1"># Code Repository: https://github.com/a-r-j/graphein</span>
+<span class="kn">from</span> <span class="nn">__future__</span> <span class="kn">import</span> <span class="n">annotations</span>
+
+<span class="kn">import</span> <span class="nn">os</span>
+<span class="kn">from</span> <span class="nn">typing</span> <span class="kn">import</span> <span class="n">Any</span><span class="p">,</span> <span class="n">Dict</span><span class="p">,</span> <span class="n">Optional</span>
+
+<span class="kn">import</span> <span class="nn">networkx</span> <span class="k">as</span> <span class="nn">nx</span>
+<span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<span class="kn">from</span> <span class="nn">Bio.Data.IUPACData</span> <span class="kn">import</span> <span class="n">protein_letters_1to3</span>
+<span class="kn">from</span> <span class="nn">Bio.PDB.DSSP</span> <span class="kn">import</span> <span class="n">dssp_dict_from_pdb_file</span><span class="p">,</span> <span class="n">residue_max_acc</span>
+
+<span class="kn">from</span> <span class="nn">graphein.protein.utils</span> <span class="kn">import</span> <span class="n">download_pdb</span>
+
+<span class="n">DSSP_COLS</span> <span class="o">=</span> <span class="p">[</span>
+    <span class="s2">&quot;chain&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;resnum&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;icode&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;aa&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;ss&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;asa&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;phi&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;psi&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;dssp_index&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;NH_O_1_relidx&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;NH_O_1_energy&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;O_NH_1_relidx&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;O_NH_1_energy&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;NH_O_2_relidx&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;NH_O_2_energy&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;O_NH_2_relidx&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;O_NH_2_energy&quot;</span><span class="p">,</span>
+<span class="p">]</span>
+
+<span class="n">DSSP_SS</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;H&quot;</span><span class="p">,</span> <span class="s2">&quot;B&quot;</span><span class="p">,</span> <span class="s2">&quot;E&quot;</span><span class="p">,</span> <span class="s2">&quot;G&quot;</span><span class="p">,</span> <span class="s2">&quot;I&quot;</span><span class="p">,</span> <span class="s2">&quot;T&quot;</span><span class="p">,</span> <span class="s2">&quot;S&quot;</span><span class="p">]</span>
+
+
+<div class="viewcode-block" id="parse_dssp_df"><a class="viewcode-back" href="../../../../../modules/graphein.protein.html#graphein.protein.features.nodes.dssp.parse_dssp_df">[docs]</a><span class="k">def</span> <span class="nf">parse_dssp_df</span><span class="p">(</span><span class="n">dssp</span><span class="p">:</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">:</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Parse DSSP output to DataFrame</span>
+
+<span class="sd">    :param dssp: Dictionary containing DSSP output</span>
+<span class="sd">    :type dssp: Dict[str, Any]</span>
+<span class="sd">    :return: pd.Dataframe containing parsed DSSP output</span>
+<span class="sd">    :rtype: pd.DataFrame</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">appender</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="k">for</span> <span class="n">k</span> <span class="ow">in</span> <span class="n">dssp</span><span class="p">[</span><span class="mi">1</span><span class="p">]:</span>
+        <span class="n">to_append</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="n">y</span> <span class="o">=</span> <span class="n">dssp</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="n">k</span><span class="p">]</span>
+        <span class="n">chain</span> <span class="o">=</span> <span class="n">k</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+        <span class="n">residue</span> <span class="o">=</span> <span class="n">k</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
+        <span class="c1"># het = residue[0]</span>
+        <span class="n">resnum</span> <span class="o">=</span> <span class="n">residue</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
+        <span class="n">icode</span> <span class="o">=</span> <span class="n">residue</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span>
+        <span class="n">to_append</span><span class="o">.</span><span class="n">extend</span><span class="p">([</span><span class="n">chain</span><span class="p">,</span> <span class="n">resnum</span><span class="p">,</span> <span class="n">icode</span><span class="p">])</span>
+        <span class="n">to_append</span><span class="o">.</span><span class="n">extend</span><span class="p">(</span><span class="n">y</span><span class="p">)</span>
+        <span class="n">appender</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">to_append</span><span class="p">)</span>
+
+    <span class="k">return</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="o">.</span><span class="n">from_records</span><span class="p">(</span><span class="n">appender</span><span class="p">,</span> <span class="n">columns</span><span class="o">=</span><span class="n">DSSP_COLS</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="process_dssp_df"><a class="viewcode-back" href="../../../../../modules/graphein.protein.html#graphein.protein.features.nodes.dssp.process_dssp_df">[docs]</a><span class="k">def</span> <span class="nf">process_dssp_df</span><span class="p">(</span><span class="n">df</span><span class="p">:</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">:</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Processes a DSSP DataFrame to make indexes align with node IDs</span>
+
+<span class="sd">    :param df: pd.DataFrame containing the parsed output from DSSP.</span>
+<span class="sd">    :type df: pd.DataFrame</span>
+<span class="sd">    :return: pd.DataFrame with node IDs</span>
+<span class="sd">    :rtype: pd.DataFrame</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="c1"># Convert 1 letter aa code to 3 letter</span>
+    <span class="n">amino_acids</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="s2">&quot;aa&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">tolist</span><span class="p">()</span>
+
+    <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">amino_acid</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">amino_acids</span><span class="p">):</span>
+        <span class="n">amino_acids</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">protein_letters_1to3</span><span class="p">[</span><span class="n">amino_acid</span><span class="p">]</span><span class="o">.</span><span class="n">upper</span><span class="p">()</span>
+    <span class="n">df</span><span class="p">[</span><span class="s2">&quot;aa&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">amino_acids</span>
+
+    <span class="c1"># Construct node IDs</span>
+    <span class="n">node_ids</span> <span class="o">=</span> <span class="p">[]</span>
+
+    <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">row</span> <span class="ow">in</span> <span class="n">df</span><span class="o">.</span><span class="n">iterrows</span><span class="p">():</span>
+        <span class="n">node_id</span> <span class="o">=</span> <span class="n">row</span><span class="p">[</span><span class="s2">&quot;chain&quot;</span><span class="p">]</span> <span class="o">+</span> <span class="s2">&quot;:&quot;</span> <span class="o">+</span> <span class="n">row</span><span class="p">[</span><span class="s2">&quot;aa&quot;</span><span class="p">]</span> <span class="o">+</span> <span class="s2">&quot;:&quot;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">row</span><span class="p">[</span><span class="s2">&quot;resnum&quot;</span><span class="p">])</span>
+        <span class="n">node_ids</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">node_id</span><span class="p">)</span>
+    <span class="n">df</span><span class="p">[</span><span class="s2">&quot;node_id&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">node_ids</span>
+
+    <span class="n">df</span><span class="o">.</span><span class="n">set_index</span><span class="p">(</span><span class="s2">&quot;node_id&quot;</span><span class="p">,</span> <span class="n">inplace</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+
+    <span class="k">return</span> <span class="n">df</span></div>
+
+
+<div class="viewcode-block" id="add_dssp_df"><a class="viewcode-back" href="../../../../../modules/graphein.protein.html#graphein.protein.features.nodes.dssp.add_dssp_df">[docs]</a><span class="k">def</span> <span class="nf">add_dssp_df</span><span class="p">(</span><span class="n">G</span><span class="p">:</span> <span class="n">nx</span><span class="o">.</span><span class="n">Graph</span><span class="p">,</span> <span class="n">dssp_config</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">DSSPConfig</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="n">nx</span><span class="o">.</span><span class="n">Graph</span><span class="p">:</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Construct DSSP dataframe and add as graph level variable to protein graph</span>
+
+<span class="sd">    :param G: Input protein graph</span>
+<span class="sd">    :param G: nx.Graph</span>
+<span class="sd">    :param dssp_config: DSSPConfig object. Specifies which executable to run. Located in graphein.protein.config</span>
+<span class="sd">    :type dssp_config: DSSPConfig, optional</span>
+<span class="sd">    :return: Protein graph with DSSP dataframe added</span>
+<span class="sd">    :rtype: nx.Graph</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="n">config</span> <span class="o">=</span> <span class="n">G</span><span class="o">.</span><span class="n">graph</span><span class="p">[</span><span class="s2">&quot;config&quot;</span><span class="p">]</span>
+    <span class="n">pdb_id</span> <span class="o">=</span> <span class="n">G</span><span class="o">.</span><span class="n">graph</span><span class="p">[</span><span class="s2">&quot;pdb_id&quot;</span><span class="p">]</span>
+
+    <span class="c1"># TODO - Check for DSSP installation</span>
+
+    <span class="c1"># Check for existence of pdb file. If not, download it.</span>
+    <span class="k">if</span> <span class="ow">not</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">isfile</span><span class="p">(</span><span class="n">config</span><span class="o">.</span><span class="n">pdb_dir</span> <span class="o">/</span> <span class="n">pdb_id</span><span class="p">):</span>
+        <span class="n">pdb_file</span> <span class="o">=</span> <span class="n">download_pdb</span><span class="p">(</span><span class="n">config</span><span class="p">,</span> <span class="n">pdb_id</span><span class="p">)</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">pdb_file</span> <span class="o">=</span> <span class="n">config</span><span class="o">.</span><span class="n">pdb_dir</span> <span class="o">+</span> <span class="n">pdb_id</span> <span class="o">+</span> <span class="s2">&quot;.pdb&quot;</span>
+
+    <span class="c1"># Extract DSSP executable</span>
+    <span class="n">executable</span> <span class="o">=</span> <span class="n">dssp_config</span><span class="o">.</span><span class="n">executable</span>
+
+    <span class="k">if</span> <span class="n">config</span><span class="o">.</span><span class="n">verbose</span><span class="p">:</span>
+        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Using DSSP executable &#39;</span><span class="si">{</span><span class="n">executable</span><span class="si">}</span><span class="s2">&#39;&quot;</span><span class="p">)</span>
+
+    <span class="c1"># Run DSSP</span>
+    <span class="n">dssp_dict</span> <span class="o">=</span> <span class="n">dssp_dict_from_pdb_file</span><span class="p">(</span><span class="n">pdb_file</span><span class="p">,</span> <span class="n">DSSP</span><span class="o">=</span><span class="n">executable</span><span class="p">)</span>
+    <span class="n">dssp_dict</span> <span class="o">=</span> <span class="n">parse_dssp_df</span><span class="p">(</span><span class="n">dssp_dict</span><span class="p">)</span>
+    <span class="n">dssp_dict</span> <span class="o">=</span> <span class="n">process_dssp_df</span><span class="p">(</span><span class="n">dssp_dict</span><span class="p">)</span>
+
+    <span class="k">if</span> <span class="n">config</span><span class="o">.</span><span class="n">verbose</span><span class="p">:</span>
+        <span class="nb">print</span><span class="p">(</span><span class="n">dssp_dict</span><span class="p">)</span>
+
+    <span class="c1"># Assign DSSP Dict</span>
+    <span class="n">G</span><span class="o">.</span><span class="n">graph</span><span class="p">[</span><span class="s2">&quot;dssp_df&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">dssp_dict</span>
+
+    <span class="k">return</span> <span class="n">G</span></div>
+
+
+<div class="viewcode-block" id="add_dssp_feature"><a class="viewcode-back" href="../../../../../modules/graphein.protein.html#graphein.protein.features.nodes.dssp.add_dssp_feature">[docs]</a><span class="k">def</span> <span class="nf">add_dssp_feature</span><span class="p">(</span><span class="n">G</span><span class="p">:</span> <span class="n">nx</span><span class="o">.</span><span class="n">Graph</span><span class="p">,</span> <span class="n">feature</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">nx</span><span class="o">.</span><span class="n">Graph</span><span class="p">:</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Adds add_dssp_feature specified amino acid feature as calculated</span>
+<span class="sd">    by DSSP to every node in a protein graph</span>
+<span class="sd">    :param G: Protein structure graph to add dssp feature to</span>
+<span class="sd">    :param feature: string specifying name of DSSP feature to add:</span>
+<span class="sd">    &quot;chain&quot;,</span>
+<span class="sd">    &quot;resnum&quot;,</span>
+<span class="sd">    &quot;icode&quot;,</span>
+<span class="sd">    &quot;aa&quot;,</span>
+<span class="sd">    &quot;ss&quot;,</span>
+<span class="sd">    &quot;asa&quot;,</span>
+<span class="sd">    &quot;phi&quot;,</span>
+<span class="sd">    &quot;psi&quot;,</span>
+<span class="sd">    &quot;dssp_index&quot;,</span>
+<span class="sd">    &quot;NH_O_1_relidx&quot;,</span>
+<span class="sd">    &quot;NH_O_1_energy&quot;,</span>
+<span class="sd">    &quot;O_NH_1_relidx&quot;,</span>
+<span class="sd">    &quot;O_NH_1_energy&quot;,</span>
+<span class="sd">    &quot;NH_O_2_relidx&quot;,</span>
+<span class="sd">    &quot;NH_O_2_energy&quot;,</span>
+<span class="sd">    &quot;O_NH_2_relidx&quot;,</span>
+<span class="sd">    &quot;O_NH_2_energy&quot;,</span>
+
+<span class="sd">    These names parse_dssp_df accessible in the DSSP_COLS list</span>
+<span class="sd">    :param G: Protein Graph to add features to</span>
+<span class="sd">    :type G: nx.Graph</span>
+<span class="sd">    :return: Protein structure graph with DSSP feature added to nodes</span>
+<span class="sd">    :rtype: nx.Graph</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">if</span> <span class="s2">&quot;dssp_df&quot;</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">G</span><span class="o">.</span><span class="n">graph</span><span class="p">:</span>
+        <span class="n">G</span> <span class="o">=</span> <span class="n">add_dssp_df</span><span class="p">(</span><span class="n">G</span><span class="p">,</span> <span class="n">G</span><span class="o">.</span><span class="n">graph</span><span class="p">[</span><span class="s2">&quot;config&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">dssp_config</span><span class="p">)</span>
+
+    <span class="n">config</span> <span class="o">=</span> <span class="n">G</span><span class="o">.</span><span class="n">graph</span><span class="p">[</span><span class="s2">&quot;config&quot;</span><span class="p">]</span>
+    <span class="n">dssp_df</span> <span class="o">=</span> <span class="n">G</span><span class="o">.</span><span class="n">graph</span><span class="p">[</span><span class="s2">&quot;dssp_df&quot;</span><span class="p">]</span>
+
+    <span class="c1"># Change to not allow for atom granuarlity?</span>
+    <span class="k">if</span> <span class="n">config</span><span class="o">.</span><span class="n">granularity</span> <span class="o">==</span> <span class="s2">&quot;atom&quot;</span><span class="p">:</span>
+        <span class="k">raise</span> <span class="ne">NameError</span><span class="p">(</span>
+            <span class="sa">f</span><span class="s2">&quot;DSSP residue features (</span><span class="si">{</span><span class="n">feature</span><span class="si">}</span><span class="s2">) </span><span class="se">\</span>
+<span class="s2">            cannot be added to atom granularity graph&quot;</span>
+        <span class="p">)</span>
+
+        <span class="c1"># TODO confirm below is not needed and remove</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        # If granularity is atom, apply residue feature to every atom</span>
+<span class="sd">        for n in G.nodes():</span>
+<span class="sd">            residue = n.split(&quot;:&quot;)</span>
+<span class="sd">            residue = residue[0] + &quot;:&quot; + residue[1] + &quot;:&quot; + residue[2]</span>
+
+<span class="sd">            G.nodes[n][feature] = dssp_df.loc[residue, feature]</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">nx</span><span class="o">.</span><span class="n">set_node_attributes</span><span class="p">(</span><span class="n">G</span><span class="p">,</span> <span class="nb">dict</span><span class="p">(</span><span class="n">dssp_df</span><span class="p">[</span><span class="n">feature</span><span class="p">]),</span> <span class="n">feature</span><span class="p">)</span>
+
+    <span class="k">if</span> <span class="n">config</span><span class="o">.</span><span class="n">verbose</span><span class="p">:</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Added &quot;</span> <span class="o">+</span> <span class="n">feature</span> <span class="o">+</span> <span class="s2">&quot; features to graph nodes&quot;</span><span class="p">)</span>
+
+    <span class="k">return</span> <span class="n">G</span></div>
+
+
+<div class="viewcode-block" id="rsa"><a class="viewcode-back" href="../../../../../modules/graphein.protein.html#graphein.protein.features.nodes.dssp.rsa">[docs]</a><span class="k">def</span> <span class="nf">rsa</span><span class="p">(</span><span class="n">G</span><span class="p">:</span> <span class="n">nx</span><span class="o">.</span><span class="n">Graph</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">nx</span><span class="o">.</span><span class="n">Graph</span><span class="p">:</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Adds RSA (relative solvent accessibility) of each residue in protein graph</span>
+<span class="sd">    as calculated by DSSP.</span>
+
+<span class="sd">    :param G: Input protein graph</span>
+<span class="sd">    :type G: nx.Graph</span>
+<span class="sd">    :return: Protein graph with rsa values added</span>
+<span class="sd">    :rtype: nx.Graph</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="c1"># Calculate RSA</span>
+    <span class="n">dssp_df</span> <span class="o">=</span> <span class="n">G</span><span class="o">.</span><span class="n">graph</span><span class="p">[</span><span class="s2">&quot;dssp_df&quot;</span><span class="p">]</span>
+    <span class="n">dssp_df</span><span class="p">[</span><span class="s2">&quot;max_acc&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">dssp_df</span><span class="p">[</span><span class="s2">&quot;aa&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">map</span><span class="p">(</span><span class="n">residue_max_acc</span><span class="p">[</span><span class="s2">&quot;Sander&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">get</span><span class="p">)</span>
+    <span class="n">dssp_df</span><span class="p">[[</span><span class="s2">&quot;asa&quot;</span><span class="p">,</span> <span class="s2">&quot;max_acc&quot;</span><span class="p">]]</span> <span class="o">=</span> <span class="n">dssp_df</span><span class="p">[[</span><span class="s2">&quot;asa&quot;</span><span class="p">,</span> <span class="s2">&quot;max_acc&quot;</span><span class="p">]]</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="nb">float</span><span class="p">)</span>
+    <span class="n">dssp_df</span><span class="p">[</span><span class="s2">&quot;rsa&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">dssp_df</span><span class="p">[</span><span class="s2">&quot;asa&quot;</span><span class="p">]</span> <span class="o">/</span> <span class="n">dssp_df</span><span class="p">[</span><span class="s2">&quot;max_acc&quot;</span><span class="p">]</span>
+
+    <span class="n">G</span><span class="o">.</span><span class="n">graph</span><span class="p">[</span><span class="s2">&quot;dssp_df&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">dssp_df</span>
+
+    <span class="k">return</span> <span class="n">add_dssp_feature</span><span class="p">(</span><span class="n">G</span><span class="p">,</span> <span class="s2">&quot;rsa&quot;</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="asa"><a class="viewcode-back" href="../../../../../modules/graphein.protein.html#graphein.protein.features.nodes.dssp.asa">[docs]</a><span class="k">def</span> <span class="nf">asa</span><span class="p">(</span><span class="n">G</span><span class="p">:</span> <span class="n">nx</span><span class="o">.</span><span class="n">Graph</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">nx</span><span class="o">.</span><span class="n">Graph</span><span class="p">:</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Adds ASA of each residue in protein graph as calculated by DSSP.</span>
+
+<span class="sd">    :param G: Input protein graph</span>
+<span class="sd">    :type G: nx.Graph</span>
+<span class="sd">    :return: Protein graph with asa values added</span>
+<span class="sd">    :rtype: nx.Graph</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">return</span> <span class="n">add_dssp_feature</span><span class="p">(</span><span class="n">G</span><span class="p">,</span> <span class="s2">&quot;asa&quot;</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="phi"><a class="viewcode-back" href="../../../../../modules/graphein.protein.html#graphein.protein.features.nodes.dssp.phi">[docs]</a><span class="k">def</span> <span class="nf">phi</span><span class="p">(</span><span class="n">G</span><span class="p">:</span> <span class="n">nx</span><span class="o">.</span><span class="n">Graph</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">nx</span><span class="o">.</span><span class="n">Graph</span><span class="p">:</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Adds phi-angles of each residue in protein graph as calculated by DSSP.</span>
+
+<span class="sd">    :param G: Input protein graph</span>
+<span class="sd">    :type G: nx.Graph</span>
+<span class="sd">    :return: Protein graph with phi-angles values added</span>
+<span class="sd">    :rtype: nx.Graph</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">return</span> <span class="n">add_dssp_feature</span><span class="p">(</span><span class="n">G</span><span class="p">,</span> <span class="s2">&quot;phi&quot;</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="psi"><a class="viewcode-back" href="../../../../../modules/graphein.protein.html#graphein.protein.features.nodes.dssp.psi">[docs]</a><span class="k">def</span> <span class="nf">psi</span><span class="p">(</span><span class="n">G</span><span class="p">:</span> <span class="n">nx</span><span class="o">.</span><span class="n">Graph</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">nx</span><span class="o">.</span><span class="n">Graph</span><span class="p">:</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Adds psi-angles of each residue in protein graph as calculated by DSSP.</span>
+
+<span class="sd">    :param G: Input protein graph</span>
+<span class="sd">    :type G: nx.Graph</span>
+<span class="sd">    :return: Protein graph with psi-angles values added</span>
+<span class="sd">    :rtype: nx.Graph</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">return</span> <span class="n">add_dssp_feature</span><span class="p">(</span><span class="n">G</span><span class="p">,</span> <span class="s2">&quot;psi&quot;</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="secondary_structure"><a class="viewcode-back" href="../../../../../modules/graphein.protein.html#graphein.protein.features.nodes.dssp.secondary_structure">[docs]</a><span class="k">def</span> <span class="nf">secondary_structure</span><span class="p">(</span><span class="n">G</span><span class="p">:</span> <span class="n">nx</span><span class="o">.</span><span class="n">Graph</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">nx</span><span class="o">.</span><span class="n">Graph</span><span class="p">:</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Adds secondary structure of each residue in protein graph</span>
+<span class="sd">    as calculated by DSSP in the form of a string</span>
+
+<span class="sd">    :param G: Input protein graph</span>
+<span class="sd">    :type G: nx.Graph</span>
+<span class="sd">    :return: Protein graph with secondary structure added</span>
+<span class="sd">    :rtype: nx.Graph</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">return</span> <span class="n">add_dssp_feature</span><span class="p">(</span><span class="n">G</span><span class="p">,</span> <span class="s2">&quot;ss&quot;</span><span class="p">)</span></div>
+</pre></div>
+
+           </div>
+           
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &#169; Copyright 2020, Arian Jamasb.
+
+    </p>
+  </div>
+    
+    
+    
+    Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    
+    provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

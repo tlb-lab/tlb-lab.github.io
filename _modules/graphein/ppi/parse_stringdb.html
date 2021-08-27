@@ -1,0 +1,400 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" />
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  
+  <title>graphein.ppi.parse_stringdb &mdash; Graphein 0.0.1 documentation</title>
+  
+
+  
+  <link rel="stylesheet" href="../../../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../../../_static/css/theme.css" type="text/css" />
+
+  
+  
+
+  
+  
+
+  
+
+  
+  <!--[if lt IE 9]>
+    <script src="../../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../../../" src="../../../_static/documentation_options.js"></script>
+        <script data-url_root="../../../" id="documentation_options" src="../../../_static/documentation_options.js"></script>
+        <script src="../../../_static/jquery.js"></script>
+        <script src="../../../_static/underscore.js"></script>
+        <script src="../../../_static/doctools.js"></script>
+    
+    <script type="text/javascript" src="../../../_static/js/theme.js"></script>
+
+    
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../../../index.html" class="icon icon-home"> Graphein
+          
+
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">Getting Started:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../getting_started/installation.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../getting_started/introduction.html">Graphein</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../license.html">License</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Package Reference:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../modules/graphein.protein.html">graphein.protein</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../modules/graphein.ml.html">graphein.ml</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../modules/graphein.ppi.html">graphein.ppi</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../modules/graphein.grn.html">graphein.grn</a></li>
+</ul>
+
+            
+          
+        </div>
+        
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../index.html">Graphein</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../../../index.html" class="icon icon-home"></a> &raquo;</li>
+        
+          <li><a href="../../index.html">Module code</a> &raquo;</li>
+        
+      <li>graphein.ppi.parse_stringdb</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <h1>Source code for graphein.ppi.parse_stringdb</h1><div class="highlight"><pre>
+<span></span><span class="sd">&quot;&quot;&quot;Functions for making and parsing API calls to STRINGdb&quot;&quot;&quot;</span>
+<span class="c1"># %%</span>
+<span class="c1"># Graphein</span>
+<span class="c1"># Author: Ramon Vinas, Arian Jamasb &lt;arian@jamasb.io&gt;</span>
+<span class="c1"># License: MIT</span>
+<span class="c1"># Project Website: https://github.com/a-r-j/graphein</span>
+<span class="c1"># Code Repository: https://github.com/a-r-j/graphein</span>
+<span class="kn">import</span> <span class="nn">logging</span>
+<span class="kn">from</span> <span class="nn">typing</span> <span class="kn">import</span> <span class="n">Any</span><span class="p">,</span> <span class="n">Dict</span><span class="p">,</span> <span class="n">List</span><span class="p">,</span> <span class="n">Union</span>
+
+<span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<span class="kn">import</span> <span class="nn">requests</span>
+
+<span class="n">log</span> <span class="o">=</span> <span class="n">logging</span><span class="o">.</span><span class="n">getLogger</span><span class="p">(</span><span class="vm">__name__</span><span class="p">)</span>
+
+
+<div class="viewcode-block" id="params_STRING"><a class="viewcode-back" href="../../../modules/graphein.ppi.html#graphein.ppi.parse_stringdb.params_STRING">[docs]</a><span class="k">def</span> <span class="nf">params_STRING</span><span class="p">(</span>
+    <span class="n">params</span><span class="p">:</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Union</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="nb">int</span><span class="p">,</span> <span class="n">List</span><span class="p">[</span><span class="nb">str</span><span class="p">],</span> <span class="n">List</span><span class="p">[</span><span class="nb">int</span><span class="p">]]],</span> <span class="o">**</span><span class="n">kwargs</span>
+<span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Union</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="nb">int</span><span class="p">]]:</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Updates default parameters with user parameters for the method &quot;network&quot; of the STRING API REST.</span>
+<span class="sd">    See also https://string-db.org/help/api/</span>
+
+<span class="sd">    :param params: Dictionary of default parameters</span>
+<span class="sd">    :type params: Dict[str, Union[str, int, List[str], List[int]]]</span>
+<span class="sd">    :param kwargs: User parameters for the method &quot;network&quot; of the STRING API REST. The key must start with &quot;STRING&quot;</span>
+<span class="sd">    :return: Dictionary of parameters</span>
+<span class="sd">    :rtype: Dict[str, Union[str, int]]</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="c1"># TODO: Might be possible to generalise this function for all sources</span>
+    <span class="n">fields</span> <span class="o">=</span> <span class="p">[</span>
+        <span class="s2">&quot;species&quot;</span><span class="p">,</span>  <span class="c1"># NCBI taxon identifiers</span>
+        <span class="s2">&quot;required_score&quot;</span><span class="p">,</span>  <span class="c1"># threshold of significance to include a interaction, a number between 0 and 1000</span>
+        <span class="c1"># (default depends on the network)</span>
+        <span class="s2">&quot;network_type&quot;</span><span class="p">,</span>  <span class="c1"># network type: functional (default), physical</span>
+        <span class="s2">&quot;add_nodes&quot;</span><span class="p">,</span>  <span class="c1"># adds a number of proteins to the network based on their confidence score,</span>
+        <span class="c1"># e.g., extends the interaction neighborhood of selected proteins to desired value</span>
+        <span class="s2">&quot;show_query_node_labels&quot;</span>  <span class="c1"># when available use submitted names in the preferredName column when</span>
+        <span class="c1"># (0 or 1) (default:0)</span>
+    <span class="p">]</span>
+    <span class="k">for</span> <span class="n">p</span> <span class="ow">in</span> <span class="n">fields</span><span class="p">:</span>
+        <span class="n">kwarg_name</span> <span class="o">=</span> <span class="s2">&quot;STRING_&quot;</span> <span class="o">+</span> <span class="n">p</span>
+        <span class="k">if</span> <span class="n">kwarg_name</span> <span class="ow">in</span> <span class="n">kwargs</span><span class="p">:</span>
+            <span class="n">value</span> <span class="o">=</span> <span class="n">kwargs</span><span class="p">[</span><span class="n">kwarg_name</span><span class="p">]</span>
+            <span class="k">if</span> <span class="nb">type</span><span class="p">(</span><span class="n">value</span><span class="p">)</span> <span class="ow">is</span> <span class="nb">list</span><span class="p">:</span>
+                <span class="n">value</span> <span class="o">=</span> <span class="s2">&quot;</span><span class="si">%0d</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">value</span><span class="p">)</span>
+            <span class="n">params</span><span class="p">[</span><span class="n">p</span><span class="p">]</span> <span class="o">=</span> <span class="n">value</span>
+    <span class="k">return</span> <span class="n">params</span></div>
+
+
+<div class="viewcode-block" id="parse_STRING"><a class="viewcode-back" href="../../../modules/graphein.ppi.html#graphein.ppi.parse_stringdb.parse_STRING">[docs]</a><span class="k">def</span> <span class="nf">parse_STRING</span><span class="p">(</span>
+    <span class="n">protein_list</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="nb">str</span><span class="p">],</span>
+    <span class="n">ncbi_taxon_id</span><span class="p">:</span> <span class="n">Union</span><span class="p">[</span><span class="nb">int</span><span class="p">,</span> <span class="nb">str</span><span class="p">,</span> <span class="n">List</span><span class="p">[</span><span class="nb">int</span><span class="p">],</span> <span class="n">List</span><span class="p">[</span><span class="nb">str</span><span class="p">]],</span>
+    <span class="o">**</span><span class="n">kwargs</span><span class="p">,</span>
+<span class="p">)</span> <span class="o">-&gt;</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">:</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Makes STRING API call and returns a source specific Pandas dataframe.</span>
+<span class="sd">    See also [1] STRING: https://string-db.org/help/api/</span>
+
+<span class="sd">    :param protein_list: Proteins to include in the graph</span>
+<span class="sd">    :type protein_list: List[str]</span>
+<span class="sd">    :param ncbi_taxon_id: NCBI taxonomy identifiers for the organism. Default is 9606 (Homo Sapiens)</span>
+<span class="sd">    :type ncbi_taxon_id: int</span>
+<span class="sd">    :param kwargs: Parameters of the &quot;network&quot; method of the STRING API REST, used to select the results. The</span>
+<span class="sd">                   parameter names are of the form STRING_&lt;param&gt;, where &lt;param&gt; is the name of the parameter.</span>
+<span class="sd">                   Information about these parameters can be found at [1].</span>
+<span class="sd">    :return: Source specific Pandas dataframe.</span>
+<span class="sd">    :rtype: pd.DataFrame</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="c1"># Prepare call to STRING API</span>
+    <span class="n">string_api_url</span> <span class="o">=</span> <span class="s2">&quot;https://string-db.org/api&quot;</span>
+    <span class="n">output_format</span> <span class="o">=</span> <span class="s2">&quot;json&quot;</span>  <span class="c1"># &quot;tsv-no-header&quot;</span>
+    <span class="n">method</span> <span class="o">=</span> <span class="s2">&quot;network&quot;</span>
+    <span class="n">request_url</span> <span class="o">=</span> <span class="s2">&quot;/&quot;</span><span class="o">.</span><span class="n">join</span><span class="p">([</span><span class="n">string_api_url</span><span class="p">,</span> <span class="n">output_format</span><span class="p">,</span> <span class="n">method</span><span class="p">])</span>
+    <span class="k">if</span> <span class="nb">type</span><span class="p">(</span><span class="n">ncbi_taxon_id</span><span class="p">)</span> <span class="ow">is</span> <span class="nb">list</span><span class="p">:</span>
+        <span class="n">ncbi_taxon_id</span> <span class="o">=</span> <span class="s2">&quot;</span><span class="si">%0d</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">ncbi_taxon_id</span><span class="p">)</span>
+    <span class="n">params</span> <span class="o">=</span> <span class="p">{</span>
+        <span class="s2">&quot;identifiers&quot;</span><span class="p">:</span> <span class="s2">&quot;</span><span class="si">%0d</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">protein_list</span><span class="p">),</span>
+        <span class="s2">&quot;species&quot;</span><span class="p">:</span> <span class="n">ncbi_taxon_id</span><span class="p">,</span>  <span class="c1"># 9606 is human</span>
+        <span class="s2">&quot;caller_identity&quot;</span><span class="p">:</span> <span class="s2">&quot;graphein&quot;</span><span class="p">,</span>
+    <span class="p">}</span>
+    <span class="n">params</span> <span class="o">=</span> <span class="n">params_STRING</span><span class="p">(</span><span class="n">params</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+
+    <span class="c1"># Call STRING</span>
+    <span class="n">response</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">post</span><span class="p">(</span><span class="n">request_url</span><span class="p">,</span> <span class="n">data</span><span class="o">=</span><span class="n">params</span><span class="p">)</span>
+    <span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_json</span><span class="p">(</span><span class="n">response</span><span class="o">.</span><span class="n">text</span><span class="o">.</span><span class="n">strip</span><span class="p">())</span>
+
+    <span class="k">return</span> <span class="n">df</span></div>
+
+
+<div class="viewcode-block" id="filter_STRING"><a class="viewcode-back" href="../../../modules/graphein.ppi.html#graphein.ppi.parse_stringdb.filter_STRING">[docs]</a><span class="k">def</span> <span class="nf">filter_STRING</span><span class="p">(</span><span class="n">df</span><span class="p">:</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">:</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Filters results of the STRING API call according to user kwargs, keeping rows where the input parameters are</span>
+<span class="sd">    greater or equal than the input thresholds</span>
+
+<span class="sd">    :param df: Source specific Pandas dataframe (STRING) with results of the API call</span>
+<span class="sd">    :type df: pd.DataFrame</span>
+<span class="sd">    :param kwargs: User thresholds used to filter the results. The parameter names are of the form STRING_&lt;param&gt;,</span>
+<span class="sd">                   where &lt;param&gt; is the name of the parameter. All the parameters are numerical values.</span>
+<span class="sd">    :return: Source specific Pandas dataframe with filtered results</span>
+<span class="sd">    :rtype: pd.DataFrame</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">scores</span> <span class="o">=</span> <span class="p">[</span>
+        <span class="s2">&quot;score&quot;</span><span class="p">,</span>  <span class="c1"># combined score</span>
+        <span class="s2">&quot;nscore&quot;</span><span class="p">,</span>  <span class="c1"># gene neighborhood score</span>
+        <span class="s2">&quot;fscore&quot;</span><span class="p">,</span>  <span class="c1"># gene fusion score</span>
+        <span class="s2">&quot;pscore&quot;</span><span class="p">,</span>  <span class="c1"># phylogenetic profile score</span>
+        <span class="s2">&quot;ascore&quot;</span><span class="p">,</span>  <span class="c1"># coexpression score</span>
+        <span class="s2">&quot;escore&quot;</span><span class="p">,</span>  <span class="c1"># experimental score</span>
+        <span class="s2">&quot;dscore&quot;</span><span class="p">,</span>  <span class="c1"># database score</span>
+        <span class="s2">&quot;tscore&quot;</span><span class="p">,</span>
+    <span class="p">]</span>  <span class="c1"># textmining score]</span>
+    <span class="k">for</span> <span class="n">s</span> <span class="ow">in</span> <span class="n">scores</span><span class="p">:</span>
+        <span class="n">kwarg_name</span> <span class="o">=</span> <span class="s2">&quot;STRING_&quot;</span> <span class="o">+</span> <span class="n">s</span>
+        <span class="k">if</span> <span class="n">kwarg_name</span> <span class="ow">in</span> <span class="n">kwargs</span><span class="p">:</span>
+            <span class="n">threshold</span> <span class="o">=</span> <span class="n">kwargs</span><span class="p">[</span><span class="n">kwarg_name</span><span class="p">]</span>
+            <span class="n">df</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="n">df</span><span class="p">[</span><span class="n">s</span><span class="p">]</span> <span class="o">&gt;=</span> <span class="n">threshold</span><span class="p">]</span>
+    <span class="k">return</span> <span class="n">df</span></div>
+
+
+<div class="viewcode-block" id="standardise_STRING"><a class="viewcode-back" href="../../../modules/graphein.ppi.html#graphein.ppi.parse_stringdb.standardise_STRING">[docs]</a><span class="k">def</span> <span class="nf">standardise_STRING</span><span class="p">(</span><span class="n">df</span><span class="p">:</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">:</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Standardises STRING dataframe, e.g. puts everything into a common format</span>
+
+<span class="sd">    :param df: Source specific Pandas dataframe</span>
+<span class="sd">    :type df: pd.DataFrame</span>
+<span class="sd">    :return: Standardised dataframe</span>
+<span class="sd">    :rtype: pd.DataFrame</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">if</span> <span class="n">df</span><span class="o">.</span><span class="n">empty</span><span class="p">:</span>
+        <span class="k">return</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">({</span><span class="s2">&quot;p1&quot;</span><span class="p">:</span> <span class="p">[],</span> <span class="s2">&quot;p2&quot;</span><span class="p">:</span> <span class="p">[],</span> <span class="s2">&quot;source&quot;</span><span class="p">:</span> <span class="p">[]})</span>
+
+    <span class="c1"># Rename &amp; delete columns</span>
+    <span class="n">df</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">rename</span><span class="p">(</span><span class="n">columns</span><span class="o">=</span><span class="p">{</span><span class="s2">&quot;preferredName_A&quot;</span><span class="p">:</span> <span class="s2">&quot;p1&quot;</span><span class="p">,</span> <span class="s2">&quot;preferredName_B&quot;</span><span class="p">:</span> <span class="s2">&quot;p2&quot;</span><span class="p">})</span>
+    <span class="n">df</span> <span class="o">=</span> <span class="n">df</span><span class="p">[[</span><span class="s2">&quot;p1&quot;</span><span class="p">,</span> <span class="s2">&quot;p2&quot;</span><span class="p">]]</span>
+
+    <span class="c1"># Add source column</span>
+    <span class="n">df</span><span class="p">[</span><span class="s2">&quot;source&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="s2">&quot;STRING&quot;</span>
+
+    <span class="k">return</span> <span class="n">df</span></div>
+
+
+<div class="viewcode-block" id="STRING_df"><a class="viewcode-back" href="../../../modules/graphein.ppi.html#graphein.ppi.parse_stringdb.STRING_df">[docs]</a><span class="k">def</span> <span class="nf">STRING_df</span><span class="p">(</span>
+    <span class="n">protein_list</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="nb">str</span><span class="p">],</span>
+    <span class="n">ncbi_taxon_id</span><span class="p">:</span> <span class="n">Union</span><span class="p">[</span><span class="nb">int</span><span class="p">,</span> <span class="nb">str</span><span class="p">,</span> <span class="n">List</span><span class="p">[</span><span class="nb">int</span><span class="p">],</span> <span class="n">List</span><span class="p">[</span><span class="nb">str</span><span class="p">]],</span>
+    <span class="o">**</span><span class="n">kwargs</span><span class="p">,</span>
+<span class="p">)</span> <span class="o">-&gt;</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">:</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Generates standardised dataframe with STRING protein-protein interactions, filtered according to user&#39;s input</span>
+
+<span class="sd">    :param protein_list: List of proteins (official symbol) that will be included in the PPI graph</span>
+<span class="sd">    :type protein_list: List[str]</span>
+<span class="sd">    :param ncbi_taxon_id: NCBI taxonomy identifiers for the organism. 9606 corresponds to Homo Sapiens</span>
+<span class="sd">    :type ncbi_taxon_id: int</span>
+<span class="sd">    :param kwargs:  Additional parameters to pass to STRING API calls</span>
+<span class="sd">    :return: Standardised dataframe with STRING interactions</span>
+<span class="sd">    :rtype: pd.DataFrame</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">df</span> <span class="o">=</span> <span class="n">parse_STRING</span><span class="p">(</span>
+        <span class="n">protein_list</span><span class="o">=</span><span class="n">protein_list</span><span class="p">,</span> <span class="n">ncbi_taxon_id</span><span class="o">=</span><span class="n">ncbi_taxon_id</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span>
+    <span class="p">)</span>
+    <span class="n">df</span> <span class="o">=</span> <span class="n">filter_STRING</span><span class="p">(</span><span class="n">df</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+    <span class="n">df</span> <span class="o">=</span> <span class="n">standardise_STRING</span><span class="p">(</span><span class="n">df</span><span class="p">)</span>
+
+    <span class="k">return</span> <span class="n">df</span></div>
+
+
+<span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s2">&quot;__main__&quot;</span><span class="p">:</span>
+    <span class="n">protein_list</span> <span class="o">=</span> <span class="p">[</span>
+        <span class="s2">&quot;CDC42&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;CDK1&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;KIF23&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;PLK1&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;RAC2&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;RACGAP1&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;RHOA&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;RHOB&quot;</span><span class="p">,</span>
+    <span class="p">]</span>
+    <span class="n">sources</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;STRING&quot;</span><span class="p">,</span> <span class="s2">&quot;BIOGRID&quot;</span><span class="p">]</span>
+    <span class="n">kwargs</span> <span class="o">=</span> <span class="p">{</span>
+        <span class="s2">&quot;STRING_escore&quot;</span><span class="p">:</span> <span class="mf">0.2</span><span class="p">,</span>  <span class="c1"># Keeps STRING interactions with an experimental score &gt;= 0.2</span>
+        <span class="s2">&quot;BIOGRID_throughputTag&quot;</span><span class="p">:</span> <span class="s2">&quot;high&quot;</span><span class="p">,</span>  <span class="c1"># Keeps high throughput BIOGRID interactions</span>
+    <span class="p">}</span>
+
+    <span class="n">df</span> <span class="o">=</span> <span class="n">STRING_df</span><span class="p">(</span>
+        <span class="n">protein_list</span><span class="o">=</span><span class="n">protein_list</span><span class="p">,</span> <span class="n">ncbi_taxon_id</span><span class="o">=</span><span class="mi">9606</span><span class="p">,</span> <span class="n">kwargs</span><span class="o">=</span><span class="n">kwargs</span>
+    <span class="p">)</span>
+
+    <span class="nb">print</span><span class="p">(</span><span class="n">df</span><span class="p">)</span>
+</pre></div>
+
+           </div>
+           
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &#169; Copyright 2020, Arian Jamasb.
+
+    </p>
+  </div>
+    
+    
+    
+    Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    
+    provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

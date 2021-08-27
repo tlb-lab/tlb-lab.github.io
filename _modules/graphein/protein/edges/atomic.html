@@ -1,0 +1,542 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" />
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  
+  <title>graphein.protein.edges.atomic &mdash; Graphein 0.0.1 documentation</title>
+  
+
+  
+  <link rel="stylesheet" href="../../../../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../../../../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../../../../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../../../../_static/css/theme.css" type="text/css" />
+
+  
+  
+
+  
+  
+
+  
+
+  
+  <!--[if lt IE 9]>
+    <script src="../../../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../../../../" src="../../../../_static/documentation_options.js"></script>
+        <script data-url_root="../../../../" id="documentation_options" src="../../../../_static/documentation_options.js"></script>
+        <script src="../../../../_static/jquery.js"></script>
+        <script src="../../../../_static/underscore.js"></script>
+        <script src="../../../../_static/doctools.js"></script>
+        <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    
+    <script type="text/javascript" src="../../../../_static/js/theme.js"></script>
+
+    
+    <link rel="index" title="Index" href="../../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../../../../index.html" class="icon icon-home"> Graphein
+          
+
+          
+            
+            <img src="../../../../_static/graphein.png" class="logo" alt="Logo"/>
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">Getting Started</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../../getting_started/installation.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../getting_started/introduction.html">Graphein</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../license.html">License</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Tutorials</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../../notebooks_index.html">Notebooks</a></li>
+</ul>
+<p class="caption"><span class="caption-text">API Reference</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../../modules/graphein.protein.html">graphein.protein</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../modules/graphein.ml.html">graphein.ml</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../modules/graphein.ppi.html">graphein.ppi</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../modules/graphein.grn.html">graphein.grn</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../modules/graphein.rna.html">graphein.rna</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../modules/graphein.diffusion.html">graphein.diffusion</a></li>
+</ul>
+
+            
+          
+        </div>
+        
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../../index.html">Graphein</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../../../../index.html" class="icon icon-home"></a> &raquo;</li>
+        
+          <li><a href="../../../index.html">Module code</a> &raquo;</li>
+        
+      <li>graphein.protein.edges.atomic</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <h1>Source code for graphein.protein.edges.atomic</h1><div class="highlight"><pre>
+<span></span><span class="sd">&quot;&quot;&quot;Functions for computing atomic structure of proteins&quot;&quot;&quot;</span>
+<span class="c1"># %%</span>
+<span class="c1"># Graphein</span>
+<span class="c1"># Author: Arian Jamasb &lt;arian@jamasb.io&gt;</span>
+<span class="c1"># License: MIT</span>
+<span class="c1"># Project Website: https://github.com/a-r-j/graphein</span>
+<span class="c1"># Code Repository: https://github.com/a-r-j/graphein</span>
+<span class="kn">from</span> <span class="nn">typing</span> <span class="kn">import</span> <span class="n">Any</span><span class="p">,</span> <span class="n">Dict</span>
+
+<span class="kn">import</span> <span class="nn">networkx</span> <span class="k">as</span> <span class="nn">nx</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+
+<span class="kn">from</span> <span class="nn">graphein.protein.edges.distance</span> <span class="kn">import</span> <span class="n">compute_distmat</span>
+<span class="kn">from</span> <span class="nn">graphein.protein.resi_atoms</span> <span class="kn">import</span> <span class="p">(</span>
+    <span class="n">BOND_LENGTHS</span><span class="p">,</span>
+    <span class="n">BOND_ORDERS</span><span class="p">,</span>
+    <span class="n">COVALENT_RADII</span><span class="p">,</span>
+    <span class="n">DEFAULT_BOND_STATE</span><span class="p">,</span>
+    <span class="n">RESIDUE_ATOM_BOND_STATE</span><span class="p">,</span>
+<span class="p">)</span>
+
+<span class="c1"># Todo dealing with metals</span>
+<span class="c1"># Todo There are other check and balances that can be implemented from here: https://www.daylight.com/meetings/mug01/Sayle/m4xbondage.html</span>
+
+
+<div class="viewcode-block" id="assign_bond_states_to_dataframe"><a class="viewcode-back" href="../../../../modules/graphein.protein.html#graphein.protein.edges.atomic.assign_bond_states_to_dataframe">[docs]</a><span class="k">def</span> <span class="nf">assign_bond_states_to_dataframe</span><span class="p">(</span><span class="n">df</span><span class="p">:</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">:</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Takes a PandasPDB atom dataframe and assigns bond states to each atom based on:</span>
+<span class="sd">    Atomic Structures of all the Twenty Essential Amino Acids and a Tripeptide, with Bond Lengths as Sums of Atomic Covalent Radii</span>
+<span class="sd">    Heyrovska, 2008</span>
+
+<span class="sd">    :param df: Pandas PDB dataframe</span>
+<span class="sd">    :type df: pd.DataFrame</span>
+<span class="sd">    :return: Dataframe with added atom_bond_state column</span>
+<span class="sd">    :rtype: pd.DataFrame</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="c1"># Map atoms to their standard bond states</span>
+    <span class="n">naive_bond_states</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">Series</span><span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="s2">&quot;atom_name&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">map</span><span class="p">(</span><span class="n">DEFAULT_BOND_STATE</span><span class="p">))</span>
+
+    <span class="c1"># Create series of bond states for the non-standard states</span>
+    <span class="n">ss</span> <span class="o">=</span> <span class="p">(</span>
+        <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">RESIDUE_ATOM_BOND_STATE</span><span class="p">)</span>
+        <span class="o">.</span><span class="n">unstack</span><span class="p">()</span>
+        <span class="o">.</span><span class="n">rename_axis</span><span class="p">((</span><span class="s2">&quot;residue_name&quot;</span><span class="p">,</span> <span class="s2">&quot;atom_name&quot;</span><span class="p">))</span>
+        <span class="o">.</span><span class="n">rename</span><span class="p">(</span><span class="s2">&quot;atom_bond_state&quot;</span><span class="p">)</span>
+    <span class="p">)</span>
+
+    <span class="c1"># Map non-standard states to the dataframe based on the residue and atom name</span>
+    <span class="n">df</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">ss</span><span class="p">,</span> <span class="n">on</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;residue_name&quot;</span><span class="p">,</span> <span class="s2">&quot;atom_name&quot;</span><span class="p">])</span>
+
+    <span class="c1"># Fill the NaNs with the standard states</span>
+    <span class="n">df</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">fillna</span><span class="p">(</span><span class="n">value</span><span class="o">=</span><span class="p">{</span><span class="s2">&quot;atom_bond_state&quot;</span><span class="p">:</span> <span class="n">naive_bond_states</span><span class="p">})</span>
+
+    <span class="k">return</span> <span class="n">df</span></div>
+
+
+<div class="viewcode-block" id="assign_covalent_radii_to_dataframe"><a class="viewcode-back" href="../../../../modules/graphein.protein.html#graphein.protein.edges.atomic.assign_covalent_radii_to_dataframe">[docs]</a><span class="k">def</span> <span class="nf">assign_covalent_radii_to_dataframe</span><span class="p">(</span><span class="n">df</span><span class="p">:</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">:</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Assigns covalent radius to each atom based on its bond state. Using Values from :</span>
+<span class="sd">    Atomic Structures of all the Twenty Essential Amino Acids and a Tripeptide, with Bond Lengths as Sums of Atomic Covalent Radii</span>
+<span class="sd">    Heyrovska, 2008</span>
+
+<span class="sd">    :param df: Pandas PDB dataframe with a bond_states_column</span>
+<span class="sd">    :type df: pd.DataFrame</span>
+<span class="sd">    :return: Pandas PDB dataframe with added covalent_radius column</span>
+<span class="sd">    :rtype: pd.DataFrame</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="c1"># Assign covalent radius to each atom</span>
+    <span class="n">df</span><span class="p">[</span><span class="s2">&quot;covalent_radius&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="s2">&quot;atom_bond_state&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">map</span><span class="p">(</span><span class="n">COVALENT_RADII</span><span class="p">)</span>
+
+    <span class="k">return</span> <span class="n">df</span></div>
+
+
+<div class="viewcode-block" id="add_atomic_edges"><a class="viewcode-back" href="../../../../modules/graphein.protein.html#graphein.protein.edges.atomic.add_atomic_edges">[docs]</a><span class="k">def</span> <span class="nf">add_atomic_edges</span><span class="p">(</span><span class="n">G</span><span class="p">:</span> <span class="n">nx</span><span class="o">.</span><span class="n">Graph</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">nx</span><span class="o">.</span><span class="n">Graph</span><span class="p">:</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Computes covalent edges based on atomic distances. Covalent radii add_atomic_edges assigned to each atom based on its bond assign_bond_states_to_dataframe</span>
+<span class="sd">    The distance matrix is then thresholded to entries less than this distance plus some tolerance to create and adjacency matrix.</span>
+<span class="sd">    This adjacency matrix is then parsed into an edge list and covalent edges added</span>
+
+<span class="sd">    :param G: Atomic graph (nodes correspond to atoms) to populate with atomic bonds as edges</span>
+<span class="sd">    :type G: nx.Graph</span>
+<span class="sd">    :return: Atomic graph with edges between bonded atoms added</span>
+<span class="sd">    :rtype: nx.Graph</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">TOLERANCE</span> <span class="o">=</span> <span class="mf">0.56</span>  <span class="c1"># 0.4 0.45, 0.56 This is the distance tolerance</span>
+    <span class="n">dist_mat</span> <span class="o">=</span> <span class="n">compute_distmat</span><span class="p">(</span><span class="n">G</span><span class="o">.</span><span class="n">graph</span><span class="p">[</span><span class="s2">&quot;pdb_df&quot;</span><span class="p">])</span>
+
+    <span class="c1"># We assign bond states to the dataframe, and then map these to covalent radii</span>
+    <span class="n">G</span><span class="o">.</span><span class="n">graph</span><span class="p">[</span><span class="s2">&quot;pdb_df&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">assign_bond_states_to_dataframe</span><span class="p">(</span><span class="n">G</span><span class="o">.</span><span class="n">graph</span><span class="p">[</span><span class="s2">&quot;pdb_df&quot;</span><span class="p">])</span>
+    <span class="n">G</span><span class="o">.</span><span class="n">graph</span><span class="p">[</span><span class="s2">&quot;pdb_df&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">assign_covalent_radii_to_dataframe</span><span class="p">(</span><span class="n">G</span><span class="o">.</span><span class="n">graph</span><span class="p">[</span><span class="s2">&quot;pdb_df&quot;</span><span class="p">])</span>
+
+    <span class="c1"># Create a covalent &#39;distance&#39; matrix by adding the radius arrays with its transpose</span>
+    <span class="n">covalent_radius_distance_matrix</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">add</span><span class="p">(</span>
+        <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">G</span><span class="o">.</span><span class="n">graph</span><span class="p">[</span><span class="s2">&quot;pdb_df&quot;</span><span class="p">][</span><span class="s2">&quot;covalent_radius&quot;</span><span class="p">])</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">),</span>
+        <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">G</span><span class="o">.</span><span class="n">graph</span><span class="p">[</span><span class="s2">&quot;pdb_df&quot;</span><span class="p">][</span><span class="s2">&quot;covalent_radius&quot;</span><span class="p">])</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">),</span>
+    <span class="p">)</span>
+
+    <span class="c1"># Add the tolerance</span>
+    <span class="n">covalent_radius_distance_matrix</span> <span class="o">=</span> <span class="p">(</span>
+        <span class="n">covalent_radius_distance_matrix</span> <span class="o">+</span> <span class="n">TOLERANCE</span>
+    <span class="p">)</span>
+
+    <span class="c1"># Threshold Distance Matrix to entries where the eucl distance is less than the covalent radius plus tolerance and larger than 0.4</span>
+    <span class="n">dist_mat</span> <span class="o">=</span> <span class="n">dist_mat</span><span class="p">[</span><span class="n">dist_mat</span> <span class="o">&gt;</span> <span class="mf">0.4</span><span class="p">]</span>
+    <span class="n">t_distmat</span> <span class="o">=</span> <span class="n">dist_mat</span><span class="p">[</span><span class="n">dist_mat</span> <span class="o">&lt;</span> <span class="n">covalent_radius_distance_matrix</span><span class="p">]</span>
+
+    <span class="c1"># Store atomic adjacency matrix in graph</span>
+    <span class="n">G</span><span class="o">.</span><span class="n">graph</span><span class="p">[</span><span class="s2">&quot;atomic_adj_mat&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">nan_to_num</span><span class="p">(</span><span class="n">t_distmat</span><span class="p">)</span>
+
+    <span class="c1"># Get node IDs from non NaN entries in the thresholded distance matrix and add the edge to the graph</span>
+    <span class="n">inds</span> <span class="o">=</span> <span class="nb">zip</span><span class="p">(</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">where</span><span class="p">(</span><span class="o">~</span><span class="n">np</span><span class="o">.</span><span class="n">isnan</span><span class="p">(</span><span class="n">t_distmat</span><span class="p">)))</span>
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">inds</span><span class="p">:</span>
+        <span class="n">length</span> <span class="o">=</span> <span class="n">t_distmat</span><span class="p">[</span><span class="n">i</span><span class="p">[</span><span class="mi">0</span><span class="p">]][</span><span class="n">i</span><span class="p">[</span><span class="mi">1</span><span class="p">]]</span>
+        <span class="n">node_1</span> <span class="o">=</span> <span class="n">G</span><span class="o">.</span><span class="n">graph</span><span class="p">[</span><span class="s2">&quot;pdb_df&quot;</span><span class="p">][</span><span class="s2">&quot;node_id&quot;</span><span class="p">][</span><span class="n">i</span><span class="p">[</span><span class="mi">0</span><span class="p">]]</span>
+        <span class="n">node_2</span> <span class="o">=</span> <span class="n">G</span><span class="o">.</span><span class="n">graph</span><span class="p">[</span><span class="s2">&quot;pdb_df&quot;</span><span class="p">][</span><span class="s2">&quot;node_id&quot;</span><span class="p">][</span><span class="n">i</span><span class="p">[</span><span class="mi">1</span><span class="p">]]</span>
+        <span class="n">chain_1</span> <span class="o">=</span> <span class="n">G</span><span class="o">.</span><span class="n">graph</span><span class="p">[</span><span class="s2">&quot;pdb_df&quot;</span><span class="p">][</span><span class="s2">&quot;chain_id&quot;</span><span class="p">][</span><span class="n">i</span><span class="p">[</span><span class="mi">0</span><span class="p">]]</span>
+        <span class="n">chain_2</span> <span class="o">=</span> <span class="n">G</span><span class="o">.</span><span class="n">graph</span><span class="p">[</span><span class="s2">&quot;pdb_df&quot;</span><span class="p">][</span><span class="s2">&quot;chain_id&quot;</span><span class="p">][</span><span class="n">i</span><span class="p">[</span><span class="mi">1</span><span class="p">]]</span>
+
+        <span class="c1"># Check nodes are in graph</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="p">(</span><span class="n">G</span><span class="o">.</span><span class="n">has_node</span><span class="p">(</span><span class="n">node_1</span><span class="p">)</span> <span class="ow">and</span> <span class="n">G</span><span class="o">.</span><span class="n">has_node</span><span class="p">(</span><span class="n">node_2</span><span class="p">)):</span>
+            <span class="k">continue</span>
+
+        <span class="c1"># Check atoms are in the same chain</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="p">(</span><span class="n">chain_1</span> <span class="ow">and</span> <span class="n">chain_2</span><span class="p">):</span>
+            <span class="k">continue</span>
+
+        <span class="k">if</span> <span class="n">G</span><span class="o">.</span><span class="n">has_edge</span><span class="p">(</span><span class="n">node_1</span><span class="p">,</span> <span class="n">node_2</span><span class="p">):</span>
+            <span class="n">G</span><span class="o">.</span><span class="n">edges</span><span class="p">[</span><span class="n">node_1</span><span class="p">,</span> <span class="n">node_2</span><span class="p">][</span><span class="s2">&quot;kind&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="s2">&quot;covalent&quot;</span><span class="p">)</span>
+            <span class="n">G</span><span class="o">.</span><span class="n">edges</span><span class="p">[</span><span class="n">node_1</span><span class="p">,</span> <span class="n">node_2</span><span class="p">][</span><span class="s2">&quot;bond_length&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">length</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">G</span><span class="o">.</span><span class="n">add_edge</span><span class="p">(</span><span class="n">node_1</span><span class="p">,</span> <span class="n">node_2</span><span class="p">,</span> <span class="n">kind</span><span class="o">=</span><span class="p">{</span><span class="s2">&quot;covalent&quot;</span><span class="p">},</span> <span class="n">bond_length</span><span class="o">=</span><span class="n">length</span><span class="p">)</span>
+
+    <span class="c1"># Todo checking degree against MAX_NEIGHBOURS</span>
+
+    <span class="k">return</span> <span class="n">G</span></div>
+
+
+<div class="viewcode-block" id="add_ring_status"><a class="viewcode-back" href="../../../../modules/graphein.protein.html#graphein.protein.edges.atomic.add_ring_status">[docs]</a><span class="k">def</span> <span class="nf">add_ring_status</span><span class="p">(</span><span class="n">G</span><span class="p">:</span> <span class="n">nx</span><span class="o">.</span><span class="n">Graph</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">nx</span><span class="o">.</span><span class="n">Graph</span><span class="p">:</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Identifies rings in the atomic graph. Assigns the edge attribute &quot;RING&quot; to edges in the ring. We do not distinguish</span>
+<span class="sd">    between aromatic and non aromatic rings.</span>
+
+<span class="sd">    :param G: Atom-level protein structure graph to add ring edge types to</span>
+<span class="sd">    :type G: nx.Graph</span>
+<span class="sd">    :return: Atom-level protein structure graph with added RING edge attribute</span>
+<span class="sd">    :rtype: nx.Graph</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">cycles</span> <span class="o">=</span> <span class="n">nx</span><span class="o">.</span><span class="n">cycle_basis</span><span class="p">(</span>
+        <span class="n">G</span>
+    <span class="p">)</span>  <span class="c1"># Produces a list of lists containing nodes in each cycle</span>
+    <span class="c1"># Iterate over cycles, check for an edge between the nodes - if there is one, add a &quot;RING&quot; attribute</span>
+    <span class="k">for</span> <span class="n">cycle</span> <span class="ow">in</span> <span class="n">cycles</span><span class="p">:</span>
+        <span class="p">[</span>
+            <span class="n">G</span><span class="o">.</span><span class="n">edges</span><span class="p">[</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">][</span><span class="s2">&quot;kind&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="s2">&quot;RING&quot;</span><span class="p">)</span>
+            <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">x</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">cycle</span><span class="p">)</span>
+            <span class="k">for</span> <span class="n">j</span><span class="p">,</span> <span class="n">y</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">cycle</span><span class="p">)</span>
+            <span class="k">if</span> <span class="n">G</span><span class="o">.</span><span class="n">has_edge</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">)</span>
+            <span class="k">if</span> <span class="n">i</span> <span class="o">!=</span> <span class="n">j</span>
+        <span class="p">]</span>
+
+    <span class="k">return</span> <span class="n">G</span></div>
+
+
+<div class="viewcode-block" id="add_bond_order"><a class="viewcode-back" href="../../../../modules/graphein.protein.html#graphein.protein.edges.atomic.add_bond_order">[docs]</a><span class="k">def</span> <span class="nf">add_bond_order</span><span class="p">(</span><span class="n">G</span><span class="p">:</span> <span class="n">nx</span><span class="o">.</span><span class="n">Graph</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">nx</span><span class="o">.</span><span class="n">Graph</span><span class="p">:</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Assign bond orders to the covalent bond edges between atoms on the basis of bond length. Values are taken from:</span>
+<span class="sd">    Automatic Assignment of Chemical Connectivity to Organic Molecules in the CambridgeStructural Database.</span>
+<span class="sd">    Jon C. Baber and Edward E. Hodgkin*</span>
+
+<span class="sd">    :param G: Atomic-level protein graph with covalent edges.</span>
+<span class="sd">    :type G: nx.Graph</span>
+<span class="sd">    :return: Atomic-level protein graph with covalent edges annotated with putative bond order.</span>
+<span class="sd">    :rtype: mx.Graph</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">for</span> <span class="n">u</span><span class="p">,</span> <span class="n">v</span><span class="p">,</span> <span class="n">a</span> <span class="ow">in</span> <span class="n">G</span><span class="o">.</span><span class="n">edges</span><span class="p">(</span><span class="n">data</span><span class="o">=</span><span class="kc">True</span><span class="p">):</span>
+        <span class="n">atom_a</span> <span class="o">=</span> <span class="n">G</span><span class="o">.</span><span class="n">nodes</span><span class="p">[</span><span class="n">u</span><span class="p">][</span><span class="s2">&quot;element_symbol&quot;</span><span class="p">]</span>
+        <span class="n">atom_b</span> <span class="o">=</span> <span class="n">G</span><span class="o">.</span><span class="n">nodes</span><span class="p">[</span><span class="n">v</span><span class="p">][</span><span class="s2">&quot;element_symbol&quot;</span><span class="p">]</span>
+
+        <span class="c1"># Assign bonds with hydrogens to 1</span>
+        <span class="k">if</span> <span class="n">atom_a</span> <span class="o">==</span> <span class="s2">&quot;H&quot;</span> <span class="ow">or</span> <span class="n">atom_b</span> <span class="o">==</span> <span class="s2">&quot;H&quot;</span><span class="p">:</span>
+            <span class="n">G</span><span class="o">.</span><span class="n">edges</span><span class="p">[</span><span class="n">u</span><span class="p">,</span> <span class="n">v</span><span class="p">][</span><span class="s2">&quot;kind&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="s2">&quot;SINGLE&quot;</span><span class="p">)</span>
+        <span class="c1"># If not, we need to identify the bond type from the bond length</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">query</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">atom_a</span><span class="si">}</span><span class="s2">-</span><span class="si">{</span><span class="n">atom_b</span><span class="si">}</span><span class="s2">&quot;</span>
+            <span class="c1"># We need this try block as the dictionary keys may be X-Y, whereas the query we construct may be Y-X</span>
+            <span class="k">try</span><span class="p">:</span>
+                <span class="n">identify_bond_type_from_mapping</span><span class="p">(</span><span class="n">G</span><span class="p">,</span> <span class="n">u</span><span class="p">,</span> <span class="n">v</span><span class="p">,</span> <span class="n">a</span><span class="p">,</span> <span class="n">query</span><span class="p">)</span>
+            <span class="k">except</span><span class="p">:</span>
+                <span class="n">query</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">atom_b</span><span class="si">}</span><span class="s2">-</span><span class="si">{</span><span class="n">atom_a</span><span class="si">}</span><span class="s2">&quot;</span>
+                <span class="n">identify_bond_type_from_mapping</span><span class="p">(</span><span class="n">G</span><span class="p">,</span> <span class="n">u</span><span class="p">,</span> <span class="n">v</span><span class="p">,</span> <span class="n">a</span><span class="p">,</span> <span class="n">query</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">G</span></div>
+
+
+<div class="viewcode-block" id="identify_bond_type_from_mapping"><a class="viewcode-back" href="../../../../modules/graphein.protein.html#graphein.protein.edges.atomic.identify_bond_type_from_mapping">[docs]</a><span class="k">def</span> <span class="nf">identify_bond_type_from_mapping</span><span class="p">(</span>
+    <span class="n">G</span><span class="p">:</span> <span class="n">nx</span><span class="o">.</span><span class="n">Graph</span><span class="p">,</span> <span class="n">u</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">v</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">a</span><span class="p">:</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">],</span> <span class="n">query</span><span class="p">:</span> <span class="nb">str</span>
+<span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Compares the bond length between two atoms in the graph, and the relevant experimental value by performing a lookup</span>
+<span class="sd">    against the watershed values in:</span>
+<span class="sd">    Automatic Assignment of Chemical Connectivity to Organic Molecules in the Cambridge</span>
+<span class="sd">    Structural Database. Jon C. Baber and Edward E. Hodgkin*</span>
+
+<span class="sd">    Bond orders are assigned in the order triple &lt; double &lt; single (e.g. if a bond is shorter than the triple bond</span>
+<span class="sd">    watershed (w_dt) then it is assigned as a triple bond. Similarly, if a bond is longer than this but shorter than the</span>
+<span class="sd">    double bond watershed, it is assigned double bond status.</span>
+
+<span class="sd">    :param G: nx.Graph of atom-protein structure with atomic edges added</span>
+<span class="sd">    :type G: nx.Graph</span>
+<span class="sd">    :param u: node 1 in edge</span>
+<span class="sd">    :type u: str</span>
+<span class="sd">    :param v: node 2 in edge</span>
+<span class="sd">    :type v: str</span>
+<span class="sd">    :param a: edge data</span>
+<span class="sd">    :type a: Dict[str, Any]</span>
+<span class="sd">    :param query: &quot;ELEMENTX-ELEMENTY&quot; to perform lookup with (E.g. C-O, N-N)</span>
+<span class="sd">    :type query: str</span>
+<span class="sd">    :return: Graph with atomic edge bond order assigned</span>
+<span class="sd">    :rtype: nx.Graph</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="c1"># Perform lookup of allowable bond orders for the given atom pair</span>
+    <span class="n">allowable_order</span> <span class="o">=</span> <span class="n">BOND_ORDERS</span><span class="p">[</span><span class="n">query</span><span class="p">]</span>
+    <span class="c1"># If max souble, compare the length to the double watershed distance, w_sd, else assign single</span>
+    <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">allowable_order</span><span class="p">)</span> <span class="o">==</span> <span class="mi">2</span><span class="p">:</span>
+        <span class="k">if</span> <span class="n">a</span><span class="p">[</span><span class="s2">&quot;bond_length&quot;</span><span class="p">]</span> <span class="o">&lt;</span> <span class="n">BOND_LENGTHS</span><span class="p">[</span><span class="n">query</span><span class="p">][</span><span class="s2">&quot;w_sd&quot;</span><span class="p">]:</span>
+            <span class="n">G</span><span class="o">.</span><span class="n">edges</span><span class="p">[</span><span class="n">u</span><span class="p">,</span> <span class="n">v</span><span class="p">][</span><span class="s2">&quot;kind&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="s2">&quot;DOUBLE&quot;</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">G</span><span class="o">.</span><span class="n">edges</span><span class="p">[</span><span class="n">u</span><span class="p">,</span> <span class="n">v</span><span class="p">][</span><span class="s2">&quot;kind&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="s2">&quot;SINGLE&quot;</span><span class="p">)</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="c1"># If max triple, compare the length to the triple watershed distance, w_dt, then double, else assign single</span>
+        <span class="k">if</span> <span class="n">a</span><span class="p">[</span><span class="s2">&quot;bond_length&quot;</span><span class="p">]</span> <span class="o">&lt;</span> <span class="n">BOND_LENGTHS</span><span class="p">[</span><span class="n">query</span><span class="p">][</span><span class="s2">&quot;w_dt&quot;</span><span class="p">]:</span>
+            <span class="n">G</span><span class="o">.</span><span class="n">edges</span><span class="p">[</span><span class="n">u</span><span class="p">,</span> <span class="n">v</span><span class="p">][</span><span class="s2">&quot;kind&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="s2">&quot;TRIPLE&quot;</span><span class="p">)</span>
+        <span class="k">elif</span> <span class="n">a</span><span class="p">[</span><span class="s2">&quot;bond_length&quot;</span><span class="p">]</span> <span class="o">&lt;</span> <span class="n">BOND_LENGTHS</span><span class="p">[</span><span class="n">query</span><span class="p">][</span><span class="s2">&quot;w_sd&quot;</span><span class="p">]:</span>
+            <span class="n">G</span><span class="o">.</span><span class="n">edges</span><span class="p">[</span><span class="n">u</span><span class="p">,</span> <span class="n">v</span><span class="p">][</span><span class="s2">&quot;kind&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="s2">&quot;DOUBLE&quot;</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">G</span><span class="o">.</span><span class="n">edges</span><span class="p">[</span><span class="n">u</span><span class="p">,</span> <span class="n">v</span><span class="p">][</span><span class="s2">&quot;kind&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="s2">&quot;SINGLE&quot;</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">G</span></div>
+
+
+<span class="c1"># The codeblock below was used in an initial pass at solving the bond order assignment problem based on hybridisation state.</span>
+<span class="c1"># We instead use a simpler method of construction based on bond lengths, but I am loathe to remove this code as it may prove useful later</span>
+<span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">def cosinus(x0, x1, x2):</span>
+<span class="sd">    e0 = x0 - x1</span>
+<span class="sd">    e1 = x2 - x1</span>
+<span class="sd">    e0 = e0 / np.linalg.norm(e0)</span>
+<span class="sd">    e1 = e1 / np.linalg.norm(e1)</span>
+<span class="sd">    cosinus = np.dot(e0, e1)</span>
+<span class="sd">    angle = np.arccos(cosinus)</span>
+
+<span class="sd">    return 180 - np.degrees(angle)</span>
+
+
+<span class="sd">def dihedral(x0, x1, x2, x3):</span>
+<span class="sd">    b0 = -1.0 * (x1 - x0)</span>
+<span class="sd">    b1 = x2 - x1</span>
+<span class="sd">    b2 = x3 - x2</span>
+
+<span class="sd">    b0xb1 = np.cross(b0, b1)</span>
+<span class="sd">    b1xb2 = np.cross(b2, b1)</span>
+
+<span class="sd">    b0xb1_x_b1xb2 = np.cross(b0xb1, b1xb2)</span>
+
+<span class="sd">    y = np.dot(b0xb1_x_b1xb2, b1) * (1.0 / np.linalg.norm(b1))</span>
+<span class="sd">    x = np.dot(b0xb1, b1xb2)</span>
+
+<span class="sd">    grad = 180 - np.degrees(np.arctan2(y, x))</span>
+<span class="sd">    return grad</span>
+
+
+<span class="sd">def assign_bond_orders(G: nx.Graph) -&gt; nx.Graph:</span>
+
+<span class="sd">    bond_angles: Dict[str, float] = {}</span>
+<span class="sd">    for n, d in G.nodes(data=True):</span>
+<span class="sd">        neighbours = list(G.neighbors(n))</span>
+
+<span class="sd">        if len(neighbours) == 1:</span>
+<span class="sd">            G.edges[n, neighbours[0]][&quot;kind&quot;].add(&quot;SINGLE&quot;)</span>
+<span class="sd">            bond_angles[n] = 0.0</span>
+<span class="sd">        elif len(neighbours) == 2:</span>
+<span class="sd">            cos_angle = cosinus(</span>
+<span class="sd">                G.nodes[n][&quot;coords&quot;],</span>
+<span class="sd">                G.nodes[neighbours[0]][&quot;coords&quot;],</span>
+<span class="sd">                G.nodes[neighbours[1]][&quot;coords&quot;],</span>
+<span class="sd">            )</span>
+<span class="sd">            bond_angles[n] = cos_angle</span>
+<span class="sd">        elif len(neighbours) == 3:</span>
+<span class="sd">            dihed = dihedral(</span>
+<span class="sd">                G.nodes[n][&quot;coords&quot;],</span>
+<span class="sd">                G.nodes[neighbours[0]][&quot;coords&quot;],</span>
+<span class="sd">                G.nodes[neighbours[1]][&quot;coords&quot;],</span>
+<span class="sd">                G.nodes[neighbours[2]][&quot;coords&quot;],</span>
+<span class="sd">            )</span>
+<span class="sd">            bond_angles[n] = dihed</span>
+
+<span class="sd">    print(bond_angles)</span>
+
+<span class="sd">    # Assign Bond angles to dataframe</span>
+<span class="sd">    G.graph[&quot;pdb_df&quot;][&quot;bond_angles&quot;] = G.graph[&quot;pdb_df&quot;][&quot;node_id&quot;].map(</span>
+<span class="sd">        bond_angles</span>
+<span class="sd">    )</span>
+<span class="sd">    print(G.graph[&quot;pdb_df&quot;].to_string())</span>
+
+<span class="sd">    # Assign Hybridisation state from Bond Angles</span>
+<span class="sd">    hybridisation_state = {</span>
+<span class="sd">        n: &quot;sp&quot;</span>
+<span class="sd">        if d &gt; 155</span>
+<span class="sd">        else &quot;sp2&quot;</span>
+<span class="sd">        if d &gt; 115</span>
+<span class="sd">        else &quot;sp3&quot;</span>
+<span class="sd">        if d &lt;= 115</span>
+<span class="sd">        else &quot;UNK&quot;</span>
+<span class="sd">        for n, d in bond_angles.items()</span>
+<span class="sd">    }</span>
+<span class="sd">    G.graph[&quot;pdb_df&quot;][&quot;bond_angles&quot;] = G.graph[&quot;pdb_df&quot;][&quot;node_id&quot;].map(</span>
+<span class="sd">        hybridisation_state</span>
+<span class="sd">    )</span>
+
+<span class="sd">    return G</span>
+<span class="sd">&quot;&quot;&quot;</span>
+</pre></div>
+
+           </div>
+           
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &#169; Copyright 2020, Arian Jamasb.
+
+    </p>
+  </div>
+    
+    
+    
+    Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    
+    provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

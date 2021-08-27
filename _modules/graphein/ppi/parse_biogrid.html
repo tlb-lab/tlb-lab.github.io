@@ -1,0 +1,433 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" />
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  
+  <title>graphein.ppi.parse_biogrid &mdash; Graphein 0.0.1 documentation</title>
+  
+
+  
+  <link rel="stylesheet" href="../../../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../../../_static/css/theme.css" type="text/css" />
+
+  
+  
+
+  
+  
+
+  
+
+  
+  <!--[if lt IE 9]>
+    <script src="../../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../../../" src="../../../_static/documentation_options.js"></script>
+        <script data-url_root="../../../" id="documentation_options" src="../../../_static/documentation_options.js"></script>
+        <script src="../../../_static/jquery.js"></script>
+        <script src="../../../_static/underscore.js"></script>
+        <script src="../../../_static/doctools.js"></script>
+    
+    <script type="text/javascript" src="../../../_static/js/theme.js"></script>
+
+    
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../../../index.html" class="icon icon-home"> Graphein
+          
+
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">Getting Started:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../getting_started/installation.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../getting_started/introduction.html">Graphein</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../license.html">License</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Package Reference:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../modules/graphein.protein.html">graphein.protein</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../modules/graphein.ml.html">graphein.ml</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../modules/graphein.ppi.html">graphein.ppi</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../modules/graphein.grn.html">graphein.grn</a></li>
+</ul>
+
+            
+          
+        </div>
+        
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../index.html">Graphein</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../../../index.html" class="icon icon-home"></a> &raquo;</li>
+        
+          <li><a href="../../index.html">Module code</a> &raquo;</li>
+        
+      <li>graphein.ppi.parse_biogrid</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <h1>Source code for graphein.ppi.parse_biogrid</h1><div class="highlight"><pre>
+<span></span><span class="sd">&quot;&quot;&quot;Functions for making and parsing API calls to BIOGRID&quot;&quot;&quot;</span>
+<span class="c1"># %%</span>
+<span class="c1"># Graphein</span>
+<span class="c1"># Author: Ramon Vinas, Arian Jamasb &lt;arian@jamasb.io&gt;</span>
+<span class="c1"># License: MIT</span>
+<span class="c1"># Project Website: https://github.com/a-r-j/graphein</span>
+<span class="c1"># Code Repository: https://github.com/a-r-j/graphein</span>
+<span class="kn">import</span> <span class="nn">logging</span>
+<span class="kn">from</span> <span class="nn">typing</span> <span class="kn">import</span> <span class="n">Dict</span><span class="p">,</span> <span class="n">List</span><span class="p">,</span> <span class="n">Union</span>
+
+<span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<span class="kn">import</span> <span class="nn">requests</span>
+
+<span class="n">log</span> <span class="o">=</span> <span class="n">logging</span><span class="o">.</span><span class="n">getLogger</span><span class="p">(</span><span class="vm">__name__</span><span class="p">)</span>
+
+
+<div class="viewcode-block" id="params_BIOGRID"><a class="viewcode-back" href="../../../modules/graphein.ppi.html#graphein.ppi.parse_biogrid.params_BIOGRID">[docs]</a><span class="k">def</span> <span class="nf">params_BIOGRID</span><span class="p">(</span>
+    <span class="n">params</span><span class="p">:</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Union</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="nb">int</span><span class="p">,</span> <span class="n">List</span><span class="p">[</span><span class="nb">str</span><span class="p">],</span> <span class="n">List</span><span class="p">[</span><span class="nb">int</span><span class="p">]]],</span> <span class="o">**</span><span class="n">kwargs</span>
+<span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Union</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="nb">int</span><span class="p">]]:</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Updates default parameters with user parameters for the method &quot;interactions&quot; of the BIOGRID API REST.</span>
+<span class="sd">    See also https://wiki.thebiogrid.org/doku.php/biogridrest</span>
+<span class="sd">    :param params: Dictionary of default parameters</span>
+<span class="sd">    :param kwargs: User parameters for the method &quot;network&quot; of the BIOGRID API REST. The key must start with &quot;BIOGRID&quot;</span>
+<span class="sd">    :return: Dictionary of parameters</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">fields</span> <span class="o">=</span> <span class="p">[</span>
+        <span class="s2">&quot;searchNames&quot;</span><span class="p">,</span>  <span class="c1"># If ‘true’, the interactor OFFICIAL_SYMBOL will be examined for a match</span>
+        <span class="c1"># with the geneList.</span>
+        <span class="s2">&quot;max&quot;</span><span class="p">,</span>  <span class="c1"># Number of results to fetch</span>
+        <span class="s2">&quot;interSpeciesExcluded&quot;</span><span class="p">,</span>  <span class="c1"># If ‘true’, interactions with interactors from different species will</span>
+        <span class="c1"># be excluded.</span>
+        <span class="s2">&quot;selfInteractionsExcluded&quot;</span><span class="p">,</span>  <span class="c1"># If ‘true’, interactions with one interactor will be excluded.</span>
+        <span class="s2">&quot;evidenceList&quot;</span><span class="p">,</span>  <span class="c1"># Any interaction evidence with its Experimental System in the list will be excluded</span>
+        <span class="c1"># from the results unless includeEvidence is set to true.</span>
+        <span class="s2">&quot;includeEvidence&quot;</span><span class="p">,</span>  <span class="c1"># If set to true, any interaction evidence with its Experimental System in the</span>
+        <span class="c1"># evidenceList will be included in the result</span>
+        <span class="s2">&quot;searchIds&quot;</span><span class="p">,</span>  <span class="c1"># If ‘true’, the interactor ENTREZ_GENE, ORDERED LOCUS and SYSTEMATIC_NAME (orf) will</span>
+        <span class="c1"># be examined for a match with the geneList.</span>
+        <span class="s2">&quot;searchNames&quot;</span><span class="p">,</span>  <span class="c1"># If ‘true’, the interactor OFFICIAL_SYMBOL will be examined for a match with</span>
+        <span class="c1"># the geneList.</span>
+        <span class="s2">&quot;searchSynonyms&quot;</span><span class="p">,</span>  <span class="c1"># If ‘true’, the interactor SYNONYMS will be examined for a match with</span>
+        <span class="c1"># the geneList.</span>
+        <span class="s2">&quot;searchBiogridIds&quot;</span><span class="p">,</span>  <span class="c1"># If ‘true’, the entries in &#39;GENELIST&#39; will be compared to BIOGRID internal IDS</span>
+        <span class="c1"># which are provided in all Tab2 formatted files.</span>
+        <span class="s2">&quot;additionalIdentifierTypes&quot;</span><span class="p">,</span>  <span class="c1"># Identifier types on this list are examined for a match with</span>
+        <span class="c1"># the geneList.</span>
+        <span class="s2">&quot;excludeGenes&quot;</span><span class="p">,</span>  <span class="c1"># If ‘true’, interactions containing genes in the geneList will be excluded from the</span>
+        <span class="c1"># results.</span>
+        <span class="s2">&quot;includeInteractors&quot;</span><span class="p">,</span>  <span class="c1"># If ‘true’, in addition to interactions between genes on the geneList,</span>
+        <span class="c1"># interactions will also be fetched which have only one interactor on</span>
+        <span class="c1"># the geneList</span>
+        <span class="s2">&quot;includeInteractorInteractions&quot;</span><span class="p">,</span>  <span class="c1"># If ‘true’ interactions between the geneList’s first order</span>
+        <span class="c1"># interactors will be included.</span>
+        <span class="s2">&quot;pubmedList&quot;</span><span class="p">,</span>  <span class="c1"># Interactions will be fetched whose Pubmed Id is/ is not in this list, depending on</span>
+        <span class="c1"># the value of excludePubmeds.</span>
+        <span class="s2">&quot;excludePubmeds&quot;</span><span class="p">,</span>  <span class="c1"># If ‘false’, interactions with Pubmed ID in pubmedList will be included in the</span>
+        <span class="c1"># results; if ‘true’ they will be excluded.</span>
+        <span class="s2">&quot;htpThreshold&quot;</span><span class="p">,</span>  <span class="c1"># Interactions whose Pubmed ID has more than this number of interactions will be</span>
+        <span class="c1"># excluded from the results. Ignored if excludePubmeds is ‘false’.</span>
+        <span class="s2">&quot;throughputTag&quot;</span>  <span class="c1"># If set to &#39;low or &#39;high&#39;, only interactions with &#39;Low throughput&#39; or</span>
+        <span class="c1"># &#39;High throughput&#39; in the &#39;throughput&#39; field will be returned.</span>
+    <span class="p">]</span>
+    <span class="k">for</span> <span class="n">p</span> <span class="ow">in</span> <span class="n">fields</span><span class="p">:</span>
+        <span class="n">kwarg_name</span> <span class="o">=</span> <span class="s2">&quot;BIOGRID_&quot;</span> <span class="o">+</span> <span class="n">p</span>
+        <span class="k">if</span> <span class="n">kwarg_name</span> <span class="ow">in</span> <span class="n">kwargs</span><span class="p">:</span>
+            <span class="n">value</span> <span class="o">=</span> <span class="n">kwargs</span><span class="p">[</span><span class="n">kwarg_name</span><span class="p">]</span>
+            <span class="k">if</span> <span class="nb">type</span><span class="p">(</span><span class="n">value</span><span class="p">)</span> <span class="ow">is</span> <span class="nb">list</span><span class="p">:</span>
+                <span class="n">value</span> <span class="o">=</span> <span class="s2">&quot;|&quot;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">value</span><span class="p">)</span>
+            <span class="n">params</span><span class="p">[</span><span class="n">p</span><span class="p">]</span> <span class="o">=</span> <span class="n">value</span>
+    <span class="k">return</span> <span class="n">params</span></div>
+
+
+<div class="viewcode-block" id="parse_BIOGRID"><a class="viewcode-back" href="../../../modules/graphein.ppi.html#graphein.ppi.parse_biogrid.parse_BIOGRID">[docs]</a><span class="k">def</span> <span class="nf">parse_BIOGRID</span><span class="p">(</span>
+    <span class="n">protein_list</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="nb">str</span><span class="p">],</span>
+    <span class="n">ncbi_taxon_id</span><span class="p">:</span> <span class="n">Union</span><span class="p">[</span><span class="nb">int</span><span class="p">,</span> <span class="nb">str</span><span class="p">,</span> <span class="n">List</span><span class="p">[</span><span class="nb">int</span><span class="p">],</span> <span class="n">List</span><span class="p">[</span><span class="nb">str</span><span class="p">]],</span>
+    <span class="n">paginate</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">True</span><span class="p">,</span>
+    <span class="o">**</span><span class="n">kwargs</span><span class="p">,</span>
+<span class="p">)</span> <span class="o">-&gt;</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">:</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Makes BIOGRID API call and returns a source specific Pandas dataframe.</span>
+<span class="sd">    See also [1] BIOGRID: https://wiki.thebiogrid.org/doku.php/biogridrest</span>
+<span class="sd">    :param protein_list: Proteins to include in the graph</span>
+<span class="sd">    :param ncbi_taxon_id: NCBI taxonomy identifiers for the organism. Default is 9606 (Homo Sapiens)</span>
+<span class="sd">    :param paginate: boolean indicating whether to paginate the calls (for BIOGRID, the maximum number of rows per</span>
+<span class="sd">                     call is 10000). Defaults to True</span>
+<span class="sd">    :param kwargs: Parameters of the &quot;interactions&quot; method of the BIOGRID API REST, used to select the results.</span>
+<span class="sd">                   The parameter names are of the form BIOGRID_&lt;param&gt;, where &lt;param&gt; is the name of the parameter.</span>
+<span class="sd">                   Information about these parameters can be found at [1].</span>
+<span class="sd">    :return: Source specific Pandas dataframe.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="c1"># Prepare call to BIOGRID API</span>
+    <span class="n">biogrid_api_url</span> <span class="o">=</span> <span class="s2">&quot;https://webservice.thebiogrid.org&quot;</span>
+    <span class="n">method</span> <span class="o">=</span> <span class="s2">&quot;interactions&quot;</span>
+    <span class="n">request_url</span> <span class="o">=</span> <span class="s2">&quot;/&quot;</span><span class="o">.</span><span class="n">join</span><span class="p">([</span><span class="n">biogrid_api_url</span><span class="p">,</span> <span class="n">method</span><span class="p">])</span>
+    <span class="k">if</span> <span class="nb">type</span><span class="p">(</span><span class="n">ncbi_taxon_id</span><span class="p">)</span> <span class="ow">is</span> <span class="nb">list</span><span class="p">:</span>
+        <span class="n">ncbi_taxon_id</span> <span class="o">=</span> <span class="s2">&quot;|&quot;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="nb">str</span><span class="p">(</span><span class="n">t</span><span class="p">)</span> <span class="k">for</span> <span class="n">t</span> <span class="ow">in</span> <span class="n">ncbi_taxon_id</span><span class="p">)</span>
+    <span class="n">params</span> <span class="o">=</span> <span class="p">{</span>  <span class="c1"># Default parameters</span>
+        <span class="s2">&quot;geneList&quot;</span><span class="p">:</span> <span class="s2">&quot;|&quot;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">protein_list</span><span class="p">),</span>
+        <span class="s2">&quot;accesskey&quot;</span><span class="p">:</span> <span class="s2">&quot;c4ab86373e0bb921a878bb6d15ee4fb4&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;taxId&quot;</span><span class="p">:</span> <span class="n">ncbi_taxon_id</span><span class="p">,</span>  <span class="c1"># 9606 is human</span>
+        <span class="s2">&quot;format&quot;</span><span class="p">:</span> <span class="s2">&quot;json&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;max&quot;</span><span class="p">:</span> <span class="mi">10000</span><span class="p">,</span>  <span class="c1"># Number of results to fetch</span>
+        <span class="s2">&quot;searchNames&quot;</span><span class="p">:</span> <span class="s2">&quot;true&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;includeInteractors&quot;</span><span class="p">:</span> <span class="s2">&quot;false&quot;</span><span class="p">,</span>  <span class="c1"># Set to true to get any interaction involving EITHER gene,</span>
+        <span class="c1"># set to false to get interactions between genes</span>
+        <span class="s2">&quot;selfInteractionsExcluded&quot;</span><span class="p">:</span> <span class="s2">&quot;true&quot;</span><span class="p">,</span>  <span class="c1"># If ‘true’, interactions with one interactor will be excluded</span>
+    <span class="p">}</span>
+    <span class="n">params</span> <span class="o">=</span> <span class="n">params_BIOGRID</span><span class="p">(</span><span class="n">params</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+
+    <span class="c1"># Call BIOGRID</span>
+    <span class="k">def</span> <span class="nf">make_call</span><span class="p">(</span>
+        <span class="n">request_url</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
+        <span class="n">params</span><span class="p">:</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Union</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="nb">int</span><span class="p">]],</span>
+        <span class="n">start</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span>
+        <span class="nb">max</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">10000</span><span class="p">,</span>
+        <span class="n">paginate</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="n">paginate</span><span class="p">,</span>
+    <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">:</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Makes call to BIOGRID API</span>
+<span class="sd">        :param request_url: BIOGRID URL to make request</span>
+<span class="sd">        :param params: BIOGRID API parameters to use</span>
+<span class="sd">        :param start: index in gene list to start from</span>
+<span class="sd">        :param max: number of genes to use in API call. Results are limited to 10k per call</span>
+<span class="sd">        :param paginate: bool indicating whether or not to paginate calls. Above 10k calls this is required</span>
+<span class="sd">        :return: pd.DataFrame containing BIOGRID_df API call output</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">params</span><span class="p">[</span><span class="s2">&quot;start&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">start</span>
+        <span class="n">response</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">post</span><span class="p">(</span><span class="n">request_url</span><span class="p">,</span> <span class="n">data</span><span class="o">=</span><span class="n">params</span><span class="p">)</span>
+        <span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_json</span><span class="p">(</span><span class="n">response</span><span class="o">.</span><span class="n">text</span><span class="o">.</span><span class="n">strip</span><span class="p">())</span><span class="o">.</span><span class="n">transpose</span><span class="p">()</span>
+
+        <span class="c1"># Maximum number of results is limited to 10k. Paginate to retrieve everything</span>
+        <span class="k">if</span> <span class="n">paginate</span> <span class="ow">and</span> <span class="n">df</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">==</span> <span class="nb">max</span><span class="p">:</span>
+            <span class="n">next_df</span> <span class="o">=</span> <span class="n">make_call</span><span class="p">(</span><span class="n">request_url</span><span class="p">,</span> <span class="n">params</span><span class="p">,</span> <span class="n">start</span> <span class="o">+</span> <span class="nb">max</span><span class="p">,</span> <span class="nb">max</span><span class="p">)</span>
+            <span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">concat</span><span class="p">([</span><span class="n">df</span><span class="p">,</span> <span class="n">next_df</span><span class="p">])</span>
+
+        <span class="k">return</span> <span class="n">df</span>
+
+    <span class="k">return</span> <span class="n">make_call</span><span class="p">(</span>
+        <span class="n">request_url</span><span class="o">=</span><span class="n">request_url</span><span class="p">,</span> <span class="n">params</span><span class="o">=</span><span class="n">params</span><span class="p">,</span> <span class="n">start</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="nb">max</span><span class="o">=</span><span class="n">params</span><span class="p">[</span><span class="s2">&quot;max&quot;</span><span class="p">]</span>
+    <span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="filter_BIOGRID"><a class="viewcode-back" href="../../../modules/graphein.ppi.html#graphein.ppi.parse_biogrid.filter_BIOGRID">[docs]</a><span class="k">def</span> <span class="nf">filter_BIOGRID</span><span class="p">(</span><span class="n">df</span><span class="p">:</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">:</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Filters results of the BIOGRID API call according to user kwargs.</span>
+<span class="sd">    :param df: Source specific Pandas dataframe (BIOGRID) with results of the API call</span>
+<span class="sd">    :param kwargs: User thresholds used to filter the results. The parameter names are of the form BIOGRID_&lt;param&gt;,</span>
+<span class="sd">                   where &lt;param&gt; is the name of the parameter. All the parameters are numerical values.</span>
+<span class="sd">    :return: Source specific Pandas dataframe with filtered results</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="c1"># Note: To filter BIOGRID interactions, use parameters from https://wiki.thebiogrid.org/doku.php/biogridrest</span>
+    <span class="c1"># TODO: Make sure that user can filter results of API call via the parameters.</span>
+    <span class="c1">#       Otherwise implement filtering here.</span>
+    <span class="c1"># TODO: Perhaps can filter by EXPERIMENTAL_SYSTEM (e.g. Co-fractionation)</span>
+    <span class="c1">#       and EXPERIMENTAL_SYSTEM_TYPE (e.g. physical)</span>
+    <span class="k">return</span> <span class="n">df</span></div>
+
+
+<div class="viewcode-block" id="standardise_BIOGRID"><a class="viewcode-back" href="../../../modules/graphein.ppi.html#graphein.ppi.parse_biogrid.standardise_BIOGRID">[docs]</a><span class="k">def</span> <span class="nf">standardise_BIOGRID</span><span class="p">(</span><span class="n">df</span><span class="p">:</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">:</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Standardises BIOGRID dataframe, e.g. puts everything into a common format</span>
+<span class="sd">    :param df: Source specific Pandas dataframe</span>
+<span class="sd">    :return: Standardised dataframe</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">if</span> <span class="n">df</span><span class="o">.</span><span class="n">empty</span><span class="p">:</span>
+        <span class="k">return</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">({</span><span class="s2">&quot;p1&quot;</span><span class="p">:</span> <span class="p">[],</span> <span class="s2">&quot;p2&quot;</span><span class="p">:</span> <span class="p">[],</span> <span class="s2">&quot;source&quot;</span><span class="p">:</span> <span class="p">[]})</span>
+
+    <span class="c1"># Rename &amp; delete columns</span>
+    <span class="n">df</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">rename</span><span class="p">(</span>
+        <span class="n">columns</span><span class="o">=</span><span class="p">{</span><span class="s2">&quot;OFFICIAL_SYMBOL_A&quot;</span><span class="p">:</span> <span class="s2">&quot;p1&quot;</span><span class="p">,</span> <span class="s2">&quot;OFFICIAL_SYMBOL_B&quot;</span><span class="p">:</span> <span class="s2">&quot;p2&quot;</span><span class="p">}</span>
+    <span class="p">)</span>
+    <span class="n">df</span> <span class="o">=</span> <span class="n">df</span><span class="p">[[</span><span class="s2">&quot;p1&quot;</span><span class="p">,</span> <span class="s2">&quot;p2&quot;</span><span class="p">]]</span>
+
+    <span class="c1"># Add source column</span>
+    <span class="n">df</span><span class="p">[</span><span class="s2">&quot;source&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="s2">&quot;BIOGRID&quot;</span>
+
+    <span class="k">return</span> <span class="n">df</span></div>
+
+
+<div class="viewcode-block" id="BIOGRID_df"><a class="viewcode-back" href="../../../modules/graphein.ppi.html#graphein.ppi.parse_biogrid.BIOGRID_df">[docs]</a><span class="k">def</span> <span class="nf">BIOGRID_df</span><span class="p">(</span>
+    <span class="n">protein_list</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="nb">str</span><span class="p">],</span>
+    <span class="n">ncbi_taxon_id</span><span class="p">:</span> <span class="n">Union</span><span class="p">[</span><span class="nb">int</span><span class="p">,</span> <span class="nb">str</span><span class="p">,</span> <span class="n">List</span><span class="p">[</span><span class="nb">int</span><span class="p">],</span> <span class="n">List</span><span class="p">[</span><span class="nb">str</span><span class="p">]],</span>
+    <span class="o">**</span><span class="n">kwargs</span><span class="p">,</span>
+<span class="p">)</span> <span class="o">-&gt;</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">:</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Generates standardised dataframe with BIOGRID protein-protein interactions, filtered according to user&#39;s input</span>
+<span class="sd">    :protein_list: List of proteins (official symbol) that will be included in the PPI graph</span>
+<span class="sd">    :ncbi_taxon_id: NCBI taxonomy identifiers for the organism. 9606 corresponds to Homo Sapiens</span>
+<span class="sd">    :param kwargs:  Additional parameters to pass to BIOGRID API calls</span>
+<span class="sd">    :return: Standardised dataframe with BIOGRID interactions</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">df</span> <span class="o">=</span> <span class="n">parse_BIOGRID</span><span class="p">(</span>
+        <span class="n">protein_list</span><span class="o">=</span><span class="n">protein_list</span><span class="p">,</span> <span class="n">ncbi_taxon_id</span><span class="o">=</span><span class="n">ncbi_taxon_id</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span>
+    <span class="p">)</span>
+    <span class="n">df</span> <span class="o">=</span> <span class="n">filter_BIOGRID</span><span class="p">(</span><span class="n">df</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+    <span class="n">df</span> <span class="o">=</span> <span class="n">standardise_BIOGRID</span><span class="p">(</span><span class="n">df</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">df</span></div>
+
+
+<span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s2">&quot;__main__&quot;</span><span class="p">:</span>
+    <span class="n">protein_list</span> <span class="o">=</span> <span class="p">[</span>
+        <span class="s2">&quot;CDC42&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;CDK1&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;KIF23&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;PLK1&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;RAC2&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;RACGAP1&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;RHOA&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;RHOB&quot;</span><span class="p">,</span>
+    <span class="p">]</span>
+    <span class="n">sources</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;STRING&quot;</span><span class="p">,</span> <span class="s2">&quot;BIOGRID&quot;</span><span class="p">]</span>
+    <span class="n">kwargs</span> <span class="o">=</span> <span class="p">{</span>
+        <span class="s2">&quot;STRING_escore&quot;</span><span class="p">:</span> <span class="mf">0.2</span><span class="p">,</span>  <span class="c1"># Keeps STRING interactions with an experimental score &gt;= 0.2</span>
+        <span class="s2">&quot;BIOGRID_throughputTag&quot;</span><span class="p">:</span> <span class="s2">&quot;high&quot;</span><span class="p">,</span>  <span class="c1"># Keeps high throughput BIOGRID interactions</span>
+    <span class="p">}</span>
+
+    <span class="n">df</span> <span class="o">=</span> <span class="n">BIOGRID_df</span><span class="p">(</span>
+        <span class="n">protein_list</span><span class="o">=</span><span class="n">protein_list</span><span class="p">,</span> <span class="n">ncbi_taxon_id</span><span class="o">=</span><span class="mi">9606</span><span class="p">,</span> <span class="n">kwargs</span><span class="o">=</span><span class="n">kwargs</span>
+    <span class="p">)</span>
+
+    <span class="nb">print</span><span class="p">(</span><span class="n">df</span><span class="o">.</span><span class="n">head</span><span class="p">())</span>
+</pre></div>
+
+           </div>
+           
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &#169; Copyright 2020, Arian Jamasb.
+
+    </p>
+  </div>
+    
+    
+    
+    Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    
+    provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

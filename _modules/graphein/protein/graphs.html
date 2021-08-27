@@ -1,0 +1,966 @@
+<!doctype html>
+<html class="no-js">
+  <head><meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width,initial-scale=1"/>
+    <meta name="color-scheme" content="light dark"><link rel="index" title="Index" href="../../../genindex.html" /><link rel="search" title="Search" href="../../../search.html" />
+
+    <meta name="generator" content="sphinx-4.1.2, furo 2021.08.17.beta43"/>
+        <title>graphein.protein.graphs - Graphein 1.0.0 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/styles/furo.css?digest=910ac4ccc9d7c023151c34010d7b500fb9777a51" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/styles/furo-extensions.css?digest=16fb25fabf47304eee183a5e9af80b1ba98259b1" />
+    
+    
+
+
+<style>
+  body {
+    --color-code-background: #f8f8f8;
+  --color-code-foreground: black;
+  
+  }
+  body[data-theme="dark"] {
+    --color-code-background: #202020;
+  --color-code-foreground: #d0d0d0;
+  
+  }
+  @media (prefers-color-scheme: dark) {
+    body:not([data-theme="light"]) {
+      --color-code-background: #202020;
+  --color-code-foreground: #d0d0d0;
+  
+    }
+  }
+</style>
+    <link media="(prefers-color-scheme: dark)" rel="stylesheet" href="../../../_static/pygments_dark.css"></head>
+  <body>
+    
+<svg xmlns="http://www.w3.org/2000/svg" style="display: none;">
+  <symbol id="svg-toc" viewBox="0 0 24 24">
+    <title>Contents</title>
+    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+      <path stroke="none" d="M0 0h24v24H0z" />
+      <line x1="4" y1="6" x2="20" y2="6" />
+      <line x1="10" y1="12" x2="20" y2="12" />
+      <line x1="6" y1="18" x2="20" y2="18" />
+    </svg>
+  </symbol>
+  <symbol id="svg-menu" viewBox="0 0 24 24">
+    <title>Menu</title>
+    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather-menu">
+      <line x1="3" y1="12" x2="21" y2="12"></line>
+      <line x1="3" y1="6" x2="21" y2="6"></line>
+      <line x1="3" y1="18" x2="21" y2="18"></line>
+    </svg>
+  </symbol>
+  <symbol id="svg-arrow-right" viewBox="0 0 24 24">
+    <title>Expand</title>
+    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather-chevron-right">
+      <polyline points="9 18 15 12 9 6"></polyline>
+    </svg>
+  </symbol>
+  <symbol id="svg-sun" viewBox="0 0 24 24">
+    <title>Light mode</title>
+    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="feather-sun">
+      <circle cx="12" cy="12" r="5"></circle>
+      <line x1="12" y1="1" x2="12" y2="3"></line>
+      <line x1="12" y1="21" x2="12" y2="23"></line>
+      <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+      <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+      <line x1="1" y1="12" x2="3" y2="12"></line>
+      <line x1="21" y1="12" x2="23" y2="12"></line>
+      <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+      <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+    </svg>
+  </symbol>
+  <symbol id="svg-moon" viewBox="0 0 24 24">
+    <title>Dark mode</title>
+    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="icon-tabler-moon">
+      <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+      <path d="M12 3c.132 0 .263 0 .393 0a7.5 7.5 0 0 0 7.92 12.446a9 9 0 1 1 -8.313 -12.454z" />
+    </svg>
+  </symbol>
+  <symbol id="svg-sun-half" viewBox="0 0 24 24">
+    <title>Auto light/dark mode</title>
+    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="icon-tabler-shadow">
+      <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+      <circle cx="12" cy="12" r="9" />
+      <path d="M13 12h5" />
+      <path d="M13 15h4" />
+      <path d="M13 18h1" />
+      <path d="M13 9h4" />
+      <path d="M13 6h1" />
+    </svg>
+  </symbol>
+</svg>
+
+<input type="checkbox" class="sidebar-toggle" name="__navigation" id="__navigation">
+<input type="checkbox" class="sidebar-toggle" name="__toc" id="__toc">
+<label class="overlay sidebar-overlay" for="__navigation">
+  <div class="visually-hidden">Hide navigation sidebar</div>
+</label>
+<label class="overlay toc-overlay" for="__toc">
+  <div class="visually-hidden">Hide table of contents sidebar</div>
+</label>
+
+
+
+<div class="page">
+  <header class="mobile-header">
+    <div class="header-left">
+      <label class="nav-overlay-icon" for="__navigation">
+        <div class="visually-hidden">Toggle site navigation sidebar</div>
+        <i class="icon"><svg><use href="#svg-menu"></use></svg></i>
+      </label>
+    </div>
+    <div class="header-center">
+      <a href="../../../index.html"><div class="brand">Graphein 1.0.0 documentation</div></a>
+    </div>
+    <div class="header-right">
+      <div class="theme-toggle-container theme-toggle-header">
+        <button class="theme-toggle">
+          <div class="visually-hidden">Toggle Light / Dark / Auto color theme</div>
+          <svg class="theme-icon-when-auto"><use href="#svg-sun-half"></use></svg>
+          <svg class="theme-icon-when-dark"><use href="#svg-moon"></use></svg>
+          <svg class="theme-icon-when-light"><use href="#svg-sun"></use></svg>
+        </button>
+      </div>
+      <label class="toc-overlay-icon toc-header-icon no-toc" for="__toc">
+        <div class="visually-hidden">Toggle table of contents sidebar</div>
+        <i class="icon"><svg><use href="#svg-toc"></use></svg></i>
+      </label>
+    </div>
+  </header>
+  <aside class="sidebar-drawer">
+    <div class="sidebar-container">
+      
+      <div class="sidebar-sticky"><a class="sidebar-brand centered" href="../../../index.html">
+  
+  <div class="sidebar-logo-container">
+    <img class="sidebar-logo" src="../../../_static/graphein.png" alt="Logo"/>
+  </div>
+  
+  <span class="sidebar-brand-text">Graphein 1.0.0 documentation</span>
+  
+</a><form class="sidebar-search-container" method="get" action="../../../search.html" role="search">
+  <input class="sidebar-search" placeholder=Search name="q" aria-label="Search">
+  <input type="hidden" name="check_keywords" value="yes">
+  <input type="hidden" name="area" value="default">
+</form>
+<div id="searchbox"></div><div class="sidebar-scroll"><div class="sidebar-tree">
+  <p class="caption" role="heading"><span class="caption-text">Getting Started</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../getting_started/installation.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../getting_started/introduction.html">Graphein</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../license.html">License</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Tutorials</span></p>
+<ul>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../../notebooks_index.html">Notebooks</a><input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" role="switch" type="checkbox"/><label for="toctree-checkbox-1"><div class="visually-hidden">Toggle child pages in navigation</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../notebooks/residue_graphs.html">Graphein - Residue Graph Tutorial</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../notebooks/atom_graph_tutorial.html">Graphein - Atom Graph Tutorial</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../notebooks/alphafold_protein_graph_tutorial.html">Constructing Graphs from AlphaFold Protein Structure Database</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../notebooks/protein_mesh_tutorial.html">Creating Protein Meshes in Graphein</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../notebooks/ppi_tutorial.html">PPI Networks and Structural Interactomics</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../notebooks/grn_tutorial.html">Gene Regulatory Network Tutorial</a></li>
+</ul>
+</li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Datasets</span></p>
+<ul>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../../datasets.html">Datasets</a><input class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" role="switch" type="checkbox"/><label for="toctree-checkbox-2"><div class="visually-hidden">Toggle child pages in navigation</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../datasets/pscdb.html">PSCDB - Protein Structural Change Database</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../notebooks/pscdb_processing.html">PSCDB - Processing</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../notebooks/pscdb_baselines.html">PSCDB - Baselines</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../datasets/ppisp.html">PPISP - Protein Protein Interaction Structure Prediction</a></li>
+</ul>
+</li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">API Reference</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../modules/graphein.protein.html">graphein.protein</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../modules/graphein.rna.html">graphein.rna</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../modules/graphein.ppi.html">graphein.ppi</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../modules/graphein.grn.html">graphein.grn</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../modules/graphein.ml.html">graphein.ml</a></li>
+</ul>
+
+</div>
+</div>
+      </div>
+      
+    </div>
+  </aside>
+  <div class="main">
+    <div class="content">
+      <article role="main">
+        <div class="content-icon-container">
+          <div class="theme-toggle-container theme-toggle-content">
+            <button class="theme-toggle">
+              <div class="visually-hidden">Toggle Light / Dark / Auto color theme</div>
+              <svg class="theme-icon-when-auto"><use href="#svg-sun-half"></use></svg>
+              <svg class="theme-icon-when-dark"><use href="#svg-moon"></use></svg>
+              <svg class="theme-icon-when-light"><use href="#svg-sun"></use></svg>
+            </button>
+          </div>
+          <label class="toc-overlay-icon toc-content-icon no-toc" for="__toc">
+            <div class="visually-hidden">Toggle table of contents sidebar</div>
+            <i class="icon"><svg><use href="#svg-toc"></use></svg></i>
+          </label>
+        </div>
+        <h1>Source code for graphein.protein.graphs</h1><div class="highlight"><pre>
+<span></span><span class="sd">"""Functions for working with Protein Structure Graphs"""</span>
+<span class="c1"># %%</span>
+<span class="c1"># Graphein</span>
+<span class="c1"># Author: Arian Jamasb &lt;arian@jamasb.io&gt;, Eric Ma, Charlie Harris</span>
+<span class="c1"># License: MIT</span>
+<span class="c1"># Project Website: https://github.com/a-r-j/graphein</span>
+<span class="c1"># Code Repository: https://github.com/a-r-j/graphein</span>
+<span class="kn">from</span> <span class="nn">__future__</span> <span class="kn">import</span> <span class="n">annotations</span>
+
+<span class="kn">import</span> <span class="nn">logging</span>
+<span class="kn">from</span> <span class="nn">typing</span> <span class="kn">import</span> <span class="n">Callable</span><span class="p">,</span> <span class="n">List</span><span class="p">,</span> <span class="n">Optional</span>
+
+<span class="kn">import</span> <span class="nn">networkx</span> <span class="k">as</span> <span class="nn">nx</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<span class="kn">from</span> <span class="nn">Bio.PDB.Polypeptide</span> <span class="kn">import</span> <span class="n">three_to_one</span>
+<span class="kn">from</span> <span class="nn">biopandas.pdb</span> <span class="kn">import</span> <span class="n">PandasPdb</span>
+
+<span class="kn">from</span> <span class="nn">graphein.protein.config</span> <span class="kn">import</span> <span class="p">(</span>
+    <span class="n">DSSPConfig</span><span class="p">,</span>
+    <span class="n">GetContactsConfig</span><span class="p">,</span>
+    <span class="n">ProteinGraphConfig</span><span class="p">,</span>
+<span class="p">)</span>
+<span class="kn">from</span> <span class="nn">graphein.protein.edges.distance</span> <span class="kn">import</span> <span class="n">compute_distmat</span>
+<span class="kn">from</span> <span class="nn">graphein.protein.resi_atoms</span> <span class="kn">import</span> <span class="n">BACKBONE_ATOMS</span>
+<span class="kn">from</span> <span class="nn">graphein.protein.utils</span> <span class="kn">import</span> <span class="p">(</span>
+    <span class="n">filter_dataframe</span><span class="p">,</span>
+    <span class="n">get_protein_name_from_filename</span><span class="p">,</span>
+    <span class="n">three_to_one_with_mods</span><span class="p">,</span>
+<span class="p">)</span>
+<span class="kn">from</span> <span class="nn">graphein.utils.utils</span> <span class="kn">import</span> <span class="p">(</span>
+    <span class="n">annotate_edge_metadata</span><span class="p">,</span>
+    <span class="n">annotate_graph_metadata</span><span class="p">,</span>
+    <span class="n">annotate_node_metadata</span><span class="p">,</span>
+    <span class="n">compute_edges</span><span class="p">,</span>
+<span class="p">)</span>
+
+<span class="c1"># from rdkit.Chem import MolFromPDBFile</span>
+<span class="c1"># from graphein.protein.visualisation import protein_graph_plot_3d</span>
+
+
+<span class="n">logging</span><span class="o">.</span><span class="n">basicConfig</span><span class="p">(</span><span class="n">level</span><span class="o">=</span><span class="s2">"DEBUG"</span><span class="p">)</span>
+<span class="n">log</span> <span class="o">=</span> <span class="n">logging</span><span class="o">.</span><span class="n">getLogger</span><span class="p">(</span><span class="vm">__name__</span><span class="p">)</span>
+
+
+<div class="viewcode-block" id="read_pdb_to_dataframe"><a class="viewcode-back" href="../../../modules/graphein.protein.html#graphein.protein.graphs.read_pdb_to_dataframe">[docs]</a><span class="k">def</span> <span class="nf">read_pdb_to_dataframe</span><span class="p">(</span>
+    <span class="n">pdb_path</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+    <span class="n">pdb_code</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+    <span class="n">verbose</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span><span class="p">,</span>
+    <span class="n">granularity</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">"CA"</span><span class="p">,</span>
+<span class="p">)</span> <span class="o">-&gt;</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">:</span>
+    <span class="sd">"""</span>
+<span class="sd">    Reads PDB file to PandasPDB object.</span>
+
+<span class="sd">    Returns `atomic_df`, which is a dataframe enumerating all atoms and their cartesian coordinates in 3D space. Also</span>
+<span class="sd">        contains associated metadata.</span>
+
+<span class="sd">    :param pdb_path: path to PDB file. Defaults to None.</span>
+<span class="sd">    :type pdb_path: str, optional</span>
+<span class="sd">    :param pdb_code: 4-character PDB accession. Defaults to None.</span>
+<span class="sd">    :type pdb_code: str, optional</span>
+<span class="sd">    :param verbose: print dataframe?</span>
+<span class="sd">    :type verbose: bool</span>
+<span class="sd">    :param granularity: Specifies granularity of dataframe. See graphein.protein.config.ProteinGraphConfig for further</span>
+<span class="sd">        details.</span>
+<span class="sd">    :type granularity: str</span>
+<span class="sd">    :returns: Pd.DataFrame containing protein structure</span>
+<span class="sd">    :rtype: pd.DataFrame</span>
+<span class="sd">    """</span>
+    <span class="k">if</span> <span class="n">pdb_code</span> <span class="ow">is</span> <span class="kc">None</span> <span class="ow">and</span> <span class="n">pdb_path</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="k">raise</span> <span class="ne">NameError</span><span class="p">(</span><span class="s2">"One of pdb_code or pdb_path must be specified!"</span><span class="p">)</span>
+
+    <span class="n">atomic_df</span> <span class="o">=</span> <span class="p">(</span>
+        <span class="n">PandasPdb</span><span class="p">()</span><span class="o">.</span><span class="n">read_pdb</span><span class="p">(</span><span class="n">pdb_path</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">pdb_path</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span>
+        <span class="k">else</span> <span class="n">PandasPdb</span><span class="p">()</span><span class="o">.</span><span class="n">fetch_pdb</span><span class="p">(</span><span class="n">pdb_code</span><span class="p">)</span>
+    <span class="p">)</span>
+
+    <span class="c1"># Assign Node IDs to dataframes</span>
+    <span class="n">atomic_df</span><span class="o">.</span><span class="n">df</span><span class="p">[</span><span class="s2">"ATOM"</span><span class="p">][</span><span class="s2">"node_id"</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span>
+        <span class="n">atomic_df</span><span class="o">.</span><span class="n">df</span><span class="p">[</span><span class="s2">"ATOM"</span><span class="p">][</span><span class="s2">"chain_id"</span><span class="p">]</span><span class="o">.</span><span class="n">apply</span><span class="p">(</span><span class="nb">str</span><span class="p">)</span>
+        <span class="o">+</span> <span class="s2">":"</span>
+        <span class="o">+</span> <span class="n">atomic_df</span><span class="o">.</span><span class="n">df</span><span class="p">[</span><span class="s2">"ATOM"</span><span class="p">][</span><span class="s2">"residue_name"</span><span class="p">]</span>
+        <span class="o">+</span> <span class="s2">":"</span>
+        <span class="o">+</span> <span class="n">atomic_df</span><span class="o">.</span><span class="n">df</span><span class="p">[</span><span class="s2">"ATOM"</span><span class="p">][</span><span class="s2">"residue_number"</span><span class="p">]</span><span class="o">.</span><span class="n">apply</span><span class="p">(</span><span class="nb">str</span><span class="p">)</span>
+    <span class="p">)</span>
+    <span class="k">if</span> <span class="n">granularity</span> <span class="o">==</span> <span class="s2">"atom"</span><span class="p">:</span>
+        <span class="n">atomic_df</span><span class="o">.</span><span class="n">df</span><span class="p">[</span><span class="s2">"ATOM"</span><span class="p">][</span><span class="s2">"node_id"</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span>
+            <span class="n">atomic_df</span><span class="o">.</span><span class="n">df</span><span class="p">[</span><span class="s2">"ATOM"</span><span class="p">][</span><span class="s2">"node_id"</span><span class="p">]</span>
+            <span class="o">+</span> <span class="s2">":"</span>
+            <span class="o">+</span> <span class="n">atomic_df</span><span class="o">.</span><span class="n">df</span><span class="p">[</span><span class="s2">"ATOM"</span><span class="p">][</span><span class="s2">"atom_name"</span><span class="p">]</span>
+        <span class="p">)</span>
+    <span class="k">if</span> <span class="n">verbose</span><span class="p">:</span>
+        <span class="nb">print</span><span class="p">(</span><span class="n">atomic_df</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">atomic_df</span></div>
+
+
+<div class="viewcode-block" id="deprotonate_structure"><a class="viewcode-back" href="../../../modules/graphein.protein.html#graphein.protein.graphs.deprotonate_structure">[docs]</a><span class="k">def</span> <span class="nf">deprotonate_structure</span><span class="p">(</span><span class="n">df</span><span class="p">:</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">:</span>
+    <span class="sd">"""Remove protons from PDB dataframe.</span>
+
+<span class="sd">    :param df: Atomic dataframe.</span>
+<span class="sd">    :type df: pd.DataFrame</span>
+<span class="sd">    :returns: Atomic dataframe with all atom_name == "H" removed.</span>
+<span class="sd">    :rtype: pd.DataFrame</span>
+<span class="sd">    """</span>
+    <span class="n">log</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span>
+        <span class="s2">"Deprotonating protein. This removes H atoms from the pdb_df dataframe"</span>
+    <span class="p">)</span>
+    <span class="c1"># return df.loc[df["atom_name"] != "H"].reset_index(drop=True)</span>
+    <span class="k">return</span> <span class="n">filter_dataframe</span><span class="p">(</span>
+        <span class="n">df</span><span class="p">,</span> <span class="n">by_column</span><span class="o">=</span><span class="s2">"atom_name"</span><span class="p">,</span> <span class="n">list_of_values</span><span class="o">=</span><span class="p">[</span><span class="s2">"H"</span><span class="p">],</span> <span class="n">boolean</span><span class="o">=</span><span class="kc">False</span>
+    <span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="convert_structure_to_centroids"><a class="viewcode-back" href="../../../modules/graphein.protein.html#graphein.protein.graphs.convert_structure_to_centroids">[docs]</a><span class="k">def</span> <span class="nf">convert_structure_to_centroids</span><span class="p">(</span><span class="n">df</span><span class="p">:</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">:</span>
+    <span class="sd">"""Overwrite existing (x, y, z) coordinates with centroids of the amino acids.</span>
+
+<span class="sd">    :param df: Pandas Dataframe config protein structure to convert into a dataframe of centroid positions</span>
+<span class="sd">    :type df: pd.DataFrame</span>
+<span class="sd">    :return: pd.DataFrame with atoms/residues positiions converted into centroid positions</span>
+<span class="sd">    :rtype: pd.DataFrame</span>
+<span class="sd">    """</span>
+    <span class="n">log</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span>
+        <span class="s2">"Converting dataframe to centroids. This averages XYZ coords of the atoms in a residue"</span>
+    <span class="p">)</span>
+
+    <span class="n">centroids</span> <span class="o">=</span> <span class="n">calculate_centroid_positions</span><span class="p">(</span><span class="n">df</span><span class="p">)</span>
+    <span class="n">df</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">df</span><span class="p">[</span><span class="s2">"atom_name"</span><span class="p">]</span> <span class="o">==</span> <span class="s2">"CA"</span><span class="p">]</span><span class="o">.</span><span class="n">reset_index</span><span class="p">(</span><span class="n">drop</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+    <span class="n">df</span><span class="p">[</span><span class="s2">"x_coord"</span><span class="p">]</span> <span class="o">=</span> <span class="n">centroids</span><span class="p">[</span><span class="s2">"x_coord"</span><span class="p">]</span>
+    <span class="n">df</span><span class="p">[</span><span class="s2">"y_coord"</span><span class="p">]</span> <span class="o">=</span> <span class="n">centroids</span><span class="p">[</span><span class="s2">"y_coord"</span><span class="p">]</span>
+    <span class="n">df</span><span class="p">[</span><span class="s2">"z_coord"</span><span class="p">]</span> <span class="o">=</span> <span class="n">centroids</span><span class="p">[</span><span class="s2">"z_coord"</span><span class="p">]</span>
+
+    <span class="k">return</span> <span class="n">df</span></div>
+
+
+<div class="viewcode-block" id="subset_structure_to_atom_type"><a class="viewcode-back" href="../../../modules/graphein.protein.html#graphein.protein.graphs.subset_structure_to_atom_type">[docs]</a><span class="k">def</span> <span class="nf">subset_structure_to_atom_type</span><span class="p">(</span>
+    <span class="n">df</span><span class="p">:</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">,</span> <span class="n">granularity</span><span class="p">:</span> <span class="nb">str</span>
+<span class="p">)</span> <span class="o">-&gt;</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">:</span>
+    <span class="sd">"""</span>
+<span class="sd">    Return a subset of atomic dataframe that contains only certain atom names.</span>
+
+<span class="sd">    :param df: Protein Structure dataframe to subset</span>
+<span class="sd">    :type df: pd.DataFrame</span>
+<span class="sd">    :returns: Subsetted protein structure dataframe</span>
+<span class="sd">    :rtype: pd.DataFrame</span>
+<span class="sd">    """</span>
+    <span class="k">return</span> <span class="n">filter_dataframe</span><span class="p">(</span>
+        <span class="n">df</span><span class="p">,</span> <span class="n">by_column</span><span class="o">=</span><span class="s2">"atom_name"</span><span class="p">,</span> <span class="n">list_of_values</span><span class="o">=</span><span class="p">[</span><span class="n">granularity</span><span class="p">],</span> <span class="n">boolean</span><span class="o">=</span><span class="kc">True</span>
+    <span class="p">)</span></div>
+    <span class="c1"># return df.loc[df["atom_name"] == granularity]</span>
+
+
+<div class="viewcode-block" id="remove_insertions"><a class="viewcode-back" href="../../../modules/graphein.protein.html#graphein.protein.graphs.remove_insertions">[docs]</a><span class="k">def</span> <span class="nf">remove_insertions</span><span class="p">(</span><span class="n">df</span><span class="p">:</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">:</span>
+    <span class="sd">"""</span>
+<span class="sd">    This function removes insertions from PDB dataframes</span>
+
+<span class="sd">    :param df: Protein Structure dataframe to remove insertions from</span>
+<span class="sd">    :type df: pd.DataFrame</span>
+<span class="sd">    :return: Protein structure dataframe with insertions removed</span>
+<span class="sd">    :rtype: pd.DataFrame</span>
+<span class="sd">    """</span>
+    <span class="sd">"""Remove insertions from structure."""</span>
+    <span class="c1"># Remove alt_loc residues</span>
+    <span class="c1"># Todo log.debug(f"Detected X insertions")</span>
+    <span class="c1"># return df.loc[df["alt_loc"].isin(["", "A"])]</span>
+    <span class="k">return</span> <span class="n">filter_dataframe</span><span class="p">(</span>
+        <span class="n">df</span><span class="p">,</span> <span class="n">by_column</span><span class="o">=</span><span class="s2">"alt_loc"</span><span class="p">,</span> <span class="n">list_of_values</span><span class="o">=</span><span class="p">[</span><span class="s2">""</span><span class="p">,</span> <span class="s2">"A"</span><span class="p">],</span> <span class="n">boolean</span><span class="o">=</span><span class="kc">True</span>
+    <span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="filter_hetatms"><a class="viewcode-back" href="../../../modules/graphein.protein.html#graphein.protein.graphs.filter_hetatms">[docs]</a><span class="k">def</span> <span class="nf">filter_hetatms</span><span class="p">(</span>
+    <span class="n">df</span><span class="p">:</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">,</span> <span class="n">keep_hets</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span>
+<span class="p">)</span> <span class="o">-&gt;</span> <span class="n">List</span><span class="p">[</span><span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">]:</span>
+    <span class="sd">"""Return hetatms of interest.</span>
+
+<span class="sd">    :param df: Protein Structure dataframe to filter hetatoms from.</span>
+<span class="sd">    :type df: pd.DataFrame</span>
+<span class="sd">    :param keep_hets: List of hetero atom names to keep</span>
+<span class="sd">    :returns: Protein structure dataframe with heteroatoms removed</span>
+<span class="sd">    :rtype pd.DataFrame</span>
+<span class="sd">    """</span>
+    <span class="n">hetatms_to_keep</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="k">for</span> <span class="n">hetatm</span> <span class="ow">in</span> <span class="n">keep_hets</span><span class="p">:</span>
+        <span class="n">hetatms_to_keep</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">df</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">df</span><span class="p">[</span><span class="s2">"residue_name"</span><span class="p">]</span> <span class="o">==</span> <span class="n">hetatm</span><span class="p">])</span>
+    <span class="k">return</span> <span class="n">hetatms_to_keep</span></div>
+
+
+<div class="viewcode-block" id="compute_rgroup_dataframe"><a class="viewcode-back" href="../../../modules/graphein.protein.html#graphein.protein.graphs.compute_rgroup_dataframe">[docs]</a><span class="k">def</span> <span class="nf">compute_rgroup_dataframe</span><span class="p">(</span><span class="n">pdb_df</span><span class="p">:</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">:</span>
+    <span class="sd">"""Return the atoms that are in R-groups and not the backbone chain.</span>
+
+<span class="sd">    :param pdb_df: DataFrame to compute R group dataframe from</span>
+<span class="sd">    :type pdb_df: pd.DataFrame</span>
+<span class="sd">    :returns: Dataframe containing R-groups only (backbone atoms removed)</span>
+<span class="sd">    :rtype: pd.DataFrame</span>
+<span class="sd">    """</span>
+    <span class="n">rgroup_df</span> <span class="o">=</span> <span class="n">filter_dataframe</span><span class="p">(</span><span class="n">pdb_df</span><span class="p">,</span> <span class="s2">"atom_name"</span><span class="p">,</span> <span class="n">BACKBONE_ATOMS</span><span class="p">,</span> <span class="kc">False</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">rgroup_df</span></div>
+
+
+<div class="viewcode-block" id="process_dataframe"><a class="viewcode-back" href="../../../modules/graphein.protein.html#graphein.protein.graphs.process_dataframe">[docs]</a><span class="k">def</span> <span class="nf">process_dataframe</span><span class="p">(</span>
+    <span class="n">protein_df</span><span class="p">:</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">,</span>
+    <span class="n">atom_df_processing_funcs</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">List</span><span class="p">[</span><span class="n">Callable</span><span class="p">]]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+    <span class="n">hetatom_df_processing_funcs</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">List</span><span class="p">[</span><span class="n">Callable</span><span class="p">]]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+    <span class="n">granularity</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">"centroids"</span><span class="p">,</span>
+    <span class="n">chain_selection</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">"all"</span><span class="p">,</span>
+    <span class="n">insertions</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span><span class="p">,</span>
+    <span class="n">deprotonate</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">True</span><span class="p">,</span>
+    <span class="n">keep_hets</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="p">[],</span>
+    <span class="n">verbose</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span><span class="p">,</span>
+<span class="p">)</span> <span class="o">-&gt;</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">:</span>
+    <span class="sd">"""</span>
+<span class="sd">    Process ATOM and HETATM dataframes to produce singular dataframe used for graph construction</span>
+
+<span class="sd">    :param protein_df: Dataframe to process.</span>
+<span class="sd">        Should be the object returned from `read_pdb_to_dataframe`.</span>
+<span class="sd">    :type protein_df: pd.DataFrame</span>
+<span class="sd">    :param atom_df_processing_funcs: List of functions to process dataframe. These must take in a dataframe and return a</span>
+<span class="sd">        dataframe. Defaults to None.</span>
+<span class="sd">    :type atom_df_processing_funcs: List[Callable], optional</span>
+<span class="sd">    :param hetatom_df_processing_funcs: List of functions to process dataframe. These must take in a dataframe and return a dataframe</span>
+<span class="sd">    :type hetatom_df_processing_funcs: List[Callable], optional</span>
+<span class="sd">    :param granularity: The level of granualrity for the graph.</span>
+<span class="sd">        This determines the node definition.</span>
+<span class="sd">        Acceptable values include:</span>
+<span class="sd">        - "centroids"</span>
+<span class="sd">        - "atoms"</span>
+<span class="sd">        - any of the atom_names in the PDB file (e.g. "CA", "CB", "OG", etc.)</span>
+<span class="sd">    :type granularity: str</span>
+<span class="sd">    :param insertions: Whether or not to keep insertions.</span>
+<span class="sd">    :param insertions: bool</span>
+<span class="sd">    :param deprotonate: Whether or not to remove hydrogen atoms (i.e. deprotonation).</span>
+<span class="sd">    :type deprotonate: bool</span>
+<span class="sd">    :param keep_hets: Hetatoms to keep. Defaults to an empty list.</span>
+<span class="sd">        To keep a hetatom, pass it inside a list of hetatom names to keep.</span>
+<span class="sd">    :type keep_hets: List[str]</span>
+<span class="sd">    :param verbose: Verbosity level.</span>
+<span class="sd">    :type verbose: bool</span>
+<span class="sd">    :param chain_selection: Which protein chain to select. Defaults to "all". Eg can use "ACF"</span>
+<span class="sd">        to select 3 chains (A, C &amp; F :)</span>
+<span class="sd">    :type chain_selection: str</span>
+<span class="sd">    :return: A protein dataframe that can be consumed by</span>
+<span class="sd">        other graph construction functions.</span>
+<span class="sd">    :rtype: pd.DataFrame</span>
+<span class="sd">    """</span>
+    <span class="c1"># TODO: Need to properly define what "granularity" is supposed to do.</span>
+    <span class="n">atoms</span> <span class="o">=</span> <span class="n">protein_df</span><span class="o">.</span><span class="n">df</span><span class="p">[</span><span class="s2">"ATOM"</span><span class="p">]</span>
+    <span class="n">hetatms</span> <span class="o">=</span> <span class="n">protein_df</span><span class="o">.</span><span class="n">df</span><span class="p">[</span><span class="s2">"HETATM"</span><span class="p">]</span>
+
+    <span class="c1"># This block enables processing via a list of supplied functions operating on the atom and hetatom dataframes</span>
+    <span class="c1"># If these are provided, the dataframe returned will be computed only from these and the default workflow</span>
+    <span class="c1"># below this block will not execute.</span>
+    <span class="k">if</span> <span class="n">atom_df_processing_funcs</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="k">for</span> <span class="n">func</span> <span class="ow">in</span> <span class="n">atom_df_processing_funcs</span><span class="p">:</span>
+            <span class="n">atoms</span> <span class="o">=</span> <span class="n">func</span><span class="p">(</span><span class="n">atoms</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">hetatom_df_processing_funcs</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="k">return</span> <span class="n">atoms</span>
+
+    <span class="k">if</span> <span class="n">hetatom_df_processing_funcs</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="k">for</span> <span class="n">func</span> <span class="ow">in</span> <span class="n">hetatom_df_processing_funcs</span><span class="p">:</span>
+            <span class="n">hetatms</span> <span class="o">=</span> <span class="n">func</span><span class="p">(</span><span class="n">hetatms</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">pd</span><span class="o">.</span><span class="n">concat</span><span class="p">([</span><span class="n">atoms</span><span class="p">,</span> <span class="n">hetatms</span><span class="p">])</span>
+
+    <span class="c1"># Deprotonate structure by removing H atoms</span>
+    <span class="k">if</span> <span class="n">deprotonate</span><span class="p">:</span>
+        <span class="n">atoms</span> <span class="o">=</span> <span class="n">deprotonate_structure</span><span class="p">(</span><span class="n">atoms</span><span class="p">)</span>
+
+    <span class="c1"># Restrict DF to desired granularity</span>
+    <span class="k">if</span> <span class="n">granularity</span> <span class="o">==</span> <span class="s2">"centroids"</span><span class="p">:</span>
+        <span class="n">atoms</span> <span class="o">=</span> <span class="n">convert_structure_to_centroids</span><span class="p">(</span><span class="n">atoms</span><span class="p">)</span>
+    <span class="k">elif</span> <span class="n">granularity</span> <span class="o">==</span> <span class="s2">"atom"</span><span class="p">:</span>
+        <span class="n">atoms</span> <span class="o">=</span> <span class="n">atoms</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">atoms</span> <span class="o">=</span> <span class="n">subset_structure_to_atom_type</span><span class="p">(</span><span class="n">atoms</span><span class="p">,</span> <span class="n">granularity</span><span class="p">)</span>
+
+    <span class="n">protein_df</span> <span class="o">=</span> <span class="n">atoms</span>
+
+    <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">keep_hets</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>
+        <span class="n">hetatms_to_keep</span> <span class="o">=</span> <span class="n">filter_hetatms</span><span class="p">(</span><span class="n">atoms</span><span class="p">,</span> <span class="n">keep_hets</span><span class="p">)</span>
+        <span class="n">protein_df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">concat</span><span class="p">([</span><span class="n">atoms</span><span class="p">,</span> <span class="n">hetatms_to_keep</span><span class="p">])</span>
+
+    <span class="c1"># Remove alt_loc residues</span>
+    <span class="k">if</span> <span class="ow">not</span> <span class="n">insertions</span><span class="p">:</span>
+        <span class="n">protein_df</span> <span class="o">=</span> <span class="n">remove_insertions</span><span class="p">(</span><span class="n">protein_df</span><span class="p">)</span>
+
+    <span class="c1"># perform chain selection</span>
+    <span class="n">protein_df</span> <span class="o">=</span> <span class="n">select_chains</span><span class="p">(</span>
+        <span class="n">protein_df</span><span class="p">,</span> <span class="n">chain_selection</span><span class="o">=</span><span class="n">chain_selection</span><span class="p">,</span> <span class="n">verbose</span><span class="o">=</span><span class="n">verbose</span>
+    <span class="p">)</span>
+
+    <span class="sd">"""</span>
+<span class="sd">    # Name nodes</span>
+<span class="sd">    protein_df["node_id"] = (</span>
+<span class="sd">        protein_df["chain_id"].apply(str)</span>
+<span class="sd">        + ":"</span>
+<span class="sd">        + protein_df["residue_name"]</span>
+<span class="sd">        + ":"</span>
+<span class="sd">        + protein_df["residue_number"].apply(str)</span>
+<span class="sd">    )</span>
+<span class="sd">    if granularity == "atom":</span>
+<span class="sd">        protein_df["node_id"] = (</span>
+<span class="sd">            protein_df["node_id"] + ":" + protein_df["atom_name"]</span>
+<span class="sd">        )</span>
+<span class="sd">    """</span>
+
+    <span class="n">log</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="sa">f</span><span class="s2">"Detected </span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">protein_df</span><span class="p">)</span><span class="si">}</span><span class="s2"> total nodes"</span><span class="p">)</span>
+
+    <span class="k">return</span> <span class="n">protein_df</span></div>
+
+
+<div class="viewcode-block" id="assign_node_id_to_dataframe"><a class="viewcode-back" href="../../../modules/graphein.protein.html#graphein.protein.graphs.assign_node_id_to_dataframe">[docs]</a><span class="k">def</span> <span class="nf">assign_node_id_to_dataframe</span><span class="p">(</span>
+    <span class="n">protein_df</span><span class="p">:</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">,</span> <span class="n">granularity</span><span class="p">:</span> <span class="nb">str</span>
+<span class="p">)</span> <span class="o">-&gt;</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">:</span>
+    <span class="sd">"""</span>
+<span class="sd">    Assigns the node ID back to the pdb_df dataframe</span>
+
+<span class="sd">    :param protein_df: Structure Dataframe</span>
+<span class="sd">    :type protein_df: pd.DataFrame</span>
+<span class="sd">    :param granularity: Granularity of graph. Atom-level, resiidue (e.g. CA) or centroids</span>
+<span class="sd">    :type granularity: str</span>
+<span class="sd">    :return: Returns dataframe with added node_ids</span>
+<span class="sd">    :rtype: pd.DataFrame</span>
+<span class="sd">    """</span>
+    <span class="n">protein_df</span><span class="p">[</span><span class="s2">"node_id"</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span>
+        <span class="n">protein_df</span><span class="p">[</span><span class="s2">"chain_id"</span><span class="p">]</span><span class="o">.</span><span class="n">apply</span><span class="p">(</span><span class="nb">str</span><span class="p">)</span>
+        <span class="o">+</span> <span class="s2">":"</span>
+        <span class="o">+</span> <span class="n">protein_df</span><span class="p">[</span><span class="s2">"residue_name"</span><span class="p">]</span>
+        <span class="o">+</span> <span class="s2">":"</span>
+        <span class="o">+</span> <span class="n">protein_df</span><span class="p">[</span><span class="s2">"residue_number"</span><span class="p">]</span><span class="o">.</span><span class="n">apply</span><span class="p">(</span><span class="nb">str</span><span class="p">)</span>
+    <span class="p">)</span>
+    <span class="k">if</span> <span class="n">granularity</span> <span class="o">==</span> <span class="s2">"atom"</span><span class="p">:</span>
+        <span class="n">protein_df</span><span class="p">[</span><span class="s2">"node_id"</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span>
+            <span class="n">protein_df</span><span class="p">[</span><span class="s2">"node_id"</span><span class="p">]</span> <span class="o">+</span> <span class="s2">":"</span> <span class="o">+</span> <span class="n">protein_df</span><span class="p">[</span><span class="s2">"atom_name"</span><span class="p">]</span>
+        <span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="select_chains"><a class="viewcode-back" href="../../../modules/graphein.protein.html#graphein.protein.graphs.select_chains">[docs]</a><span class="k">def</span> <span class="nf">select_chains</span><span class="p">(</span>
+    <span class="n">protein_df</span><span class="p">:</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">,</span> <span class="n">chain_selection</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">verbose</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span>
+<span class="p">)</span> <span class="o">-&gt;</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">:</span>
+    <span class="sd">"""</span>
+<span class="sd">    Extracts relevant chains from protein_df</span>
+
+<span class="sd">    :param protein_df: pandas dataframe of PDB subsetted to relevant atoms (CA, CB)</span>
+<span class="sd">    :type protein_df: pd.DataFrame</span>
+<span class="sd">    :param chain_selection: Specifies chains that should be extracted from the larger complexed structure</span>
+<span class="sd">    :type chain_selection: str</span>
+<span class="sd">    :param verbose: Print dataframe</span>
+<span class="sd">    :type verbose: bool</span>
+<span class="sd">    :return Protein structure dataframe containing only entries in the chain selection</span>
+<span class="sd">    :rtype: pd.DataFrame</span>
+<span class="sd">    """</span>
+    <span class="k">if</span> <span class="n">chain_selection</span> <span class="o">!=</span> <span class="s2">"all"</span><span class="p">:</span>
+        <span class="n">protein_df</span> <span class="o">=</span> <span class="n">filter_dataframe</span><span class="p">(</span>
+            <span class="n">protein_df</span><span class="p">,</span>
+            <span class="n">by_column</span><span class="o">=</span><span class="s2">"chain_id"</span><span class="p">,</span>
+            <span class="n">list_of_values</span><span class="o">=</span><span class="nb">list</span><span class="p">(</span><span class="n">chain_selection</span><span class="p">),</span>
+            <span class="n">boolean</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+        <span class="p">)</span>
+
+    <span class="k">return</span> <span class="n">protein_df</span></div>
+
+
+<div class="viewcode-block" id="initialise_graph_with_metadata"><a class="viewcode-back" href="../../../modules/graphein.protein.html#graphein.protein.graphs.initialise_graph_with_metadata">[docs]</a><span class="k">def</span> <span class="nf">initialise_graph_with_metadata</span><span class="p">(</span>
+    <span class="n">protein_df</span><span class="p">:</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">,</span>
+    <span class="n">raw_pdb_df</span><span class="p">:</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">,</span>
+    <span class="n">pdb_id</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
+    <span class="n">granularity</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
+<span class="p">)</span> <span class="o">-&gt;</span> <span class="n">nx</span><span class="o">.</span><span class="n">Graph</span><span class="p">:</span>
+    <span class="sd">"""</span>
+<span class="sd">    Initialises the nx Graph object with initial metadata</span>
+
+<span class="sd">    :param protein_df: Processed Dataframe of protein structure</span>
+<span class="sd">    :type protein_df: pd.DataFrame</span>
+<span class="sd">    :param raw_pdb_df: Unprocessed dataframe of protein structure for comparison and traceability downstream</span>
+<span class="sd">    :type raw_pdb_df: pd.DataFrame</span>
+<span class="sd">    :param pdb_id: PDB Accession code</span>
+<span class="sd">    :type pdb_id: str</span>
+<span class="sd">    :param granularity: Granularity of the graph (eg "atom", "CA", "CB" etc or "centroid")</span>
+<span class="sd">    :type granularity: str</span>
+<span class="sd">    :return: Returns initial protein structure graph with metadata</span>
+<span class="sd">    :rtype: nx.Graph</span>
+<span class="sd">    """</span>
+    <span class="n">G</span> <span class="o">=</span> <span class="n">nx</span><span class="o">.</span><span class="n">Graph</span><span class="p">(</span>
+        <span class="n">name</span><span class="o">=</span><span class="n">pdb_id</span><span class="p">,</span>
+        <span class="n">pdb_id</span><span class="o">=</span><span class="n">pdb_id</span><span class="p">,</span>
+        <span class="n">chain_ids</span><span class="o">=</span><span class="nb">list</span><span class="p">(</span><span class="n">protein_df</span><span class="p">[</span><span class="s2">"chain_id"</span><span class="p">]</span><span class="o">.</span><span class="n">unique</span><span class="p">()),</span>
+        <span class="n">pdb_df</span><span class="o">=</span><span class="n">protein_df</span><span class="p">,</span>
+        <span class="n">raw_pdb_df</span><span class="o">=</span><span class="n">raw_pdb_df</span><span class="p">,</span>
+        <span class="n">rgroup_df</span><span class="o">=</span><span class="n">compute_rgroup_dataframe</span><span class="p">(</span><span class="n">raw_pdb_df</span><span class="p">),</span>
+        <span class="n">coords</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">asarray</span><span class="p">(</span><span class="n">protein_df</span><span class="p">[[</span><span class="s2">"x_coord"</span><span class="p">,</span> <span class="s2">"y_coord"</span><span class="p">,</span> <span class="s2">"z_coord"</span><span class="p">]]),</span>
+    <span class="p">)</span>
+
+    <span class="c1"># Create graph and assign intrinsic graph-level metadata</span>
+    <span class="n">G</span><span class="o">.</span><span class="n">graph</span><span class="p">[</span><span class="s2">"node_type"</span><span class="p">]</span> <span class="o">=</span> <span class="n">granularity</span>
+
+    <span class="c1"># Add Sequences to graph metadata</span>
+    <span class="k">for</span> <span class="n">c</span> <span class="ow">in</span> <span class="n">G</span><span class="o">.</span><span class="n">graph</span><span class="p">[</span><span class="s2">"chain_ids"</span><span class="p">]:</span>
+        <span class="n">G</span><span class="o">.</span><span class="n">graph</span><span class="p">[</span><span class="sa">f</span><span class="s2">"sequence_</span><span class="si">{</span><span class="n">c</span><span class="si">}</span><span class="s2">"</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span>
+            <span class="n">protein_df</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">protein_df</span><span class="p">[</span><span class="s2">"chain_id"</span><span class="p">]</span> <span class="o">==</span> <span class="n">c</span><span class="p">][</span><span class="s2">"residue_name"</span><span class="p">]</span>
+            <span class="o">.</span><span class="n">apply</span><span class="p">(</span><span class="n">three_to_one_with_mods</span><span class="p">)</span>
+            <span class="o">.</span><span class="n">str</span><span class="o">.</span><span class="n">cat</span><span class="p">()</span>
+        <span class="p">)</span>
+    <span class="k">return</span> <span class="n">G</span></div>
+
+
+<div class="viewcode-block" id="add_nodes_to_graph"><a class="viewcode-back" href="../../../modules/graphein.protein.html#graphein.protein.graphs.add_nodes_to_graph">[docs]</a><span class="k">def</span> <span class="nf">add_nodes_to_graph</span><span class="p">(</span>
+    <span class="n">G</span><span class="p">:</span> <span class="n">nx</span><span class="o">.</span><span class="n">Graph</span><span class="p">,</span>
+    <span class="n">protein_df</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+    <span class="n">verbose</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span><span class="p">,</span>
+<span class="p">)</span> <span class="o">-&gt;</span> <span class="n">nx</span><span class="o">.</span><span class="n">Graph</span><span class="p">:</span>
+    <span class="sd">"""Add nodes into protein graph.</span>
+
+<span class="sd">    :param G: nx.Graph with metadata to populate with nodes</span>
+<span class="sd">    :type G: nx.Graph</span>
+<span class="sd">    :protein_df: DataFrame of protein structure containing nodes &amp; initial node metadata to add to the graph</span>
+<span class="sd">    :type protein_df: pd.DataFrame, optional</span>
+<span class="sd">    :param verbose: Controls verbosity of this step</span>
+<span class="sd">    :type verbose: bool</span>
+<span class="sd">    :returns: nx.Graph with nodes added</span>
+<span class="sd">    :rtype: nx.Graph</span>
+<span class="sd">    """</span>
+
+    <span class="c1"># If no protein dataframe is supplied, use the one stored in the Graph object</span>
+    <span class="k">if</span> <span class="n">protein_df</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="n">protein_df</span> <span class="o">=</span> <span class="n">G</span><span class="o">.</span><span class="n">graph</span><span class="p">[</span><span class="s2">"pdb_df"</span><span class="p">]</span>
+    <span class="c1"># Assign intrinsic node attributes</span>
+    <span class="n">chain_id</span> <span class="o">=</span> <span class="n">protein_df</span><span class="p">[</span><span class="s2">"chain_id"</span><span class="p">]</span><span class="o">.</span><span class="n">apply</span><span class="p">(</span><span class="nb">str</span><span class="p">)</span>
+    <span class="n">residue_name</span> <span class="o">=</span> <span class="n">protein_df</span><span class="p">[</span><span class="s2">"residue_name"</span><span class="p">]</span>
+    <span class="n">residue_number</span> <span class="o">=</span> <span class="n">protein_df</span><span class="p">[</span><span class="s2">"residue_number"</span><span class="p">]</span>  <span class="c1"># .apply(str)</span>
+    <span class="n">coords</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">asarray</span><span class="p">(</span><span class="n">protein_df</span><span class="p">[[</span><span class="s2">"x_coord"</span><span class="p">,</span> <span class="s2">"y_coord"</span><span class="p">,</span> <span class="s2">"z_coord"</span><span class="p">]])</span>
+    <span class="n">b_factor</span> <span class="o">=</span> <span class="n">protein_df</span><span class="p">[</span><span class="s2">"b_factor"</span><span class="p">]</span>
+    <span class="n">atom_type</span> <span class="o">=</span> <span class="n">protein_df</span><span class="p">[</span><span class="s2">"atom_name"</span><span class="p">]</span>
+    <span class="n">nodes</span> <span class="o">=</span> <span class="n">protein_df</span><span class="p">[</span><span class="s2">"node_id"</span><span class="p">]</span>
+    <span class="n">element_symbol</span> <span class="o">=</span> <span class="n">protein_df</span><span class="p">[</span><span class="s2">"element_symbol"</span><span class="p">]</span>
+    <span class="n">G</span><span class="o">.</span><span class="n">add_nodes_from</span><span class="p">(</span><span class="n">nodes</span><span class="p">)</span>
+
+    <span class="c1"># Set intrinsic node attributes</span>
+    <span class="n">nx</span><span class="o">.</span><span class="n">set_node_attributes</span><span class="p">(</span><span class="n">G</span><span class="p">,</span> <span class="nb">dict</span><span class="p">(</span><span class="nb">zip</span><span class="p">(</span><span class="n">nodes</span><span class="p">,</span> <span class="n">chain_id</span><span class="p">)),</span> <span class="s2">"chain_id"</span><span class="p">)</span>
+    <span class="n">nx</span><span class="o">.</span><span class="n">set_node_attributes</span><span class="p">(</span><span class="n">G</span><span class="p">,</span> <span class="nb">dict</span><span class="p">(</span><span class="nb">zip</span><span class="p">(</span><span class="n">nodes</span><span class="p">,</span> <span class="n">residue_name</span><span class="p">)),</span> <span class="s2">"residue_name"</span><span class="p">)</span>
+    <span class="n">nx</span><span class="o">.</span><span class="n">set_node_attributes</span><span class="p">(</span>
+        <span class="n">G</span><span class="p">,</span> <span class="nb">dict</span><span class="p">(</span><span class="nb">zip</span><span class="p">(</span><span class="n">nodes</span><span class="p">,</span> <span class="n">residue_number</span><span class="p">)),</span> <span class="s2">"residue_number"</span>
+    <span class="p">)</span>
+    <span class="n">nx</span><span class="o">.</span><span class="n">set_node_attributes</span><span class="p">(</span><span class="n">G</span><span class="p">,</span> <span class="nb">dict</span><span class="p">(</span><span class="nb">zip</span><span class="p">(</span><span class="n">nodes</span><span class="p">,</span> <span class="n">atom_type</span><span class="p">)),</span> <span class="s2">"atom_type"</span><span class="p">)</span>
+    <span class="n">nx</span><span class="o">.</span><span class="n">set_node_attributes</span><span class="p">(</span>
+        <span class="n">G</span><span class="p">,</span> <span class="nb">dict</span><span class="p">(</span><span class="nb">zip</span><span class="p">(</span><span class="n">nodes</span><span class="p">,</span> <span class="n">element_symbol</span><span class="p">)),</span> <span class="s2">"element_symbol"</span>
+    <span class="p">)</span>
+    <span class="n">nx</span><span class="o">.</span><span class="n">set_node_attributes</span><span class="p">(</span><span class="n">G</span><span class="p">,</span> <span class="nb">dict</span><span class="p">(</span><span class="nb">zip</span><span class="p">(</span><span class="n">nodes</span><span class="p">,</span> <span class="n">coords</span><span class="p">)),</span> <span class="s2">"coords"</span><span class="p">)</span>
+    <span class="n">nx</span><span class="o">.</span><span class="n">set_node_attributes</span><span class="p">(</span><span class="n">G</span><span class="p">,</span> <span class="nb">dict</span><span class="p">(</span><span class="nb">zip</span><span class="p">(</span><span class="n">nodes</span><span class="p">,</span> <span class="n">b_factor</span><span class="p">)),</span> <span class="s2">"b_factor"</span><span class="p">)</span>
+
+    <span class="c1"># TODO: include charge, line_idx for traceability?</span>
+    <span class="k">if</span> <span class="n">verbose</span><span class="p">:</span>
+        <span class="nb">print</span><span class="p">(</span><span class="n">nx</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="n">G</span><span class="p">))</span>
+        <span class="nb">print</span><span class="p">(</span><span class="n">G</span><span class="o">.</span><span class="n">nodes</span><span class="p">())</span>
+
+    <span class="k">return</span> <span class="n">G</span></div>
+
+
+<div class="viewcode-block" id="calculate_centroid_positions"><a class="viewcode-back" href="../../../modules/graphein.protein.html#graphein.protein.graphs.calculate_centroid_positions">[docs]</a><span class="k">def</span> <span class="nf">calculate_centroid_positions</span><span class="p">(</span>
+    <span class="n">atoms</span><span class="p">:</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">,</span> <span class="n">verbose</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span>
+<span class="p">)</span> <span class="o">-&gt;</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">:</span>
+    <span class="sd">"""</span>
+<span class="sd">    Calculates position of sidechain centroids</span>
+
+<span class="sd">    :param atoms: ATOM df of protein structure</span>
+<span class="sd">    :type atoms: pd.DataFrame</span>
+<span class="sd">    :param verbose: bool controlling verbosity</span>
+<span class="sd">    :type verbose: bool</span>
+<span class="sd">    :return: centroids (df)</span>
+<span class="sd">    :rtype: pd.DataFrame</span>
+<span class="sd">    """</span>
+    <span class="n">centroids</span> <span class="o">=</span> <span class="p">(</span>
+        <span class="n">atoms</span><span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="s2">"residue_number"</span><span class="p">)</span>
+        <span class="o">.</span><span class="n">mean</span><span class="p">()[[</span><span class="s2">"x_coord"</span><span class="p">,</span> <span class="s2">"y_coord"</span><span class="p">,</span> <span class="s2">"z_coord"</span><span class="p">]]</span>
+        <span class="o">.</span><span class="n">reset_index</span><span class="p">()</span>
+    <span class="p">)</span>
+    <span class="k">if</span> <span class="n">verbose</span><span class="p">:</span>
+        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"Calculated </span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">centroids</span><span class="p">)</span><span class="si">}</span><span class="s2"> centroid nodes"</span><span class="p">)</span>
+    <span class="n">log</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="sa">f</span><span class="s2">"Calculated </span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">centroids</span><span class="p">)</span><span class="si">}</span><span class="s2"> centroid nodes"</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">centroids</span></div>
+
+
+<div class="viewcode-block" id="compute_edges"><a class="viewcode-back" href="../../../modules/graphein.protein.html#graphein.protein.graphs.compute_edges">[docs]</a><span class="k">def</span> <span class="nf">compute_edges</span><span class="p">(</span>
+    <span class="n">G</span><span class="p">:</span> <span class="n">nx</span><span class="o">.</span><span class="n">Graph</span><span class="p">,</span>
+    <span class="n">funcs</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="n">Callable</span><span class="p">],</span>
+    <span class="n">get_contacts_config</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">GetContactsConfig</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+<span class="p">)</span> <span class="o">-&gt;</span> <span class="n">nx</span><span class="o">.</span><span class="n">Graph</span><span class="p">:</span>
+    <span class="sd">"""</span>
+<span class="sd">    Computes edges for the protein structure graph. Will compute an pairwise distance matrix between nodes which is</span>
+<span class="sd">    added to the graph metadata to facilitate some edge computations.</span>
+
+<span class="sd">    :param G: nx.Graph with nodes to add edges to</span>
+<span class="sd">    :type G: nx.Graph</span>
+<span class="sd">    :param funcs: List of edge construction functions</span>
+<span class="sd">    :type funcs: List[Callable]</span>
+<span class="sd">    :param get_contacts_config: Config object for getcontacts if intramolecular edges are being used</span>
+<span class="sd">    :type get_contacts_config: graphein.protein.config.GetContactsConfig</span>
+<span class="sd">    :return: Graph with added edges</span>
+<span class="sd">    :rtype: nx.Graph</span>
+<span class="sd">    """</span>
+    <span class="c1"># This control flow prevents unnecessary computation of the distance matrices</span>
+    <span class="k">if</span> <span class="s2">"config"</span> <span class="ow">in</span> <span class="n">G</span><span class="o">.</span><span class="n">graph</span><span class="p">:</span>
+        <span class="k">if</span> <span class="n">G</span><span class="o">.</span><span class="n">graph</span><span class="p">[</span><span class="s2">"config"</span><span class="p">]</span><span class="o">.</span><span class="n">granularity</span> <span class="o">==</span> <span class="s2">"atom"</span><span class="p">:</span>
+            <span class="n">G</span><span class="o">.</span><span class="n">graph</span><span class="p">[</span><span class="s2">"atomic_dist_mat"</span><span class="p">]</span> <span class="o">=</span> <span class="n">compute_distmat</span><span class="p">(</span><span class="n">G</span><span class="o">.</span><span class="n">graph</span><span class="p">[</span><span class="s2">"raw_pdb_df"</span><span class="p">])</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">G</span><span class="o">.</span><span class="n">graph</span><span class="p">[</span><span class="s2">"dist_mat"</span><span class="p">]</span> <span class="o">=</span> <span class="n">compute_distmat</span><span class="p">(</span><span class="n">G</span><span class="o">.</span><span class="n">graph</span><span class="p">[</span><span class="s2">"pdb_df"</span><span class="p">])</span>
+
+    <span class="k">for</span> <span class="n">func</span> <span class="ow">in</span> <span class="n">funcs</span><span class="p">:</span>
+        <span class="n">func</span><span class="p">(</span><span class="n">G</span><span class="p">)</span>
+
+    <span class="k">return</span> <span class="n">G</span></div>
+
+
+<div class="viewcode-block" id="construct_graph"><a class="viewcode-back" href="../../../modules/graphein.protein.html#graphein.protein.graphs.construct_graph">[docs]</a><span class="k">def</span> <span class="nf">construct_graph</span><span class="p">(</span>
+    <span class="n">config</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">ProteinGraphConfig</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+    <span class="n">pdb_path</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+    <span class="n">pdb_code</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+    <span class="n">chain_selection</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">"all"</span><span class="p">,</span>
+    <span class="n">df_processing_funcs</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">List</span><span class="p">[</span><span class="n">Callable</span><span class="p">]]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+    <span class="n">edge_construction_funcs</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">List</span><span class="p">[</span><span class="n">Callable</span><span class="p">]]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+    <span class="n">edge_annotation_funcs</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">List</span><span class="p">[</span><span class="n">Callable</span><span class="p">]]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+    <span class="n">node_annotation_funcs</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">List</span><span class="p">[</span><span class="n">Callable</span><span class="p">]]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+    <span class="n">graph_annotation_funcs</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">List</span><span class="p">[</span><span class="n">Callable</span><span class="p">]]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+<span class="p">)</span> <span class="o">-&gt;</span> <span class="n">nx</span><span class="o">.</span><span class="n">Graph</span><span class="p">:</span>
+    <span class="sd">"""</span>
+<span class="sd">    Constructs protein structure graph from a pdb_code or pdb_path. Users can provide a ProteinGraphConfig object.</span>
+
+<span class="sd">    However, config parameters can be overridden by passing arguments directly to the function.</span>
+
+<span class="sd">    :param config: ProteinGraphConfig object. If None, defaults to config in graphein.protein.config</span>
+<span class="sd">    :type config: graphein.protein.config.ProteinGraphConfig, optional</span>
+<span class="sd">    :param pdb_path: Path to pdb_file to build graph from</span>
+<span class="sd">    :type pdb_path: str, optional</span>
+<span class="sd">    :param pdb_code: 4-character PDB accession pdb_code to build graph from</span>
+<span class="sd">    :type pdb_code: str, optional</span>
+<span class="sd">    :param chain_selection: String of polypeptide chains to include in graph. E.g "ABDF" or "all"</span>
+<span class="sd">    :type chain_selection: str, optional</span>
+<span class="sd">    :param df_processing_funcs: List of dataframe processing functions</span>
+<span class="sd">    :type df_processing_funcs: List[Callable], optional</span>
+<span class="sd">    :param edge_construction_funcs: List of edge construction functions</span>
+<span class="sd">    :type edge_construction_funcs: List[Callable], optional</span>
+<span class="sd">    :param edge_annotation_funcs: List of edge annotation functions</span>
+<span class="sd">    :type edge_annotation_funcs: List[Callable], optional</span>
+<span class="sd">    :param node_annotation_funcs: List of node annotation functions</span>
+<span class="sd">    :type node_annotation_funcs: List[Callable], optional</span>
+<span class="sd">    :param graph_annotation_funcs: List of graph annotation function</span>
+<span class="sd">    :type graph_annotation_funcs: List[Callable]</span>
+<span class="sd">    :return: Protein Structure Graph</span>
+<span class="sd">    :type: nx.Graph</span>
+<span class="sd">    """</span>
+
+    <span class="c1"># If no config is provided, use default</span>
+    <span class="k">if</span> <span class="n">config</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="n">config</span> <span class="o">=</span> <span class="n">ProteinGraphConfig</span><span class="p">()</span>
+
+    <span class="c1"># Get name from pdb_file is no pdb_code is provided</span>
+    <span class="k">if</span> <span class="n">pdb_path</span> <span class="ow">and</span> <span class="p">(</span><span class="n">pdb_code</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">):</span>
+        <span class="n">pdb_code</span> <span class="o">=</span> <span class="n">get_protein_name_from_filename</span><span class="p">(</span><span class="n">pdb_path</span><span class="p">)</span>
+
+    <span class="c1"># If config params are provided, overwrite them</span>
+    <span class="n">config</span><span class="o">.</span><span class="n">protein_df_processing_functions</span> <span class="o">=</span> <span class="p">(</span>
+        <span class="n">df_processing_funcs</span>
+        <span class="k">if</span> <span class="n">config</span><span class="o">.</span><span class="n">protein_df_processing_functions</span> <span class="ow">is</span> <span class="kc">None</span>
+        <span class="k">else</span> <span class="n">config</span><span class="o">.</span><span class="n">protein_df_processing_functions</span>
+    <span class="p">)</span>
+    <span class="n">config</span><span class="o">.</span><span class="n">edge_construction_functions</span> <span class="o">=</span> <span class="p">(</span>
+        <span class="n">edge_construction_funcs</span>
+        <span class="k">if</span> <span class="n">config</span><span class="o">.</span><span class="n">edge_construction_functions</span> <span class="ow">is</span> <span class="kc">None</span>
+        <span class="k">else</span> <span class="n">config</span><span class="o">.</span><span class="n">edge_construction_functions</span>
+    <span class="p">)</span>
+    <span class="n">config</span><span class="o">.</span><span class="n">node_metadata_functions</span> <span class="o">=</span> <span class="p">(</span>
+        <span class="n">node_annotation_funcs</span>
+        <span class="k">if</span> <span class="n">config</span><span class="o">.</span><span class="n">node_metadata_functions</span> <span class="ow">is</span> <span class="kc">None</span>
+        <span class="k">else</span> <span class="n">config</span><span class="o">.</span><span class="n">node_metadata_functions</span>
+    <span class="p">)</span>
+    <span class="n">config</span><span class="o">.</span><span class="n">graph_metadata_functions</span> <span class="o">=</span> <span class="p">(</span>
+        <span class="n">graph_annotation_funcs</span>
+        <span class="k">if</span> <span class="n">config</span><span class="o">.</span><span class="n">graph_metadata_functions</span> <span class="ow">is</span> <span class="kc">None</span>
+        <span class="k">else</span> <span class="n">config</span><span class="o">.</span><span class="n">graph_metadata_functions</span>
+    <span class="p">)</span>
+    <span class="n">config</span><span class="o">.</span><span class="n">edge_metadata_functions</span> <span class="o">=</span> <span class="p">(</span>
+        <span class="n">edge_annotation_funcs</span>
+        <span class="k">if</span> <span class="n">config</span><span class="o">.</span><span class="n">edge_metadata_functions</span> <span class="ow">is</span> <span class="kc">None</span>
+        <span class="k">else</span> <span class="n">config</span><span class="o">.</span><span class="n">edge_metadata_functions</span>
+    <span class="p">)</span>
+
+    <span class="n">raw_df</span> <span class="o">=</span> <span class="n">read_pdb_to_dataframe</span><span class="p">(</span>
+        <span class="n">pdb_path</span><span class="p">,</span>
+        <span class="n">pdb_code</span><span class="p">,</span>
+        <span class="n">verbose</span><span class="o">=</span><span class="n">config</span><span class="o">.</span><span class="n">verbose</span><span class="p">,</span>
+        <span class="n">granularity</span><span class="o">=</span><span class="n">config</span><span class="o">.</span><span class="n">granularity</span><span class="p">,</span>
+    <span class="p">)</span>
+    <span class="n">protein_df</span> <span class="o">=</span> <span class="n">process_dataframe</span><span class="p">(</span>
+        <span class="n">raw_df</span><span class="p">,</span> <span class="n">chain_selection</span><span class="o">=</span><span class="n">chain_selection</span><span class="p">,</span> <span class="n">granularity</span><span class="o">=</span><span class="n">config</span><span class="o">.</span><span class="n">granularity</span>
+    <span class="p">)</span>
+
+    <span class="c1"># Initialise graph with metadata</span>
+    <span class="n">g</span> <span class="o">=</span> <span class="n">initialise_graph_with_metadata</span><span class="p">(</span>
+        <span class="n">protein_df</span><span class="o">=</span><span class="n">protein_df</span><span class="p">,</span>
+        <span class="n">raw_pdb_df</span><span class="o">=</span><span class="n">raw_df</span><span class="o">.</span><span class="n">df</span><span class="p">[</span><span class="s2">"ATOM"</span><span class="p">],</span>
+        <span class="n">pdb_id</span><span class="o">=</span><span class="n">pdb_code</span><span class="p">,</span>
+        <span class="n">granularity</span><span class="o">=</span><span class="n">config</span><span class="o">.</span><span class="n">granularity</span><span class="p">,</span>
+    <span class="p">)</span>
+    <span class="c1"># Add nodes to graph</span>
+    <span class="n">g</span> <span class="o">=</span> <span class="n">add_nodes_to_graph</span><span class="p">(</span><span class="n">g</span><span class="p">)</span>
+
+    <span class="c1"># Add config to graph</span>
+    <span class="n">g</span><span class="o">.</span><span class="n">graph</span><span class="p">[</span><span class="s2">"config"</span><span class="p">]</span> <span class="o">=</span> <span class="n">config</span>
+
+    <span class="c1"># Annotate additional node metadata</span>
+    <span class="k">if</span> <span class="n">config</span><span class="o">.</span><span class="n">node_metadata_functions</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="n">g</span> <span class="o">=</span> <span class="n">annotate_node_metadata</span><span class="p">(</span><span class="n">g</span><span class="p">,</span> <span class="n">config</span><span class="o">.</span><span class="n">node_metadata_functions</span><span class="p">)</span>
+
+    <span class="c1"># Compute graph edges</span>
+    <span class="n">g</span> <span class="o">=</span> <span class="n">compute_edges</span><span class="p">(</span>
+        <span class="n">g</span><span class="p">,</span>
+        <span class="n">funcs</span><span class="o">=</span><span class="n">config</span><span class="o">.</span><span class="n">edge_construction_functions</span><span class="p">,</span>
+        <span class="n">get_contacts_config</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+    <span class="p">)</span>
+
+    <span class="c1"># Annotate additional graph metadata</span>
+    <span class="k">if</span> <span class="n">config</span><span class="o">.</span><span class="n">graph_metadata_functions</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="n">g</span> <span class="o">=</span> <span class="n">annotate_graph_metadata</span><span class="p">(</span><span class="n">g</span><span class="p">,</span> <span class="n">config</span><span class="o">.</span><span class="n">graph_metadata_functions</span><span class="p">)</span>
+
+    <span class="c1"># Annotate additional edge metadata</span>
+    <span class="k">if</span> <span class="n">config</span><span class="o">.</span><span class="n">edge_metadata_functions</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="n">g</span> <span class="o">=</span> <span class="n">annotate_edge_metadata</span><span class="p">(</span><span class="n">g</span><span class="p">,</span> <span class="n">config</span><span class="o">.</span><span class="n">edge_metadata_functions</span><span class="p">)</span>
+
+    <span class="k">return</span> <span class="n">g</span></div>
+
+
+<span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s2">"__main__"</span><span class="p">:</span>
+    <span class="kn">from</span> <span class="nn">functools</span> <span class="kn">import</span> <span class="n">partial</span>
+
+    <span class="kn">from</span> <span class="nn">graphein.protein.edges.distance</span> <span class="kn">import</span> <span class="n">add_k_nn_edges</span>
+    <span class="kn">from</span> <span class="nn">graphein.protein.features.sequence.sequence</span> <span class="kn">import</span> <span class="n">molecular_weight</span>
+
+    <span class="n">configs</span> <span class="o">=</span> <span class="p">{</span>
+        <span class="s2">"granularity"</span><span class="p">:</span> <span class="s2">"CA"</span><span class="p">,</span>
+        <span class="s2">"keep_hets"</span><span class="p">:</span> <span class="kc">False</span><span class="p">,</span>
+        <span class="s2">"insertions"</span><span class="p">:</span> <span class="kc">False</span><span class="p">,</span>
+        <span class="s2">"verbose"</span><span class="p">:</span> <span class="kc">False</span><span class="p">,</span>
+        <span class="s2">"get_contacts_config"</span><span class="p">:</span> <span class="n">GetContactsConfig</span><span class="p">(),</span>
+        <span class="s2">"dssp_config"</span><span class="p">:</span> <span class="n">DSSPConfig</span><span class="p">(),</span>
+        <span class="s2">"graph_metadata_functions"</span><span class="p">:</span> <span class="p">[</span><span class="n">molecular_weight</span><span class="p">],</span>
+    <span class="p">}</span>
+    <span class="n">config</span> <span class="o">=</span> <span class="n">ProteinGraphConfig</span><span class="p">(</span><span class="o">**</span><span class="n">configs</span><span class="p">)</span>
+    <span class="n">config</span><span class="o">.</span><span class="n">edge_construction_functions</span> <span class="o">=</span> <span class="p">[</span>
+        <span class="n">partial</span><span class="p">(</span><span class="n">add_k_nn_edges</span><span class="p">,</span> <span class="n">k</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span> <span class="n">long_interaction_threshold</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+    <span class="p">]</span>
+    <span class="c1"># Test High-level API</span>
+    <span class="n">g</span> <span class="o">=</span> <span class="n">construct_graph</span><span class="p">(</span>
+        <span class="n">config</span><span class="o">=</span><span class="n">config</span><span class="p">,</span>
+        <span class="n">pdb_path</span><span class="o">=</span><span class="s2">"../examples/pdbs/3eiy.pdb"</span><span class="p">,</span>
+    <span class="p">)</span>
+
+    <span class="sd">"""</span>
+<span class="sd">    # Test Low-level API</span>
+<span class="sd">    raw_df = read_pdb_to_dataframe(</span>
+<span class="sd">        pdb_path="../../examples/pdbs/3eiy.pdb",</span>
+<span class="sd">        verbose=config.verbose,</span>
+<span class="sd">    )</span>
+
+<span class="sd">    processed_pdb_df = process_dataframe(</span>
+<span class="sd">        protein_df=raw_df,</span>
+<span class="sd">        atom_df_processing_funcs=None,</span>
+<span class="sd">        hetatom_df_processing_funcs=None,</span>
+<span class="sd">        granularity="centroids",</span>
+<span class="sd">        chain_selection="all",</span>
+<span class="sd">        insertions=False,</span>
+<span class="sd">        deprotonate=True,</span>
+<span class="sd">        keep_hets=[],</span>
+<span class="sd">        verbose=False,</span>
+<span class="sd">    )</span>
+
+<span class="sd">    g = initialise_graph_with_metadata(</span>
+<span class="sd">        protein_df=processed_pdb_df,</span>
+<span class="sd">        raw_pdb_df=raw_df.df["ATOM"],</span>
+<span class="sd">        pdb_id="3eiy",</span>
+<span class="sd">        granularity=config.granularity,</span>
+<span class="sd">    )</span>
+
+<span class="sd">    g = add_nodes_to_graph(g)</span>
+
+<span class="sd">    g = annotate_node_metadata(g, [expasy_protein_scale, meiler_embedding])</span>
+<span class="sd">    g = compute_edges(</span>
+<span class="sd">        g,</span>
+<span class="sd">        config.get_contacts_config,</span>
+<span class="sd">        [</span>
+<span class="sd">            add_delaunay_triangulation,</span>
+<span class="sd">            peptide_bonds,</span>
+<span class="sd">            salt_bridge,</span>
+<span class="sd">            add_hydrogen_bond_interactions,</span>
+<span class="sd">        ],</span>
+<span class="sd">    )</span>
+
+<span class="sd">    g = annotate_graph_metadata(</span>
+<span class="sd">        g,</span>
+<span class="sd">        [</span>
+<span class="sd">            esm_sequence_embedding,</span>
+<span class="sd">            biovec_sequence_embedding,</span>
+<span class="sd">            molecular_weight,</span>
+<span class="sd">        ],</span>
+<span class="sd">    )</span>
+
+<span class="sd">    print(nx.info(g))</span>
+<span class="sd">    colors = nx.get_edge_attributes(g, "color").values()</span>
+<span class="sd">    """</span>
+    <span class="sd">"""</span>
+<span class="sd">    nx.draw(</span>
+<span class="sd">        g,</span>
+<span class="sd">        # pos = nx.circular_layout(g),</span>
+<span class="sd">        edge_color=colors,</span>
+<span class="sd">        with_labels=True,</span>
+<span class="sd">    )</span>
+<span class="sd">    plt.show()</span>
+<span class="sd">    """</span>
+</pre></div>
+      </article>
+      <footer>
+        
+        <div class="related-pages">
+          
+          
+        </div>
+
+        <div class="related-information">
+              Copyright &#169; 2020, Arian Jamasb
+            |
+            Built with <a href="https://www.sphinx-doc.org/">Sphinx</a>
+              and
+              <a class="muted-link" href="https://pradyunsg.me">@pradyunsg</a>'s
+              <a href="https://github.com/pradyunsg/furo">Furo theme</a>.
+        </div>
+        
+      </footer>
+    </div>
+    <aside class="toc-drawer no-toc">
+      
+      
+      
+    </aside>
+  </div>
+</div><script data-url_root="../../../" id="documentation_options" src="../../../_static/documentation_options.js"></script>
+    <script src="../../../_static/jquery.js"></script>
+    <script src="../../../_static/underscore.js"></script>
+    <script src="../../../_static/doctools.js"></script>
+    <script src="../../../_static/scripts/main.js"></script>
+    <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    </body>
+</html>
