@@ -165,7 +165,7 @@
 <li class="toctree-l2"><a class="reference internal" href="notebooks/residue_graphs.html">Graphein - Residue Graph Tutorial</a></li>
 <li class="toctree-l2"><a class="reference internal" href="notebooks/atom_graph_tutorial.html">Graphein - Atom Graph Tutorial</a></li>
 <li class="toctree-l2"><a class="reference internal" href="notebooks/alphafold_protein_graph_tutorial.html">Constructing Graphs from AlphaFold Protein Structure Database</a></li>
-<li class="toctree-l2"><a class="reference internal" href="notebooks/protein_mesh_tutorial.html">Creating Protein Meshes in Graphein</a></li>
+<li class="toctree-l2"><a class="reference internal" href="notebooks/protein_mesh_tutorial.html">Creating Protein Meshes in Graphein &amp; 3D Visualisation</a></li>
 <li class="toctree-l2"><a class="reference internal" href="notebooks/ppi_tutorial.html">PPI Networks and Structural Interactomics</a></li>
 <li class="toctree-l2"><a class="reference internal" href="notebooks/grn_tutorial.html">Gene Regulatory Network Tutorial</a></li>
 </ul>
@@ -216,8 +216,18 @@
         
 <section class="genindex-section">
   <h1 id="index">Index</h1>
-  <div class="genindex-jumpbox"><a href="#A"><strong>A</strong></a> | <a href="#B"><strong>B</strong></a> | <a href="#C"><strong>C</strong></a> | <a href="#D"><strong>D</strong></a> | <a href="#E"><strong>E</strong></a> | <a href="#F"><strong>F</strong></a> | <a href="#G"><strong>G</strong></a> | <a href="#H"><strong>H</strong></a> | <a href="#I"><strong>I</strong></a> | <a href="#L"><strong>L</strong></a> | <a href="#M"><strong>M</strong></a> | <a href="#N"><strong>N</strong></a> | <a href="#P"><strong>P</strong></a> | <a href="#Q"><strong>Q</strong></a> | <a href="#R"><strong>R</strong></a> | <a href="#S"><strong>S</strong></a> | <a href="#T"><strong>T</strong></a> | <a href="#V"><strong>V</strong></a></div>
+  <div class="genindex-jumpbox"><a href="#_"><strong>_</strong></a> | <a href="#A"><strong>A</strong></a> | <a href="#B"><strong>B</strong></a> | <a href="#C"><strong>C</strong></a> | <a href="#D"><strong>D</strong></a> | <a href="#E"><strong>E</strong></a> | <a href="#F"><strong>F</strong></a> | <a href="#G"><strong>G</strong></a> | <a href="#H"><strong>H</strong></a> | <a href="#I"><strong>I</strong></a> | <a href="#L"><strong>L</strong></a> | <a href="#M"><strong>M</strong></a> | <a href="#N"><strong>N</strong></a> | <a href="#P"><strong>P</strong></a> | <a href="#Q"><strong>Q</strong></a> | <a href="#R"><strong>R</strong></a> | <a href="#S"><strong>S</strong></a> | <a href="#T"><strong>T</strong></a> | <a href="#V"><strong>V</strong></a></div>
 </section>
+<section id="_" class="genindex-section">
+  <h2>_</h2>
+  <table style="width: 100%" class="indextable genindextable"><tr>
+    <td style="width: 33%; vertical-align: top;"><ul>
+        <li><a href="modules/graphein.ml.html#graphein.ml.conversion.GraphFormatConvertor.__init__">__init__() (graphein.ml.conversion.GraphFormatConvertor method)</a>
+</li>
+    </ul></td>
+  </tr></table>
+</section>
+
 <section id="A" class="genindex-section">
   <h2>A</h2>
   <table style="width: 100%" class="indextable genindextable"><tr>
@@ -428,14 +438,14 @@
 </li>
         <li><a href="modules/graphein.protein.html#graphein.protein.features.sequence.propy.composition_solvent_accessibility">composition_solvent_accessibility() (in module graphein.protein.features.sequence.propy)</a>
 </li>
-    </ul></td>
-    <td style="width: 33%; vertical-align: top;"><ul>
         <li><a href="modules/graphein.protein.html#graphein.protein.edges.distance.compute_distmat">compute_distmat() (in module graphein.protein.edges.distance)</a>
 </li>
         <li><a href="modules/graphein.protein.html#graphein.protein.graphs.compute_edges">compute_edges() (in module graphein.protein.graphs)</a>
 </li>
         <li><a href="modules/graphein.protein.html#graphein.protein.features.sequence.embeddings.compute_esm_embedding">compute_esm_embedding() (in module graphein.protein.features.sequence.embeddings)</a>, <a href="modules/graphein.protein.html#id1">[1]</a>
 </li>
+    </ul></td>
+    <td style="width: 33%; vertical-align: top;"><ul>
         <li><a href="modules/graphein.grn.html#graphein.grn.graphs.compute_grn_graph">compute_grn_graph() (in module graphein.grn.graphs)</a>
 </li>
         <li><a href="modules/graphein.ppi.html#graphein.ppi.graphs.compute_ppi_graph">compute_ppi_graph() (in module graphein.ppi.graphs)</a>
@@ -450,7 +460,17 @@
 </li>
         <li><a href="modules/graphein.rna.html#graphein.rna.graphs.construct_rna_graph">construct_rna_graph() (in module graphein.rna.graphs)</a>
 </li>
+        <li><a href="modules/graphein.ml.html#graphein.ml.conversion.GraphFormatConvertor.convert_dgl_to_nx">convert_dgl_to_nx() (graphein.ml.conversion.GraphFormatConvertor static method)</a>
+</li>
         <li><a href="modules/graphein.protein.html#graphein.protein.features.utils.convert_graph_dict_feat_to_series">convert_graph_dict_feat_to_series() (in module graphein.protein.features.utils)</a>
+</li>
+        <li><a href="modules/graphein.ml.html#graphein.ml.conversion.GraphFormatConvertor.convert_nx_to_dgl">convert_nx_to_dgl() (graphein.ml.conversion.GraphFormatConvertor method)</a>
+</li>
+        <li><a href="modules/graphein.ml.html#graphein.ml.conversion.GraphFormatConvertor.convert_nx_to_nx">convert_nx_to_nx() (graphein.ml.conversion.GraphFormatConvertor static method)</a>
+</li>
+        <li><a href="modules/graphein.ml.html#graphein.ml.conversion.GraphFormatConvertor.convert_nx_to_pyg">convert_nx_to_pyg() (graphein.ml.conversion.GraphFormatConvertor method)</a>
+</li>
+        <li><a href="modules/graphein.ml.html#graphein.ml.conversion.GraphFormatConvertor.convert_pyg_to_nx">convert_pyg_to_nx() (graphein.ml.conversion.GraphFormatConvertor static method)</a>
 </li>
         <li><a href="modules/graphein.protein.html#graphein.protein.graphs.convert_structure_to_centroids">convert_structure_to_centroids() (in module graphein.protein.graphs)</a>
 </li>
@@ -594,6 +614,13 @@
 
         <ul>
           <li><a href="modules/graphein.grn.html#module-graphein.grn.parse_trrust">module</a>
+</li>
+        </ul></li>
+        <li>
+    graphein.ml.conversion
+
+        <ul>
+          <li><a href="modules/graphein.ml.html#module-graphein.ml.conversion">module</a>
 </li>
         </ul></li>
         <li>
@@ -773,6 +800,8 @@
           <li><a href="modules/graphein.rna.html#module-graphein.rna.graphs">module</a>
 </li>
         </ul></li>
+        <li><a href="modules/graphein.ml.html#graphein.ml.conversion.GraphFormatConvertor">GraphFormatConvertor (class in graphein.ml.conversion)</a>
+</li>
         <li><a href="modules/graphein.grn.html#graphein.grn.config.GRNGraphConfig">GRNGraphConfig (class in graphein.grn.config)</a>
 </li>
     </ul></td>
@@ -852,6 +881,8 @@
           <li><a href="modules/graphein.grn.html#module-graphein.grn.parse_regnetwork">graphein.grn.parse_regnetwork</a>
 </li>
           <li><a href="modules/graphein.grn.html#module-graphein.grn.parse_trrust">graphein.grn.parse_trrust</a>
+</li>
+          <li><a href="modules/graphein.ml.html#module-graphein.ml.conversion">graphein.ml.conversion</a>
 </li>
           <li><a href="modules/graphein.ml.html#module-graphein.ml.diffusion">graphein.ml.diffusion</a>
 </li>

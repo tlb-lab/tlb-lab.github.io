@@ -166,17 +166,21 @@
 <li class="toctree-l2"><a class="reference internal" href="../../../notebooks/residue_graphs.html">Graphein - Residue Graph Tutorial</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../../notebooks/atom_graph_tutorial.html">Graphein - Atom Graph Tutorial</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../../notebooks/alphafold_protein_graph_tutorial.html">Constructing Graphs from AlphaFold Protein Structure Database</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../../../notebooks/protein_mesh_tutorial.html">Creating Protein Meshes in Graphein</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../../../notebooks/ppi_tutorial.html">Plot small PPI</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../../../notebooks/ppi_tutorial.html#Plot-SARS-CoV-2-host-virus-proteins-(Gordon-et-al.,-2020)">Plot SARS-CoV-2 host-virus proteins (Gordon et al., 2020)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../notebooks/protein_mesh_tutorial.html">Creating Protein Meshes in Graphein &amp; 3D Visualisation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../notebooks/ppi_tutorial.html">PPI Networks and Structural Interactomics</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../../notebooks/grn_tutorial.html">Gene Regulatory Network Tutorial</a></li>
 </ul>
 </li>
 </ul>
 <p class="caption" role="heading"><span class="caption-text">Datasets</span></p>
 <ul>
-<li class="toctree-l1"><a class="reference internal" href="../../../datasets/ppisp.html">PPISP - Protein Protein Interaction Structure Prediction</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../../datasets/pscdb.html">PSCDB - Protein Structural Change Database</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../../datasets.html">Datasets</a><input class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" role="switch" type="checkbox"/><label for="toctree-checkbox-2"><div class="visually-hidden">Toggle child pages in navigation</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../datasets/pscdb.html">PSCDB - Protein Structural Change Database</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../notebooks/pscdb_processing.html">PSCDB - Processing</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../notebooks/pscdb_baselines.html">PSCDB - Baselines</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../datasets/ppisp.html">PPISP - Protein Protein Interaction Structure Prediction</a></li>
+</ul>
+</li>
 </ul>
 <p class="caption" role="heading"><span class="caption-text">API Reference</span></p>
 <ul>
@@ -215,6 +219,7 @@
 
 <span class="kn">from</span> <span class="nn">typing</span> <span class="kn">import</span> <span class="n">List</span><span class="p">,</span> <span class="n">Literal</span><span class="p">,</span> <span class="n">Optional</span><span class="p">,</span> <span class="n">TypeVar</span>
 
+<span class="kn">import</span> <span class="nn">dgl</span>
 <span class="kn">import</span> <span class="nn">networkx</span> <span class="k">as</span> <span class="nn">nx</span>
 <span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
 <span class="kn">import</span> <span class="nn">torch</span>
@@ -382,7 +387,8 @@
                 <span class="n">node_dict_transformed</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">Tensor</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">j</span><span class="p">))</span>
 
         <span class="n">g</span><span class="o">.</span><span class="n">add_nodes</span><span class="p">(</span>
-            <span class="nb">len</span><span class="p">(</span><span class="n">node_id</span><span class="p">),</span> <span class="n">node_dict_transformed</span><span class="p">,</span>
+            <span class="nb">len</span><span class="p">(</span><span class="n">node_id</span><span class="p">),</span>
+            <span class="n">node_dict_transformed</span><span class="p">,</span>
         <span class="p">)</span>
 
         <span class="n">edge_dict</span> <span class="o">=</span> <span class="p">{}</span>

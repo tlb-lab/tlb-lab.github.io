@@ -6,20 +6,7 @@ protein structures in their bound and unbound forms across 7 classes of structur
 can be formulated with this dataset. E.g. predicting the bound conformation of a protein as and edge-prediction task or
 graph-classification task predicting which class of structural rearrangement a protein undergoes upon ligand binding.
 
-Dataset Processing
-^^^^^^^^^^^^^^^^^^
-.. toctree::
-   :maxdepth: 2
-   :glob:
-   ../notebooks/pscdb_processing.nblink
-
-Baselines
-^^^^^^^^^
-.. toctree::
-   :maxdepth: 2
-   :glob:
-   ../notebooks/pscdb_baselines.nblink
-
+The dataset can be viewed here: `a-r-j/graphein/datasets/pscdb <https://www.github.com/a-r-j/graphein/tree/master/datasets/pscdb>`_
 
 Reference
 ----------

@@ -2,8 +2,7 @@
 <html class="no-js">
   <head><meta charset="utf-8"/>
     <meta name="viewport" content="width=device-width,initial-scale=1"/>
-    <meta name="color-scheme" content="light dark"><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
-<link rel="index" title="Index" href="../genindex.html" /><link rel="search" title="Search" href="../search.html" /><link rel="next" title="graphein.protein" href="../modules/graphein.protein.html" /><link rel="prev" title="PSCDB - Baselines" href="../notebooks/pscdb_baselines.html" />
+    <meta name="color-scheme" content="light dark"><link rel="index" title="Index" href="../genindex.html" /><link rel="search" title="Search" href="../search.html" /><link rel="next" title="graphein.protein" href="../modules/graphein.protein.html" /><link rel="prev" title="PSCDB - Baselines" href="../notebooks/pscdb_baselines.html" />
 
     <meta name="generator" content="sphinx-4.1.2, furo 2021.08.17.beta43"/>
         <title>PPISP - Protein Protein Interaction Structure Prediction - Graphein 1.0.0 documentation</title>
@@ -167,7 +166,7 @@
 <li class="toctree-l2"><a class="reference internal" href="../notebooks/residue_graphs.html">Graphein - Residue Graph Tutorial</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../notebooks/atom_graph_tutorial.html">Graphein - Atom Graph Tutorial</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../notebooks/alphafold_protein_graph_tutorial.html">Constructing Graphs from AlphaFold Protein Structure Database</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../notebooks/protein_mesh_tutorial.html">Creating Protein Meshes in Graphein</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../notebooks/protein_mesh_tutorial.html">Creating Protein Meshes in Graphein &amp; 3D Visualisation</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../notebooks/ppi_tutorial.html">PPI Networks and Structural Interactomics</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../notebooks/grn_tutorial.html">Gene Regulatory Network Tutorial</a></li>
 </ul>
@@ -215,7 +214,7 @@
             <i class="icon"><svg><use href="#svg-toc"></use></svg></i>
           </label>
         </div>
-        <section id="ppisp-protein-protein-interaction-structure-prediction">
+        <div class="section" id="ppisp-protein-protein-interaction-structure-prediction">
 <h1>PPISP - Protein Protein Interaction Structure Prediction<a class="headerlink" href="#ppisp-protein-protein-interaction-structure-prediction" title="Permalink to this headline">¶</a></h1>
 <p>The data contained within PPISP is drawn from DeepPPISP [1]. They collate a number of protein-protein interaction
 structures from three existing datasets. This is a node-classification task, where the task to is to predict whether or
@@ -227,12 +226,13 @@ homology less than 25%. Dset_72 and PDBset_164 were constructed as the same as D
 sequences and PDBset_164 consists of 164 protein sequences. These protein sequences in the three benchmark datasets
 have been annotated. Thus, we have 422 different annotated protein sequences. We remove two protein sequences for they
 do not have PSSM file.</p>
-<section id="reference">
+<p>The dataset can be viewed here: <a class="reference external" href="https://www.github.com/a-r-j/graphein/tree/master/datasets/ppisp">a-r-j/graphein/datasets/pscdb</a></p>
+<div class="section" id="reference">
 <h2>Reference<a class="headerlink" href="#reference" title="Permalink to this headline">¶</a></h2>
 <p>[1] Min Zeng, Fuhao Zhang, Fang-Xiang Wu, Yaohang Li, Jianxin Wang, Min Li. Protein-protein interaction site prediction
 through combining local and global features with deep neural networks. Bioinformatics. DOI:10.1093/bioinformatics/btz699</p>
-</section>
-</section>
+</div>
+</div>
 
       </article>
       <footer>

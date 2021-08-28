@@ -2,8 +2,7 @@
 <html class="no-js">
   <head><meta charset="utf-8"/>
     <meta name="viewport" content="width=device-width,initial-scale=1"/>
-    <meta name="color-scheme" content="light dark"><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
-<link rel="index" title="Index" href="../genindex.html" /><link rel="search" title="Search" href="../search.html" /><link rel="next" title="Gene Regulatory Network Tutorial" href="grn_tutorial.html" /><link rel="prev" title="Creating Protein Meshes in Graphein" href="protein_mesh_tutorial.html" />
+    <meta name="color-scheme" content="light dark"><link rel="index" title="Index" href="../genindex.html" /><link rel="search" title="Search" href="../search.html" /><link rel="next" title="Gene Regulatory Network Tutorial" href="grn_tutorial.html" /><link rel="prev" title="Creating Protein Meshes in Graphein &amp; 3D Visualisation" href="protein_mesh_tutorial.html" />
 
     <meta name="generator" content="sphinx-4.1.2, furo 2021.08.17.beta43"/>
         <title>PPI Networks and Structural Interactomics - Graphein 1.0.0 documentation</title>
@@ -167,7 +166,7 @@
 <li class="toctree-l2"><a class="reference internal" href="residue_graphs.html">Graphein - Residue Graph Tutorial</a></li>
 <li class="toctree-l2"><a class="reference internal" href="atom_graph_tutorial.html">Graphein - Atom Graph Tutorial</a></li>
 <li class="toctree-l2"><a class="reference internal" href="alphafold_protein_graph_tutorial.html">Constructing Graphs from AlphaFold Protein Structure Database</a></li>
-<li class="toctree-l2"><a class="reference internal" href="protein_mesh_tutorial.html">Creating Protein Meshes in Graphein</a></li>
+<li class="toctree-l2"><a class="reference internal" href="protein_mesh_tutorial.html">Creating Protein Meshes in Graphein &amp; 3D Visualisation</a></li>
 <li class="toctree-l2 current current-page"><a class="current reference internal" href="#">PPI Networks and Structural Interactomics</a></li>
 <li class="toctree-l2"><a class="reference internal" href="grn_tutorial.html">Gene Regulatory Network Tutorial</a></li>
 </ul>
@@ -464,14 +463,13 @@ div.rendered_html tbody tr:hover {
 }
 </style>
 <div class="nbinput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[95]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[108]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
 <span></span><span class="o">%</span><span class="k">matplotlib</span> inline
 <span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
 <span class="kn">import</span> <span class="nn">logging</span>
-<span class="c1">#logging.getLogger('matplotlib')</span>
 <span class="n">logging</span><span class="o">.</span><span class="n">getLogger</span><span class="p">(</span><span class="s1">'urllib3'</span><span class="p">)</span><span class="o">.</span><span class="n">setLevel</span><span class="p">(</span><span class="n">level</span><span class="o">=</span><span class="n">logging</span><span class="o">.</span><span class="n">CRITICAL</span><span class="p">)</span>
 
 <span class="kn">from</span> <span class="nn">easydev</span> <span class="kn">import</span> <span class="n">Logging</span> <span class="k">as</span> <span class="n">elogging</span>
@@ -485,22 +483,13 @@ div.rendered_html tbody tr:hover {
 </pre></div>
 </div>
 </div>
-<div class="nbinput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[90]:
-</pre></div>
-</div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span>
-</pre></div>
-</div>
-</div>
-<section id="PPI-Networks-and-Structural-Interactomics">
+<div class="section" id="PPI-Networks-and-Structural-Interactomics">
 <h1>PPI Networks and Structural Interactomics<a class="headerlink" href="#PPI-Networks-and-Structural-Interactomics" title="Permalink to this headline">¶</a></h1>
-<section id="Config">
+<div class="section" id="Config">
 <h2>Config<a class="headerlink" href="#Config" title="Permalink to this headline">¶</a></h2>
 <p>Global parameters are stored in Config objects. We have a global <code class="docutils literal notranslate"><span class="pre">GRNGraphConfig</span></code> that contains a <code class="docutils literal notranslate"><span class="pre">TRRUSTConfig</span></code> and a <code class="docutils literal notranslate"><span class="pre">RegNetworkConfig</span></code> for parameters relating to each of the two sources.</p>
 <div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[78]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[109]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
@@ -511,7 +500,7 @@ div.rendered_html tbody tr:hover {
 </div>
 </div>
 <div class="nboutput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[78]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[109]:
 </pre></div>
 </div>
 <div class="output_area docutils container">
@@ -521,7 +510,7 @@ PPIGraphConfig(paginate=True, ncbi_taxon_id=9606, kwargs={'STRING_escore': 0.2, 
 </div>
 <p>We also need a list of proteins to work from. Let’s use these:</p>
 <div class="nbinput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[79]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[110]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
@@ -530,7 +519,7 @@ PPIGraphConfig(paginate=True, ncbi_taxon_id=9606, kwargs={'STRING_escore': 0.2, 
 </div>
 </div>
 <div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[96]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[111]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
@@ -555,7 +544,7 @@ DEBUG:graphein.ppi.edges:Added 13 biogrid interaction edges
 </pre></div></div>
 </div>
 <div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[81]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[112]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
@@ -576,11 +565,11 @@ DEBUG:graphein.ppi.edges:Added 13 biogrid interaction edges
 <div class="prompt empty docutils container">
 </div>
 <div class="output_area docutils container">
-<img alt="../_images/notebooks_ppi_tutorial_7_0.png" src="../_images/notebooks_ppi_tutorial_7_0.png"/>
+<img alt="../_images/notebooks_ppi_tutorial_6_0.png" src="../_images/notebooks_ppi_tutorial_6_0.png"/>
 </div>
 </div>
 <div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[97]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[113]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
@@ -589,7 +578,7 @@ DEBUG:graphein.ppi.edges:Added 13 biogrid interaction edges
 </div>
 </div>
 <div class="nboutput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[97]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[113]:
 </pre></div>
 </div>
 <div class="output_area docutils container">
@@ -597,12 +586,12 @@ DEBUG:graphein.ppi.edges:Added 13 biogrid interaction edges
 EdgeDataView([('CDC42', 'KIF23', {'kind': {'string'}}), ('CDC42', 'RACGAP1', {'kind': {'string'}}), ('CDC42', 'RHOB', {'kind': {'string'}}), ('CDC42', 'PLK1', {'kind': {'string'}}), ('CDC42', 'CDK1', {'kind': {'string'}}), ('CDC42', 'RAC2', {'kind': {'string'}}), ('CDC42', 'RHOA', {'kind': {'string'}}), ('CDK1', 'RACGAP1', {'kind': {'string', 'biogrid'}}), ('CDK1', 'KIF23', {'kind': {'string'}}), ('CDK1', 'PLK1', {'kind': {'string'}}), ('CDK1', 'RHOA', {'kind': {'string'}}), ('KIF23', 'RHOA', {'kind': {'string'}}), ('KIF23', 'RACGAP1', {'kind': {'string', 'biogrid'}}), ('KIF23', 'PLK1', {'kind': {'string', 'biogrid'}}), ('PLK1', 'RHOA', {'kind': {'string'}}), ('PLK1', 'RACGAP1', {'kind': {'string', 'biogrid'}}), ('PLK1', 'RHOB', {'kind': {'biogrid'}}), ('RAC2', 'RACGAP1', {'kind': {'string'}}), ('RAC2', 'RHOB', {'kind': {'string'}}), ('RAC2', 'RHOA', {'kind': {'string'}}), ('RACGAP1', 'RHOA', {'kind': {'string'}}), ('RACGAP1', 'RHOB', {'kind': {'string', 'biogrid'}}), ('RHOA', 'RHOB', {'kind': {'string'}})])
 </pre></div></div>
 </div>
-</section>
-<section id="Node-Metadata">
+</div>
+<div class="section" id="Node-Metadata">
 <h2>Node Metadata<a class="headerlink" href="#Node-Metadata" title="Permalink to this headline">¶</a></h2>
 <p>Cool! Let’s add some metadata to our nodes in the form of sequences and UniProt IDs</p>
 <div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[98]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[114]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
@@ -631,7 +620,7 @@ DEBUG:graphein.ppi.edges:Added 13 biogrid interaction edges
 </pre></div></div>
 </div>
 <div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[99]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[115]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
@@ -655,12 +644,12 @@ DEBUG:graphein.ppi.edges:Added 13 biogrid interaction edges
 {'protein_id': 'RHOB', 'uniprot_ids': ['P62745'], 'sequence_P62745': 'MAAIRKKLVVVGDGACGKTCLLIVFSKDEFPEVYVPTVFENYVADIEVDGKQVELALWDTAGQEDYDRLRPLSYPDTDVILMCFSVDSPDSLENIPEKWVPEVKHFCPNVPIILVANKKDLRSDEHVRTELARMKQEPVRTDDGRAMAVRIQAYDYLECSAKTKEGVREVFETATRAALQKRYGSQNGCINCCKVL'}
 </pre></div></div>
 </div>
-</section>
-<section id="Structural-Interactomics-with-AlphaFold2">
+</div>
+<div class="section" id="Structural-Interactomics-with-AlphaFold2">
 <h2>Structural Interactomics with AlphaFold2<a class="headerlink" href="#Structural-Interactomics-with-AlphaFold2" title="Permalink to this headline">¶</a></h2>
 <p>Let’s look at a structural interactome! We can add protein graphs to the nodes in our interaction graph. Cool, eh? We think so</p>
 <div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[103]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[116]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
@@ -681,7 +670,7 @@ DEBUG:graphein.ppi.edges:Added 13 biogrid interaction edges
         <span class="n">d</span><span class="p">[</span><span class="s1">'protein_graph'</span><span class="p">]</span> <span class="o">=</span> <span class="n">pg</span>
 
         <span class="c1"># Plot</span>
-        <span class="n">ax</span> <span class="o">=</span> <span class="n">plot_protein_structure_graph</span><span class="p">(</span><span class="n">pg</span><span class="p">)</span>
+        <span class="n">ax</span> <span class="o">=</span> <span class="n">plot_protein_structure_graph</span><span class="p">(</span><span class="n">pg</span><span class="p">,</span> <span class="n">label_node_ids</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">colour_nodes_by</span><span class="o">=</span><span class="s2">"residue_name"</span><span class="p">)</span>
         <span class="n">ax</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="n">d</span><span class="p">[</span><span class="s2">"uniprot_ids"</span><span class="p">][</span><span class="mi">0</span><span class="p">])</span>
         <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
     <span class="k">except</span><span class="p">:</span>
@@ -711,14 +700,14 @@ DEBUG:graphein.protein.graphs:Detected 191 total nodes
 </div>
 <div class="output_area docutils container">
 <div class="highlight"><pre>
-&lt;biopandas.pdb.pandas_pdb.PandasPdb object at 0x7fa7a319c160&gt;
+-1 / unknown&lt;biopandas.pdb.pandas_pdb.PandasPdb object at 0x7fa7a1bc0760&gt;
 </pre></div></div>
 </div>
 <div class="nboutput docutils container">
 <div class="prompt empty docutils container">
 </div>
 <div class="output_area docutils container">
-<img alt="../_images/notebooks_ppi_tutorial_13_3.png" src="../_images/notebooks_ppi_tutorial_13_3.png"/>
+<img alt="../_images/notebooks_ppi_tutorial_12_3.png" src="../_images/notebooks_ppi_tutorial_12_3.png"/>
 </div>
 </div>
 <div class="nboutput docutils container">
@@ -743,14 +732,14 @@ DEBUG:graphein.protein.graphs:Detected 297 total nodes
 </div>
 <div class="output_area docutils container">
 <div class="highlight"><pre>
--1 / unknown&lt;biopandas.pdb.pandas_pdb.PandasPdb object at 0x7fa7a7572d60&gt;
+-1 / unknown&lt;biopandas.pdb.pandas_pdb.PandasPdb object at 0x7fa7a1bc0760&gt;
 </pre></div></div>
 </div>
 <div class="nboutput docutils container">
 <div class="prompt empty docutils container">
 </div>
 <div class="output_area docutils container">
-<img alt="../_images/notebooks_ppi_tutorial_13_7.png" src="../_images/notebooks_ppi_tutorial_13_7.png"/>
+<img alt="../_images/notebooks_ppi_tutorial_12_7.png" src="../_images/notebooks_ppi_tutorial_12_7.png"/>
 </div>
 </div>
 <div class="nboutput docutils container">
@@ -775,14 +764,14 @@ DEBUG:graphein.protein.graphs:Detected 960 total nodes
 </div>
 <div class="output_area docutils container">
 <div class="highlight"><pre>
-&lt;biopandas.pdb.pandas_pdb.PandasPdb object at 0x7fa7a08adf10&gt;
+-1 / unknown&lt;biopandas.pdb.pandas_pdb.PandasPdb object at 0x7fa7a1bc0760&gt;
 </pre></div></div>
 </div>
 <div class="nboutput docutils container">
 <div class="prompt empty docutils container">
 </div>
 <div class="output_area docutils container">
-<img alt="../_images/notebooks_ppi_tutorial_13_11.png" src="../_images/notebooks_ppi_tutorial_13_11.png"/>
+<img alt="../_images/notebooks_ppi_tutorial_12_11.png" src="../_images/notebooks_ppi_tutorial_12_11.png"/>
 </div>
 </div>
 <div class="nboutput docutils container">
@@ -807,14 +796,14 @@ DEBUG:graphein.protein.graphs:Detected 603 total nodes
 </div>
 <div class="output_area docutils container">
 <div class="highlight"><pre>
--1 / unknown&lt;biopandas.pdb.pandas_pdb.PandasPdb object at 0x7fa7a10ed8b0&gt;
+-1 / unknown&lt;biopandas.pdb.pandas_pdb.PandasPdb object at 0x7fa7a578d250&gt;
 </pre></div></div>
 </div>
 <div class="nboutput docutils container">
 <div class="prompt empty docutils container">
 </div>
 <div class="output_area docutils container">
-<img alt="../_images/notebooks_ppi_tutorial_13_15.png" src="../_images/notebooks_ppi_tutorial_13_15.png"/>
+<img alt="../_images/notebooks_ppi_tutorial_12_15.png" src="../_images/notebooks_ppi_tutorial_12_15.png"/>
 </div>
 </div>
 <div class="nboutput docutils container">
@@ -839,14 +828,14 @@ DEBUG:graphein.protein.graphs:Detected 192 total nodes
 </div>
 <div class="output_area docutils container">
 <div class="highlight"><pre>
--1 / unknown&lt;biopandas.pdb.pandas_pdb.PandasPdb object at 0x7fa7a6358e80&gt;
+-1 / unknown&lt;biopandas.pdb.pandas_pdb.PandasPdb object at 0x7fa7a4423f40&gt;
 </pre></div></div>
 </div>
 <div class="nboutput docutils container">
 <div class="prompt empty docutils container">
 </div>
 <div class="output_area docutils container">
-<img alt="../_images/notebooks_ppi_tutorial_13_19.png" src="../_images/notebooks_ppi_tutorial_13_19.png"/>
+<img alt="../_images/notebooks_ppi_tutorial_12_19.png" src="../_images/notebooks_ppi_tutorial_12_19.png"/>
 </div>
 </div>
 <div class="nboutput docutils container">
@@ -871,14 +860,14 @@ DEBUG:graphein.protein.graphs:Detected 632 total nodes
 </div>
 <div class="output_area docutils container">
 <div class="highlight"><pre>
--1 / unknown&lt;biopandas.pdb.pandas_pdb.PandasPdb object at 0x7fa7a304ccd0&gt;
+-1 / unknown&lt;biopandas.pdb.pandas_pdb.PandasPdb object at 0x7fa7a4540e80&gt;
 </pre></div></div>
 </div>
 <div class="nboutput docutils container">
 <div class="prompt empty docutils container">
 </div>
 <div class="output_area docutils container">
-<img alt="../_images/notebooks_ppi_tutorial_13_23.png" src="../_images/notebooks_ppi_tutorial_13_23.png"/>
+<img alt="../_images/notebooks_ppi_tutorial_12_23.png" src="../_images/notebooks_ppi_tutorial_12_23.png"/>
 </div>
 </div>
 <div class="nboutput docutils container">
@@ -886,7 +875,7 @@ DEBUG:graphein.protein.graphs:Detected 632 total nodes
 </div>
 <div class="output_area docutils container">
 <div class="highlight"><pre>
-100% [............................................................................] 128303 / 128303
+-1 / unknown......................................................................] 128303 / 128303
 </pre></div></div>
 </div>
 <div class="nboutput docutils container">
@@ -903,14 +892,14 @@ DEBUG:graphein.protein.graphs:Detected 193 total nodes
 </div>
 <div class="output_area docutils container">
 <div class="highlight"><pre>
--1 / unknown&lt;biopandas.pdb.pandas_pdb.PandasPdb object at 0x7fa7a221ca90&gt;
+&lt;biopandas.pdb.pandas_pdb.PandasPdb object at 0x7fa7a3464040&gt;
 </pre></div></div>
 </div>
 <div class="nboutput docutils container">
 <div class="prompt empty docutils container">
 </div>
 <div class="output_area docutils container">
-<img alt="../_images/notebooks_ppi_tutorial_13_27.png" src="../_images/notebooks_ppi_tutorial_13_27.png"/>
+<img alt="../_images/notebooks_ppi_tutorial_12_27.png" src="../_images/notebooks_ppi_tutorial_12_27.png"/>
 </div>
 </div>
 <div class="nboutput docutils container">
@@ -935,19 +924,19 @@ DEBUG:graphein.protein.graphs:Detected 196 total nodes
 </div>
 <div class="output_area docutils container">
 <div class="highlight"><pre>
--1 / unknown&lt;biopandas.pdb.pandas_pdb.PandasPdb object at 0x7fa79dd4bc10&gt;
+-1 / unknown&lt;biopandas.pdb.pandas_pdb.PandasPdb object at 0x7fa79e76fca0&gt;
 </pre></div></div>
 </div>
 <div class="nboutput nblast docutils container">
 <div class="prompt empty docutils container">
 </div>
 <div class="output_area docutils container">
-<img alt="../_images/notebooks_ppi_tutorial_13_31.png" src="../_images/notebooks_ppi_tutorial_13_31.png"/>
+<img alt="../_images/notebooks_ppi_tutorial_12_31.png" src="../_images/notebooks_ppi_tutorial_12_31.png"/>
 </div>
 </div>
 <p>Let’s checkout the metadata again:</p>
 <div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[104]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[117]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
@@ -961,23 +950,23 @@ DEBUG:graphein.protein.graphs:Detected 196 total nodes
 </div>
 <div class="output_area docutils container">
 <div class="highlight"><pre>
-{'protein_id': 'CDC42', 'uniprot_ids': ['P60953'], 'sequence_P60953': 'MQTIKCVVVGDGAVGKTCLLISYTTNKFPSEYVPTVFDNYAVTVMIGGEPYTLGLFDTAGQEDYDRLRPLSYPQTDVFLVCFSVVSPSSFENVKEKWVPEITHHCPKTPFLLVGTQIDLRDDPSTIEKLAKNKQKPITPETAEKLARDLKAVKYVECSALTQKGLKNVFDEAILAALEPPEPKKSRRCVLL', 'protein_graph': &lt;networkx.classes.graph.Graph object at 0x7fa7a0d862b0&gt;}
-{'protein_id': 'CDK1', 'uniprot_ids': ['P06493'], 'sequence_P06493': 'MEDYTKIEKIGEGTYGVVYKGRHKTTGQVVAMKKIRLESEEEGVPSTAIREISLLKELRHPNIVSLQDVLMQDSRLYLIFEFLSMDLKKYLDSIPPGQYMDSSLVKSYLYQILQGIVFCHSRRVLHRDLKPQNLLIDDKGTIKLADFGLARAFGIPIRVYTHEVVTLWYRSPEVLLGSARYSTPVDIWSIGTIFAELATKKPLFHGDSEIDQLFRIFRALGTPNNEVWPEVESLQDYKNTFPKWKPGSLASHVKNLDENGLDLLSKMLIYDPAKRISGKMALNHPYFNDLDNQIKKM', 'protein_graph': &lt;networkx.classes.graph.Graph object at 0x7fa79ee65e80&gt;}
-{'protein_id': 'KIF23', 'uniprot_ids': ['Q02241'], 'sequence_Q02241': 'MKSARAKTPRKPTVKKGSQTNLKDPVGVYCRVRPLGFPDQECCIEVINNTTVQLHTPEGYRLNRNGDYKETQYSFKQVFGTHTTQKELFDVVANPLVNDLIHGKNGLLFTYGVTGSGKTHTMTGSPGEGGLLPRCLDMIFNSIGSFQAKRYVFKSNDRNSMDIQCEVDALLERQKREAMPNPKTSSSKRQVDPEFADMITVQEFCKAEEVDEDSVYGVFVSYIEIYNNYIYDLLEEVPFDPIKPKPPQSKLLREDKNHNMYVAGCTEVEVKSTEEAFEVFWRGQKKRRIANTHLNRESSRSHSVFNIKLVQAPLDADGDNVLQEKEQITISQLSLVDLAGSERTNRTRAEGNRLREAGNINQSLMTLRTCMDVLRENQMYGTNKMVPYRDSKLTHLFKNYFDGEGKVRMIVCVNPKAEDYEENLQVMRFAEVTQEVEVARPVDKAICGLTPGRRYRNQPRGPVGNEPLVTDVVLQSFPPLPSCEILDINDEQTLPRLIEALEKRHNLRQMMIDEFNKQSNAFKALLQEFDNAVLSKENHMQGKLNEKEKMISGQKLEIERLEKKNKTLEYKIEILEKTTTIYEEDKRNLQQELETQNQKLQRQFSDKRRLEARLQGMVTETTMKWEKECERRVAAKQLEMQNKLWVKDEKLKQLKAIVTEPKTEKPERPSRERDREKVTQRSVSPSPVPLSSNYIAQISNGQQLMSQPQLHRRSNSCSSISVASCISEWEQKIPTYNTPLKVTSIARRRQQEPGQSKTCIVSDRRRGMYWTEGREVVPTFRNEIEIEEDHCGRLLFQPDQNAPPIRLRHRRSRSAGDRWVDHKPASNMQTETVMQPHVPHAITVSVANEKALAKCEKYMLTHQELASDGEIETKLIKGDIYKTRGGGQSVQFTDIETLKQESPNGSRKRRSSTVAPAQPDGAESEWTDVETRCSVAVEMRAGSQLGPGYQHHAQPKRKKP', 'protein_graph': &lt;networkx.classes.graph.Graph object at 0x7fa7a7711c10&gt;}
-{'protein_id': 'PLK1', 'uniprot_ids': ['P53350'], 'sequence_P53350': 'MSAAVTAGKLARAPADPGKAGVPGVAAPGAPAAAPPAKEIPEVLVDPRSRRRYVRGRFLGKGGFAKCFEISDADTKEVFAGKIVPKSLLLKPHQREKMSMEISIHRSLAHQHVVGFHGFFEDNDFVFVVLELCRRRSLLELHKRRKALTEPEARYYLRQIVLGCQYLHRNRVIHRDLKLGNLFLNEDLEVKIGDFGLATKVEYDGERKKTLCGTPNYIAPEVLSKKGHSFEVDVWSIGCIMYTLLVGKPPFETSCLKETYLRIKKNEYSIPKHINPVAASLIQKMLQTDPTARPTINELLNDEFFTSGYIPARLPITCLTIPPRFSIAPSSLDPSNRKPLTVLNKGLENPLPERPREKEEPVVRETGEVVDCHLSDMLQQLHSVNASKPSERGLVRQEEAEDPACIPIFWVSKWVDYSDKYGLGYQLCDNSVGVLFNDSTRLILYNDGDSLQYIERDGTESYLTVSSHPNSLMKKITLLKYFRNYMSEHLLKAGANITPREGDELARLPYLRTWFRTRSAIILHLSNGSVQINFFQDHTKLILCPLMAAVTYIDEKRDFRTYRLSLLEEYGCCKELASRLRYARTMVDKLLSSRSASNRLKAS', 'protein_graph': &lt;networkx.classes.graph.Graph object at 0x7fa7a2c47100&gt;}
-{'protein_id': 'RAC2', 'uniprot_ids': ['P15153'], 'sequence_P15153': 'MQAIKCVVVGDGAVGKTCLLISYTTNAFPGEYIPTVFDNYSANVMVDSKPVNLGLWDTAGQEDYDRLRPLSYPQTDVFLICFSLVSPASYENVRAKWFPEVRHHCPSTPIILVGTKLDLRDDKDTIEKLKEKKLAPITYPQGLALAKEIDSVKYLECSALTQRGLKTVFDEAIRAVLCPQPTRQQKRACSLL', 'protein_graph': &lt;networkx.classes.graph.Graph object at 0x7fa79fcd9ee0&gt;}
-{'protein_id': 'RACGAP1', 'uniprot_ids': ['Q9H0H5'], 'sequence_Q9H0H5': 'MDTMMLNVRNLFEQLVRRVEILSEGNEVQFIQLAKDFEDFRKKWQRTDHELGKYKDLLMKAETERSALDVKLKHARNQVDVEIKRRQRAEADCEKLERQIQLIREMLMCDTSGSIQLSEEQKSALAFLNRGQPSSSNAGNKRLSTIDESGSILSDISFDKTDESLDWDSSLVKTFKLKKREKRRSTSRQFVDGPPGPVKKTRSIGSAVDQGNESIVAKTTVTVPNDGGPIEAVSTIETVPYWTRSRRKTGTLQPWNSDSTLNSRQLEPRTETDSVGTPQSNGGMRLHDFVSKTVIKPESCVPCGKRIKFGKLSLKCRDCRVVSHPECRDRCPLPCIPTLIGTPVKIGEGMLADFVSQTSPMIPSIVVHCVNEIEQRGLTETGLYRISGCDRTVKELKEKFLRVKTVPLLSKVDDIHAICSLLKDFLRNLKEPLLTFRLNRAFMEAAEITDEDNSIAAMYQAVGELPQANRDTLAFLMIHLQRVAQSPHTKMDVANLAKVFGPTIVAHAVPNPDPVTMLQDIKRQPKVVERLLSLPLEYWSQFMMVEQENIDPLHVIENSNAFSTPQTPDIKVSLLGPVTTPEHQLLKTPSSSSLSQRVRSTLTKNTPRFGSKSKSATNLGRQGNFFASPMLK', 'protein_graph': &lt;networkx.classes.graph.Graph object at 0x7fa79ee53520&gt;}
-{'protein_id': 'RHOA', 'uniprot_ids': ['P61586'], 'sequence_P61586': 'MAAIRKKLVIVGDGACGKTCLLIVFSKDQFPEVYVPTVFENYVADIEVDGKQVELALWDTAGQEDYDRLRPLSYPDTDVILMCFSIDSPDSLENIPEKWTPEVKHFCPNVPIILVGNKKDLRNDEHTRRELAKMKQEPVKPEEGRDMANRIGAFGYMECSAKTKDGVREVFEMATRAALQARRGKKKSGCLVL', 'protein_graph': &lt;networkx.classes.graph.Graph object at 0x7fa7a3d38b20&gt;}
-{'protein_id': 'RHOB', 'uniprot_ids': ['P62745'], 'sequence_P62745': 'MAAIRKKLVVVGDGACGKTCLLIVFSKDEFPEVYVPTVFENYVADIEVDGKQVELALWDTAGQEDYDRLRPLSYPDTDVILMCFSVDSPDSLENIPEKWVPEVKHFCPNVPIILVANKKDLRSDEHVRTELARMKQEPVRTDDGRAMAVRIQAYDYLECSAKTKEGVREVFETATRAALQKRYGSQNGCINCCKVL', 'protein_graph': &lt;networkx.classes.graph.Graph object at 0x7fa7a2b1a820&gt;}
+{'protein_id': 'CDC42', 'uniprot_ids': ['P60953'], 'sequence_P60953': 'MQTIKCVVVGDGAVGKTCLLISYTTNKFPSEYVPTVFDNYAVTVMIGGEPYTLGLFDTAGQEDYDRLRPLSYPQTDVFLVCFSVVSPSSFENVKEKWVPEITHHCPKTPFLLVGTQIDLRDDPSTIEKLAKNKQKPITPETAEKLARDLKAVKYVECSALTQKGLKNVFDEAILAALEPPEPKKSRRCVLL', 'protein_graph': &lt;networkx.classes.graph.Graph object at 0x7fa7a1b8c250&gt;}
+{'protein_id': 'CDK1', 'uniprot_ids': ['P06493'], 'sequence_P06493': 'MEDYTKIEKIGEGTYGVVYKGRHKTTGQVVAMKKIRLESEEEGVPSTAIREISLLKELRHPNIVSLQDVLMQDSRLYLIFEFLSMDLKKYLDSIPPGQYMDSSLVKSYLYQILQGIVFCHSRRVLHRDLKPQNLLIDDKGTIKLADFGLARAFGIPIRVYTHEVVTLWYRSPEVLLGSARYSTPVDIWSIGTIFAELATKKPLFHGDSEIDQLFRIFRALGTPNNEVWPEVESLQDYKNTFPKWKPGSLASHVKNLDENGLDLLSKMLIYDPAKRISGKMALNHPYFNDLDNQIKKM', 'protein_graph': &lt;networkx.classes.graph.Graph object at 0x7fa7a1babf70&gt;}
+{'protein_id': 'KIF23', 'uniprot_ids': ['Q02241'], 'sequence_Q02241': 'MKSARAKTPRKPTVKKGSQTNLKDPVGVYCRVRPLGFPDQECCIEVINNTTVQLHTPEGYRLNRNGDYKETQYSFKQVFGTHTTQKELFDVVANPLVNDLIHGKNGLLFTYGVTGSGKTHTMTGSPGEGGLLPRCLDMIFNSIGSFQAKRYVFKSNDRNSMDIQCEVDALLERQKREAMPNPKTSSSKRQVDPEFADMITVQEFCKAEEVDEDSVYGVFVSYIEIYNNYIYDLLEEVPFDPIKPKPPQSKLLREDKNHNMYVAGCTEVEVKSTEEAFEVFWRGQKKRRIANTHLNRESSRSHSVFNIKLVQAPLDADGDNVLQEKEQITISQLSLVDLAGSERTNRTRAEGNRLREAGNINQSLMTLRTCMDVLRENQMYGTNKMVPYRDSKLTHLFKNYFDGEGKVRMIVCVNPKAEDYEENLQVMRFAEVTQEVEVARPVDKAICGLTPGRRYRNQPRGPVGNEPLVTDVVLQSFPPLPSCEILDINDEQTLPRLIEALEKRHNLRQMMIDEFNKQSNAFKALLQEFDNAVLSKENHMQGKLNEKEKMISGQKLEIERLEKKNKTLEYKIEILEKTTTIYEEDKRNLQQELETQNQKLQRQFSDKRRLEARLQGMVTETTMKWEKECERRVAAKQLEMQNKLWVKDEKLKQLKAIVTEPKTEKPERPSRERDREKVTQRSVSPSPVPLSSNYIAQISNGQQLMSQPQLHRRSNSCSSISVASCISEWEQKIPTYNTPLKVTSIARRRQQEPGQSKTCIVSDRRRGMYWTEGREVVPTFRNEIEIEEDHCGRLLFQPDQNAPPIRLRHRRSRSAGDRWVDHKPASNMQTETVMQPHVPHAITVSVANEKALAKCEKYMLTHQELASDGEIETKLIKGDIYKTRGGGQSVQFTDIETLKQESPNGSRKRRSSTVAPAQPDGAESEWTDVETRCSVAVEMRAGSQLGPGYQHHAQPKRKKP', 'protein_graph': &lt;networkx.classes.graph.Graph object at 0x7fa7a3e3efd0&gt;}
+{'protein_id': 'PLK1', 'uniprot_ids': ['P53350'], 'sequence_P53350': 'MSAAVTAGKLARAPADPGKAGVPGVAAPGAPAAAPPAKEIPEVLVDPRSRRRYVRGRFLGKGGFAKCFEISDADTKEVFAGKIVPKSLLLKPHQREKMSMEISIHRSLAHQHVVGFHGFFEDNDFVFVVLELCRRRSLLELHKRRKALTEPEARYYLRQIVLGCQYLHRNRVIHRDLKLGNLFLNEDLEVKIGDFGLATKVEYDGERKKTLCGTPNYIAPEVLSKKGHSFEVDVWSIGCIMYTLLVGKPPFETSCLKETYLRIKKNEYSIPKHINPVAASLIQKMLQTDPTARPTINELLNDEFFTSGYIPARLPITCLTIPPRFSIAPSSLDPSNRKPLTVLNKGLENPLPERPREKEEPVVRETGEVVDCHLSDMLQQLHSVNASKPSERGLVRQEEAEDPACIPIFWVSKWVDYSDKYGLGYQLCDNSVGVLFNDSTRLILYNDGDSLQYIERDGTESYLTVSSHPNSLMKKITLLKYFRNYMSEHLLKAGANITPREGDELARLPYLRTWFRTRSAIILHLSNGSVQINFFQDHTKLILCPLMAAVTYIDEKRDFRTYRLSLLEEYGCCKELASRLRYARTMVDKLLSSRSASNRLKAS', 'protein_graph': &lt;networkx.classes.graph.Graph object at 0x7fa7a2c485b0&gt;}
+{'protein_id': 'RAC2', 'uniprot_ids': ['P15153'], 'sequence_P15153': 'MQAIKCVVVGDGAVGKTCLLISYTTNAFPGEYIPTVFDNYSANVMVDSKPVNLGLWDTAGQEDYDRLRPLSYPQTDVFLICFSLVSPASYENVRAKWFPEVRHHCPSTPIILVGTKLDLRDDKDTIEKLKEKKLAPITYPQGLALAKEIDSVKYLECSALTQRGLKTVFDEAIRAVLCPQPTRQQKRACSLL', 'protein_graph': &lt;networkx.classes.graph.Graph object at 0x7fa7a0e292e0&gt;}
+{'protein_id': 'RACGAP1', 'uniprot_ids': ['Q9H0H5'], 'sequence_Q9H0H5': 'MDTMMLNVRNLFEQLVRRVEILSEGNEVQFIQLAKDFEDFRKKWQRTDHELGKYKDLLMKAETERSALDVKLKHARNQVDVEIKRRQRAEADCEKLERQIQLIREMLMCDTSGSIQLSEEQKSALAFLNRGQPSSSNAGNKRLSTIDESGSILSDISFDKTDESLDWDSSLVKTFKLKKREKRRSTSRQFVDGPPGPVKKTRSIGSAVDQGNESIVAKTTVTVPNDGGPIEAVSTIETVPYWTRSRRKTGTLQPWNSDSTLNSRQLEPRTETDSVGTPQSNGGMRLHDFVSKTVIKPESCVPCGKRIKFGKLSLKCRDCRVVSHPECRDRCPLPCIPTLIGTPVKIGEGMLADFVSQTSPMIPSIVVHCVNEIEQRGLTETGLYRISGCDRTVKELKEKFLRVKTVPLLSKVDDIHAICSLLKDFLRNLKEPLLTFRLNRAFMEAAEITDEDNSIAAMYQAVGELPQANRDTLAFLMIHLQRVAQSPHTKMDVANLAKVFGPTIVAHAVPNPDPVTMLQDIKRQPKVVERLLSLPLEYWSQFMMVEQENIDPLHVIENSNAFSTPQTPDIKVSLLGPVTTPEHQLLKTPSSSSLSQRVRSTLTKNTPRFGSKSKSATNLGRQGNFFASPMLK', 'protein_graph': &lt;networkx.classes.graph.Graph object at 0x7fa79e125400&gt;}
+{'protein_id': 'RHOA', 'uniprot_ids': ['P61586'], 'sequence_P61586': 'MAAIRKKLVIVGDGACGKTCLLIVFSKDQFPEVYVPTVFENYVADIEVDGKQVELALWDTAGQEDYDRLRPLSYPDTDVILMCFSIDSPDSLENIPEKWTPEVKHFCPNVPIILVGNKKDLRNDEHTRRELAKMKQEPVKPEEGRDMANRIGAFGYMECSAKTKDGVREVFEMATRAALQARRGKKKSGCLVL', 'protein_graph': &lt;networkx.classes.graph.Graph object at 0x7fa79f6ddfa0&gt;}
+{'protein_id': 'RHOB', 'uniprot_ids': ['P62745'], 'sequence_P62745': 'MAAIRKKLVVVGDGACGKTCLLIVFSKDEFPEVYVPTVFENYVADIEVDGKQVELALWDTAGQEDYDRLRPLSYPDTDVILMCFSVDSPDSLENIPEKWVPEVKHFCPNVPIILVANKKDLRSDEHVRTELARMKQEPVRTDDGRAMAVRIQAYDYLECSAKTKEGVREVFETATRAALQKRYGSQNGCINCCKVL', 'protein_graph': &lt;networkx.classes.graph.Graph object at 0x7fa7a18e15b0&gt;}
 </pre></div></div>
 </div>
-</section>
-<section id="Plot-SARS-CoV-2-host-virus-proteins-(Gordon-et-al.,-2020)">
+</div>
+<div class="section" id="Plot-SARS-CoV-2-host-virus-proteins-(Gordon-et-al.,-2020)">
 <h2>Plot SARS-CoV-2 host-virus proteins (Gordon et al., 2020)<a class="headerlink" href="#Plot-SARS-CoV-2-host-virus-proteins-(Gordon-et-al.,-2020)" title="Permalink to this headline">¶</a></h2>
 <p>List of human interacting proteins (<code class="docutils literal notranslate"><span class="pre">protein_list</span></code>) retrieved from:</p>
 <p>Gordon et al. (2020). A SARS-CoV-2-Human Protein-Protein Interaction Map Reveals Drug Targets and Potential Drug-Repurposing. [<a class="reference external" href="https://www.biorxiv.org/content/10.1101/2020.03.22.002386v2">paper</a>]</p>
 <div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[107]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[118]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
@@ -1066,11 +1055,11 @@ DEBUG:graphein.ppi.edges:Added 1501 biogrid interaction edges
 <div class="prompt empty docutils container">
 </div>
 <div class="output_area docutils container">
-<img alt="../_images/notebooks_ppi_tutorial_18_1.png" src="../_images/notebooks_ppi_tutorial_18_1.png"/>
+<img alt="../_images/notebooks_ppi_tutorial_17_1.png" src="../_images/notebooks_ppi_tutorial_17_1.png"/>
 </div>
 </div>
-</section>
-</section>
+</div>
+</div>
 
       </article>
       <footer>
@@ -1092,7 +1081,7 @@ DEBUG:graphein.ppi.edges:Added 1501 biogrid interaction edges
                   <span>Previous</span>
                 </div>
                 
-                <div class="title">Creating Protein Meshes in Graphein</div>
+                <div class="title">Creating Protein Meshes in Graphein &amp; 3D Visualisation</div>
                 
               </div>
             </a>

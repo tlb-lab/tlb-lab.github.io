@@ -12,6 +12,8 @@ sequences and PDBset_164 consists of 164 protein sequences. These protein sequen
 have been annotated. Thus, we have 422 different annotated protein sequences. We remove two protein sequences for they
 do not have PSSM file.
 
+The dataset can be viewed here: `a-r-j/graphein/datasets/pscdb <https://www.github.com/a-r-j/graphein/tree/master/datasets/ppisp>`_
+
 Reference
 ----------
 [1] Min Zeng, Fuhao Zhang, Fang-Xiang Wu, Yaohang Li, Jianxin Wang, Min Li. Protein-protein interaction site prediction

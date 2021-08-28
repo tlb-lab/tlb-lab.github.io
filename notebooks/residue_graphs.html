@@ -2,8 +2,7 @@
 <html class="no-js">
   <head><meta charset="utf-8"/>
     <meta name="viewport" content="width=device-width,initial-scale=1"/>
-    <meta name="color-scheme" content="light dark"><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
-<link rel="index" title="Index" href="../genindex.html" /><link rel="search" title="Search" href="../search.html" /><link rel="next" title="Graphein - Atom Graph Tutorial" href="atom_graph_tutorial.html" /><link rel="prev" title="Notebooks" href="../notebooks_index.html" />
+    <meta name="color-scheme" content="light dark"><link rel="index" title="Index" href="../genindex.html" /><link rel="search" title="Search" href="../search.html" /><link rel="next" title="Graphein - Atom Graph Tutorial" href="atom_graph_tutorial.html" /><link rel="prev" title="Notebooks" href="../notebooks_index.html" />
 
     <meta name="generator" content="sphinx-4.1.2, furo 2021.08.17.beta43"/>
         <title>Graphein - Residue Graph Tutorial - Graphein 1.0.0 documentation</title>
@@ -167,7 +166,7 @@
 <li class="toctree-l2 current current-page"><a class="current reference internal" href="#">Graphein - Residue Graph Tutorial</a></li>
 <li class="toctree-l2"><a class="reference internal" href="atom_graph_tutorial.html">Graphein - Atom Graph Tutorial</a></li>
 <li class="toctree-l2"><a class="reference internal" href="alphafold_protein_graph_tutorial.html">Constructing Graphs from AlphaFold Protein Structure Database</a></li>
-<li class="toctree-l2"><a class="reference internal" href="protein_mesh_tutorial.html">Creating Protein Meshes in Graphein</a></li>
+<li class="toctree-l2"><a class="reference internal" href="protein_mesh_tutorial.html">Creating Protein Meshes in Graphein &amp; 3D Visualisation</a></li>
 <li class="toctree-l2"><a class="reference internal" href="ppi_tutorial.html">PPI Networks and Structural Interactomics</a></li>
 <li class="toctree-l2"><a class="reference internal" href="grn_tutorial.html">Gene Regulatory Network Tutorial</a></li>
 </ul>
@@ -471,18 +470,40 @@ div.rendered_html tbody tr:hover {
 <span></span><span class="o">%</span><span class="k">matplotlib</span> inline
 <span class="kn">import</span> <span class="nn">logging</span>
 <span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
-<span class="n">logging</span><span class="o">.</span><span class="n">basicConfig</span><span class="p">(</span><span class="n">level</span><span class="o">=</span><span class="s2">"INFO"</span><span class="p">)</span>
+<span class="c1">#logging.basicConfig(level="INFO")</span>
+<span class="n">logging</span><span class="o">.</span><span class="n">getLogger</span><span class="p">(</span><span class="s1">'matplotlib'</span><span class="p">)</span><span class="o">.</span><span class="n">setLevel</span><span class="p">(</span><span class="n">logging</span><span class="o">.</span><span class="n">CRITICAL</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
-<section id="Graphein---Residue-Graph-Tutorial">
+<div class="section" id="Graphein---Residue-Graph-Tutorial">
 <h1>Graphein - Residue Graph Tutorial<a class="headerlink" href="#Graphein---Residue-Graph-Tutorial" title="Permalink to this headline">¶</a></h1>
-<p>In this notebook, we’ll run through residue-level graph construction in Graphein. We start by discsussing the config, the high-level API and spend the bulk of the tutorial running through the low-level API</p>
-<section id="Config">
+<p>In this notebook, we’ll run through residue-level graph construction in Graphein. We start by discsussing the config, the high-level API and spend the bulk of the tutorial running through the low-level API. First, let’s checkout the protein we’ll be playing with today:</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[2]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="kn">from</span> <span class="nn">graphein.utils.pymol</span> <span class="kn">import</span> <span class="n">MolViewer</span>
+<span class="n">pymol</span> <span class="o">=</span> <span class="n">MolViewer</span><span class="p">()</span>
+<span class="n">pymol</span><span class="o">.</span><span class="n">fetch</span><span class="p">(</span><span class="s2">"3eiy"</span><span class="p">)</span>
+<span class="n">pymol</span><span class="o">.</span><span class="n">show_as</span><span class="p">(</span><span class="s2">"surface"</span><span class="p">)</span>
+<span class="n">pymol</span><span class="o">.</span><span class="n">display</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[2]:
+</pre></div>
+</div>
+<div class="output_area docutils container">
+<img alt="../_images/notebooks_residue_graphs_2_0.png" src="../_images/notebooks_residue_graphs_2_0.png"/>
+</div>
+</div>
+<div class="section" id="Config">
 <h2>Config<a class="headerlink" href="#Config" title="Permalink to this headline">¶</a></h2>
 <p>Graphein is designed for processing datasets of protein structures into graphs. We rely on a global config object to store various parameters in the high-level API. We use <code class="docutils literal notranslate"><span class="pre">pydantic</span></code> for the config object and provide sane defaults.</p>
 <div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[2]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[3]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
@@ -493,16 +514,8 @@ div.rendered_html tbody tr:hover {
 </pre></div>
 </div>
 </div>
-<div class="nboutput docutils container">
-<div class="prompt empty docutils container">
-</div>
-<div class="output_area stderr docutils container">
-<div class="highlight"><pre>
-INFO:summarizer.preprocessing.cleaner:'pattern' package not found; tag filters are not available for English
-</pre></div></div>
-</div>
 <div class="nboutput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[2]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[3]:
 </pre></div>
 </div>
 <div class="output_area docutils container">
@@ -511,7 +524,7 @@ INFO:summarizer.preprocessing.cleaner:'pattern' package not found; tag filters a
  'keep_hets': False,
  'insertions': False,
  'pdb_dir': PosixPath('../examples/pdbs'),
- 'verbose': True,
+ 'verbose': False,
  'exclude_waters': True,
  'deprotonate': False,
  'protein_df_processing_functions': None,
@@ -541,7 +554,7 @@ INFO:summarizer.preprocessing.cleaner:'pattern' package not found; tag filters a
 </ul>
 <p>If you wish, you can construct an entirely fresh configuration. Or, if we wish to change only some of these parameters, we can pass a dictionary containing our modifications:</p>
 <div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[3]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[4]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
@@ -553,7 +566,7 @@ INFO:summarizer.preprocessing.cleaner:'pattern' package not found; tag filters a
 </div>
 </div>
 <div class="nboutput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[3]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[4]:
 </pre></div>
 </div>
 <div class="output_area docutils container">
@@ -562,7 +575,7 @@ INFO:summarizer.preprocessing.cleaner:'pattern' package not found; tag filters a
  'keep_hets': False,
  'insertions': False,
  'pdb_dir': PosixPath('../examples/pdbs'),
- 'verbose': True,
+ 'verbose': False,
  'exclude_waters': True,
  'deprotonate': False,
  'protein_df_processing_functions': None,
@@ -574,13 +587,13 @@ INFO:summarizer.preprocessing.cleaner:'pattern' package not found; tag filters a
  'dssp_config': None}
 </pre></div></div>
 </div>
-</section>
-<section id="High-level-API">
+</div>
+<div class="section" id="High-level-API">
 <h2>High-level API<a class="headerlink" href="#High-level-API" title="Permalink to this headline">¶</a></h2>
 <p>Graphein features a high-level API which should be applicable for most simple graph constructions. This can be used on either a .pdb file (so you can run whatever pre-processing you wish), or we can provide a PDB accession code and retrieve a structure from the PDB itself. If a path is provided, it takes precedence over the PDB code.</p>
 <p>To use it we do as follows:</p>
 <div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[4]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[6]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
@@ -594,21 +607,24 @@ INFO:summarizer.preprocessing.cleaner:'pattern' package not found; tag filters a
 <div class="nboutput nblast docutils container">
 <div class="prompt empty docutils container">
 </div>
-<div class="output_area docutils container">
+<div class="output_area stderr docutils container">
 <div class="highlight"><pre>
-&lt;biopandas.pdb.pandas_pdb.PandasPdb object at 0x7fd8a42d2910&gt;
+DEBUG:graphein.protein.graphs:Deprotonating protein. This removes H atoms from the pdb_df dataframe
+DEBUG:graphein.protein.graphs:Converting dataframe to centroids. This averages XYZ coords of the atoms in a residue
+DEBUG:graphein.protein.graphs:Calculated 174 centroid nodes
+DEBUG:graphein.protein.graphs:Detected 174 total nodes
 </pre></div></div>
 </div>
 <p>Let’s check out the results with the in-built visualisation</p>
 <div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[5]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[8]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
 <span></span><span class="kn">from</span> <span class="nn">graphein.protein.visualisation</span> <span class="kn">import</span> <span class="n">plot_protein_structure_graph</span>
 
-<span class="n">p</span> <span class="o">=</span> <span class="n">plot_protein_structure_graph</span><span class="p">(</span><span class="n">G</span><span class="o">=</span><span class="n">g</span><span class="p">,</span> <span class="n">angle</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">colour_edges_by</span><span class="o">=</span><span class="s2">"kind"</span><span class="p">,</span> <span class="n">colour_nodes_by</span><span class="o">=</span><span class="s2">"degree"</span><span class="p">,</span> <span class="n">label_node_ids</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">suptitle</span><span class="p">(</span><span class="s2">"Peptide backbone graph. Nodes coloured by degree."</span><span class="p">)</span>
+<span class="n">p</span> <span class="o">=</span> <span class="n">plot_protein_structure_graph</span><span class="p">(</span><span class="n">G</span><span class="o">=</span><span class="n">g</span><span class="p">,</span> <span class="n">angle</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">colour_edges_by</span><span class="o">=</span><span class="s2">"kind"</span><span class="p">,</span> <span class="n">colour_nodes_by</span><span class="o">=</span><span class="s2">"seq_position"</span><span class="p">,</span> <span class="n">label_node_ids</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">suptitle</span><span class="p">(</span><span class="s2">"Peptide backbone graph. Nodes coloured by sequence position."</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -622,32 +638,32 @@ INFO:summarizer.preprocessing.cleaner:'pattern' package not found; tag filters a
 </pre></div></div>
 </div>
 <div class="nboutput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[5]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[8]:
 </pre></div>
 </div>
 <div class="output_area docutils container">
 <div class="highlight"><pre>
-Text(0.5, 0.98, 'Peptide backbone graph. Nodes coloured by degree.')
+Text(0.5, 0.98, 'Peptide backbone graph. Nodes coloured by sequence position.')
 </pre></div></div>
 </div>
 <div class="nboutput nblast docutils container">
 <div class="prompt empty docutils container">
 </div>
 <div class="output_area docutils container">
-<img alt="../_images/notebooks_residue_graphs_10_2.png" src="../_images/notebooks_residue_graphs_10_2.png"/>
+<img alt="../_images/notebooks_residue_graphs_11_2.png" src="../_images/notebooks_residue_graphs_11_2.png"/>
 </div>
 </div>
 <p>Cool! So let’s look at what we’ve got here:</p>
 <p>We’ve plotted the graph, positioning nodes according to their x,y,z coordinates and coloured them by their degree. As we can see all the nodes are yellow except the two corresponding to the terminal residues. Why is this? Because we’ve only computed the peptide-bond edges. Now, we probably want more so let’s look at how to do that!</p>
-<section id="Edge-Functions">
+<div class="section" id="Edge-Functions">
 <h3>Edge Functions<a class="headerlink" href="#Edge-Functions" title="Permalink to this headline">¶</a></h3>
 <p>Graphein is implemented in a functional fashion. In this case, this means in order to compute edges, we pass a list of edge construction functions to the construction. We have supplied a number of edge computation functions. These are located in: * <code class="docutils literal notranslate"><span class="pre">graphein.protein.edges.distance</span></code> * <code class="docutils literal notranslate"><span class="pre">graphein.protein.edges.intramolecular</span></code>(these rely on an installation of GetContacts, an optional dependency) and a separate get_contacts_config * <code class="docutils literal notranslate"><span class="pre">graphein.protein.edges.atomic</span></code> (these are used in
 atomic-level graphs and we discuss these in another notebook)</p>
 <p>However, edge functions are simple functions that take in an <code class="docutils literal notranslate"><span class="pre">nx.Graph</span></code> and return an <code class="docutils literal notranslate"><span class="pre">nx.Graph</span></code> with added edges. This means users can easily define their own to suit their purposes! Let’s take a closer look at some of the in-built functions before defining our own.</p>
-<section id="Built-in-Edge-Functions">
+<div class="section" id="Built-in-Edge-Functions">
 <h4>Built-in Edge Functions<a class="headerlink" href="#Built-in-Edge-Functions" title="Permalink to this headline">¶</a></h4>
 <div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[6]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[9]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
@@ -658,47 +674,41 @@ atomic-level graphs and we discuss these in another notebook)</p>
 
 
 <span class="n">g</span> <span class="o">=</span> <span class="n">construct_graph</span><span class="p">(</span><span class="n">config</span><span class="o">=</span><span class="n">config</span><span class="p">,</span> <span class="n">pdb_code</span><span class="o">=</span><span class="s2">"3eiy"</span><span class="p">)</span>
-<span class="n">p</span> <span class="o">=</span> <span class="n">plot_protein_structure_graph</span><span class="p">(</span><span class="n">G</span><span class="o">=</span><span class="n">g</span><span class="p">,</span> <span class="n">angle</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">colour_edges_by</span><span class="o">=</span><span class="s2">"kind"</span><span class="p">,</span> <span class="n">colour_nodes_by</span><span class="o">=</span><span class="s2">"degree"</span><span class="p">,</span> <span class="n">label_node_ids</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">suptitle</span><span class="p">(</span><span class="s2">"Protein graph with peptide backbone and H-Bonds. </span><span class="se">\n</span><span class="s2"> Nodes coloured by degree. Edges coloured by type."</span><span class="p">)</span>
+<span class="n">p</span> <span class="o">=</span> <span class="n">plot_protein_structure_graph</span><span class="p">(</span><span class="n">G</span><span class="o">=</span><span class="n">g</span><span class="p">,</span> <span class="n">angle</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">colour_edges_by</span><span class="o">=</span><span class="s2">"kind"</span><span class="p">,</span> <span class="n">colour_nodes_by</span><span class="o">=</span><span class="s2">"seq_position"</span><span class="p">,</span> <span class="n">label_node_ids</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">suptitle</span><span class="p">(</span><span class="s2">"Protein graph with peptide backbone and H-Bonds. </span><span class="se">\n</span><span class="s2"> Nodes coloured by sequence position. Edges coloured by type."</span><span class="p">)</span>
 </pre></div>
 </div>
-</div>
-<div class="nboutput docutils container">
-<div class="prompt empty docutils container">
-</div>
-<div class="output_area docutils container">
-<div class="highlight"><pre>
-&lt;biopandas.pdb.pandas_pdb.PandasPdb object at 0x7fd734038490&gt;
-</pre></div></div>
 </div>
 <div class="nboutput docutils container">
 <div class="prompt empty docutils container">
 </div>
 <div class="output_area stderr docutils container">
 <div class="highlight"><pre>
+DEBUG:graphein.protein.graphs:Deprotonating protein. This removes H atoms from the pdb_df dataframe
+DEBUG:graphein.protein.graphs:Detected 174 total nodes
 /home/atj39/github/graphein/graphein/protein/visualisation.py:330: MatplotlibDeprecationWarning: Axes3D(fig) adding itself to the figure is deprecated since 3.4. Pass the keyword argument auto_add_to_figure=False and use fig.add_axes(ax) to suppress this warning. The default value of auto_add_to_figure will change to False in mpl3.5 and True values will no longer work in 3.6.  This is consistent with other Axes classes.
   ax = Axes3D(fig, auto_add_to_figure=True)
 </pre></div></div>
 </div>
 <div class="nboutput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[6]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[9]:
 </pre></div>
 </div>
 <div class="output_area docutils container">
 <div class="highlight"><pre>
-Text(0.5, 0.98, 'Protein graph with peptide backbone and H-Bonds. \n Nodes coloured by degree. Edges coloured by type.')
+Text(0.5, 0.98, 'Protein graph with peptide backbone and H-Bonds. \n Nodes coloured by sequence position. Edges coloured by type.')
 </pre></div></div>
 </div>
 <div class="nboutput nblast docutils container">
 <div class="prompt empty docutils container">
 </div>
 <div class="output_area docutils container">
-<img alt="../_images/notebooks_residue_graphs_13_3.png" src="../_images/notebooks_residue_graphs_13_3.png"/>
+<img alt="../_images/notebooks_residue_graphs_14_2.png" src="../_images/notebooks_residue_graphs_14_2.png"/>
 </div>
 </div>
 <p>Great! So what if we try <strong>a bunch</strong> of them</p>
 <div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[7]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[10]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
@@ -721,42 +731,36 @@ Text(0.5, 0.98, 'Protein graph with peptide backbone and H-Bonds. \n Nodes colou
 
 <span class="n">config</span> <span class="o">=</span> <span class="n">ProteinGraphConfig</span><span class="p">(</span><span class="o">**</span><span class="n">new_edge_funcs</span><span class="p">)</span>
 <span class="n">g</span> <span class="o">=</span> <span class="n">construct_graph</span><span class="p">(</span><span class="n">config</span><span class="o">=</span><span class="n">config</span><span class="p">,</span> <span class="n">pdb_code</span><span class="o">=</span><span class="s2">"3eiy"</span><span class="p">)</span>
-<span class="n">p</span> <span class="o">=</span> <span class="n">plot_protein_structure_graph</span><span class="p">(</span><span class="n">G</span><span class="o">=</span><span class="n">g</span><span class="p">,</span> <span class="n">angle</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">colour_edges_by</span><span class="o">=</span><span class="s2">"kind"</span><span class="p">,</span> <span class="n">colour_nodes_by</span><span class="o">=</span><span class="s2">"degree"</span><span class="p">,</span> <span class="n">label_node_ids</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">suptitle</span><span class="p">(</span><span class="s2">"Protein graph with: peptide backbone, H-Bonds, </span><span class="se">\n</span><span class="s2"> Disulphide, ionic, aromatic, aromatic-sulphur and cation-pi interactions. </span><span class="se">\n</span><span class="s2">  Nodes coloured by degree, edges by type"</span><span class="p">)</span>
+<span class="n">p</span> <span class="o">=</span> <span class="n">plot_protein_structure_graph</span><span class="p">(</span><span class="n">G</span><span class="o">=</span><span class="n">g</span><span class="p">,</span> <span class="n">angle</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">colour_edges_by</span><span class="o">=</span><span class="s2">"kind"</span><span class="p">,</span> <span class="n">colour_nodes_by</span><span class="o">=</span><span class="s2">"seq_position"</span><span class="p">,</span> <span class="n">label_node_ids</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">suptitle</span><span class="p">(</span><span class="s2">"Protein graph with: peptide backbone, H-Bonds, </span><span class="se">\n</span><span class="s2"> Disulphide, ionic, aromatic, aromatic-sulphur and cation-pi interactions. </span><span class="se">\n</span><span class="s2">  Nodes coloured by sequence position, edges by type"</span><span class="p">)</span>
 </pre></div>
 </div>
-</div>
-<div class="nboutput docutils container">
-<div class="prompt empty docutils container">
-</div>
-<div class="output_area docutils container">
-<div class="highlight"><pre>
-&lt;biopandas.pdb.pandas_pdb.PandasPdb object at 0x7fd73224d6a0&gt;
-</pre></div></div>
 </div>
 <div class="nboutput docutils container">
 <div class="prompt empty docutils container">
 </div>
 <div class="output_area stderr docutils container">
 <div class="highlight"><pre>
+DEBUG:graphein.protein.graphs:Deprotonating protein. This removes H atoms from the pdb_df dataframe
+DEBUG:graphein.protein.graphs:Detected 174 total nodes
 /home/atj39/github/graphein/graphein/protein/visualisation.py:330: MatplotlibDeprecationWarning: Axes3D(fig) adding itself to the figure is deprecated since 3.4. Pass the keyword argument auto_add_to_figure=False and use fig.add_axes(ax) to suppress this warning. The default value of auto_add_to_figure will change to False in mpl3.5 and True values will no longer work in 3.6.  This is consistent with other Axes classes.
   ax = Axes3D(fig, auto_add_to_figure=True)
 </pre></div></div>
 </div>
 <div class="nboutput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[7]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[10]:
 </pre></div>
 </div>
 <div class="output_area docutils container">
 <div class="highlight"><pre>
-Text(0.5, 0.98, 'Protein graph with: peptide backbone, H-Bonds, \n Disulphide, ionic, aromatic, aromatic-sulphur and cation-pi interactions. \n  Nodes coloured by degree, edges by type')
+Text(0.5, 0.98, 'Protein graph with: peptide backbone, H-Bonds, \n Disulphide, ionic, aromatic, aromatic-sulphur and cation-pi interactions. \n  Nodes coloured by sequence position, edges by type')
 </pre></div></div>
 </div>
 <div class="nboutput nblast docutils container">
 <div class="prompt empty docutils container">
 </div>
 <div class="output_area docutils container">
-<img alt="../_images/notebooks_residue_graphs_15_3.png" src="../_images/notebooks_residue_graphs_15_3.png"/>
+<img alt="../_images/notebooks_residue_graphs_16_2.png" src="../_images/notebooks_residue_graphs_16_2.png"/>
 </div>
 </div>
 <p>Cool! So we’ve added a bunch on distance-based computations of intramolecular edges to our graph! We have a few more distance based edge functions that we can visualise. Let’s check them out!</p>
@@ -767,7 +771,7 @@ Text(0.5, 0.98, 'Protein graph with: peptide backbone, H-Bonds, \n Disulphide, i
 </ul>
 <p>First up, the Delaunay triangulation:</p>
 <div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[8]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[11]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
@@ -777,48 +781,42 @@ Text(0.5, 0.98, 'Protein graph with: peptide backbone, H-Bonds, \n Disulphide, i
 <span class="n">config</span> <span class="o">=</span> <span class="n">ProteinGraphConfig</span><span class="p">(</span><span class="o">**</span><span class="n">new_edge_funcs</span><span class="p">)</span>
 
 <span class="n">g</span> <span class="o">=</span> <span class="n">construct_graph</span><span class="p">(</span><span class="n">config</span><span class="o">=</span><span class="n">config</span><span class="p">,</span> <span class="n">pdb_code</span><span class="o">=</span><span class="s2">"3eiy"</span><span class="p">)</span>
-<span class="n">nrp</span> <span class="o">=</span> <span class="n">plot_protein_structure_graph</span><span class="p">(</span><span class="n">G</span><span class="o">=</span><span class="n">g</span><span class="p">,</span> <span class="n">angle</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">colour_edges_by</span><span class="o">=</span><span class="s2">"kind"</span><span class="p">,</span> <span class="n">colour_nodes_by</span><span class="o">=</span><span class="s2">"degree"</span><span class="p">,</span> <span class="n">label_node_ids</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">suptitle</span><span class="p">(</span><span class="s2">"Protein graph created by the Delaunay trinagulation of the structure. </span><span class="se">\n</span><span class="s2"> Nodes coloured by degree."</span><span class="p">)</span>
+<span class="n">nrp</span> <span class="o">=</span> <span class="n">plot_protein_structure_graph</span><span class="p">(</span><span class="n">G</span><span class="o">=</span><span class="n">g</span><span class="p">,</span> <span class="n">angle</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">colour_edges_by</span><span class="o">=</span><span class="s2">"kind"</span><span class="p">,</span> <span class="n">colour_nodes_by</span><span class="o">=</span><span class="s2">"seq_position"</span><span class="p">,</span> <span class="n">label_node_ids</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">suptitle</span><span class="p">(</span><span class="s2">"Protein graph created by the Delaunay trinagulation of the structure. </span><span class="se">\n</span><span class="s2"> Nodes coloured by sequence position."</span><span class="p">)</span>
 </pre></div>
 </div>
-</div>
-<div class="nboutput docutils container">
-<div class="prompt empty docutils container">
-</div>
-<div class="output_area docutils container">
-<div class="highlight"><pre>
-&lt;biopandas.pdb.pandas_pdb.PandasPdb object at 0x7fd73224d4c0&gt;
-</pre></div></div>
 </div>
 <div class="nboutput docutils container">
 <div class="prompt empty docutils container">
 </div>
 <div class="output_area stderr docutils container">
 <div class="highlight"><pre>
+DEBUG:graphein.protein.graphs:Deprotonating protein. This removes H atoms from the pdb_df dataframe
+DEBUG:graphein.protein.graphs:Detected 174 total nodes
 /home/atj39/github/graphein/graphein/protein/visualisation.py:330: MatplotlibDeprecationWarning: Axes3D(fig) adding itself to the figure is deprecated since 3.4. Pass the keyword argument auto_add_to_figure=False and use fig.add_axes(ax) to suppress this warning. The default value of auto_add_to_figure will change to False in mpl3.5 and True values will no longer work in 3.6.  This is consistent with other Axes classes.
   ax = Axes3D(fig, auto_add_to_figure=True)
 </pre></div></div>
 </div>
 <div class="nboutput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[8]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[11]:
 </pre></div>
 </div>
 <div class="output_area docutils container">
 <div class="highlight"><pre>
-Text(0.5, 0.98, 'Protein graph created by the Delaunay trinagulation of the structure. \n Nodes coloured by degree.')
+Text(0.5, 0.98, 'Protein graph created by the Delaunay trinagulation of the structure. \n Nodes coloured by sequence position.')
 </pre></div></div>
 </div>
 <div class="nboutput nblast docutils container">
 <div class="prompt empty docutils container">
 </div>
 <div class="output_area docutils container">
-<img alt="../_images/notebooks_residue_graphs_17_3.png" src="../_images/notebooks_residue_graphs_17_3.png"/>
+<img alt="../_images/notebooks_residue_graphs_18_2.png" src="../_images/notebooks_residue_graphs_18_2.png"/>
 </div>
 </div>
 <p>Next, let’s consider the last two edge construction functions <code class="docutils literal notranslate"><span class="pre">add_k_nn_edges</span></code> and<code class="docutils literal notranslate"><span class="pre">add_distance_threshold</span></code>. These two functions take additional parameters. We can manage this with partial functions. These functions also feature a <code class="docutils literal notranslate"><span class="pre">long_interaction_threshold</span></code> parameter which specifies the minimum number of residues in the sequence between two residues in order to add an edge. This is because we may not be so interested in residues close together in the sequence being close together in the
 graph.</p>
 <div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[9]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[12]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
@@ -829,46 +827,40 @@ graph.</p>
 <span class="n">config</span> <span class="o">=</span> <span class="n">ProteinGraphConfig</span><span class="p">(</span><span class="o">**</span><span class="n">new_edge_funcs</span><span class="p">)</span>
 
 <span class="n">g</span> <span class="o">=</span> <span class="n">construct_graph</span><span class="p">(</span><span class="n">config</span><span class="o">=</span><span class="n">config</span><span class="p">,</span> <span class="n">pdb_code</span><span class="o">=</span><span class="s2">"3eiy"</span><span class="p">)</span>
-<span class="n">p</span> <span class="o">=</span> <span class="n">plot_protein_structure_graph</span><span class="p">(</span><span class="n">G</span><span class="o">=</span><span class="n">g</span><span class="p">,</span> <span class="n">angle</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">colour_edges_by</span><span class="o">=</span><span class="s2">"kind"</span><span class="p">,</span> <span class="n">colour_nodes_by</span><span class="o">=</span><span class="s2">"degree"</span><span class="p">,</span> <span class="n">label_node_ids</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">suptitle</span><span class="p">(</span><span class="s2">"Protein graph created by thresholding distance between nodes. </span><span class="se">\n</span><span class="s2"> Nodes must be &lt;10A apart and at least 5 positions apart </span><span class="se">\n</span><span class="s2"> Nodes coloured by degree."</span><span class="p">)</span>
+<span class="n">p</span> <span class="o">=</span> <span class="n">plot_protein_structure_graph</span><span class="p">(</span><span class="n">G</span><span class="o">=</span><span class="n">g</span><span class="p">,</span> <span class="n">angle</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">colour_edges_by</span><span class="o">=</span><span class="s2">"kind"</span><span class="p">,</span> <span class="n">colour_nodes_by</span><span class="o">=</span><span class="s2">"seq_position"</span><span class="p">,</span> <span class="n">label_node_ids</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">suptitle</span><span class="p">(</span><span class="s2">"Protein graph created by thresholding distance between nodes. </span><span class="se">\n</span><span class="s2"> Nodes must be &lt;10A apart and at least 5 positions apart </span><span class="se">\n</span><span class="s2"> Nodes coloured by sequence position."</span><span class="p">)</span>
 </pre></div>
 </div>
-</div>
-<div class="nboutput docutils container">
-<div class="prompt empty docutils container">
-</div>
-<div class="output_area docutils container">
-<div class="highlight"><pre>
-&lt;biopandas.pdb.pandas_pdb.PandasPdb object at 0x7fd730a0ceb0&gt;
-</pre></div></div>
 </div>
 <div class="nboutput docutils container">
 <div class="prompt empty docutils container">
 </div>
 <div class="output_area stderr docutils container">
 <div class="highlight"><pre>
+DEBUG:graphein.protein.graphs:Deprotonating protein. This removes H atoms from the pdb_df dataframe
+DEBUG:graphein.protein.graphs:Detected 174 total nodes
 /home/atj39/github/graphein/graphein/protein/visualisation.py:330: MatplotlibDeprecationWarning: Axes3D(fig) adding itself to the figure is deprecated since 3.4. Pass the keyword argument auto_add_to_figure=False and use fig.add_axes(ax) to suppress this warning. The default value of auto_add_to_figure will change to False in mpl3.5 and True values will no longer work in 3.6.  This is consistent with other Axes classes.
   ax = Axes3D(fig, auto_add_to_figure=True)
 </pre></div></div>
 </div>
 <div class="nboutput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[9]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[12]:
 </pre></div>
 </div>
 <div class="output_area docutils container">
 <div class="highlight"><pre>
-Text(0.5, 0.98, 'Protein graph created by thresholding distance between nodes. \n Nodes must be &lt;10A apart and at least 5 positions apart \n Nodes coloured by degree.')
+Text(0.5, 0.98, 'Protein graph created by thresholding distance between nodes. \n Nodes must be &lt;10A apart and at least 5 positions apart \n Nodes coloured by sequence position.')
 </pre></div></div>
 </div>
 <div class="nboutput nblast docutils container">
 <div class="prompt empty docutils container">
 </div>
 <div class="output_area docutils container">
-<img alt="../_images/notebooks_residue_graphs_19_3.png" src="../_images/notebooks_residue_graphs_19_3.png"/>
+<img alt="../_images/notebooks_residue_graphs_20_2.png" src="../_images/notebooks_residue_graphs_20_2.png"/>
 </div>
 </div>
 <div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[10]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[13]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
@@ -879,51 +871,45 @@ Text(0.5, 0.98, 'Protein graph created by thresholding distance between nodes. \
 <span class="n">config</span> <span class="o">=</span> <span class="n">ProteinGraphConfig</span><span class="p">(</span><span class="o">**</span><span class="n">new_edge_funcs</span><span class="p">)</span>
 
 <span class="n">g</span> <span class="o">=</span> <span class="n">construct_graph</span><span class="p">(</span><span class="n">config</span><span class="o">=</span><span class="n">config</span><span class="p">,</span> <span class="n">pdb_code</span><span class="o">=</span><span class="s2">"3eiy"</span><span class="p">)</span>
-<span class="n">p</span> <span class="o">=</span> <span class="n">plot_protein_structure_graph</span><span class="p">(</span><span class="n">G</span><span class="o">=</span><span class="n">g</span><span class="p">,</span> <span class="n">angle</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">colour_edges_by</span><span class="o">=</span><span class="s2">"kind"</span><span class="p">,</span> <span class="n">colour_nodes_by</span><span class="o">=</span><span class="s2">"degree"</span><span class="p">,</span> <span class="n">label_node_ids</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">suptitle</span><span class="p">(</span><span class="s2">"Protein graph created from K-NN of each node. Nodes coloured by degree."</span><span class="p">)</span>
+<span class="n">p</span> <span class="o">=</span> <span class="n">plot_protein_structure_graph</span><span class="p">(</span><span class="n">G</span><span class="o">=</span><span class="n">g</span><span class="p">,</span> <span class="n">angle</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">colour_edges_by</span><span class="o">=</span><span class="s2">"kind"</span><span class="p">,</span> <span class="n">colour_nodes_by</span><span class="o">=</span><span class="s2">"seq_position"</span><span class="p">,</span> <span class="n">label_node_ids</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">suptitle</span><span class="p">(</span><span class="s2">"Protein graph created from K-NN of each node. Nodes coloured by sequence position."</span><span class="p">)</span>
 </pre></div>
 </div>
-</div>
-<div class="nboutput docutils container">
-<div class="prompt empty docutils container">
-</div>
-<div class="output_area docutils container">
-<div class="highlight"><pre>
-&lt;biopandas.pdb.pandas_pdb.PandasPdb object at 0x7fd731bb45e0&gt;
-</pre></div></div>
 </div>
 <div class="nboutput docutils container">
 <div class="prompt empty docutils container">
 </div>
 <div class="output_area stderr docutils container">
 <div class="highlight"><pre>
+DEBUG:graphein.protein.graphs:Deprotonating protein. This removes H atoms from the pdb_df dataframe
+DEBUG:graphein.protein.graphs:Detected 174 total nodes
 /home/atj39/github/graphein/graphein/protein/visualisation.py:330: MatplotlibDeprecationWarning: Axes3D(fig) adding itself to the figure is deprecated since 3.4. Pass the keyword argument auto_add_to_figure=False and use fig.add_axes(ax) to suppress this warning. The default value of auto_add_to_figure will change to False in mpl3.5 and True values will no longer work in 3.6.  This is consistent with other Axes classes.
   ax = Axes3D(fig, auto_add_to_figure=True)
 </pre></div></div>
 </div>
 <div class="nboutput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[10]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[13]:
 </pre></div>
 </div>
 <div class="output_area docutils container">
 <div class="highlight"><pre>
-Text(0.5, 0.98, 'Protein graph created from K-NN of each node. Nodes coloured by degree.')
+Text(0.5, 0.98, 'Protein graph created from K-NN of each node. Nodes coloured by sequence position.')
 </pre></div></div>
 </div>
 <div class="nboutput nblast docutils container">
 <div class="prompt empty docutils container">
 </div>
 <div class="output_area docutils container">
-<img alt="../_images/notebooks_residue_graphs_20_3.png" src="../_images/notebooks_residue_graphs_20_3.png"/>
+<img alt="../_images/notebooks_residue_graphs_21_2.png" src="../_images/notebooks_residue_graphs_21_2.png"/>
 </div>
 </div>
-</section>
-<section id="Defining-your-own-edge-functions">
+</div>
+<div class="section" id="Defining-your-own-edge-functions">
 <h4>Defining your own edge functions<a class="headerlink" href="#Defining-your-own-edge-functions" title="Permalink to this headline">¶</a></h4>
 <p>Now, let’s turn our attention to defining our own edge construction functions. These must take in a <code class="docutils literal notranslate"><span class="pre">nx.Graph</span></code> and return a <code class="docutils literal notranslate"><span class="pre">nx.Graph</span></code>. You can use these custom functions together with all the in-built edge functions as before. If you come up with something cool, consider making a pull-request and sharing it with the community!</p>
 <p>Here, as an example, we define an arbitrary function that creates an edge between all histidine residues in the graph.</p>
 <div class="nbinput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[11]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[14]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
@@ -941,7 +927,7 @@ Text(0.5, 0.98, 'Protein graph created from K-NN of each node. Nodes coloured by
 </div>
 </div>
 <div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[12]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[16]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
@@ -949,7 +935,7 @@ Text(0.5, 0.98, 'Protein graph created from K-NN of each node. Nodes coloured by
 <span class="n">config</span> <span class="o">=</span> <span class="n">ProteinGraphConfig</span><span class="p">(</span><span class="o">**</span><span class="n">new_edge_funcs</span><span class="p">)</span>
 
 <span class="n">g</span> <span class="o">=</span> <span class="n">construct_graph</span><span class="p">(</span><span class="n">config</span><span class="o">=</span><span class="n">config</span><span class="p">,</span> <span class="n">pdb_code</span><span class="o">=</span><span class="s2">"3eiy"</span><span class="p">)</span>
-<span class="n">p</span> <span class="o">=</span> <span class="n">plot_protein_structure_graph</span><span class="p">(</span><span class="n">G</span><span class="o">=</span><span class="n">g</span><span class="p">,</span> <span class="n">angle</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">colour_edges_by</span><span class="o">=</span><span class="s2">"kind"</span><span class="p">,</span> <span class="n">colour_nodes_by</span><span class="o">=</span><span class="s2">"degree"</span><span class="p">,</span> <span class="n">label_node_ids</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+<span class="n">p</span> <span class="o">=</span> <span class="n">plot_protein_structure_graph</span><span class="p">(</span><span class="n">G</span><span class="o">=</span><span class="n">g</span><span class="p">,</span> <span class="n">angle</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">colour_edges_by</span><span class="o">=</span><span class="s2">"kind"</span><span class="p">,</span> <span class="n">colour_nodes_by</span><span class="o">=</span><span class="s2">"seq_position"</span><span class="p">,</span> <span class="n">label_node_ids</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">suptitle</span><span class="p">(</span><span class="s2">"Protein graph created using a user-defined function that connects all Histidines."</span><span class="p">)</span>
 
 <span class="c1"># Let's check this worked:</span>
@@ -961,33 +947,34 @@ Text(0.5, 0.98, 'Protein graph created from K-NN of each node. Nodes coloured by
 <div class="nboutput docutils container">
 <div class="prompt empty docutils container">
 </div>
-<div class="output_area docutils container">
+<div class="output_area stderr docutils container">
 <div class="highlight"><pre>
-&lt;biopandas.pdb.pandas_pdb.PandasPdb object at 0x7fd7184ba820&gt;
-A:HIS:111 A:HIS:137 {'kind': 'histidine'}
-A:HIS:111 A:HIS:163 {'kind': 'histidine'}
-A:HIS:137 A:HIS:163 {'kind': 'histidine'}
+DEBUG:graphein.protein.graphs:Deprotonating protein. This removes H atoms from the pdb_df dataframe
+DEBUG:graphein.protein.graphs:Detected 174 total nodes
+/home/atj39/github/graphein/graphein/protein/visualisation.py:330: MatplotlibDeprecationWarning: Axes3D(fig) adding itself to the figure is deprecated since 3.4. Pass the keyword argument auto_add_to_figure=False and use fig.add_axes(ax) to suppress this warning. The default value of auto_add_to_figure will change to False in mpl3.5 and True values will no longer work in 3.6.  This is consistent with other Axes classes.
+  ax = Axes3D(fig, auto_add_to_figure=True)
 </pre></div></div>
 </div>
 <div class="nboutput docutils container">
 <div class="prompt empty docutils container">
 </div>
-<div class="output_area stderr docutils container">
+<div class="output_area docutils container">
 <div class="highlight"><pre>
-/home/atj39/github/graphein/graphein/protein/visualisation.py:330: MatplotlibDeprecationWarning: Axes3D(fig) adding itself to the figure is deprecated since 3.4. Pass the keyword argument auto_add_to_figure=False and use fig.add_axes(ax) to suppress this warning. The default value of auto_add_to_figure will change to False in mpl3.5 and True values will no longer work in 3.6.  This is consistent with other Axes classes.
-  ax = Axes3D(fig, auto_add_to_figure=True)
+A:HIS:111 A:HIS:137 {'kind': 'histidine'}
+A:HIS:111 A:HIS:163 {'kind': 'histidine'}
+A:HIS:137 A:HIS:163 {'kind': 'histidine'}
 </pre></div></div>
 </div>
 <div class="nboutput nblast docutils container">
 <div class="prompt empty docutils container">
 </div>
 <div class="output_area docutils container">
-<img alt="../_images/notebooks_residue_graphs_23_2.png" src="../_images/notebooks_residue_graphs_23_2.png"/>
+<img alt="../_images/notebooks_residue_graphs_24_2.png" src="../_images/notebooks_residue_graphs_24_2.png"/>
 </div>
 </div>
-</section>
-</section>
-<section id="Features-&amp;-Metadata">
+</div>
+</div>
+<div class="section" id="Features-&amp;-Metadata">
 <h3>Features &amp; Metadata<a class="headerlink" href="#Features-&amp;-Metadata" title="Permalink to this headline">¶</a></h3>
 <p><code class="docutils literal notranslate"><span class="pre">Graphein</span></code> is designed to facilitate geometric deep learning on protein structures and so we have a bunch of feature and metadata annotation functions. These operate on three levels: * node-level annotation * graph-level annotation * edge-level annotation</p>
 <p>These behave very similarly to the edge construction functions we just looked at. You simply pass a list of functions that take the right sort of arguments and return the right types.</p>
@@ -996,12 +983,12 @@ A:HIS:137 A:HIS:163 {'kind': 'histidine'}
 <li><p>node-level annotation takes in a node, data tuple from <code class="docutils literal notranslate"><span class="pre">G.nodes(data=True)</span></code> and returns a <code class="docutils literal notranslate"><span class="pre">pd.Series</span></code></p></li>
 <li><p>edge-level annotation in node_u, node_v, data tuple from <code class="docutils literal notranslate"><span class="pre">G.edges(data=True)</span></code> and returns</p></li>
 </ul>
-<section id="Built-in-Graph-Annotation-Functions">
+<div class="section" id="Built-in-Graph-Annotation-Functions">
 <h4>Built-in Graph Annotation Functions<a class="headerlink" href="#Built-in-Graph-Annotation-Functions" title="Permalink to this headline">¶</a></h4>
 <p>These are found in <code class="docutils literal notranslate"><span class="pre">graphein.protein.features.sequence</span></code> and <code class="docutils literal notranslate"><span class="pre">graphein.protein.features.graph</span></code>. We make a slight distinction between those functions that operate on the protein sequence for cleaner organisation. N.B. we’ve mentioned the <code class="docutils literal notranslate"><span class="pre">chain_selection</span></code> parameter briefly - if you include multiple chains in your graph, then will be multiple sequences associated with it. These are accessed as such: <code class="docutils literal notranslate"><span class="pre">G.graph[f"sequence_{CHAIN_ID}"]</span></code> and features computed from sequence are accessed as:
 <code class="docutils literal notranslate"><span class="pre">G.graph[f"{FEATURE_NAME}_{CHAIN_ID}]</span></code></p>
 <div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[13]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[17]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
@@ -1016,19 +1003,27 @@ A:HIS:137 A:HIS:163 {'kind': 'histidine'}
 </pre></div>
 </div>
 </div>
+<div class="nboutput docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area stderr docutils container">
+<div class="highlight"><pre>
+DEBUG:graphein.protein.graphs:Deprotonating protein. This removes H atoms from the pdb_df dataframe
+DEBUG:graphein.protein.graphs:Detected 174 total nodes
+</pre></div></div>
+</div>
 <div class="nboutput nblast docutils container">
 <div class="prompt empty docutils container">
 </div>
 <div class="output_area docutils container">
 <div class="highlight"><pre>
-&lt;biopandas.pdb.pandas_pdb.PandasPdb object at 0x7fd7181b7250&gt;
 Sequence: SFSNVPAGKDLPQDFNVIIEIPAQSEPVKYEADKALGLLVVDRFIGTGMRYPVNYGFIPQTLSGDGDPVDVLVITPFPLLAGSVVRARALGMLKMTDESGVDAKLVAVPHDKVCPMTANLKSIDDVPAYLKDQIKHFFEQYKALEKGKWVKVEGWDGIDAAHKEITDGVANFKK
 MW: 19029.71029999999
 </pre></div></div>
 </div>
 <p>We also provide some utilities for adding graph-level features in the form of sequence embeddings from various pre-trained language models. Let’s check them out!</p>
 <div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[14]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[18]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
@@ -1047,18 +1042,13 @@ MW: 19029.71029999999
 <div class="nboutput docutils container">
 <div class="prompt empty docutils container">
 </div>
-<div class="output_area docutils container">
-<div class="highlight"><pre>
-&lt;biopandas.pdb.pandas_pdb.PandasPdb object at 0x7fd7184d48b0&gt;
-</pre></div></div>
-</div>
-<div class="nboutput docutils container">
-<div class="prompt empty docutils container">
-</div>
 <div class="output_area stderr docutils container">
 <div class="highlight"><pre>
+DEBUG:graphein.protein.graphs:Deprotonating protein. This removes H atoms from the pdb_df dataframe
+DEBUG:graphein.protein.graphs:Detected 174 total nodes
 Using cache found in /home/atj39/.cache/torch/hub/facebookresearch_esm_master
 INFO:gensim.utils:loading Word2Vec object from /home/atj39/github/graphein/graphein/protein/features/pretrained_models/swissprot-reviewed-protvec.model
+DEBUG:smart_open.smart_open_lib:{'uri': '/home/atj39/github/graphein/graphein/protein/features/pretrained_models/swissprot-reviewed-protvec.model', 'mode': 'rb', 'buffering': -1, 'encoding': None, 'errors': None, 'newline': None, 'closefd': True, 'opener': None, 'ignore_ext': False, 'compression': None, 'transport_params': None}
 INFO:gensim.utils:loading vocabulary recursively from /home/atj39/github/graphein/graphein/protein/features/pretrained_models/swissprot-reviewed-protvec.model.vocabulary.* with mmap=None
 INFO:gensim.utils:loading wv recursively from /home/atj39/github/graphein/graphein/protein/features/pretrained_models/swissprot-reviewed-protvec.model.wv.* with mmap=None
 INFO:gensim.utils:setting ignored attribute vectors_norm to None
@@ -1152,15 +1142,15 @@ biovec: [array([ -8.865931  ,   5.65769   ,  -1.5052402 ,   3.2893941 ,
       dtype=float32)]
 </pre></div></div>
 </div>
-</section>
-<section id="Writing-your-own-graph-level-annotation-function.">
+</div>
+<div class="section" id="Writing-your-own-graph-level-annotation-function.">
 <h4>Writing your own graph-level annotation function.<a class="headerlink" href="#Writing-your-own-graph-level-annotation-function." title="Permalink to this headline">¶</a></h4>
 <p>We provide a couple of useful functions for dealing with multiple chains robustly, namely <code class="docutils literal notranslate"><span class="pre">compute_feature_over_chains</span></code> and <code class="docutils literal notranslate"><span class="pre">aggregate_feature_over_chains</span></code>. This takes an input (<code class="docutils literal notranslate"><span class="pre">nx.Graph</span></code>), your function: (<code class="docutils literal notranslate"><span class="pre">Callable</span></code>), and feature_name (<code class="docutils literal notranslate"><span class="pre">str</span></code>). Your function must operate on a sequence (<code class="docutils literal notranslate"><span class="pre">str</span></code>) to use this utility.</p>
 <p><code class="docutils literal notranslate"><span class="pre">aggregate_feature_over_chains</span></code> can be used to perform aggregation <code class="docutils literal notranslate"><span class="pre">{"min",</span> <span class="pre">"max",</span> <span class="pre">"sum"</span> <span class="pre">,</span> <span class="pre">"mean"}</span></code> of chain-specific features. It takes: an <code class="docutils literal notranslate"><span class="pre">nx.Graph</span></code>, a feature name (<code class="docutils literal notranslate"><span class="pre">str</span></code>) and and aggregation type (<code class="docutils literal notranslate"><span class="pre">str</span></code>)</p>
 <p>If you don’t want to operate on the sequnce, you don’t need to use these!</p>
 <p>Let’s use this to construct a graph-level feature that operates on the sequence. This feature is an integer equal to the number of histidines in the chain.</p>
 <div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[15]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[19]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
@@ -1197,38 +1187,61 @@ biovec: [array([ -8.865931  ,   5.65769   ,  -1.5052402 ,   3.2893941 ,
 </pre></div>
 </div>
 </div>
+<div class="nboutput docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area stderr docutils container">
+<div class="highlight"><pre>
+DEBUG:graphein.protein.graphs:Deprotonating protein. This removes H atoms from the pdb_df dataframe
+DEBUG:graphein.protein.graphs:Detected 174 total nodes
+</pre></div></div>
+</div>
+<div class="nboutput docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+3
+</pre></div></div>
+</div>
+<div class="nboutput docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area stderr docutils container">
+<div class="highlight"><pre>
+DEBUG:graphein.protein.graphs:Deprotonating protein. This removes H atoms from the pdb_df dataframe
+DEBUG:graphein.protein.graphs:Detected 375 total nodes
+</pre></div></div>
+</div>
 <div class="nboutput nblast docutils container">
 <div class="prompt empty docutils container">
 </div>
 <div class="output_area docutils container">
 <div class="highlight"><pre>
-&lt;biopandas.pdb.pandas_pdb.PandasPdb object at 0x7fd718214eb0&gt;
-3
-&lt;biopandas.pdb.pandas_pdb.PandasPdb object at 0x7fd7303f0400&gt;
 Chain A Hists: 11
 Chain B Hists: 0
 Chain B Seq: SIPPEVKFNKPFVFLMIEQNTKSPLFMGKVVNPTQK
 Aggregated HIS count: 5.5
 </pre></div></div>
 </div>
-</section>
-<section id="Node-level-features">
+</div>
+<div class="section" id="Node-level-features">
 <h4>Node-level features<a class="headerlink" href="#Node-level-features" title="Permalink to this headline">¶</a></h4>
 <p>Similarly, we provide some in-built functions for computing node-level features</p>
-</section>
-<section id="TODO-Complete">
+</div>
+<div class="section" id="TODO-Complete">
 <h4>TODO Complete<a class="headerlink" href="#TODO-Complete" title="Permalink to this headline">¶</a></h4>
-</section>
-</section>
-</section>
-<section id="Low-Level-API">
+</div>
+</div>
+</div>
+<div class="section" id="Low-Level-API">
 <h2>Low-Level API<a class="headerlink" href="#Low-Level-API" title="Permalink to this headline">¶</a></h2>
 <p>Graphein also features a low-level API if you want to get down into the gritty details of the construction. Essentially, every step of the construction is a function that you can tweak/alter the sequencing of as you please. This is <strong>very</strong> flexible if not unnecessary for most applications</p>
-<section id="Pre-Processing">
+<div class="section" id="Pre-Processing">
 <h3>Pre-Processing<a class="headerlink" href="#Pre-Processing" title="Permalink to this headline">¶</a></h3>
 <p>All graphs begin as <code class="docutils literal notranslate"><span class="pre">pd.DataFrame</span></code> representations of the .PDB file. These are handled by PandasPDB. There is a convenience function here <code class="docutils literal notranslate"><span class="pre">process_dataframe</span></code>, to which you can pass a list of dataframe processing functions. These are similar to the edge construction and annotation functions described above except they take in a <code class="docutils literal notranslate"><span class="pre">pd.DataFrame</span></code> and return a <code class="docutils literal notranslate"><span class="pre">pd.DataFrame</span></code>. We’ll start by reimplementing the construction we’ve been using above.</p>
 <div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[16]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[24]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
@@ -1247,8 +1260,18 @@ Aggregated HIS count: 5.5
 </pre></div>
 </div>
 </div>
+<div class="nboutput docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area stderr docutils container">
+<div class="highlight"><pre>
+DEBUG:graphein.protein.graphs:Deprotonating protein. This removes H atoms from the pdb_df dataframe
+DEBUG:graphein.protein.graphs:Converting dataframe to centroids. This averages XYZ coords of the atoms in a residue
+DEBUG:graphein.protein.graphs:Calculated 174 centroid nodes
+</pre></div></div>
+</div>
 <div class="nboutput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[16]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[24]:
 </pre></div>
 </div>
 <div class="output_area rendered_html docutils container">
@@ -1421,7 +1444,7 @@ Aggregated HIS count: 5.5
 </div>
 <p>We can define our own processing functions. Here we define a function that removes odd numbered residues from the dataframe. We’ll use this again later.</p>
 <div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[17]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[25]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
@@ -1435,7 +1458,7 @@ Aggregated HIS count: 5.5
 </div>
 </div>
 <div class="nboutput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[17]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[25]:
 </pre></div>
 </div>
 <div class="output_area rendered_html docutils container">
@@ -1606,12 +1629,12 @@ Aggregated HIS count: 5.5
 <p>5 rows × 22 columns</p>
 </div></div>
 </div>
-</section>
-<section id="Building-the-Graph">
+</div>
+<div class="section" id="Building-the-Graph">
 <h3>Building the Graph<a class="headerlink" href="#Building-the-Graph" title="Permalink to this headline">¶</a></h3>
 <p>First we initialise the graph with the metadata. We then use this to add the nodes</p>
 <div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[18]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[26]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
@@ -1638,7 +1661,7 @@ Aggregated HIS count: 5.5
 </div>
 <p>Next, we add edges to the graph:</p>
 <div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[19]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[27]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
@@ -1658,11 +1681,11 @@ Aggregated HIS count: 5.5
 </div>
 <p>Let’s check it out!</p>
 <div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[20]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[29]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span><span class="n">p</span> <span class="o">=</span> <span class="n">plot_protein_structure_graph</span><span class="p">(</span><span class="n">G</span><span class="o">=</span><span class="n">g</span><span class="p">,</span> <span class="n">angle</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">colour_edges_by</span><span class="o">=</span><span class="s2">"kind"</span><span class="p">,</span> <span class="n">colour_nodes_by</span><span class="o">=</span><span class="s2">"degree"</span><span class="p">,</span> <span class="n">label_node_ids</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+<span></span><span class="n">p</span> <span class="o">=</span> <span class="n">plot_protein_structure_graph</span><span class="p">(</span><span class="n">G</span><span class="o">=</span><span class="n">g</span><span class="p">,</span> <span class="n">angle</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">colour_edges_by</span><span class="o">=</span><span class="s2">"kind"</span><span class="p">,</span> <span class="n">colour_nodes_by</span><span class="o">=</span><span class="s2">"seq_position"</span><span class="p">,</span> <span class="n">label_node_ids</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">suptitle</span><span class="p">(</span><span class="s2">"Protein graph created using low-level API. Shows peptide bond back bond and H-Bonds"</span><span class="p">)</span>
 </pre></div>
 </div>
@@ -1677,7 +1700,7 @@ Aggregated HIS count: 5.5
 </pre></div></div>
 </div>
 <div class="nboutput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[20]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[29]:
 </pre></div>
 </div>
 <div class="output_area docutils container">
@@ -1689,14 +1712,14 @@ Text(0.5, 0.98, 'Protein graph created using low-level API. Shows peptide bond b
 <div class="prompt empty docutils container">
 </div>
 <div class="output_area docutils container">
-<img alt="../_images/notebooks_residue_graphs_41_2.png" src="../_images/notebooks_residue_graphs_41_2.png"/>
+<img alt="../_images/notebooks_residue_graphs_42_2.png" src="../_images/notebooks_residue_graphs_42_2.png"/>
 </div>
 </div>
 <p>Just as we expected! From here we can apply any number of graph, node or edge metadata annotation functions that we may wish to. The advantage here is that we are not tied to the sequencing in the high-level API of:</p>
 <p>(annotate node metadata -&gt; compute edges -&gt; annotate graph metadata -&gt; annotate edge metadata).</p>
 <p>This means, if we want, we can define graph annotation functions that utilise edge metadata that would otherwise not be possible. E.g. here we annotate bonds containing histidines with a 1. We then define a graph feature that looks for these bonds, sums the residue numbers involved and sums them.</p>
 <div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[21]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[30]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
@@ -1752,9 +1775,9 @@ Graph-level hist feature: 1644
 </pre></div></div>
 </div>
 <p><em>fin</em></p>
-</section>
-</section>
-</section>
+</div>
+</div>
+</div>
 
       </article>
       <footer>

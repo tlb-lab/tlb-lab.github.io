@@ -2,8 +2,7 @@
 <html class="no-js">
   <head><meta charset="utf-8"/>
     <meta name="viewport" content="width=device-width,initial-scale=1"/>
-    <meta name="color-scheme" content="light dark"><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
-<link rel="index" title="Index" href="../genindex.html" /><link rel="search" title="Search" href="../search.html" /><link rel="next" title="graphein.rna" href="graphein.rna.html" /><link rel="prev" title="PPISP - Protein Protein Interaction Structure Prediction" href="../datasets/ppisp.html" />
+    <meta name="color-scheme" content="light dark"><link rel="index" title="Index" href="../genindex.html" /><link rel="search" title="Search" href="../search.html" /><link rel="next" title="graphein.rna" href="graphein.rna.html" /><link rel="prev" title="PPISP - Protein Protein Interaction Structure Prediction" href="../datasets/ppisp.html" />
 
     <meta name="generator" content="sphinx-4.1.2, furo 2021.08.17.beta43"/>
         <title>graphein.protein - Graphein 1.0.0 documentation</title>
@@ -167,7 +166,7 @@
 <li class="toctree-l2"><a class="reference internal" href="../notebooks/residue_graphs.html">Graphein - Residue Graph Tutorial</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../notebooks/atom_graph_tutorial.html">Graphein - Atom Graph Tutorial</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../notebooks/alphafold_protein_graph_tutorial.html">Constructing Graphs from AlphaFold Protein Structure Database</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../notebooks/protein_mesh_tutorial.html">Creating Protein Meshes in Graphein</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../notebooks/protein_mesh_tutorial.html">Creating Protein Meshes in Graphein &amp; 3D Visualisation</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../notebooks/ppi_tutorial.html">PPI Networks and Structural Interactomics</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../notebooks/grn_tutorial.html">Gene Regulatory Network Tutorial</a></li>
 </ul>
@@ -215,9 +214,9 @@
             <i class="icon"><svg><use href="#svg-toc"></use></svg></i>
           </label>
         </div>
-        <section id="graphein-protein">
+        <div class="section" id="graphein-protein">
 <h1>graphein.protein<a class="headerlink" href="#graphein-protein" title="Permalink to this headline">¶</a></h1>
-<section id="module-graphein.protein.config">
+<div class="section" id="module-graphein.protein.config">
 <span id="config"></span><h2>Config<a class="headerlink" href="#module-graphein.protein.config" title="Permalink to this headline">¶</a></h2>
 <p>Base Config object for use with Protein Graph Construction</p>
 <dl class="py class">
@@ -237,7 +236,7 @@
 </dd></dl>
 <dl class="py class">
 <dt class="sig sig-object py" id="graphein.protein.config.ProteinGraphConfig">
-<em class="property"><span class="pre">class</span> </em><span class="sig-prename descclassname"><span class="pre">graphein.protein.config.</span></span><span class="sig-name descname"><span class="pre">ProteinGraphConfig</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="pre">*,</span> <span class="pre">granularity:</span> <span class="pre">Union[Literal['N',</span> <span class="pre">'CA',</span> <span class="pre">'C',</span> <span class="pre">'O',</span> <span class="pre">'CB',</span> <span class="pre">'OG',</span> <span class="pre">'CG',</span> <span class="pre">'CD1',</span> <span class="pre">'CD2',</span> <span class="pre">'CE1',</span> <span class="pre">'CE2',</span> <span class="pre">'CZ',</span> <span class="pre">'OD1',</span> <span class="pre">'ND2',</span> <span class="pre">'CG1',</span> <span class="pre">'CG2',</span> <span class="pre">'CD',</span> <span class="pre">'CE',</span> <span class="pre">'NZ',</span> <span class="pre">'OD2',</span> <span class="pre">'OE1',</span> <span class="pre">'NE2',</span> <span class="pre">'OE2',</span> <span class="pre">'OH',</span> <span class="pre">'NE',</span> <span class="pre">'NH1',</span> <span class="pre">'NH2',</span> <span class="pre">'OG1',</span> <span class="pre">'SD',</span> <span class="pre">'ND1',</span> <span class="pre">'SG',</span> <span class="pre">'NE1',</span> <span class="pre">'CE3',</span> <span class="pre">'CZ2',</span> <span class="pre">'CZ3',</span> <span class="pre">'CH2',</span> <span class="pre">'OXT'],</span> <span class="pre">Literal['atom',</span> <span class="pre">'centroids']]</span> <span class="pre">=</span> <span class="pre">'CA',</span> <span class="pre">keep_hets:</span> <span class="pre">bool</span> <span class="pre">=</span> <span class="pre">False,</span> <span class="pre">insertions:</span> <span class="pre">bool</span> <span class="pre">=</span> <span class="pre">False,</span> <span class="pre">pdb_dir:</span> <span class="pre">pathlib.Path</span> <span class="pre">=</span> <span class="pre">PosixPath('../examples/pdbs'),</span> <span class="pre">verbose:</span> <span class="pre">bool</span> <span class="pre">=</span> <span class="pre">True,</span> <span class="pre">exclude_waters:</span> <span class="pre">bool</span> <span class="pre">=</span> <span class="pre">True,</span> <span class="pre">deprotonate:</span> <span class="pre">bool</span> <span class="pre">=</span> <span class="pre">False,</span> <span class="pre">protein_df_processing_functions:</span> <span class="pre">List[Callable]</span> <span class="pre">=</span> <span class="pre">None,</span> <span class="pre">edge_construction_functions:</span> <span class="pre">List[Union[Callable,</span> <span class="pre">str]]</span> <span class="pre">=</span> <span class="pre">[&lt;function</span> <span class="pre">add_peptide_bonds&gt;],</span> <span class="pre">node_metadata_functions:</span> <span class="pre">List[Union[Callable,</span> <span class="pre">str]]</span> <span class="pre">=</span> <span class="pre">[&lt;function</span> <span class="pre">meiler_embedding&gt;],</span> <span class="pre">edge_metadata_functions:</span> <span class="pre">List[Union[Callable,</span> <span class="pre">str]]</span> <span class="pre">=</span> <span class="pre">None,</span> <span class="pre">graph_metadata_functions:</span> <span class="pre">List[Callable]</span> <span class="pre">=</span> <span class="pre">None,</span> <span class="pre">get_contacts_config:</span> <span class="pre">graphein.protein.config.GetContactsConfig</span> <span class="pre">=</span> <span class="pre">None,</span> <span class="pre">dssp_config:</span> <span class="pre">graphein.protein.config.DSSPConfig</span> <span class="pre">=</span> <span class="pre">None</span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/graphein/protein/config.html#ProteinGraphConfig"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#graphein.protein.config.ProteinGraphConfig" title="Permalink to this definition">¶</a></dt>
+<em class="property"><span class="pre">class</span> </em><span class="sig-prename descclassname"><span class="pre">graphein.protein.config.</span></span><span class="sig-name descname"><span class="pre">ProteinGraphConfig</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="pre">*,</span> <span class="pre">granularity:</span> <span class="pre">Union[Literal['N',</span> <span class="pre">'CA',</span> <span class="pre">'C',</span> <span class="pre">'O',</span> <span class="pre">'CB',</span> <span class="pre">'OG',</span> <span class="pre">'CG',</span> <span class="pre">'CD1',</span> <span class="pre">'CD2',</span> <span class="pre">'CE1',</span> <span class="pre">'CE2',</span> <span class="pre">'CZ',</span> <span class="pre">'OD1',</span> <span class="pre">'ND2',</span> <span class="pre">'CG1',</span> <span class="pre">'CG2',</span> <span class="pre">'CD',</span> <span class="pre">'CE',</span> <span class="pre">'NZ',</span> <span class="pre">'OD2',</span> <span class="pre">'OE1',</span> <span class="pre">'NE2',</span> <span class="pre">'OE2',</span> <span class="pre">'OH',</span> <span class="pre">'NE',</span> <span class="pre">'NH1',</span> <span class="pre">'NH2',</span> <span class="pre">'OG1',</span> <span class="pre">'SD',</span> <span class="pre">'ND1',</span> <span class="pre">'SG',</span> <span class="pre">'NE1',</span> <span class="pre">'CE3',</span> <span class="pre">'CZ2',</span> <span class="pre">'CZ3',</span> <span class="pre">'CH2',</span> <span class="pre">'OXT'],</span> <span class="pre">Literal['atom',</span> <span class="pre">'centroids']]</span> <span class="pre">=</span> <span class="pre">'CA',</span> <span class="pre">keep_hets:</span> <span class="pre">bool</span> <span class="pre">=</span> <span class="pre">False,</span> <span class="pre">insertions:</span> <span class="pre">bool</span> <span class="pre">=</span> <span class="pre">False,</span> <span class="pre">pdb_dir:</span> <span class="pre">pathlib.Path</span> <span class="pre">=</span> <span class="pre">PosixPath('../examples/pdbs'),</span> <span class="pre">verbose:</span> <span class="pre">bool</span> <span class="pre">=</span> <span class="pre">False,</span> <span class="pre">exclude_waters:</span> <span class="pre">bool</span> <span class="pre">=</span> <span class="pre">True,</span> <span class="pre">deprotonate:</span> <span class="pre">bool</span> <span class="pre">=</span> <span class="pre">False,</span> <span class="pre">protein_df_processing_functions:</span> <span class="pre">List[Callable]</span> <span class="pre">=</span> <span class="pre">None,</span> <span class="pre">edge_construction_functions:</span> <span class="pre">List[Union[Callable,</span> <span class="pre">str]]</span> <span class="pre">=</span> <span class="pre">[&lt;function</span> <span class="pre">add_peptide_bonds&gt;],</span> <span class="pre">node_metadata_functions:</span> <span class="pre">List[Union[Callable,</span> <span class="pre">str]]</span> <span class="pre">=</span> <span class="pre">[&lt;function</span> <span class="pre">meiler_embedding&gt;],</span> <span class="pre">edge_metadata_functions:</span> <span class="pre">List[Union[Callable,</span> <span class="pre">str]]</span> <span class="pre">=</span> <span class="pre">None,</span> <span class="pre">graph_metadata_functions:</span> <span class="pre">List[Callable]</span> <span class="pre">=</span> <span class="pre">None,</span> <span class="pre">get_contacts_config:</span> <span class="pre">graphein.protein.config.GetContactsConfig</span> <span class="pre">=</span> <span class="pre">None,</span> <span class="pre">dssp_config:</span> <span class="pre">graphein.protein.config.DSSPConfig</span> <span class="pre">=</span> <span class="pre">None</span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/graphein/protein/config.html#ProteinGraphConfig"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#graphein.protein.config.ProteinGraphConfig" title="Permalink to this definition">¶</a></dt>
 <dd><p>Config Object for Protein Structure Graph Construction</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
@@ -284,8 +283,8 @@ See: <a class="reference external" href="https://pymolwiki.org/index.php/Command
 </dd>
 </dl>
 </dd></dl>
-</section>
-<section id="module-graphein.protein.graphs">
+</div>
+<div class="section" id="module-graphein.protein.graphs">
 <span id="graphs"></span><h2>Graphs<a class="headerlink" href="#module-graphein.protein.graphs" title="Permalink to this headline">¶</a></h2>
 <p>Functions for working with Protein Structure Graphs</p>
 <dl class="py function">
@@ -593,10 +592,10 @@ details.</p></li>
 </dd>
 </dl>
 </dd></dl>
-</section>
-<section id="edges">
+</div>
+<div class="section" id="edges">
 <h2>Edges<a class="headerlink" href="#edges" title="Permalink to this headline">¶</a></h2>
-<section id="module-graphein.protein.edges.distance">
+<div class="section" id="module-graphein.protein.edges.distance">
 <span id="distance"></span><h3>Distance<a class="headerlink" href="#module-graphein.protein.edges.distance" title="Permalink to this headline">¶</a></h3>
 <p>Functions for computing biochemical edges of graphs.</p>
 <dl class="py function">
@@ -871,8 +870,8 @@ This is a helper function. Simplifies the code.</p>
 </dd>
 </dl>
 </dd></dl>
-</section>
-<section id="module-graphein.protein.edges.intramolecular">
+</div>
+<div class="section" id="module-graphein.protein.edges.intramolecular">
 <span id="intramolecular"></span><h3>Intramolecular<a class="headerlink" href="#module-graphein.protein.edges.intramolecular" title="Permalink to this headline">¶</a></h3>
 <p>Featurization functions for graph edges.</p>
 <dl class="py function">
@@ -1074,8 +1073,8 @@ This is a helper function. Simplifies the code.</p>
 </dd>
 </dl>
 </dd></dl>
-</section>
-<section id="module-graphein.protein.edges.atomic">
+</div>
+<div class="section" id="module-graphein.protein.edges.atomic">
 <span id="atomic"></span><h3>Atomic<a class="headerlink" href="#module-graphein.protein.edges.atomic" title="Permalink to this headline">¶</a></h3>
 <p>Functions for computing atomic structure of proteins</p>
 <dl class="py function">
@@ -1195,11 +1194,11 @@ double bond watershed, it is assigned double bond status.</p>
 </dd>
 </dl>
 </dd></dl>
-</section>
-</section>
-<section id="features">
+</div>
+</div>
+<div class="section" id="features">
 <h2>Features<a class="headerlink" href="#features" title="Permalink to this headline">¶</a></h2>
-<section id="module-graphein.protein.features.nodes.aaindex">
+<div class="section" id="module-graphein.protein.features.nodes.aaindex">
 <span id="node"></span><h3>Node<a class="headerlink" href="#module-graphein.protein.features.nodes.aaindex" title="Permalink to this headline">¶</a></h3>
 <dl class="py function">
 <dt class="sig sig-object py" id="graphein.protein.features.nodes.aaindex.aaindex1">
@@ -1239,7 +1238,7 @@ double bond watershed, it is assigned double bond status.</p>
 <span class="target" id="module-graphein.protein.features.nodes.amino_acid"></span><p>Featurization functions for amino acids.</p>
 <dl class="py function">
 <dt class="sig sig-object py" id="graphein.protein.features.nodes.amino_acid.expasy_protein_scale">
-<span class="sig-prename descclassname"><span class="pre">graphein.protein.features.nodes.amino_acid.</span></span><span class="sig-name descname"><span class="pre">expasy_protein_scale</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">n</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">d</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">→</span> <span class="sig-return-typehint"><span class="pre">pandas.core.series.Series</span></span></span><a class="reference internal" href="../_modules/graphein/protein/features/nodes/amino_acid.html#expasy_protein_scale"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#graphein.protein.features.nodes.amino_acid.expasy_protein_scale" title="Permalink to this definition">¶</a></dt>
+<span class="sig-prename descclassname"><span class="pre">graphein.protein.features.nodes.amino_acid.</span></span><span class="sig-name descname"><span class="pre">expasy_protein_scale</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">n</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">d</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">selection</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">Optional</span><span class="p"><span class="pre">[</span></span><span class="pre">List</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span></span> <span class="o"><span class="pre">=</span></span> <span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">return_array</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">bool</span></span> <span class="o"><span class="pre">=</span></span> <span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">→</span> <span class="sig-return-typehint"><span class="pre">Union</span><span class="p"><span class="pre">[</span></span><span class="pre">pandas.core.series.Series</span><span class="p"><span class="pre">,</span> </span><span class="pre">numpy.ndarray</span><span class="p"><span class="pre">]</span></span></span></span><a class="reference internal" href="../_modules/graphein/protein/features/nodes/amino_acid.html#expasy_protein_scale"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#graphein.protein.features.nodes.amino_acid.expasy_protein_scale" title="Permalink to this definition">¶</a></dt>
 <dd><p>Return amino acid features that come from the EXPASY protein scale.</p>
 <p>Source: <a class="reference external" href="https://web.expasy.org/protscale/">https://web.expasy.org/protscale/</a></p>
 <dl class="field-list simple">
@@ -1247,6 +1246,8 @@ double bond watershed, it is assigned double bond status.</p>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>n</strong> – Node in a NetworkX graph</p></li>
 <li><p><strong>d</strong> – NetworkX node attributes.</p></li>
+<li><p><strong>selection</strong> (<em>List</em><em>[</em><em>str</em><em>]</em><em>, </em><em>optional</em>) – List of columns to select. Viewable in graphein.protein.features.nodes.meiler_embeddings</p></li>
+<li><p><strong>return_array</strong> (<em>bool</em>) – Bool indicating whether or not to return a np.ndarray of the features. Default is pd.Series</p></li>
 </ul>
 </dd>
 <dt class="field-even">Returns</dt>
@@ -1291,7 +1292,7 @@ on each function call.</p>
 </dd></dl>
 <dl class="py function">
 <dt class="sig sig-object py" id="graphein.protein.features.nodes.amino_acid.meiler_embedding">
-<span class="sig-prename descclassname"><span class="pre">graphein.protein.features.nodes.amino_acid.</span></span><span class="sig-name descname"><span class="pre">meiler_embedding</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">n</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">d</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">→</span> <span class="sig-return-typehint"><span class="pre">pandas.core.series.Series</span></span></span><a class="reference internal" href="../_modules/graphein/protein/features/nodes/amino_acid.html#meiler_embedding"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#graphein.protein.features.nodes.amino_acid.meiler_embedding" title="Permalink to this definition">¶</a></dt>
+<span class="sig-prename descclassname"><span class="pre">graphein.protein.features.nodes.amino_acid.</span></span><span class="sig-name descname"><span class="pre">meiler_embedding</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">n</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">d</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">→</span> <span class="sig-return-typehint"><span class="pre">numpy.array</span></span></span><a class="reference internal" href="../_modules/graphein/protein/features/nodes/amino_acid.html#meiler_embedding"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#graphein.protein.features.nodes.amino_acid.meiler_embedding" title="Permalink to this definition">¶</a></dt>
 <dd><p>Return amino acid features from reduced dimensional embeddings of amino acid physicochemical properties.</p>
 <p>Source: <a class="reference external" href="https://link.springer.com/article/10.1007/s008940100038">https://link.springer.com/article/10.1007/s008940100038</a>
 doi: <a class="reference external" href="https://doi.org/10.1007/s008940100038">https://doi.org/10.1007/s008940100038</a></p>
@@ -1475,8 +1476,8 @@ as calculated by DSSP in the form of a string</p>
 </dd>
 </dl>
 </dd></dl>
-</section>
-<section id="module-graphein.protein.features.sequence.embeddings">
+</div>
+<div class="section" id="module-graphein.protein.features.sequence.embeddings">
 <span id="sequence"></span><h3>Sequence<a class="headerlink" href="#module-graphein.protein.features.sequence.embeddings" title="Permalink to this headline">¶</a></h3>
 <dl class="py function">
 <dt class="sig sig-object py" id="graphein.protein.features.sequence.embeddings.biovec_sequence_embedding">
@@ -2938,8 +2939,8 @@ G.graph[“transition_solvent_accessibility_{chain | aggregation_type}”]</p>
 </dd></dl>
 <span class="target" id="module-graphein.protein.features.sequence.sequence"></span><p>Functions for graph-level featurization of the sequence of a protein. This submodule is focussed on physicochemical
 proporties of the sequence.</p>
-</section>
-<section id="module-0">
+</div>
+<div class="section" id="module-0">
 <span id="sequence-utils"></span><h3>Sequence Utils<a class="headerlink" href="#module-0" title="Permalink to this headline">¶</a></h3>
 <dl class="py function">
 <dt class="sig sig-object py" id="id0">
@@ -3044,8 +3045,8 @@ esm1_t6_43M_UR50S 6 43M UR50/S 768 <a class="reference external" href="https://d
 </dd>
 </dl>
 </dd></dl>
-</section>
-<section id="module-graphein.protein.features.utils">
+</div>
+<div class="section" id="module-graphein.protein.features.utils">
 <span id="utils"></span><h3>Utils<a class="headerlink" href="#module-graphein.protein.features.utils" title="Permalink to this headline">¶</a></h3>
 <dl class="py function">
 <dt class="sig sig-object py" id="graphein.protein.features.utils.aggregate_graph_feature_over_chains">
@@ -3087,9 +3088,9 @@ This is useful as some features are output as dictionaries and we wish to standa
 </dd>
 </dl>
 </dd></dl>
-</section>
-</section>
-<section id="module-graphein.protein.meshes">
+</div>
+</div>
+<div class="section" id="module-graphein.protein.meshes">
 <span id="meshes"></span><h2>Meshes<a class="headerlink" href="#module-graphein.protein.meshes" title="Permalink to this headline">¶</a></h2>
 <p>Functions to create protein meshes via pymol.</p>
 <dl class="py function">
@@ -3213,8 +3214,8 @@ Note that normalizing the target mesh, speeds up the optimization but is not nec
 </dd>
 </dl>
 </dd></dl>
-</section>
-<section id="module-graphein.protein.visualisation">
+</div>
+<div class="section" id="module-graphein.protein.visualisation">
 <span id="visualisation"></span><h2>Visualisation<a class="headerlink" href="#module-graphein.protein.visualisation" title="Permalink to this headline">¶</a></h2>
 <p>Functions for plotting protein graphs and meshes</p>
 <dl class="py function">
@@ -3335,8 +3336,8 @@ Note that normalizing the target mesh, speeds up the optimization but is not nec
 </dd>
 </dl>
 </dd></dl>
-</section>
-<section id="id4">
+</div>
+<div class="section" id="id4">
 <h2>Utils<a class="headerlink" href="#id4" title="Permalink to this headline">¶</a></h2>
 <span class="target" id="module-graphein.protein.utils"></span><p>Provides utility functions for use across Graphein</p>
 <dl class="py function">
@@ -3411,8 +3412,8 @@ if boolean == False</p>
 </dd>
 </dl>
 </dd></dl>
-</section>
-</section>
+</div>
+</div>
 
       </article>
       <footer>

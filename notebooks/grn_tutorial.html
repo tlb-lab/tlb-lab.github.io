@@ -2,8 +2,7 @@
 <html class="no-js">
   <head><meta charset="utf-8"/>
     <meta name="viewport" content="width=device-width,initial-scale=1"/>
-    <meta name="color-scheme" content="light dark"><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
-<link rel="index" title="Index" href="../genindex.html" /><link rel="search" title="Search" href="../search.html" /><link rel="next" title="Datasets" href="../datasets.html" /><link rel="prev" title="PPI Networks and Structural Interactomics" href="ppi_tutorial.html" />
+    <meta name="color-scheme" content="light dark"><link rel="index" title="Index" href="../genindex.html" /><link rel="search" title="Search" href="../search.html" /><link rel="next" title="Datasets" href="../datasets.html" /><link rel="prev" title="PPI Networks and Structural Interactomics" href="ppi_tutorial.html" />
 
     <meta name="generator" content="sphinx-4.1.2, furo 2021.08.17.beta43"/>
         <title>Gene Regulatory Network Tutorial - Graphein 1.0.0 documentation</title>
@@ -167,7 +166,7 @@
 <li class="toctree-l2"><a class="reference internal" href="residue_graphs.html">Graphein - Residue Graph Tutorial</a></li>
 <li class="toctree-l2"><a class="reference internal" href="atom_graph_tutorial.html">Graphein - Atom Graph Tutorial</a></li>
 <li class="toctree-l2"><a class="reference internal" href="alphafold_protein_graph_tutorial.html">Constructing Graphs from AlphaFold Protein Structure Database</a></li>
-<li class="toctree-l2"><a class="reference internal" href="protein_mesh_tutorial.html">Creating Protein Meshes in Graphein</a></li>
+<li class="toctree-l2"><a class="reference internal" href="protein_mesh_tutorial.html">Creating Protein Meshes in Graphein &amp; 3D Visualisation</a></li>
 <li class="toctree-l2"><a class="reference internal" href="ppi_tutorial.html">PPI Networks and Structural Interactomics</a></li>
 <li class="toctree-l2 current current-page"><a class="current reference internal" href="#">Gene Regulatory Network Tutorial</a></li>
 </ul>
@@ -463,7 +462,7 @@ div.rendered_html tbody tr:hover {
   background: rgba(66, 165, 245, 0.2);
 }
 </style>
-<section id="Gene-Regulatory-Network-Tutorial">
+<div class="section" id="Gene-Regulatory-Network-Tutorial">
 <h1>Gene Regulatory Network Tutorial<a class="headerlink" href="#Gene-Regulatory-Network-Tutorial" title="Permalink to this headline">¶</a></h1>
 <p>In this tutorial we run through GRN graph construction in Graphein. This works by providing a <code class="docutils literal notranslate"><span class="pre">gene_list</span></code> containing gene names. The interactions between these genes are retrieved from two possible sources: * TRRUST * RegNetwork</p>
 <p>This is controlled by providing an edge construction function (<code class="docutils literal notranslate"><span class="pre">add_trrust_edges</span></code> and <code class="docutils literal notranslate"><span class="pre">add_regnetwork_edges</span></code>) respectively.</p>
@@ -494,7 +493,7 @@ div.rendered_html tbody tr:hover {
 INFO:summarizer.preprocessing.cleaner:'pattern' package not found; tag filters are not available for English
 </pre></div></div>
 </div>
-<section id="Config-Objects">
+<div class="section" id="Config-Objects">
 <h2>Config Objects<a class="headerlink" href="#Config-Objects" title="Permalink to this headline">¶</a></h2>
 <p>Global parameters are stored in Config objects. We have a global <code class="docutils literal notranslate"><span class="pre">GRNGraphConfig</span></code> that contains a <code class="docutils literal notranslate"><span class="pre">TRRUSTConfig</span></code> and a <code class="docutils literal notranslate"><span class="pre">RegNetworkConfig</span></code> for parameters relating to each of the two sources.</p>
 <div class="nbinput docutils container">
@@ -526,8 +525,8 @@ RegNetwork Config:
 filtering_functions=None root_dir=None kwargs=None
 </pre></div></div>
 </div>
-</section>
-<section id="Gene-List">
+</div>
+<div class="section" id="Gene-List">
 <h2>Gene List<a class="headerlink" href="#Gene-List" title="Permalink to this headline">¶</a></h2>
 <p>This is the list of genes that we wish to construct a GRN graph for</p>
 <div class="nbinput nblast docutils container">
@@ -539,8 +538,8 @@ filtering_functions=None root_dir=None kwargs=None
 </pre></div>
 </div>
 </div>
-</section>
-<section id="Edge-Annotation-Functions">
+</div>
+<div class="section" id="Edge-Annotation-Functions">
 <h2>Edge Annotation Functions<a class="headerlink" href="#Edge-Annotation-Functions" title="Permalink to this headline">¶</a></h2>
 <p>These are functions that determine labelling of edges with additional metadata. Here we define one which assigs: * <code class="docutils literal notranslate"><span class="pre">"+"</span></code> to upregulatory interactions * <code class="docutils literal notranslate"><span class="pre">"-"</span></code> to downregulatory interactions * <code class="docutils literal notranslate"><span class="pre">"?"</span></code> to interactons of unknown directionality</p>
 <p>Edge Annotation functions take in two nodes (<code class="docutils literal notranslate"><span class="pre">u</span></code>, <code class="docutils literal notranslate"><span class="pre">v</span></code>) and the edge data (<code class="docutils literal notranslate"><span class="pre">d</span></code>)</p>
@@ -560,8 +559,8 @@ filtering_functions=None root_dir=None kwargs=None
 </pre></div>
 </div>
 </div>
-</section>
-<section id="Graph-Construction">
+</div>
+<div class="section" id="Graph-Construction">
 <h2>Graph Construction<a class="headerlink" href="#Graph-Construction" title="Permalink to this headline">¶</a></h2>
 <div class="nbinput docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[5]:
@@ -604,7 +603,7 @@ See the caveats in the documentation: https://pandas.pydata.org/pandas-docs/stab
 </pre></div></div>
 </div>
 <div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[6]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[9]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
@@ -626,12 +625,12 @@ TP53 {'gene_id': 'TP53', 'uniprot_ids': ['P04637'], 'sequence_P04637': 'MEEPQSDP
 DUSP1 {'gene_id': 'DUSP1', 'uniprot_ids': ['P28562'], 'sequence_P28562': 'MVMEVGTLDAGGLRALLGERAAQCLLLDCRSFFAFNAGHIAGSVNVRFSTIVRRRAKGAMGLEHIVPNAELRGRLLAGAYHAVVLLDERSAALDGAKRDGTLALAAGALCREARAAQVFFLKGGYEAFSASCPELCSKQSTPMGLSLPLSTSVPDSAESGCSSCSTPLYDQGGPVEILPFLYLGSAYHASRKDMLDALGITALINVSANCPNHFEGHYQYKSIPVEDNHKADISSWFNEAIDFIDSIKNAGGRVFVHCQAGISRSATICLAYLMRTNRVKLDEAFEFVKQRRSIISPNFSFMGQLLQFESQVLAPHCSAEAGSPAMAVLDRGTSTTTVFNFPVSIPVHSTNSALSYLQSPITTSPSC'}
 </pre></div></div>
 </div>
-</section>
-<section id="Plotting-the-Graph">
+</div>
+<div class="section" id="Plotting-the-Graph">
 <h2>Plotting the Graph<a class="headerlink" href="#Plotting-the-Graph" title="Permalink to this headline">¶</a></h2>
 <p>We now wish to visualise the graph. We can do this with the built in visualisation in NetworkX</p>
 <div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[7]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[10]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
@@ -671,7 +670,7 @@ DiGraph with 6 nodes and 22 edges
 </div>
 </div>
 <div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[8]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[11]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
@@ -684,11 +683,11 @@ DiGraph with 6 nodes and 22 edges
 </div>
 <div class="output_area docutils container">
 <div class="highlight"><pre>
-[('AATF', 'MYC', {'kind': {'trrust'}, 'regtype': '+'}), ('AATF', 'TP53', {'kind': {'trrust'}, 'regtype': '?'}), ('AATF', 'SP1', {'kind': {'regnetwork'}, 'regtype': '?'}), ('MYC', 'TP53', {'kind': {'trrust', 'regnetwork'}, 'regtype': '+'}), ('MYC', 'DUSP1', {'kind': {'regnetwork'}, 'regtype': '?'}), ('MYC', 'SP1', {'kind': {'regnetwork'}, 'regtype': '?'}), ('MYC', 'MYC', {'kind': {'regnetwork'}, 'regtype': '?'}), ('USF1', 'DUSP1', {'kind': {'regnetwork'}, 'regtype': '?'}), ('USF1', 'USF1', {'kind': {'regnetwork'}, 'regtype': '?'}), ('USF1', 'SP1', {'kind': {'regnetwork'}, 'regtype': '?'}), ('USF1', 'TP53', {'kind': {'regnetwork'}, 'regtype': '?'}), ('USF1', 'AATF', {'kind': {'regnetwork'}, 'regtype': '?'}), ('SP1', 'MYC', {'kind': {'trrust', 'regnetwork'}, 'regtype': '+'}), ('SP1', 'TP53', {'kind': {'regnetwork'}, 'regtype': '?'}), ('SP1', 'AATF', {'kind': {'regnetwork'}, 'regtype': '?'}), ('SP1', 'DUSP1', {'kind': {'regnetwork'}, 'regtype': '?'}), ('SP1', 'USF1', {'kind': {'regnetwork'}, 'regtype': '?'}), ('SP1', 'SP1', {'kind': {'regnetwork'}, 'regtype': '?'}), ('TP53', 'MYC', {'kind': {'trrust', 'regnetwork'}, 'regtype': '-'}), ('TP53', 'TP53', {'kind': {'trrust', 'regnetwork'}, 'regtype': '+'}), ('TP53', 'DUSP1', {'kind': {'trrust', 'regnetwork'}, 'regtype': '+'}), ('TP53', 'SP1', {'kind': {'regnetwork'}, 'regtype': '?'})]
+[('AATF', 'TP53', {'kind': {'trrust'}, 'regtype': '?'}), ('AATF', 'MYC', {'kind': {'trrust'}, 'regtype': '+'}), ('AATF', 'SP1', {'kind': {'regnetwork'}, 'regtype': '?'}), ('MYC', 'TP53', {'kind': {'trrust', 'regnetwork'}, 'regtype': '+'}), ('MYC', 'SP1', {'kind': {'regnetwork'}, 'regtype': '?'}), ('MYC', 'MYC', {'kind': {'regnetwork'}, 'regtype': '?'}), ('MYC', 'DUSP1', {'kind': {'regnetwork'}, 'regtype': '?'}), ('USF1', 'USF1', {'kind': {'regnetwork'}, 'regtype': '?'}), ('USF1', 'SP1', {'kind': {'regnetwork'}, 'regtype': '?'}), ('USF1', 'TP53', {'kind': {'regnetwork'}, 'regtype': '?'}), ('USF1', 'AATF', {'kind': {'regnetwork'}, 'regtype': '?'}), ('USF1', 'DUSP1', {'kind': {'regnetwork'}, 'regtype': '?'}), ('SP1', 'MYC', {'kind': {'trrust', 'regnetwork'}, 'regtype': '+'}), ('SP1', 'TP53', {'kind': {'regnetwork'}, 'regtype': '?'}), ('SP1', 'AATF', {'kind': {'regnetwork'}, 'regtype': '?'}), ('SP1', 'DUSP1', {'kind': {'regnetwork'}, 'regtype': '?'}), ('SP1', 'USF1', {'kind': {'regnetwork'}, 'regtype': '?'}), ('SP1', 'SP1', {'kind': {'regnetwork'}, 'regtype': '?'}), ('TP53', 'MYC', {'kind': {'trrust', 'regnetwork'}, 'regtype': '-'}), ('TP53', 'DUSP1', {'kind': {'trrust', 'regnetwork'}, 'regtype': '+'}), ('TP53', 'TP53', {'kind': {'trrust', 'regnetwork'}, 'regtype': '+'}), ('TP53', 'SP1', {'kind': {'regnetwork'}, 'regtype': '?'})]
 </pre></div></div>
 </div>
-</section>
-</section>
+</div>
+</div>
 
       </article>
       <footer>

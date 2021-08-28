@@ -2,8 +2,7 @@
 <html class="no-js">
   <head><meta charset="utf-8"/>
     <meta name="viewport" content="width=device-width,initial-scale=1"/>
-    <meta name="color-scheme" content="light dark"><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
-<link rel="index" title="Index" href="../genindex.html" /><link rel="search" title="Search" href="../search.html" /><link rel="next" title="graphein.ppi" href="graphein.ppi.html" /><link rel="prev" title="graphein.protein" href="graphein.protein.html" />
+    <meta name="color-scheme" content="light dark"><link rel="index" title="Index" href="../genindex.html" /><link rel="search" title="Search" href="../search.html" /><link rel="next" title="graphein.ppi" href="graphein.ppi.html" /><link rel="prev" title="graphein.protein" href="graphein.protein.html" />
 
     <meta name="generator" content="sphinx-4.1.2, furo 2021.08.17.beta43"/>
         <title>graphein.rna - Graphein 1.0.0 documentation</title>
@@ -167,7 +166,7 @@
 <li class="toctree-l2"><a class="reference internal" href="../notebooks/residue_graphs.html">Graphein - Residue Graph Tutorial</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../notebooks/atom_graph_tutorial.html">Graphein - Atom Graph Tutorial</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../notebooks/alphafold_protein_graph_tutorial.html">Constructing Graphs from AlphaFold Protein Structure Database</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../notebooks/protein_mesh_tutorial.html">Creating Protein Meshes in Graphein</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../notebooks/protein_mesh_tutorial.html">Creating Protein Meshes in Graphein &amp; 3D Visualisation</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../notebooks/ppi_tutorial.html">PPI Networks and Structural Interactomics</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../notebooks/grn_tutorial.html">Gene Regulatory Network Tutorial</a></li>
 </ul>
@@ -215,9 +214,9 @@
             <i class="icon"><svg><use href="#svg-toc"></use></svg></i>
           </label>
         </div>
-        <section id="graphein-rna">
+        <div class="section" id="graphein-rna">
 <h1>graphein.rna<a class="headerlink" href="#graphein-rna" title="Permalink to this headline">¶</a></h1>
-<section id="module-graphein.rna.graphs">
+<div class="section" id="module-graphein.rna.graphs">
 <span id="graphs"></span><h2>Graphs<a class="headerlink" href="#module-graphein.rna.graphs" title="Permalink to this headline">¶</a></h2>
 <p>Functions for working with RNA Secondary Structure Graphs</p>
 <dl class="py function">
@@ -247,8 +246,8 @@
 <dt class="sig sig-object py" id="graphein.rna.graphs.validate_dotbracket">
 <span class="sig-prename descclassname"><span class="pre">graphein.rna.graphs.</span></span><span class="sig-name descname"><span class="pre">validate_dotbracket</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">db</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">→</span> <span class="sig-return-typehint"><span class="pre">str</span></span></span><a class="reference internal" href="../_modules/graphein/rna/graphs.html#validate_dotbracket"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#graphein.rna.graphs.validate_dotbracket" title="Permalink to this definition">¶</a></dt>
 <dd><p>Sanitize dotbracket string. This ensures that it only has supported symbols.
-SIMPLE_DOTBRACKET_NOTATION = [“(”, “.”, “)”]
-SUPPORTED_PSEUDOKNOT_NOTATION = [“[”, “]”, “{”, “}”, “&lt;”, “&gt;”]
+SIMPLE_DOTBRACKET_NOTATION = [“(“, “.”, “)”]
+SUPPORTED_PSEUDOKNOT_NOTATION = [“[“, “]”, “{“, “}”, “&lt;”, “&gt;”]
 SUPPORTED_DOTBRACKET_NOTATION = (</p>
 <blockquote>
 <div><p>SIMPLE_DOTBRACKET_NOTATION + SUPPORTED_PSEUDOKNOT_NOTATION</p>
@@ -293,8 +292,8 @@ Supported bases can be accessed in graphein.rna.graphs.RNA_BASES</p>
 </dd>
 </dl>
 </dd></dl>
-</section>
-<section id="module-graphein.rna.edges">
+</div>
+<div class="section" id="module-graphein.rna.edges">
 <span id="edges"></span><h2>Edges<a class="headerlink" href="#module-graphein.rna.edges" title="Permalink to this headline">¶</a></h2>
 <p>Functions to compute edges for an RNA secondary structure graph</p>
 <dl class="py function">
@@ -380,8 +379,8 @@ Supported bases can be accessed in graphein.rna.graphs.RNA_BASES</p>
 </dd>
 </dl>
 </dd></dl>
-</section>
-</section>
+</div>
+</div>
 
       </article>
       <footer>

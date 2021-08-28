@@ -7,6 +7,8 @@ Welcome to Graphein's documentation!
 ====================================
 This package provides functionality for producing a number of types of graph-based representations of proteins. We provide compatibility with standard geometric deep learning library formats (currently: NetworkX nx.Graph, pytorch_geometric.data.Data and dgl.DGLGraph), as well as graph objects designed for ease of use with popular deep learning libraries.
 
+The repository can be found at `a-r-j/graphein <https://www.github.com/a-r-j/graphein>`_
+
 .. note::
    This is an early-stage project and a lot more documentation and functionality is planned to be included. If you are a structural biologist or machine learning researcher in computational biology, my inbox is always open for suggestions and assistance!
 

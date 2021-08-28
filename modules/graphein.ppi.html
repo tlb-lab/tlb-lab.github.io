@@ -2,8 +2,7 @@
 <html class="no-js">
   <head><meta charset="utf-8"/>
     <meta name="viewport" content="width=device-width,initial-scale=1"/>
-    <meta name="color-scheme" content="light dark"><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
-<link rel="index" title="Index" href="../genindex.html" /><link rel="search" title="Search" href="../search.html" /><link rel="next" title="graphein.grn" href="graphein.grn.html" /><link rel="prev" title="graphein.rna" href="graphein.rna.html" />
+    <meta name="color-scheme" content="light dark"><link rel="index" title="Index" href="../genindex.html" /><link rel="search" title="Search" href="../search.html" /><link rel="next" title="graphein.grn" href="graphein.grn.html" /><link rel="prev" title="graphein.rna" href="graphein.rna.html" />
 
     <meta name="generator" content="sphinx-4.1.2, furo 2021.08.17.beta43"/>
         <title>graphein.ppi - Graphein 1.0.0 documentation</title>
@@ -167,7 +166,7 @@
 <li class="toctree-l2"><a class="reference internal" href="../notebooks/residue_graphs.html">Graphein - Residue Graph Tutorial</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../notebooks/atom_graph_tutorial.html">Graphein - Atom Graph Tutorial</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../notebooks/alphafold_protein_graph_tutorial.html">Constructing Graphs from AlphaFold Protein Structure Database</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../notebooks/protein_mesh_tutorial.html">Creating Protein Meshes in Graphein</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../notebooks/protein_mesh_tutorial.html">Creating Protein Meshes in Graphein &amp; 3D Visualisation</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../notebooks/ppi_tutorial.html">PPI Networks and Structural Interactomics</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../notebooks/grn_tutorial.html">Gene Regulatory Network Tutorial</a></li>
 </ul>
@@ -215,9 +214,9 @@
             <i class="icon"><svg><use href="#svg-toc"></use></svg></i>
           </label>
         </div>
-        <section id="graphein-ppi">
+        <div class="section" id="graphein-ppi">
 <h1>graphein.ppi<a class="headerlink" href="#graphein-ppi" title="Permalink to this headline">¶</a></h1>
-<section id="module-graphein.ppi.config">
+<div class="section" id="module-graphein.ppi.config">
 <span id="config"></span><h2>Config<a class="headerlink" href="#module-graphein.ppi.config" title="Permalink to this headline">¶</a></h2>
 <dl class="py class">
 <dt class="sig sig-object py" id="graphein.ppi.config.BioGridConfig">
@@ -280,10 +279,10 @@
 </dd>
 </dl>
 </dd></dl>
-</section>
-<section id="graph-construction">
+</div>
+<div class="section" id="graph-construction">
 <h2>Graph Construction<a class="headerlink" href="#graph-construction" title="Permalink to this headline">¶</a></h2>
-<section id="module-graphein.ppi.graphs">
+<div class="section" id="module-graphein.ppi.graphs">
 <span id="graphs"></span><h3>Graphs<a class="headerlink" href="#module-graphein.ppi.graphs" title="Permalink to this headline">¶</a></h3>
 <p>Functions for constructing a PPI PPIGraphConfig from STRINGdb and BIOGRID</p>
 <dl class="py function">
@@ -325,8 +324,8 @@
 </dd>
 </dl>
 </dd></dl>
-</section>
-<section id="module-graphein.ppi.edges">
+</div>
+<div class="section" id="module-graphein.ppi.edges">
 <span id="edges"></span><h3>Edges<a class="headerlink" href="#module-graphein.ppi.edges" title="Permalink to this headline">¶</a></h3>
 <p>Functions for adding edges to a PPI Graph from parsed STRING &amp; BIOGRID API call outputs</p>
 <dl class="py function">
@@ -387,8 +386,8 @@
 </dd>
 </dl>
 </dd></dl>
-</section>
-<section id="module-graphein.ppi.graph_metadata">
+</div>
+<div class="section" id="module-graphein.ppi.graph_metadata">
 <span id="graph-features"></span><h3>Graph Features<a class="headerlink" href="#module-graphein.ppi.graph_metadata" title="Permalink to this headline">¶</a></h3>
 <p>Functions for adding metadata to PPI Graphs from STRING and BIOGRID</p>
 <dl class="py function">
@@ -426,8 +425,8 @@
 </dd>
 </dl>
 </dd></dl>
-</section>
-<section id="module-graphein.ppi.features.node_features">
+</div>
+<div class="section" id="module-graphein.ppi.features.node_features">
 <span id="node-features"></span><h3>Node Features<a class="headerlink" href="#module-graphein.ppi.features.node_features" title="Permalink to this headline">¶</a></h3>
 <p>Functions for adding nodes features to a PPI Graph</p>
 <dl class="py function">
@@ -443,11 +442,11 @@
 </dd>
 </dl>
 </dd></dl>
-</section>
-</section>
-<section id="database-parsers">
+</div>
+</div>
+<div class="section" id="database-parsers">
 <h2>Database Parsers<a class="headerlink" href="#database-parsers" title="Permalink to this headline">¶</a></h2>
-<section id="module-graphein.ppi.parse_biogrid">
+<div class="section" id="module-graphein.ppi.parse_biogrid">
 <span id="biogrid"></span><h3>BioGrid<a class="headerlink" href="#module-graphein.ppi.parse_biogrid" title="Permalink to this headline">¶</a></h3>
 <p>Functions for making and parsing API calls to BIOGRID</p>
 <dl class="py function">
@@ -512,8 +511,8 @@ Information about these parameters can be found at [1].</p>
 :param df: Source specific Pandas dataframe
 :return: Standardised dataframe</p>
 </dd></dl>
-</section>
-<section id="module-graphein.ppi.parse_stringdb">
+</div>
+<div class="section" id="module-graphein.ppi.parse_stringdb">
 <span id="stringdb"></span><h3>STRINGDB<a class="headerlink" href="#module-graphein.ppi.parse_stringdb" title="Permalink to this headline">¶</a></h3>
 <p>Functions for making and parsing API calls to STRINGdb</p>
 <dl class="py function">
@@ -616,9 +615,9 @@ Information about these parameters can be found at [1].</p></li>
 </dd>
 </dl>
 </dd></dl>
-</section>
-</section>
-</section>
+</div>
+</div>
+</div>
 
       </article>
       <footer>

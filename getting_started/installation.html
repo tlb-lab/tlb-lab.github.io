@@ -2,8 +2,7 @@
 <html class="no-js">
   <head><meta charset="utf-8"/>
     <meta name="viewport" content="width=device-width,initial-scale=1"/>
-    <meta name="color-scheme" content="light dark"><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
-<link rel="index" title="Index" href="../genindex.html" /><link rel="search" title="Search" href="../search.html" /><link rel="next" title="Graphein" href="introduction.html" /><link rel="prev" title="Welcome to Graphein’s documentation!" href="../index.html" />
+    <meta name="color-scheme" content="light dark"><link rel="index" title="Index" href="../genindex.html" /><link rel="search" title="Search" href="../search.html" /><link rel="next" title="Graphein" href="introduction.html" /><link rel="prev" title="Welcome to Graphein’s documentation!" href="../index.html" />
 
     <meta name="generator" content="sphinx-4.1.2, furo 2021.08.17.beta43"/>
         <title>Installation - Graphein 1.0.0 documentation</title>
@@ -167,7 +166,7 @@
 <li class="toctree-l2"><a class="reference internal" href="../notebooks/residue_graphs.html">Graphein - Residue Graph Tutorial</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../notebooks/atom_graph_tutorial.html">Graphein - Atom Graph Tutorial</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../notebooks/alphafold_protein_graph_tutorial.html">Constructing Graphs from AlphaFold Protein Structure Database</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../notebooks/protein_mesh_tutorial.html">Creating Protein Meshes in Graphein</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../notebooks/protein_mesh_tutorial.html">Creating Protein Meshes in Graphein &amp; 3D Visualisation</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../notebooks/ppi_tutorial.html">PPI Networks and Structural Interactomics</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../notebooks/grn_tutorial.html">Gene Regulatory Network Tutorial</a></li>
 </ul>
@@ -215,10 +214,12 @@
             <i class="icon"><svg><use href="#svg-toc"></use></svg></i>
           </label>
         </div>
-        <section id="installation">
+        <div class="section" id="installation">
 <h1>Installation<a class="headerlink" href="#installation" title="Permalink to this headline">¶</a></h1>
-<p>Graphein depends on a number of other libraries for constructing protein graphs and meshes. These should be installed in advance.</p>
-<section id="core-install">
+<p>Graphein depends on a number of other libraries for constructing graphs, meshes and adding features.</p>
+<p>The source code for Graphein can be viewed at <a class="reference external" href="https://www.github.com/a-r-j/graphein">a-r-j/graphein</a></p>
+<p>We are actively working on a simpler install path (via conda). However, we have a few core dependencies that are proving difficult.</p>
+<div class="section" id="core-install">
 <h2>Core Install<a class="headerlink" href="#core-install" title="Permalink to this headline">¶</a></h2>
 <p>At present, the simplest installation is as follows:</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>git clone https://www.github.com/a-r-j/graphein
@@ -227,49 +228,37 @@ conda env create -f environment.yml
 pip install .
 </pre></div>
 </div>
-</section>
-<section id="dev-install">
+</div>
+<div class="section" id="dev-install">
 <h2>Dev Install<a class="headerlink" href="#dev-install" title="Permalink to this headline">¶</a></h2>
-<p>Alternatively, if you wish to install Graphein in the dev environment you can run:</p>
+<p>Alternatively, if you wish to install Graphein in the dev environment (includes GPU build of all relevant geometric deep learning libraries) you can run:</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>git clone https://www.github.com/a-r-j/graphein
 <span class="nb">cd</span> graphein
 conda env create -f environment-dev.yml
 pip install -e .
 </pre></div>
 </div>
-</section>
-<section id="optional-dependencies">
+</div>
+<div class="section" id="optional-dependencies">
 <h2>Optional Dependencies<a class="headerlink" href="#optional-dependencies" title="Permalink to this headline">¶</a></h2>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
 <p>Some of these packages have more involved setup depending on your requirements (i.e. CUDA). Please refer to the original packages for more detailed information</p>
 </div>
-<section id="installing-deep-learning-libraries">
+<div class="section" id="installing-deep-learning-libraries">
 <h3>Installing Deep Learning Libraries<a class="headerlink" href="#installing-deep-learning-libraries" title="Permalink to this headline">¶</a></h3>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>pip install torch
-pip install dgl
-pip install pytorch3d
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>conda install -c pytorch pytorch
+conda install -c pytorch3d pytorch3d <span class="c1">#  NB requires fvcore and iopath</span>
+conda install -c dglteam dgl
+conda install pytorch-geometric -c rusty1s -c conda-forge
 </pre></div>
 </div>
-</section>
-<section id="installing-pytorch-geometric">
-<h3>Installing Pytorch Geometric<a class="headerlink" href="#installing-pytorch-geometric" title="Permalink to this headline">¶</a></h3>
-<p>We recommend installation via conda:</p>
-<p>However, pip installation is possible:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ pip install torch-scatter<span class="o">==</span>latest+<span class="si">${</span><span class="nv">CUDA</span><span class="si">}</span> -f https://pytorch-geometric.com/whl/torch-1.5.0.html
-$ pip install torch-sparse<span class="o">==</span>latest+<span class="si">${</span><span class="nv">CUDA</span><span class="si">}</span> -f https://pytorch-geometric.com/whl/torch-1.5.0.html
-$ pip install torch-cluster<span class="o">==</span>latest+<span class="si">${</span><span class="nv">CUDA</span><span class="si">}</span> -f https://pytorch-geometric.com/whl/torch-1.5.0.html
-$ pip install torch-spline-conv<span class="o">==</span>latest+<span class="si">${</span><span class="nv">CUDA</span><span class="si">}</span> -f https://pytorch-geometric.com/whl/torch-1.5.0.html
-$ python setup.py install or pip install torch-geometric
-</pre></div>
 </div>
-<p>Install all needed packages with ${CUDA} replaced by either cpu, cu92, cu100 or cu101 depending on your PyTorch installation.
-Please see the <a class="reference external" href="https://pytorch-geometric.readthedocs.io/en/latest/notes/installation.html">PyTorch Geometric installation documentation</a>.</p>
-</section>
-<section id="getcontacts">
+<div class="section" id="getcontacts">
 <h3>GetContacts<a class="headerlink" href="#getcontacts" title="Permalink to this headline">¶</a></h3>
 <p>GetContacts is an optional dependency for computing intramolecular contacts in <cite>.pdb</cite> files. We provide distance-based heuristics for this in <cite>graphein.protein.edges.distance</cite> so this is not a hard requirement.</p>
 <p>Please see the <cite>GetContacts documentation &lt;https://getcontacts.github.io/getting_started.html&gt;_</cite> for up-to-date installation instructions.</p>
+<p>MacOS:</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># Install get_contact_ticc.py dependencies</span>
 $ conda install scipy numpy scikit-learn matplotlib pandas cython seaborn
 $ pip install <span class="nv">ticc</span><span class="o">==</span><span class="m">0</span>.1.4
@@ -298,27 +287,23 @@ $ get_dynamic_contacts.py --topology 5xnd_topology.pdb <span class="se">\</span>
                           --output 5xnd_hbonds.tsv
 </pre></div>
 </div>
-</section>
-<section id="install-dssp">
-<h3>Install DSSP<a class="headerlink" href="#install-dssp" title="Permalink to this headline">¶</a></h3>
-<p>We use DSSP to compute secondary structure features of proteins.</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>conda install -c salilab dssp
+<p>Linux:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># Install get_contact_ticc.py dependencies</span>
+conda install scipy numpy scikit-learn matplotlib pandas cython
+pip install <span class="nv">ticc</span><span class="o">==</span><span class="m">0</span>.1.4
+
+<span class="c1"># Set up vmd-python library</span>
+conda install -c https://conda.anaconda.org/rbetz vmd-python
+
+<span class="c1"># Set up getcontacts library</span>
+git clone https://github.com/getcontacts/getcontacts.git
+<span class="nb">echo</span> <span class="s2">"export PATH=`pwd`/getcontacts:\$PATH"</span> &gt;&gt; ~/.bashrc
+<span class="nb">source</span> ~/.bashrc
 </pre></div>
 </div>
-</section>
-<section id="ipymol">
-<h3>IPyMol<a class="headerlink" href="#ipymol" title="Permalink to this headline">¶</a></h3>
-<p>IPyMol is used to interact with PyMol for mesh and surface representations of protein structures.</p>
-<p>Install IPyMol from GitHub. The release on PyPI appears to behind the repository and some required functionality is unavailable.
-<a class="reference external" href="https://github.com/cxhernandez/ipymol">https://github.com/cxhernandez/ipymol</a></p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>git clone https://github.com/cxhernandez/ipymol
-<span class="nb">cd</span> ipymol
-pip install .
-</pre></div>
 </div>
-</section>
-</section>
-</section>
+</div>
+</div>
 
       </article>
       <footer>
@@ -379,10 +364,7 @@ pip install .
 <li><a class="reference internal" href="#dev-install">Dev Install</a></li>
 <li><a class="reference internal" href="#optional-dependencies">Optional Dependencies</a><ul>
 <li><a class="reference internal" href="#installing-deep-learning-libraries">Installing Deep Learning Libraries</a></li>
-<li><a class="reference internal" href="#installing-pytorch-geometric">Installing Pytorch Geometric</a></li>
 <li><a class="reference internal" href="#getcontacts">GetContacts</a></li>
-<li><a class="reference internal" href="#install-dssp">Install DSSP</a></li>
-<li><a class="reference internal" href="#ipymol">IPyMol</a></li>
 </ul>
 </li>
 </ul>

@@ -2,8 +2,7 @@
 <html class="no-js">
   <head><meta charset="utf-8"/>
     <meta name="viewport" content="width=device-width,initial-scale=1"/>
-    <meta name="color-scheme" content="light dark"><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
-<link rel="index" title="Index" href="genindex.html" /><link rel="search" title="Search" href="search.html" />
+    <meta name="color-scheme" content="light dark"><link rel="index" title="Index" href="genindex.html" /><link rel="search" title="Search" href="search.html" />
 
     <meta name="generator" content="sphinx-4.1.2, furo 2021.08.17.beta43"/>
         <title>Problematic PDB Files - Graphein 1.0.0 documentation</title>
@@ -167,7 +166,7 @@
 <li class="toctree-l2"><a class="reference internal" href="notebooks/residue_graphs.html">Graphein - Residue Graph Tutorial</a></li>
 <li class="toctree-l2"><a class="reference internal" href="notebooks/atom_graph_tutorial.html">Graphein - Atom Graph Tutorial</a></li>
 <li class="toctree-l2"><a class="reference internal" href="notebooks/alphafold_protein_graph_tutorial.html">Constructing Graphs from AlphaFold Protein Structure Database</a></li>
-<li class="toctree-l2"><a class="reference internal" href="notebooks/protein_mesh_tutorial.html">Creating Protein Meshes in Graphein</a></li>
+<li class="toctree-l2"><a class="reference internal" href="notebooks/protein_mesh_tutorial.html">Creating Protein Meshes in Graphein &amp; 3D Visualisation</a></li>
 <li class="toctree-l2"><a class="reference internal" href="notebooks/ppi_tutorial.html">PPI Networks and Structural Interactomics</a></li>
 <li class="toctree-l2"><a class="reference internal" href="notebooks/grn_tutorial.html">Gene Regulatory Network Tutorial</a></li>
 </ul>
@@ -215,7 +214,7 @@
             <i class="icon"><svg><use href="#svg-toc"></use></svg></i>
           </label>
         </div>
-        <section id="problematic-pdb-files">
+        <div class="section" id="problematic-pdb-files">
 <h1>Problematic PDB Files<a class="headerlink" href="#problematic-pdb-files" title="Permalink to this headline">¶</a></h1>
 <p>We include here an excellent overview of common problems in PDB files by Eric Martz. The original text is available here &lt;<a class="reference external" href="https://www.umass.edu/microbio/chime/pe_beta/pe/protexpl/badpdbs.htm">https://www.umass.edu/microbio/chime/pe_beta/pe/protexpl/badpdbs.htm</a>&gt;_</p>
 <p>Most published PDB files are handled correctly by PE, including those with sequence insertions or sequence microheterogeneity. (For further explanation and examples, see the help on Sequence Irregularities, also available from within the Sequences and Seq3D displays.)
@@ -231,7 +230,7 @@ Many, perhaps the majority, of PDB files have coordinates for alternate location
 <p>Chain naming irregularities.</p>
 <p>When a single PDB file contains both an unnamed and named chains, PE’s mechanisms that depend upon chain names fail. This is probably quite rare, but occurs in 4CPA, where QuickViews’s SELECT menu lists the unnamed chain, but clicking on it selects all chains. Also, in Seq3D, clicking on D16 in the unnamed chain highlights D16 there and in chain I (which also happens to have D at position 16).</p>
 <p>For reasons not apparent (by inspection of the PDB file), Chime’s “show sequence” report fails to include the chain name “A” for 1QCQ. This causes PE to think the chain has no name. In ConSurf, this causes PE to fail to apply the conservation colors in Seq3D.</p>
-</section>
+</div>
 
       </article>
       <footer>
