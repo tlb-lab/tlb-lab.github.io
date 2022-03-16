@@ -27,7 +27,7 @@
   <link rel="index" title="Index" href="../genindex.html" /><link rel="search" title="Search" href="../search.html" /><link rel="next" title="PPISP - Protein Protein Interaction Structure Prediction" href="../datasets/ppisp.html" /><link rel="prev" title="&lt;no title&gt;" href="pscdb_processing.html" />
 
     <meta name="generator" content="sphinx-4.4.0, furo 2022.02.14.1"/>
-        <title>PSCDB - Baselines - Graphein 1.2.0</title>
+        <title>PSCDB - Baselines - Graphein 1.2.1</title>
       <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
     <link rel="stylesheet" type="text/css" href="../_static/styles/furo.css?digest=a8f031f701c6af50c9919b48f173a5785af06fac" />
     <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
@@ -142,7 +142,7 @@
       </label>
     </div>
     <div class="header-center">
-      <a href="../index.html"><div class="brand">Graphein 1.2.0</div></a>
+      <a href="../index.html"><div class="brand">Graphein 1.2.1</div></a>
     </div>
     <div class="header-right">
       <div class="theme-toggle-container theme-toggle-header">
@@ -168,7 +168,7 @@
     <img class="sidebar-logo" src="../_static/graphein.png" alt="Logo"/>
   </div>
   
-  <span class="sidebar-brand-text">Graphein 1.2.0</span>
+  <span class="sidebar-brand-text">Graphein 1.2.1</span>
   
 </a><form class="sidebar-search-container" method="get" action="../search.html" role="search">
   <input class="sidebar-search" placeholder=Search name="q" aria-label="Search">
@@ -545,88 +545,18 @@ div.rendered_html tbody tr:hover {
 </pre></div>
 </div>
 </div>
-<div class="nboutput docutils container">
+<div class="nboutput nblast docutils container">
 <div class="prompt empty docutils container">
 </div>
 <div class="output_area stderr docutils container">
 <div class="highlight"><pre>
-/Users/arianjamasb/opt/anaconda3/envs/graphein-wip/lib/python3.8/site-packages/torchvision/io/image.py:11: UserWarning: Failed to load image Python extension: dlopen(/Users/arianjamasb/opt/anaconda3/envs/graphein-wip/lib/python3.8/site-packages/torchvision/image.so, 0x0006): Symbol not found: __ZN2at4_ops19empty_memory_format4callEN3c108ArrayRefIxEENS2_8optionalINS2_10ScalarTypeEEENS5_INS2_6LayoutEEENS5_INS2_6DeviceEEENS5_IbEENS5_INS2_12MemoryFormatEEE
-  Referenced from: /Users/arianjamasb/opt/anaconda3/envs/graphein-wip/lib/python3.8/site-packages/torchvision/image.so
-  Expected in: /Users/arianjamasb/opt/anaconda3/envs/graphein-wip/lib/python3.8/site-packages/torch/lib/libtorch_cpu.dylib
-  warn(f"Failed to load image Python extension: {e}")
-</pre></div></div>
-</div>
-<div class="nboutput nblast docutils container">
-<div class="prompt empty docutils container">
-</div>
-<div class="output_area docutils container">
-<div class="highlight"><pre>
-<span class="ansi-red-fg">---------------------------------------------------------------------------</span>
-<span class="ansi-red-fg">OSError</span>                                   Traceback (most recent call last)
-<span class="ansi-green-fg">/var/folders/p1/0qtk6t_520n7k4bvk1p26l_w0000gn/T/ipykernel_80675/831168161.py</span> in <span class="ansi-cyan-fg">&lt;module&gt;</span>
-<span class="ansi-green-intense-fg ansi-bold">      8</span> <span class="ansi-green-fg">from</span> tqdm<span class="ansi-blue-fg">.</span>notebook <span class="ansi-green-fg">import</span> tqdm
-<span class="ansi-green-intense-fg ansi-bold">      9</span> <span class="ansi-green-fg">import</span> networkx <span class="ansi-green-fg">as</span> nx
-<span class="ansi-green-fg">---&gt; 10</span><span class="ansi-red-fg"> </span><span class="ansi-green-fg">import</span> torch_geometric
-<span class="ansi-green-intense-fg ansi-bold">     11</span> <span class="ansi-green-fg">from</span> torch_geometric<span class="ansi-blue-fg">.</span>data <span class="ansi-green-fg">import</span> Data
-<span class="ansi-green-intense-fg ansi-bold">     12</span> <span class="ansi-green-fg">from</span> torch_geometric<span class="ansi-blue-fg">.</span>utils <span class="ansi-green-fg">import</span> from_networkx
-
-<span class="ansi-green-fg">~/opt/anaconda3/envs/graphein-wip/lib/python3.8/site-packages/torch_geometric/__init__.py</span> in <span class="ansi-cyan-fg">&lt;module&gt;</span>
-<span class="ansi-green-intense-fg ansi-bold">      5</span> <span class="ansi-green-fg">from</span> <span class="ansi-blue-fg">.</span>debug <span class="ansi-green-fg">import</span> is_debug_enabled<span class="ansi-blue-fg">,</span> debug<span class="ansi-blue-fg">,</span> set_debug
-<span class="ansi-green-intense-fg ansi-bold">      6</span>
-<span class="ansi-green-fg">----&gt; 7</span><span class="ansi-red-fg"> </span><span class="ansi-green-fg">import</span> torch_geometric<span class="ansi-blue-fg">.</span>data
-<span class="ansi-green-intense-fg ansi-bold">      8</span> <span class="ansi-green-fg">import</span> torch_geometric<span class="ansi-blue-fg">.</span>loader
-<span class="ansi-green-intense-fg ansi-bold">      9</span> <span class="ansi-green-fg">import</span> torch_geometric<span class="ansi-blue-fg">.</span>transforms
-
-<span class="ansi-green-fg">~/opt/anaconda3/envs/graphein-wip/lib/python3.8/site-packages/torch_geometric/data/__init__.py</span> in <span class="ansi-cyan-fg">&lt;module&gt;</span>
-<span class="ansi-green-fg">----&gt; 1</span><span class="ansi-red-fg"> </span><span class="ansi-green-fg">from</span> <span class="ansi-blue-fg">.</span>data <span class="ansi-green-fg">import</span> Data
-<span class="ansi-green-intense-fg ansi-bold">      2</span> <span class="ansi-green-fg">from</span> <span class="ansi-blue-fg">.</span>hetero_data <span class="ansi-green-fg">import</span> HeteroData
-<span class="ansi-green-intense-fg ansi-bold">      3</span> <span class="ansi-green-fg">from</span> <span class="ansi-blue-fg">.</span>temporal <span class="ansi-green-fg">import</span> TemporalData
-<span class="ansi-green-intense-fg ansi-bold">      4</span> <span class="ansi-green-fg">from</span> <span class="ansi-blue-fg">.</span>batch <span class="ansi-green-fg">import</span> Batch
-<span class="ansi-green-intense-fg ansi-bold">      5</span> <span class="ansi-green-fg">from</span> <span class="ansi-blue-fg">.</span>dataset <span class="ansi-green-fg">import</span> Dataset
-
-<span class="ansi-green-fg">~/opt/anaconda3/envs/graphein-wip/lib/python3.8/site-packages/torch_geometric/data/data.py</span> in <span class="ansi-cyan-fg">&lt;module&gt;</span>
-<span class="ansi-green-intense-fg ansi-bold">      1</span> from typing import (Optional, Dict, Any, Union, List, Iterable, Tuple,
-<span class="ansi-green-intense-fg ansi-bold">      2</span>                     NamedTuple, Callable)
-<span class="ansi-green-fg">----&gt; 3</span><span class="ansi-red-fg"> </span><span class="ansi-green-fg">from</span> torch_geometric<span class="ansi-blue-fg">.</span>typing <span class="ansi-green-fg">import</span> OptTensor<span class="ansi-blue-fg">,</span> NodeType<span class="ansi-blue-fg">,</span> EdgeType
-<span class="ansi-green-intense-fg ansi-bold">      4</span> <span class="ansi-green-fg">from</span> torch_geometric<span class="ansi-blue-fg">.</span>deprecation <span class="ansi-green-fg">import</span> deprecated
-<span class="ansi-green-intense-fg ansi-bold">      5</span>
-
-<span class="ansi-green-fg">~/opt/anaconda3/envs/graphein-wip/lib/python3.8/site-packages/torch_geometric/typing.py</span> in <span class="ansi-cyan-fg">&lt;module&gt;</span>
-<span class="ansi-green-intense-fg ansi-bold">      2</span>
-<span class="ansi-green-intense-fg ansi-bold">      3</span> <span class="ansi-green-fg">from</span> torch <span class="ansi-green-fg">import</span> Tensor
-<span class="ansi-green-fg">----&gt; 4</span><span class="ansi-red-fg"> </span><span class="ansi-green-fg">from</span> torch_sparse <span class="ansi-green-fg">import</span> SparseTensor
-<span class="ansi-green-intense-fg ansi-bold">      5</span>
-<span class="ansi-green-intense-fg ansi-bold">      6</span> <span class="ansi-red-fg"># Types for accessing data ####################################################</span>
-
-<span class="ansi-green-fg">~/opt/anaconda3/envs/graphein-wip/lib/python3.8/site-packages/torch_sparse/__init__.py</span> in <span class="ansi-cyan-fg">&lt;module&gt;</span>
-<span class="ansi-green-intense-fg ansi-bold">     17</span>     spec <span class="ansi-blue-fg">=</span> cuda_spec <span class="ansi-green-fg">or</span> cpu_spec
-<span class="ansi-green-intense-fg ansi-bold">     18</span>     <span class="ansi-green-fg">if</span> spec <span class="ansi-green-fg">is</span> <span class="ansi-green-fg">not</span> <span class="ansi-green-fg">None</span><span class="ansi-blue-fg">:</span>
-<span class="ansi-green-fg">---&gt; 19</span><span class="ansi-red-fg">         </span>torch<span class="ansi-blue-fg">.</span>ops<span class="ansi-blue-fg">.</span>load_library<span class="ansi-blue-fg">(</span>spec<span class="ansi-blue-fg">.</span>origin<span class="ansi-blue-fg">)</span>
-<span class="ansi-green-intense-fg ansi-bold">     20</span>     <span class="ansi-green-fg">else</span><span class="ansi-blue-fg">:</span>  <span class="ansi-red-fg"># pragma: no cover</span>
-<span class="ansi-green-intense-fg ansi-bold">     21</span>         raise ImportError(f"Could not find module '{library}_cpu' in "
-
-<span class="ansi-green-fg">~/opt/anaconda3/envs/graphein-wip/lib/python3.8/site-packages/torch/_ops.py</span> in <span class="ansi-cyan-fg">load_library</span><span class="ansi-blue-fg">(self, path)</span>
-<span class="ansi-green-intense-fg ansi-bold">    102</span>             <span class="ansi-red-fg"># static (global) initialization code in order to register custom</span>
-<span class="ansi-green-intense-fg ansi-bold">    103</span>             <span class="ansi-red-fg"># operators with the JIT.</span>
-<span class="ansi-green-fg">--&gt; 104</span><span class="ansi-red-fg">             </span>ctypes<span class="ansi-blue-fg">.</span>CDLL<span class="ansi-blue-fg">(</span>path<span class="ansi-blue-fg">)</span>
-<span class="ansi-green-intense-fg ansi-bold">    105</span>         self<span class="ansi-blue-fg">.</span>loaded_libraries<span class="ansi-blue-fg">.</span>add<span class="ansi-blue-fg">(</span>path<span class="ansi-blue-fg">)</span>
-<span class="ansi-green-intense-fg ansi-bold">    106</span>
-
-<span class="ansi-green-fg">~/opt/anaconda3/envs/graphein-wip/lib/python3.8/ctypes/__init__.py</span> in <span class="ansi-cyan-fg">__init__</span><span class="ansi-blue-fg">(self, name, mode, handle, use_errno, use_last_error, winmode)</span>
-<span class="ansi-green-intense-fg ansi-bold">    371</span>
-<span class="ansi-green-intense-fg ansi-bold">    372</span>         <span class="ansi-green-fg">if</span> handle <span class="ansi-green-fg">is</span> <span class="ansi-green-fg">None</span><span class="ansi-blue-fg">:</span>
-<span class="ansi-green-fg">--&gt; 373</span><span class="ansi-red-fg">             </span>self<span class="ansi-blue-fg">.</span>_handle <span class="ansi-blue-fg">=</span> _dlopen<span class="ansi-blue-fg">(</span>self<span class="ansi-blue-fg">.</span>_name<span class="ansi-blue-fg">,</span> mode<span class="ansi-blue-fg">)</span>
-<span class="ansi-green-intense-fg ansi-bold">    374</span>         <span class="ansi-green-fg">else</span><span class="ansi-blue-fg">:</span>
-<span class="ansi-green-intense-fg ansi-bold">    375</span>             self<span class="ansi-blue-fg">.</span>_handle <span class="ansi-blue-fg">=</span> handle
-
-<span class="ansi-red-fg">OSError</span>: dlopen(/Users/arianjamasb/opt/anaconda3/envs/graphein-wip/lib/python3.8/site-packages/torch_sparse/_convert_cpu.so, 0x0006): Symbol not found: __ZN2at4_ops19empty_memory_format4callEN3c108ArrayRefIxEENS2_8optionalINS2_10ScalarTypeEEENS5_INS2_6LayoutEEENS5_INS2_6DeviceEEENS5_IbEENS5_INS2_12MemoryFormatEEE
-  Referenced from: /Users/arianjamasb/opt/anaconda3/envs/graphein-wip/lib/python3.8/site-packages/torch_sparse/_convert_cpu.so
-  Expected in: /Users/arianjamasb/opt/anaconda3/envs/graphein-wip/lib/python3.8/site-packages/torch/lib/libtorch_cpu.dylib
+RDKit WARNING: [23:36:27] Enabling RDKit 2019.09.3 jupyter extensions
+[23:36:27] Enabling RDKit 2019.09.3 jupyter extensions
 </pre></div></div>
 </div>
 <div class="section" id="Load-dataset">
 <h2>Load dataset<a class="headerlink" href="#Load-dataset" title="Permalink to this headline">#</a></h2>
-<div class="nbinput docutils container">
+<div class="nbinput nblast docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[3]:
 </pre></div>
 </div>
@@ -636,78 +566,6 @@ div.rendered_html tbody tr:hover {
 <span class="n">y</span> <span class="o">=</span> <span class="p">[</span><span class="n">torch</span><span class="o">.</span><span class="n">argmax</span><span class="p">(</span><span class="n">torch</span><span class="o">.</span><span class="n">Tensor</span><span class="p">(</span><span class="n">lab</span><span class="p">))</span><span class="o">.</span><span class="n">type</span><span class="p">(</span><span class="n">torch</span><span class="o">.</span><span class="n">LongTensor</span><span class="p">)</span> <span class="k">for</span> <span class="n">lab</span> <span class="ow">in</span> <span class="n">LabelBinarizer</span><span class="p">()</span><span class="o">.</span><span class="n">fit_transform</span><span class="p">(</span><span class="n">df</span><span class="o">.</span><span class="n">motion_type</span><span class="p">)]</span>
 </pre></div>
 </div>
-</div>
-<div class="nboutput nblast docutils container">
-<div class="prompt empty docutils container">
-</div>
-<div class="output_area docutils container">
-<div class="highlight"><pre>
-<span class="ansi-red-fg">---------------------------------------------------------------------------</span>
-<span class="ansi-red-fg">FileNotFoundError</span>                         Traceback (most recent call last)
-<span class="ansi-green-fg">/var/folders/p1/0qtk6t_520n7k4bvk1p26l_w0000gn/T/ipykernel_80675/1444529774.py</span> in <span class="ansi-cyan-fg">&lt;module&gt;</span>
-<span class="ansi-green-intense-fg ansi-bold">      1</span> <span class="ansi-red-fg"># NBVAL_SKIP</span>
-<span class="ansi-green-fg">----&gt; 2</span><span class="ansi-red-fg"> </span>df <span class="ansi-blue-fg">=</span> pd<span class="ansi-blue-fg">.</span>read_csv<span class="ansi-blue-fg">(</span><span class="ansi-blue-fg">"../datasets/pscdb/structural_rearrangement_data.csv"</span><span class="ansi-blue-fg">)</span>
-<span class="ansi-green-intense-fg ansi-bold">      3</span> pdbs <span class="ansi-blue-fg">=</span> df<span class="ansi-blue-fg">[</span><span class="ansi-blue-fg">"Free PDB"</span><span class="ansi-blue-fg">]</span>
-<span class="ansi-green-intense-fg ansi-bold">      4</span> y <span class="ansi-blue-fg">=</span> <span class="ansi-blue-fg">[</span>torch<span class="ansi-blue-fg">.</span>argmax<span class="ansi-blue-fg">(</span>torch<span class="ansi-blue-fg">.</span>Tensor<span class="ansi-blue-fg">(</span>lab<span class="ansi-blue-fg">)</span><span class="ansi-blue-fg">)</span><span class="ansi-blue-fg">.</span>type<span class="ansi-blue-fg">(</span>torch<span class="ansi-blue-fg">.</span>LongTensor<span class="ansi-blue-fg">)</span> <span class="ansi-green-fg">for</span> lab <span class="ansi-green-fg">in</span> LabelBinarizer<span class="ansi-blue-fg">(</span><span class="ansi-blue-fg">)</span><span class="ansi-blue-fg">.</span>fit_transform<span class="ansi-blue-fg">(</span>df<span class="ansi-blue-fg">.</span>motion_type<span class="ansi-blue-fg">)</span><span class="ansi-blue-fg">]</span>
-
-<span class="ansi-green-fg">~/opt/anaconda3/envs/graphein-wip/lib/python3.8/site-packages/pandas/util/_decorators.py</span> in <span class="ansi-cyan-fg">wrapper</span><span class="ansi-blue-fg">(*args, **kwargs)</span>
-<span class="ansi-green-intense-fg ansi-bold">    309</span>                     stacklevel<span class="ansi-blue-fg">=</span>stacklevel<span class="ansi-blue-fg">,</span>
-<span class="ansi-green-intense-fg ansi-bold">    310</span>                 )
-<span class="ansi-green-fg">--&gt; 311</span><span class="ansi-red-fg">             </span><span class="ansi-green-fg">return</span> func<span class="ansi-blue-fg">(</span><span class="ansi-blue-fg">*</span>args<span class="ansi-blue-fg">,</span> <span class="ansi-blue-fg">**</span>kwargs<span class="ansi-blue-fg">)</span>
-<span class="ansi-green-intense-fg ansi-bold">    312</span>
-<span class="ansi-green-intense-fg ansi-bold">    313</span>         <span class="ansi-green-fg">return</span> wrapper
-
-<span class="ansi-green-fg">~/opt/anaconda3/envs/graphein-wip/lib/python3.8/site-packages/pandas/io/parsers/readers.py</span> in <span class="ansi-cyan-fg">read_csv</span><span class="ansi-blue-fg">(filepath_or_buffer, sep, delimiter, header, names, index_col, usecols, squeeze, prefix, mangle_dupe_cols, dtype, engine, converters, true_values, false_values, skipinitialspace, skiprows, skipfooter, nrows, na_values, keep_default_na, na_filter, verbose, skip_blank_lines, parse_dates, infer_datetime_format, keep_date_col, date_parser, dayfirst, cache_dates, iterator, chunksize, compression, thousands, decimal, lineterminator, quotechar, quoting, doublequote, escapechar, comment, encoding, encoding_errors, dialect, error_bad_lines, warn_bad_lines, on_bad_lines, delim_whitespace, low_memory, memory_map, float_precision, storage_options)</span>
-<span class="ansi-green-intense-fg ansi-bold">    584</span>     kwds<span class="ansi-blue-fg">.</span>update<span class="ansi-blue-fg">(</span>kwds_defaults<span class="ansi-blue-fg">)</span>
-<span class="ansi-green-intense-fg ansi-bold">    585</span>
-<span class="ansi-green-fg">--&gt; 586</span><span class="ansi-red-fg">     </span><span class="ansi-green-fg">return</span> _read<span class="ansi-blue-fg">(</span>filepath_or_buffer<span class="ansi-blue-fg">,</span> kwds<span class="ansi-blue-fg">)</span>
-<span class="ansi-green-intense-fg ansi-bold">    587</span>
-<span class="ansi-green-intense-fg ansi-bold">    588</span>
-
-<span class="ansi-green-fg">~/opt/anaconda3/envs/graphein-wip/lib/python3.8/site-packages/pandas/io/parsers/readers.py</span> in <span class="ansi-cyan-fg">_read</span><span class="ansi-blue-fg">(filepath_or_buffer, kwds)</span>
-<span class="ansi-green-intense-fg ansi-bold">    480</span>
-<span class="ansi-green-intense-fg ansi-bold">    481</span>     <span class="ansi-red-fg"># Create the parser.</span>
-<span class="ansi-green-fg">--&gt; 482</span><span class="ansi-red-fg">     </span>parser <span class="ansi-blue-fg">=</span> TextFileReader<span class="ansi-blue-fg">(</span>filepath_or_buffer<span class="ansi-blue-fg">,</span> <span class="ansi-blue-fg">**</span>kwds<span class="ansi-blue-fg">)</span>
-<span class="ansi-green-intense-fg ansi-bold">    483</span>
-<span class="ansi-green-intense-fg ansi-bold">    484</span>     <span class="ansi-green-fg">if</span> chunksize <span class="ansi-green-fg">or</span> iterator<span class="ansi-blue-fg">:</span>
-
-<span class="ansi-green-fg">~/opt/anaconda3/envs/graphein-wip/lib/python3.8/site-packages/pandas/io/parsers/readers.py</span> in <span class="ansi-cyan-fg">__init__</span><span class="ansi-blue-fg">(self, f, engine, **kwds)</span>
-<span class="ansi-green-intense-fg ansi-bold">    809</span>             self<span class="ansi-blue-fg">.</span>options<span class="ansi-blue-fg">[</span><span class="ansi-blue-fg">"has_index_names"</span><span class="ansi-blue-fg">]</span> <span class="ansi-blue-fg">=</span> kwds<span class="ansi-blue-fg">[</span><span class="ansi-blue-fg">"has_index_names"</span><span class="ansi-blue-fg">]</span>
-<span class="ansi-green-intense-fg ansi-bold">    810</span>
-<span class="ansi-green-fg">--&gt; 811</span><span class="ansi-red-fg">         </span>self<span class="ansi-blue-fg">.</span>_engine <span class="ansi-blue-fg">=</span> self<span class="ansi-blue-fg">.</span>_make_engine<span class="ansi-blue-fg">(</span>self<span class="ansi-blue-fg">.</span>engine<span class="ansi-blue-fg">)</span>
-<span class="ansi-green-intense-fg ansi-bold">    812</span>
-<span class="ansi-green-intense-fg ansi-bold">    813</span>     <span class="ansi-green-fg">def</span> close<span class="ansi-blue-fg">(</span>self<span class="ansi-blue-fg">)</span><span class="ansi-blue-fg">:</span>
-
-<span class="ansi-green-fg">~/opt/anaconda3/envs/graphein-wip/lib/python3.8/site-packages/pandas/io/parsers/readers.py</span> in <span class="ansi-cyan-fg">_make_engine</span><span class="ansi-blue-fg">(self, engine)</span>
-<span class="ansi-green-intense-fg ansi-bold">   1038</span>             )
-<span class="ansi-green-intense-fg ansi-bold">   1039</span>         <span class="ansi-red-fg"># error: Too many arguments for "ParserBase"</span>
-<span class="ansi-green-fg">-&gt; 1040</span><span class="ansi-red-fg">         </span><span class="ansi-green-fg">return</span> mapping<span class="ansi-blue-fg">[</span>engine<span class="ansi-blue-fg">]</span><span class="ansi-blue-fg">(</span>self<span class="ansi-blue-fg">.</span>f<span class="ansi-blue-fg">,</span> <span class="ansi-blue-fg">**</span>self<span class="ansi-blue-fg">.</span>options<span class="ansi-blue-fg">)</span>  <span class="ansi-red-fg"># type: ignore[call-arg]</span>
-<span class="ansi-green-intense-fg ansi-bold">   1041</span>
-<span class="ansi-green-intense-fg ansi-bold">   1042</span>     <span class="ansi-green-fg">def</span> _failover_to_python<span class="ansi-blue-fg">(</span>self<span class="ansi-blue-fg">)</span><span class="ansi-blue-fg">:</span>
-
-<span class="ansi-green-fg">~/opt/anaconda3/envs/graphein-wip/lib/python3.8/site-packages/pandas/io/parsers/c_parser_wrapper.py</span> in <span class="ansi-cyan-fg">__init__</span><span class="ansi-blue-fg">(self, src, **kwds)</span>
-<span class="ansi-green-intense-fg ansi-bold">     49</span>
-<span class="ansi-green-intense-fg ansi-bold">     50</span>         <span class="ansi-red-fg"># open handles</span>
-<span class="ansi-green-fg">---&gt; 51</span><span class="ansi-red-fg">         </span>self<span class="ansi-blue-fg">.</span>_open_handles<span class="ansi-blue-fg">(</span>src<span class="ansi-blue-fg">,</span> kwds<span class="ansi-blue-fg">)</span>
-<span class="ansi-green-intense-fg ansi-bold">     52</span>         <span class="ansi-green-fg">assert</span> self<span class="ansi-blue-fg">.</span>handles <span class="ansi-green-fg">is</span> <span class="ansi-green-fg">not</span> <span class="ansi-green-fg">None</span>
-<span class="ansi-green-intense-fg ansi-bold">     53</span>
-
-<span class="ansi-green-fg">~/opt/anaconda3/envs/graphein-wip/lib/python3.8/site-packages/pandas/io/parsers/base_parser.py</span> in <span class="ansi-cyan-fg">_open_handles</span><span class="ansi-blue-fg">(self, src, kwds)</span>
-<span class="ansi-green-intense-fg ansi-bold">    220</span>         Let the readers open IOHandles after they are done <span class="ansi-green-fg">with</span> their potential raises<span class="ansi-blue-fg">.</span>
-<span class="ansi-green-intense-fg ansi-bold">    221</span>         """
-<span class="ansi-green-fg">--&gt; 222</span><span class="ansi-red-fg">         self.handles = get_handle(
-</span><span class="ansi-green-intense-fg ansi-bold">    223</span>             src<span class="ansi-blue-fg">,</span>
-<span class="ansi-green-intense-fg ansi-bold">    224</span>             <span class="ansi-blue-fg">"r"</span><span class="ansi-blue-fg">,</span>
-
-<span class="ansi-green-fg">~/opt/anaconda3/envs/graphein-wip/lib/python3.8/site-packages/pandas/io/common.py</span> in <span class="ansi-cyan-fg">get_handle</span><span class="ansi-blue-fg">(path_or_buf, mode, encoding, compression, memory_map, is_text, errors, storage_options)</span>
-<span class="ansi-green-intense-fg ansi-bold">    700</span>         <span class="ansi-green-fg">if</span> ioargs<span class="ansi-blue-fg">.</span>encoding <span class="ansi-green-fg">and</span> <span class="ansi-blue-fg">"b"</span> <span class="ansi-green-fg">not</span> <span class="ansi-green-fg">in</span> ioargs<span class="ansi-blue-fg">.</span>mode<span class="ansi-blue-fg">:</span>
-<span class="ansi-green-intense-fg ansi-bold">    701</span>             <span class="ansi-red-fg"># Encoding</span>
-<span class="ansi-green-fg">--&gt; 702</span><span class="ansi-red-fg">             handle = open(
-</span><span class="ansi-green-intense-fg ansi-bold">    703</span>                 handle<span class="ansi-blue-fg">,</span>
-<span class="ansi-green-intense-fg ansi-bold">    704</span>                 ioargs<span class="ansi-blue-fg">.</span>mode<span class="ansi-blue-fg">,</span>
-
-<span class="ansi-red-fg">FileNotFoundError</span>: [Errno 2] No such file or directory: '../datasets/pscdb/structural_rearrangement_data.csv'
-</pre></div></div>
 </div>
 </div>
 <div class="section" id="Transformation-from-Raw-Structure-to-ML-ready-Datasets-Construction-with-Graphein">
@@ -755,28 +613,28 @@ div.rendered_html tbody tr:hover {
 </div>
 <div class="output_area docutils container">
 <div class="highlight"><pre>
-{'granularity': 'CA', 'keep_hets': False, 'insertions': False, 'pdb_dir': PosixPath('../examples/pdbs'), 'verbose': False, 'exclude_waters': True, 'deprotonate': False, 'protein_df_processing_functions': None, 'edge_construction_functions': [functools.partial(&lt;function add_k_nn_edges at 0x7f88706cdca0&gt;, k=3, long_interaction_threshold=0)], 'node_metadata_functions': [&lt;function meiler_embedding at 0x7f88706d2f70&gt;], 'edge_metadata_functions': None, 'graph_metadata_functions': None, 'get_contacts_config': None, 'dssp_config': None}
+{'granularity': 'CA', 'keep_hets': False, 'insertions': False, 'pdb_dir': PosixPath('../examples/pdbs'), 'verbose': False, 'exclude_waters': True, 'deprotonate': False, 'protein_df_processing_functions': None, 'edge_construction_functions': [functools.partial(&lt;function add_k_nn_edges at 0x7fb4b22bbf70&gt;, k=3, long_interaction_threshold=0)], 'node_metadata_functions': [&lt;function meiler_embedding at 0x7fb4b22c7430&gt;], 'edge_metadata_functions': None, 'graph_metadata_functions': None, 'get_contacts_config': None, 'dssp_config': None}
 </pre></div></div>
+</div>
+<div class="nboutput docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<script type="application/vnd.jupyter.widget-view+json">{"model_id": "ff91e6386f7c422ba50479795794db33", "version_major": 2, "version_minor": 0}</script></div>
 </div>
 <div class="nboutput nblast docutils container">
 <div class="prompt empty docutils container">
 </div>
 <div class="output_area docutils container">
 <div class="highlight"><pre>
-<span class="ansi-red-fg">---------------------------------------------------------------------------</span>
-<span class="ansi-red-fg">NameError</span>                                 Traceback (most recent call last)
-<span class="ansi-green-fg">/var/folders/p1/0qtk6t_520n7k4bvk1p26l_w0000gn/T/ipykernel_80675/3584940846.py</span> in <span class="ansi-cyan-fg">&lt;module&gt;</span>
-<span class="ansi-green-intense-fg ansi-bold">     19</span> graph_list <span class="ansi-blue-fg">=</span> <span class="ansi-blue-fg">[</span><span class="ansi-blue-fg">]</span>
-<span class="ansi-green-intense-fg ansi-bold">     20</span> y_list <span class="ansi-blue-fg">=</span> <span class="ansi-blue-fg">[</span><span class="ansi-blue-fg">]</span>
-<span class="ansi-green-fg">---&gt; 21</span><span class="ansi-red-fg"> </span><span class="ansi-green-fg">for</span> idx<span class="ansi-blue-fg">,</span> pdb <span class="ansi-green-fg">in</span> enumerate<span class="ansi-blue-fg">(</span>tqdm<span class="ansi-blue-fg">(</span>pdbs<span class="ansi-blue-fg">)</span><span class="ansi-blue-fg">)</span><span class="ansi-blue-fg">:</span>
-<span class="ansi-green-intense-fg ansi-bold">     22</span>     <span class="ansi-green-fg">try</span><span class="ansi-blue-fg">:</span>
-<span class="ansi-green-intense-fg ansi-bold">     23</span>         graph_list.append(
-
-<span class="ansi-red-fg">NameError</span>: name 'pdbs' is not defined
+URL Error [Errno 110] Connection timed out
+274 processing error...
+666 processing error...
+677 processing error...
 </pre></div></div>
 </div>
 <div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[5]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[44]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># NBVAL_SKIP</span>
@@ -787,26 +645,19 @@ div.rendered_html tbody tr:hover {
 </div>
 </div>
 <div class="nboutput nblast docutils container">
-<div class="prompt empty docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[44]:
+</pre></div>
 </div>
 <div class="output_area docutils container">
 <div class="highlight"><pre>
-<span class="ansi-red-fg">---------------------------------------------------------------------------</span>
-<span class="ansi-red-fg">NameError</span>                                 Traceback (most recent call last)
-<span class="ansi-green-fg">/var/folders/p1/0qtk6t_520n7k4bvk1p26l_w0000gn/T/ipykernel_80675/1184495281.py</span> in <span class="ansi-cyan-fg">&lt;module&gt;</span>
-<span class="ansi-green-intense-fg ansi-bold">      1</span> <span class="ansi-red-fg"># NBVAL_SKIP</span>
-<span class="ansi-green-fg">----&gt; 2</span><span class="ansi-red-fg"> </span>pdbs<span class="ansi-blue-fg">[</span><span class="ansi-cyan-fg">274</span><span class="ansi-blue-fg">]</span>
-<span class="ansi-green-intense-fg ansi-bold">      3</span> <span class="ansi-red-fg">#pdbs[266]</span>
-<span class="ansi-green-intense-fg ansi-bold">      4</span> <span class="ansi-red-fg">#pdbs[677]</span>
-
-<span class="ansi-red-fg">NameError</span>: name 'pdbs' is not defined
+'3e59'
 </pre></div></div>
 </div>
 </div>
 <div class="section" id="Convert-Nx-graphs-to-PyTorch-Geometric">
 <h2>Convert Nx graphs to PyTorch Geometric<a class="headerlink" href="#Convert-Nx-graphs-to-PyTorch-Geometric" title="Permalink to this headline">#</a></h2>
 <div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[6]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[8]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># NBVAL_SKIP</span>
@@ -821,80 +672,13 @@ div.rendered_html tbody tr:hover {
 <div class="nboutput nblast docutils container">
 <div class="prompt empty docutils container">
 </div>
-<div class="output_area docutils container">
+<div class="output_area stderr docutils container">
 <div class="highlight"><pre>
-<span class="ansi-red-fg">---------------------------------------------------------------------------</span>
-<span class="ansi-red-fg">OSError</span>                                   Traceback (most recent call last)
-<span class="ansi-green-fg">/var/folders/p1/0qtk6t_520n7k4bvk1p26l_w0000gn/T/ipykernel_80675/183652309.py</span> in <span class="ansi-cyan-fg">&lt;module&gt;</span>
-<span class="ansi-green-intense-fg ansi-bold">      1</span> <span class="ansi-red-fg"># NBVAL_SKIP</span>
-<span class="ansi-green-fg">----&gt; 2</span><span class="ansi-red-fg"> </span><span class="ansi-green-fg">from</span> graphein<span class="ansi-blue-fg">.</span>ml<span class="ansi-blue-fg">.</span>conversion <span class="ansi-green-fg">import</span> GraphFormatConvertor
-<span class="ansi-green-intense-fg ansi-bold">      3</span>
-<span class="ansi-green-intense-fg ansi-bold">      4</span> format_convertor = GraphFormatConvertor('nx', 'pyg',
-<span class="ansi-green-intense-fg ansi-bold">      5</span>                                         verbose <span class="ansi-blue-fg">=</span> <span class="ansi-blue-fg">'gnn'</span><span class="ansi-blue-fg">,</span>
-
-<span class="ansi-green-fg">~/github/graphein/graphein/ml/conversion.py</span> in <span class="ansi-cyan-fg">&lt;module&gt;</span>
-<span class="ansi-green-intense-fg ansi-bold">     10</span>
-<span class="ansi-green-intense-fg ansi-bold">     11</span> <span class="ansi-green-fg">try</span><span class="ansi-blue-fg">:</span>
-<span class="ansi-green-fg">---&gt; 12</span><span class="ansi-red-fg">     </span><span class="ansi-green-fg">from</span> torch_geometric<span class="ansi-blue-fg">.</span>data <span class="ansi-green-fg">import</span> Data
-<span class="ansi-green-intense-fg ansi-bold">     13</span> <span class="ansi-green-fg">except</span> ImportError<span class="ansi-blue-fg">:</span>
-<span class="ansi-green-intense-fg ansi-bold">     14</span>     import_message(
-
-<span class="ansi-green-fg">~/opt/anaconda3/envs/graphein-wip/lib/python3.8/site-packages/torch_geometric/__init__.py</span> in <span class="ansi-cyan-fg">&lt;module&gt;</span>
-<span class="ansi-green-intense-fg ansi-bold">      5</span> <span class="ansi-green-fg">from</span> <span class="ansi-blue-fg">.</span>debug <span class="ansi-green-fg">import</span> is_debug_enabled<span class="ansi-blue-fg">,</span> debug<span class="ansi-blue-fg">,</span> set_debug
-<span class="ansi-green-intense-fg ansi-bold">      6</span>
-<span class="ansi-green-fg">----&gt; 7</span><span class="ansi-red-fg"> </span><span class="ansi-green-fg">import</span> torch_geometric<span class="ansi-blue-fg">.</span>data
-<span class="ansi-green-intense-fg ansi-bold">      8</span> <span class="ansi-green-fg">import</span> torch_geometric<span class="ansi-blue-fg">.</span>loader
-<span class="ansi-green-intense-fg ansi-bold">      9</span> <span class="ansi-green-fg">import</span> torch_geometric<span class="ansi-blue-fg">.</span>transforms
-
-<span class="ansi-green-fg">~/opt/anaconda3/envs/graphein-wip/lib/python3.8/site-packages/torch_geometric/data/__init__.py</span> in <span class="ansi-cyan-fg">&lt;module&gt;</span>
-<span class="ansi-green-fg">----&gt; 1</span><span class="ansi-red-fg"> </span><span class="ansi-green-fg">from</span> <span class="ansi-blue-fg">.</span>data <span class="ansi-green-fg">import</span> Data
-<span class="ansi-green-intense-fg ansi-bold">      2</span> <span class="ansi-green-fg">from</span> <span class="ansi-blue-fg">.</span>hetero_data <span class="ansi-green-fg">import</span> HeteroData
-<span class="ansi-green-intense-fg ansi-bold">      3</span> <span class="ansi-green-fg">from</span> <span class="ansi-blue-fg">.</span>temporal <span class="ansi-green-fg">import</span> TemporalData
-<span class="ansi-green-intense-fg ansi-bold">      4</span> <span class="ansi-green-fg">from</span> <span class="ansi-blue-fg">.</span>batch <span class="ansi-green-fg">import</span> Batch
-<span class="ansi-green-intense-fg ansi-bold">      5</span> <span class="ansi-green-fg">from</span> <span class="ansi-blue-fg">.</span>dataset <span class="ansi-green-fg">import</span> Dataset
-
-<span class="ansi-green-fg">~/opt/anaconda3/envs/graphein-wip/lib/python3.8/site-packages/torch_geometric/data/data.py</span> in <span class="ansi-cyan-fg">&lt;module&gt;</span>
-<span class="ansi-green-intense-fg ansi-bold">      1</span> from typing import (Optional, Dict, Any, Union, List, Iterable, Tuple,
-<span class="ansi-green-intense-fg ansi-bold">      2</span>                     NamedTuple, Callable)
-<span class="ansi-green-fg">----&gt; 3</span><span class="ansi-red-fg"> </span><span class="ansi-green-fg">from</span> torch_geometric<span class="ansi-blue-fg">.</span>typing <span class="ansi-green-fg">import</span> OptTensor<span class="ansi-blue-fg">,</span> NodeType<span class="ansi-blue-fg">,</span> EdgeType
-<span class="ansi-green-intense-fg ansi-bold">      4</span> <span class="ansi-green-fg">from</span> torch_geometric<span class="ansi-blue-fg">.</span>deprecation <span class="ansi-green-fg">import</span> deprecated
-<span class="ansi-green-intense-fg ansi-bold">      5</span>
-
-<span class="ansi-green-fg">~/opt/anaconda3/envs/graphein-wip/lib/python3.8/site-packages/torch_geometric/typing.py</span> in <span class="ansi-cyan-fg">&lt;module&gt;</span>
-<span class="ansi-green-intense-fg ansi-bold">      2</span>
-<span class="ansi-green-intense-fg ansi-bold">      3</span> <span class="ansi-green-fg">from</span> torch <span class="ansi-green-fg">import</span> Tensor
-<span class="ansi-green-fg">----&gt; 4</span><span class="ansi-red-fg"> </span><span class="ansi-green-fg">from</span> torch_sparse <span class="ansi-green-fg">import</span> SparseTensor
-<span class="ansi-green-intense-fg ansi-bold">      5</span>
-<span class="ansi-green-intense-fg ansi-bold">      6</span> <span class="ansi-red-fg"># Types for accessing data ####################################################</span>
-
-<span class="ansi-green-fg">~/opt/anaconda3/envs/graphein-wip/lib/python3.8/site-packages/torch_sparse/__init__.py</span> in <span class="ansi-cyan-fg">&lt;module&gt;</span>
-<span class="ansi-green-intense-fg ansi-bold">     17</span>     spec <span class="ansi-blue-fg">=</span> cuda_spec <span class="ansi-green-fg">or</span> cpu_spec
-<span class="ansi-green-intense-fg ansi-bold">     18</span>     <span class="ansi-green-fg">if</span> spec <span class="ansi-green-fg">is</span> <span class="ansi-green-fg">not</span> <span class="ansi-green-fg">None</span><span class="ansi-blue-fg">:</span>
-<span class="ansi-green-fg">---&gt; 19</span><span class="ansi-red-fg">         </span>torch<span class="ansi-blue-fg">.</span>ops<span class="ansi-blue-fg">.</span>load_library<span class="ansi-blue-fg">(</span>spec<span class="ansi-blue-fg">.</span>origin<span class="ansi-blue-fg">)</span>
-<span class="ansi-green-intense-fg ansi-bold">     20</span>     <span class="ansi-green-fg">else</span><span class="ansi-blue-fg">:</span>  <span class="ansi-red-fg"># pragma: no cover</span>
-<span class="ansi-green-intense-fg ansi-bold">     21</span>         raise ImportError(f"Could not find module '{library}_cpu' in "
-
-<span class="ansi-green-fg">~/opt/anaconda3/envs/graphein-wip/lib/python3.8/site-packages/torch/_ops.py</span> in <span class="ansi-cyan-fg">load_library</span><span class="ansi-blue-fg">(self, path)</span>
-<span class="ansi-green-intense-fg ansi-bold">    102</span>             <span class="ansi-red-fg"># static (global) initialization code in order to register custom</span>
-<span class="ansi-green-intense-fg ansi-bold">    103</span>             <span class="ansi-red-fg"># operators with the JIT.</span>
-<span class="ansi-green-fg">--&gt; 104</span><span class="ansi-red-fg">             </span>ctypes<span class="ansi-blue-fg">.</span>CDLL<span class="ansi-blue-fg">(</span>path<span class="ansi-blue-fg">)</span>
-<span class="ansi-green-intense-fg ansi-bold">    105</span>         self<span class="ansi-blue-fg">.</span>loaded_libraries<span class="ansi-blue-fg">.</span>add<span class="ansi-blue-fg">(</span>path<span class="ansi-blue-fg">)</span>
-<span class="ansi-green-intense-fg ansi-bold">    106</span>
-
-<span class="ansi-green-fg">~/opt/anaconda3/envs/graphein-wip/lib/python3.8/ctypes/__init__.py</span> in <span class="ansi-cyan-fg">__init__</span><span class="ansi-blue-fg">(self, name, mode, handle, use_errno, use_last_error, winmode)</span>
-<span class="ansi-green-intense-fg ansi-bold">    371</span>
-<span class="ansi-green-intense-fg ansi-bold">    372</span>         <span class="ansi-green-fg">if</span> handle <span class="ansi-green-fg">is</span> <span class="ansi-green-fg">None</span><span class="ansi-blue-fg">:</span>
-<span class="ansi-green-fg">--&gt; 373</span><span class="ansi-red-fg">             </span>self<span class="ansi-blue-fg">.</span>_handle <span class="ansi-blue-fg">=</span> _dlopen<span class="ansi-blue-fg">(</span>self<span class="ansi-blue-fg">.</span>_name<span class="ansi-blue-fg">,</span> mode<span class="ansi-blue-fg">)</span>
-<span class="ansi-green-intense-fg ansi-bold">    374</span>         <span class="ansi-green-fg">else</span><span class="ansi-blue-fg">:</span>
-<span class="ansi-green-intense-fg ansi-bold">    375</span>             self<span class="ansi-blue-fg">.</span>_handle <span class="ansi-blue-fg">=</span> handle
-
-<span class="ansi-red-fg">OSError</span>: dlopen(/Users/arianjamasb/opt/anaconda3/envs/graphein-wip/lib/python3.8/site-packages/torch_sparse/_convert_cpu.so, 0x0006): Symbol not found: __ZN2at4_ops19empty_memory_format4callEN3c108ArrayRefIxEENS2_8optionalINS2_10ScalarTypeEEENS5_INS2_6LayoutEEENS5_INS2_6DeviceEEENS5_IbEENS5_INS2_12MemoryFormatEEE
-  Referenced from: /Users/arianjamasb/opt/anaconda3/envs/graphein-wip/lib/python3.8/site-packages/torch_sparse/_convert_cpu.so
-  Expected in: /Users/arianjamasb/opt/anaconda3/envs/graphein-wip/lib/python3.8/site-packages/torch/lib/libtorch_cpu.dylib
+Using backend: pytorch
 </pre></div></div>
 </div>
 <div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[7]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[9]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># NBVAL_SKIP</span>
@@ -906,10 +690,10 @@ div.rendered_html tbody tr:hover {
 <div class="prompt empty docutils container">
 </div>
 <div class="output_area docutils container">
-<script type="application/vnd.jupyter.widget-view+json">{"version_major": 2, "version_minor": 0, "model_id": "44897a3cb1eb4cc6a02b0e0a1301e721"}</script></div>
+<script type="application/vnd.jupyter.widget-view+json">{"model_id": "563bbc190d4944c9af056dce12eddd39", "version_major": 2, "version_minor": 0}</script></div>
 </div>
 <div class="nbinput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[8]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[10]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># NBVAL_SKIP</span>
@@ -919,8 +703,8 @@ div.rendered_html tbody tr:hover {
 </pre></div>
 </div>
 </div>
-<div class="nbinput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[9]:
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[11]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># NBVAL_SKIP</span>
@@ -933,11 +717,22 @@ div.rendered_html tbody tr:hover {
 </pre></div>
 </div>
 </div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+Data(coords=[10112, 3], dist_mat=[1], edge_index=[2, 120], name=[1], node_id=[1264], y=1)
+Data(coords=[820, 3], dist_mat=[1], edge_index=[2, 1431], name=[1], node_id=[808], y=2)
+Data(coords=[668, 3], dist_mat=[1], edge_index=[2, 1166], name=[1], node_id=[666], y=4)
+Data(coords=[2720, 3], dist_mat=[1], edge_index=[2, 3], name=[1], node_id=[340], y=5)
+</pre></div></div>
+</div>
 </div>
 <div class="section" id="Model-Configuration">
 <h2>Model Configuration<a class="headerlink" href="#Model-Configuration" title="Permalink to this headline">#</a></h2>
 <div class="nbinput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[10]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[32]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># NBVAL_SKIP</span>
@@ -966,8 +761,8 @@ div.rendered_html tbody tr:hover {
 </div>
 <div class="section" id="Construct-DataLoaders">
 <h2>Construct DataLoaders<a class="headerlink" href="#Construct-DataLoaders" title="Permalink to this headline">#</a></h2>
-<div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[11]:
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[33]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># NBVAL_SKIP</span>
@@ -986,76 +781,8 @@ div.rendered_html tbody tr:hover {
 </pre></div>
 </div>
 </div>
-<div class="nboutput nblast docutils container">
-<div class="prompt empty docutils container">
-</div>
-<div class="output_area docutils container">
-<div class="highlight"><pre>
-<span class="ansi-red-fg">---------------------------------------------------------------------------</span>
-<span class="ansi-red-fg">OSError</span>                                   Traceback (most recent call last)
-<span class="ansi-green-fg">/var/folders/p1/0qtk6t_520n7k4bvk1p26l_w0000gn/T/ipykernel_80675/1105335476.py</span> in <span class="ansi-cyan-fg">&lt;module&gt;</span>
-<span class="ansi-green-intense-fg ansi-bold">      8</span> train<span class="ansi-blue-fg">,</span> valid<span class="ansi-blue-fg">,</span> test <span class="ansi-blue-fg">=</span> <span class="ansi-blue-fg">[</span>pyg_list<span class="ansi-blue-fg">[</span>i<span class="ansi-blue-fg">]</span> <span class="ansi-green-fg">for</span> i <span class="ansi-green-fg">in</span> train_idx<span class="ansi-blue-fg">]</span><span class="ansi-blue-fg">,</span> <span class="ansi-blue-fg">[</span>pyg_list<span class="ansi-blue-fg">[</span>i<span class="ansi-blue-fg">]</span> <span class="ansi-green-fg">for</span> i <span class="ansi-green-fg">in</span> valid_idx<span class="ansi-blue-fg">]</span><span class="ansi-blue-fg">,</span> <span class="ansi-blue-fg">[</span>pyg_list<span class="ansi-blue-fg">[</span>i<span class="ansi-blue-fg">]</span> <span class="ansi-green-fg">for</span> i <span class="ansi-green-fg">in</span> test_idx<span class="ansi-blue-fg">]</span>
-<span class="ansi-green-intense-fg ansi-bold">      9</span>
-<span class="ansi-green-fg">---&gt; 10</span><span class="ansi-red-fg"> </span><span class="ansi-green-fg">from</span> torch_geometric<span class="ansi-blue-fg">.</span>data <span class="ansi-green-fg">import</span> DataLoader
-<span class="ansi-green-intense-fg ansi-bold">     11</span> train_loader <span class="ansi-blue-fg">=</span> DataLoader<span class="ansi-blue-fg">(</span>train<span class="ansi-blue-fg">,</span> batch_size<span class="ansi-blue-fg">=</span>config<span class="ansi-blue-fg">.</span>batch_size<span class="ansi-blue-fg">,</span> shuffle <span class="ansi-blue-fg">=</span> <span class="ansi-green-fg">True</span><span class="ansi-blue-fg">,</span> drop_last <span class="ansi-blue-fg">=</span> <span class="ansi-green-fg">True</span><span class="ansi-blue-fg">)</span>
-<span class="ansi-green-intense-fg ansi-bold">     12</span> valid_loader <span class="ansi-blue-fg">=</span> DataLoader<span class="ansi-blue-fg">(</span>valid<span class="ansi-blue-fg">,</span> batch_size<span class="ansi-blue-fg">=</span><span class="ansi-cyan-fg">32</span><span class="ansi-blue-fg">)</span>
-
-<span class="ansi-green-fg">~/opt/anaconda3/envs/graphein-wip/lib/python3.8/site-packages/torch_geometric/__init__.py</span> in <span class="ansi-cyan-fg">&lt;module&gt;</span>
-<span class="ansi-green-intense-fg ansi-bold">      5</span> <span class="ansi-green-fg">from</span> <span class="ansi-blue-fg">.</span>debug <span class="ansi-green-fg">import</span> is_debug_enabled<span class="ansi-blue-fg">,</span> debug<span class="ansi-blue-fg">,</span> set_debug
-<span class="ansi-green-intense-fg ansi-bold">      6</span>
-<span class="ansi-green-fg">----&gt; 7</span><span class="ansi-red-fg"> </span><span class="ansi-green-fg">import</span> torch_geometric<span class="ansi-blue-fg">.</span>data
-<span class="ansi-green-intense-fg ansi-bold">      8</span> <span class="ansi-green-fg">import</span> torch_geometric<span class="ansi-blue-fg">.</span>loader
-<span class="ansi-green-intense-fg ansi-bold">      9</span> <span class="ansi-green-fg">import</span> torch_geometric<span class="ansi-blue-fg">.</span>transforms
-
-<span class="ansi-green-fg">~/opt/anaconda3/envs/graphein-wip/lib/python3.8/site-packages/torch_geometric/data/__init__.py</span> in <span class="ansi-cyan-fg">&lt;module&gt;</span>
-<span class="ansi-green-fg">----&gt; 1</span><span class="ansi-red-fg"> </span><span class="ansi-green-fg">from</span> <span class="ansi-blue-fg">.</span>data <span class="ansi-green-fg">import</span> Data
-<span class="ansi-green-intense-fg ansi-bold">      2</span> <span class="ansi-green-fg">from</span> <span class="ansi-blue-fg">.</span>hetero_data <span class="ansi-green-fg">import</span> HeteroData
-<span class="ansi-green-intense-fg ansi-bold">      3</span> <span class="ansi-green-fg">from</span> <span class="ansi-blue-fg">.</span>temporal <span class="ansi-green-fg">import</span> TemporalData
-<span class="ansi-green-intense-fg ansi-bold">      4</span> <span class="ansi-green-fg">from</span> <span class="ansi-blue-fg">.</span>batch <span class="ansi-green-fg">import</span> Batch
-<span class="ansi-green-intense-fg ansi-bold">      5</span> <span class="ansi-green-fg">from</span> <span class="ansi-blue-fg">.</span>dataset <span class="ansi-green-fg">import</span> Dataset
-
-<span class="ansi-green-fg">~/opt/anaconda3/envs/graphein-wip/lib/python3.8/site-packages/torch_geometric/data/data.py</span> in <span class="ansi-cyan-fg">&lt;module&gt;</span>
-<span class="ansi-green-intense-fg ansi-bold">      1</span> from typing import (Optional, Dict, Any, Union, List, Iterable, Tuple,
-<span class="ansi-green-intense-fg ansi-bold">      2</span>                     NamedTuple, Callable)
-<span class="ansi-green-fg">----&gt; 3</span><span class="ansi-red-fg"> </span><span class="ansi-green-fg">from</span> torch_geometric<span class="ansi-blue-fg">.</span>typing <span class="ansi-green-fg">import</span> OptTensor<span class="ansi-blue-fg">,</span> NodeType<span class="ansi-blue-fg">,</span> EdgeType
-<span class="ansi-green-intense-fg ansi-bold">      4</span> <span class="ansi-green-fg">from</span> torch_geometric<span class="ansi-blue-fg">.</span>deprecation <span class="ansi-green-fg">import</span> deprecated
-<span class="ansi-green-intense-fg ansi-bold">      5</span>
-
-<span class="ansi-green-fg">~/opt/anaconda3/envs/graphein-wip/lib/python3.8/site-packages/torch_geometric/typing.py</span> in <span class="ansi-cyan-fg">&lt;module&gt;</span>
-<span class="ansi-green-intense-fg ansi-bold">      2</span>
-<span class="ansi-green-intense-fg ansi-bold">      3</span> <span class="ansi-green-fg">from</span> torch <span class="ansi-green-fg">import</span> Tensor
-<span class="ansi-green-fg">----&gt; 4</span><span class="ansi-red-fg"> </span><span class="ansi-green-fg">from</span> torch_sparse <span class="ansi-green-fg">import</span> SparseTensor
-<span class="ansi-green-intense-fg ansi-bold">      5</span>
-<span class="ansi-green-intense-fg ansi-bold">      6</span> <span class="ansi-red-fg"># Types for accessing data ####################################################</span>
-
-<span class="ansi-green-fg">~/opt/anaconda3/envs/graphein-wip/lib/python3.8/site-packages/torch_sparse/__init__.py</span> in <span class="ansi-cyan-fg">&lt;module&gt;</span>
-<span class="ansi-green-intense-fg ansi-bold">     17</span>     spec <span class="ansi-blue-fg">=</span> cuda_spec <span class="ansi-green-fg">or</span> cpu_spec
-<span class="ansi-green-intense-fg ansi-bold">     18</span>     <span class="ansi-green-fg">if</span> spec <span class="ansi-green-fg">is</span> <span class="ansi-green-fg">not</span> <span class="ansi-green-fg">None</span><span class="ansi-blue-fg">:</span>
-<span class="ansi-green-fg">---&gt; 19</span><span class="ansi-red-fg">         </span>torch<span class="ansi-blue-fg">.</span>ops<span class="ansi-blue-fg">.</span>load_library<span class="ansi-blue-fg">(</span>spec<span class="ansi-blue-fg">.</span>origin<span class="ansi-blue-fg">)</span>
-<span class="ansi-green-intense-fg ansi-bold">     20</span>     <span class="ansi-green-fg">else</span><span class="ansi-blue-fg">:</span>  <span class="ansi-red-fg"># pragma: no cover</span>
-<span class="ansi-green-intense-fg ansi-bold">     21</span>         raise ImportError(f"Could not find module '{library}_cpu' in "
-
-<span class="ansi-green-fg">~/opt/anaconda3/envs/graphein-wip/lib/python3.8/site-packages/torch/_ops.py</span> in <span class="ansi-cyan-fg">load_library</span><span class="ansi-blue-fg">(self, path)</span>
-<span class="ansi-green-intense-fg ansi-bold">    102</span>             <span class="ansi-red-fg"># static (global) initialization code in order to register custom</span>
-<span class="ansi-green-intense-fg ansi-bold">    103</span>             <span class="ansi-red-fg"># operators with the JIT.</span>
-<span class="ansi-green-fg">--&gt; 104</span><span class="ansi-red-fg">             </span>ctypes<span class="ansi-blue-fg">.</span>CDLL<span class="ansi-blue-fg">(</span>path<span class="ansi-blue-fg">)</span>
-<span class="ansi-green-intense-fg ansi-bold">    105</span>         self<span class="ansi-blue-fg">.</span>loaded_libraries<span class="ansi-blue-fg">.</span>add<span class="ansi-blue-fg">(</span>path<span class="ansi-blue-fg">)</span>
-<span class="ansi-green-intense-fg ansi-bold">    106</span>
-
-<span class="ansi-green-fg">~/opt/anaconda3/envs/graphein-wip/lib/python3.8/ctypes/__init__.py</span> in <span class="ansi-cyan-fg">__init__</span><span class="ansi-blue-fg">(self, name, mode, handle, use_errno, use_last_error, winmode)</span>
-<span class="ansi-green-intense-fg ansi-bold">    371</span>
-<span class="ansi-green-intense-fg ansi-bold">    372</span>         <span class="ansi-green-fg">if</span> handle <span class="ansi-green-fg">is</span> <span class="ansi-green-fg">None</span><span class="ansi-blue-fg">:</span>
-<span class="ansi-green-fg">--&gt; 373</span><span class="ansi-red-fg">             </span>self<span class="ansi-blue-fg">.</span>_handle <span class="ansi-blue-fg">=</span> _dlopen<span class="ansi-blue-fg">(</span>self<span class="ansi-blue-fg">.</span>_name<span class="ansi-blue-fg">,</span> mode<span class="ansi-blue-fg">)</span>
-<span class="ansi-green-intense-fg ansi-bold">    374</span>         <span class="ansi-green-fg">else</span><span class="ansi-blue-fg">:</span>
-<span class="ansi-green-intense-fg ansi-bold">    375</span>             self<span class="ansi-blue-fg">.</span>_handle <span class="ansi-blue-fg">=</span> handle
-
-<span class="ansi-red-fg">OSError</span>: dlopen(/Users/arianjamasb/opt/anaconda3/envs/graphein-wip/lib/python3.8/site-packages/torch_sparse/_convert_cpu.so, 0x0006): Symbol not found: __ZN2at4_ops19empty_memory_format4callEN3c108ArrayRefIxEENS2_8optionalINS2_10ScalarTypeEEENS5_INS2_6LayoutEEENS5_INS2_6DeviceEEENS5_IbEENS5_INS2_12MemoryFormatEEE
-  Referenced from: /Users/arianjamasb/opt/anaconda3/envs/graphein-wip/lib/python3.8/site-packages/torch_sparse/_convert_cpu.so
-  Expected in: /Users/arianjamasb/opt/anaconda3/envs/graphein-wip/lib/python3.8/site-packages/torch/lib/libtorch_cpu.dylib
-</pre></div></div>
-</div>
 <div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[12]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[34]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># NBVAL_SKIP</span>
@@ -1064,24 +791,19 @@ div.rendered_html tbody tr:hover {
 </div>
 </div>
 <div class="nboutput nblast docutils container">
-<div class="prompt empty docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[34]:
+</pre></div>
 </div>
 <div class="output_area docutils container">
 <div class="highlight"><pre>
-<span class="ansi-red-fg">---------------------------------------------------------------------------</span>
-<span class="ansi-red-fg">IndexError</span>                                Traceback (most recent call last)
-<span class="ansi-green-fg">/var/folders/p1/0qtk6t_520n7k4bvk1p26l_w0000gn/T/ipykernel_80675/3365283643.py</span> in <span class="ansi-cyan-fg">&lt;module&gt;</span>
-<span class="ansi-green-intense-fg ansi-bold">      1</span> <span class="ansi-red-fg"># NBVAL_SKIP</span>
-<span class="ansi-green-fg">----&gt; 2</span><span class="ansi-red-fg"> </span>pyg_list<span class="ansi-blue-fg">[</span><span class="ansi-cyan-fg">0</span><span class="ansi-blue-fg">]</span>
-
-<span class="ansi-red-fg">IndexError</span>: list index out of range
+Data(coords=[635, 3], dist_mat=[1], edge_index=[2, 1118], name=[1], node_id=[635], y=1)
 </pre></div></div>
 </div>
 </div>
 <div class="section" id="Define-Model">
 <h2>Define Model<a class="headerlink" href="#Define-Model" title="Permalink to this headline">#</a></h2>
-<div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[13]:
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[35]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># NBVAL_SKIP</span>
@@ -1092,76 +814,8 @@ div.rendered_html tbody tr:hover {
 </pre></div>
 </div>
 </div>
-<div class="nboutput nblast docutils container">
-<div class="prompt empty docutils container">
-</div>
-<div class="output_area docutils container">
-<div class="highlight"><pre>
-<span class="ansi-red-fg">---------------------------------------------------------------------------</span>
-<span class="ansi-red-fg">OSError</span>                                   Traceback (most recent call last)
-<span class="ansi-green-fg">/var/folders/p1/0qtk6t_520n7k4bvk1p26l_w0000gn/T/ipykernel_80675/1060456127.py</span> in <span class="ansi-cyan-fg">&lt;module&gt;</span>
-<span class="ansi-green-intense-fg ansi-bold">      1</span> <span class="ansi-red-fg"># NBVAL_SKIP</span>
-<span class="ansi-green-fg">----&gt; 2</span><span class="ansi-red-fg"> </span><span class="ansi-green-fg">from</span> torch_geometric<span class="ansi-blue-fg">.</span>nn <span class="ansi-green-fg">import</span> GCNConv<span class="ansi-blue-fg">,</span> GATConv<span class="ansi-blue-fg">,</span> SAGEConv<span class="ansi-blue-fg">,</span> global_add_pool
-<span class="ansi-green-intense-fg ansi-bold">      3</span> <span class="ansi-green-fg">from</span> torch<span class="ansi-blue-fg">.</span>nn<span class="ansi-blue-fg">.</span>functional <span class="ansi-green-fg">import</span> mse_loss<span class="ansi-blue-fg">,</span> nll_loss<span class="ansi-blue-fg">,</span> relu<span class="ansi-blue-fg">,</span> softmax<span class="ansi-blue-fg">,</span> cross_entropy
-<span class="ansi-green-intense-fg ansi-bold">      4</span> <span class="ansi-green-fg">from</span> torch<span class="ansi-blue-fg">.</span>nn <span class="ansi-green-fg">import</span> functional <span class="ansi-green-fg">as</span> F
-<span class="ansi-green-intense-fg ansi-bold">      5</span> <span class="ansi-green-fg">from</span> pytorch_lightning<span class="ansi-blue-fg">.</span>metrics<span class="ansi-blue-fg">.</span>functional <span class="ansi-green-fg">import</span> accuracy
-
-<span class="ansi-green-fg">~/opt/anaconda3/envs/graphein-wip/lib/python3.8/site-packages/torch_geometric/__init__.py</span> in <span class="ansi-cyan-fg">&lt;module&gt;</span>
-<span class="ansi-green-intense-fg ansi-bold">      5</span> <span class="ansi-green-fg">from</span> <span class="ansi-blue-fg">.</span>debug <span class="ansi-green-fg">import</span> is_debug_enabled<span class="ansi-blue-fg">,</span> debug<span class="ansi-blue-fg">,</span> set_debug
-<span class="ansi-green-intense-fg ansi-bold">      6</span>
-<span class="ansi-green-fg">----&gt; 7</span><span class="ansi-red-fg"> </span><span class="ansi-green-fg">import</span> torch_geometric<span class="ansi-blue-fg">.</span>data
-<span class="ansi-green-intense-fg ansi-bold">      8</span> <span class="ansi-green-fg">import</span> torch_geometric<span class="ansi-blue-fg">.</span>loader
-<span class="ansi-green-intense-fg ansi-bold">      9</span> <span class="ansi-green-fg">import</span> torch_geometric<span class="ansi-blue-fg">.</span>transforms
-
-<span class="ansi-green-fg">~/opt/anaconda3/envs/graphein-wip/lib/python3.8/site-packages/torch_geometric/data/__init__.py</span> in <span class="ansi-cyan-fg">&lt;module&gt;</span>
-<span class="ansi-green-fg">----&gt; 1</span><span class="ansi-red-fg"> </span><span class="ansi-green-fg">from</span> <span class="ansi-blue-fg">.</span>data <span class="ansi-green-fg">import</span> Data
-<span class="ansi-green-intense-fg ansi-bold">      2</span> <span class="ansi-green-fg">from</span> <span class="ansi-blue-fg">.</span>hetero_data <span class="ansi-green-fg">import</span> HeteroData
-<span class="ansi-green-intense-fg ansi-bold">      3</span> <span class="ansi-green-fg">from</span> <span class="ansi-blue-fg">.</span>temporal <span class="ansi-green-fg">import</span> TemporalData
-<span class="ansi-green-intense-fg ansi-bold">      4</span> <span class="ansi-green-fg">from</span> <span class="ansi-blue-fg">.</span>batch <span class="ansi-green-fg">import</span> Batch
-<span class="ansi-green-intense-fg ansi-bold">      5</span> <span class="ansi-green-fg">from</span> <span class="ansi-blue-fg">.</span>dataset <span class="ansi-green-fg">import</span> Dataset
-
-<span class="ansi-green-fg">~/opt/anaconda3/envs/graphein-wip/lib/python3.8/site-packages/torch_geometric/data/data.py</span> in <span class="ansi-cyan-fg">&lt;module&gt;</span>
-<span class="ansi-green-intense-fg ansi-bold">      1</span> from typing import (Optional, Dict, Any, Union, List, Iterable, Tuple,
-<span class="ansi-green-intense-fg ansi-bold">      2</span>                     NamedTuple, Callable)
-<span class="ansi-green-fg">----&gt; 3</span><span class="ansi-red-fg"> </span><span class="ansi-green-fg">from</span> torch_geometric<span class="ansi-blue-fg">.</span>typing <span class="ansi-green-fg">import</span> OptTensor<span class="ansi-blue-fg">,</span> NodeType<span class="ansi-blue-fg">,</span> EdgeType
-<span class="ansi-green-intense-fg ansi-bold">      4</span> <span class="ansi-green-fg">from</span> torch_geometric<span class="ansi-blue-fg">.</span>deprecation <span class="ansi-green-fg">import</span> deprecated
-<span class="ansi-green-intense-fg ansi-bold">      5</span>
-
-<span class="ansi-green-fg">~/opt/anaconda3/envs/graphein-wip/lib/python3.8/site-packages/torch_geometric/typing.py</span> in <span class="ansi-cyan-fg">&lt;module&gt;</span>
-<span class="ansi-green-intense-fg ansi-bold">      2</span>
-<span class="ansi-green-intense-fg ansi-bold">      3</span> <span class="ansi-green-fg">from</span> torch <span class="ansi-green-fg">import</span> Tensor
-<span class="ansi-green-fg">----&gt; 4</span><span class="ansi-red-fg"> </span><span class="ansi-green-fg">from</span> torch_sparse <span class="ansi-green-fg">import</span> SparseTensor
-<span class="ansi-green-intense-fg ansi-bold">      5</span>
-<span class="ansi-green-intense-fg ansi-bold">      6</span> <span class="ansi-red-fg"># Types for accessing data ####################################################</span>
-
-<span class="ansi-green-fg">~/opt/anaconda3/envs/graphein-wip/lib/python3.8/site-packages/torch_sparse/__init__.py</span> in <span class="ansi-cyan-fg">&lt;module&gt;</span>
-<span class="ansi-green-intense-fg ansi-bold">     17</span>     spec <span class="ansi-blue-fg">=</span> cuda_spec <span class="ansi-green-fg">or</span> cpu_spec
-<span class="ansi-green-intense-fg ansi-bold">     18</span>     <span class="ansi-green-fg">if</span> spec <span class="ansi-green-fg">is</span> <span class="ansi-green-fg">not</span> <span class="ansi-green-fg">None</span><span class="ansi-blue-fg">:</span>
-<span class="ansi-green-fg">---&gt; 19</span><span class="ansi-red-fg">         </span>torch<span class="ansi-blue-fg">.</span>ops<span class="ansi-blue-fg">.</span>load_library<span class="ansi-blue-fg">(</span>spec<span class="ansi-blue-fg">.</span>origin<span class="ansi-blue-fg">)</span>
-<span class="ansi-green-intense-fg ansi-bold">     20</span>     <span class="ansi-green-fg">else</span><span class="ansi-blue-fg">:</span>  <span class="ansi-red-fg"># pragma: no cover</span>
-<span class="ansi-green-intense-fg ansi-bold">     21</span>         raise ImportError(f"Could not find module '{library}_cpu' in "
-
-<span class="ansi-green-fg">~/opt/anaconda3/envs/graphein-wip/lib/python3.8/site-packages/torch/_ops.py</span> in <span class="ansi-cyan-fg">load_library</span><span class="ansi-blue-fg">(self, path)</span>
-<span class="ansi-green-intense-fg ansi-bold">    102</span>             <span class="ansi-red-fg"># static (global) initialization code in order to register custom</span>
-<span class="ansi-green-intense-fg ansi-bold">    103</span>             <span class="ansi-red-fg"># operators with the JIT.</span>
-<span class="ansi-green-fg">--&gt; 104</span><span class="ansi-red-fg">             </span>ctypes<span class="ansi-blue-fg">.</span>CDLL<span class="ansi-blue-fg">(</span>path<span class="ansi-blue-fg">)</span>
-<span class="ansi-green-intense-fg ansi-bold">    105</span>         self<span class="ansi-blue-fg">.</span>loaded_libraries<span class="ansi-blue-fg">.</span>add<span class="ansi-blue-fg">(</span>path<span class="ansi-blue-fg">)</span>
-<span class="ansi-green-intense-fg ansi-bold">    106</span>
-
-<span class="ansi-green-fg">~/opt/anaconda3/envs/graphein-wip/lib/python3.8/ctypes/__init__.py</span> in <span class="ansi-cyan-fg">__init__</span><span class="ansi-blue-fg">(self, name, mode, handle, use_errno, use_last_error, winmode)</span>
-<span class="ansi-green-intense-fg ansi-bold">    371</span>
-<span class="ansi-green-intense-fg ansi-bold">    372</span>         <span class="ansi-green-fg">if</span> handle <span class="ansi-green-fg">is</span> <span class="ansi-green-fg">None</span><span class="ansi-blue-fg">:</span>
-<span class="ansi-green-fg">--&gt; 373</span><span class="ansi-red-fg">             </span>self<span class="ansi-blue-fg">.</span>_handle <span class="ansi-blue-fg">=</span> _dlopen<span class="ansi-blue-fg">(</span>self<span class="ansi-blue-fg">.</span>_name<span class="ansi-blue-fg">,</span> mode<span class="ansi-blue-fg">)</span>
-<span class="ansi-green-intense-fg ansi-bold">    374</span>         <span class="ansi-green-fg">else</span><span class="ansi-blue-fg">:</span>
-<span class="ansi-green-intense-fg ansi-bold">    375</span>             self<span class="ansi-blue-fg">.</span>_handle <span class="ansi-blue-fg">=</span> handle
-
-<span class="ansi-red-fg">OSError</span>: dlopen(/Users/arianjamasb/opt/anaconda3/envs/graphein-wip/lib/python3.8/site-packages/torch_sparse/_convert_cpu.so, 0x0006): Symbol not found: __ZN2at4_ops19empty_memory_format4callEN3c108ArrayRefIxEENS2_8optionalINS2_10ScalarTypeEEENS5_INS2_6LayoutEEENS5_INS2_6DeviceEEENS5_IbEENS5_INS2_12MemoryFormatEEE
-  Referenced from: /Users/arianjamasb/opt/anaconda3/envs/graphein-wip/lib/python3.8/site-packages/torch_sparse/_convert_cpu.so
-  Expected in: /Users/arianjamasb/opt/anaconda3/envs/graphein-wip/lib/python3.8/site-packages/torch/lib/libtorch_cpu.dylib
-</pre></div></div>
-</div>
 <div class="nbinput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[14]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[36]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># NBVAL_SKIP</span>
@@ -1236,7 +890,7 @@ div.rendered_html tbody tr:hover {
 </div>
 </div>
 <div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[15]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[37]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># NBVAL_SKIP</span>
@@ -1245,28 +899,20 @@ div.rendered_html tbody tr:hover {
 </div>
 </div>
 <div class="nboutput nblast docutils container">
-<div class="prompt empty docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[37]:
+</pre></div>
 </div>
 <div class="output_area docutils container">
 <div class="highlight"><pre>
-<span class="ansi-red-fg">---------------------------------------------------------------------------</span>
-<span class="ansi-red-fg">NameError</span>                                 Traceback (most recent call last)
-<span class="ansi-green-fg">/var/folders/p1/0qtk6t_520n7k4bvk1p26l_w0000gn/T/ipykernel_80675/3158481479.py</span> in <span class="ansi-cyan-fg">&lt;module&gt;</span>
-<span class="ansi-green-intense-fg ansi-bold">      1</span> <span class="ansi-red-fg"># NBVAL_SKIP</span>
-<span class="ansi-green-fg">----&gt; 2</span><span class="ansi-red-fg"> </span>GraphNets<span class="ansi-blue-fg">(</span><span class="ansi-blue-fg">)</span>
-
-<span class="ansi-green-fg">/var/folders/p1/0qtk6t_520n7k4bvk1p26l_w0000gn/T/ipykernel_80675/3508986430.py</span> in <span class="ansi-cyan-fg">__init__</span><span class="ansi-blue-fg">(self)</span>
-<span class="ansi-green-intense-fg ansi-bold">      5</span>
-<span class="ansi-green-intense-fg ansi-bold">      6</span>         <span class="ansi-green-fg">if</span> model_name <span class="ansi-blue-fg">==</span> <span class="ansi-blue-fg">'GCN'</span><span class="ansi-blue-fg">:</span>
-<span class="ansi-green-fg">----&gt; 7</span><span class="ansi-red-fg">             </span>self<span class="ansi-blue-fg">.</span>layer1 <span class="ansi-blue-fg">=</span> GCNConv<span class="ansi-blue-fg">(</span>in_channels<span class="ansi-blue-fg">=</span><span class="ansi-cyan-fg">3</span><span class="ansi-blue-fg">,</span> out_channels<span class="ansi-blue-fg">=</span>config<span class="ansi-blue-fg">.</span>n_hid<span class="ansi-blue-fg">)</span>
-<span class="ansi-green-intense-fg ansi-bold">      8</span>             self<span class="ansi-blue-fg">.</span>layer2 <span class="ansi-blue-fg">=</span> GCNConv<span class="ansi-blue-fg">(</span>in_channels<span class="ansi-blue-fg">=</span>config<span class="ansi-blue-fg">.</span>n_hid<span class="ansi-blue-fg">,</span> out_channels<span class="ansi-blue-fg">=</span>config<span class="ansi-blue-fg">.</span>n_out<span class="ansi-blue-fg">)</span>
-<span class="ansi-green-intense-fg ansi-bold">      9</span>
-
-<span class="ansi-red-fg">NameError</span>: name 'GCNConv' is not defined
+GraphNets(
+  (layer1): GCNConv(3, 8)
+  (layer2): GCNConv(8, 8)
+  (decoder): Linear(in_features=8, out_features=7, bias=True)
+)
 </pre></div></div>
 </div>
 <div class="nbinput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[16]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[40]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># NBVAL_SKIP</span>
@@ -1291,7 +937,7 @@ div.rendered_html tbody tr:hover {
 <div class="section" id="Train!">
 <h2>Train!<a class="headerlink" href="#Train!" title="Permalink to this headline">#</a></h2>
 <div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[17]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[41]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># NBVAL_SKIP</span>
@@ -1306,33 +952,124 @@ div.rendered_html tbody tr:hover {
 </pre></div>
 </div>
 </div>
+<div class="nboutput docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area stderr docutils container">
+<div class="highlight"><pre>
+GPU available: True, used: True
+TPU available: False, using: 0 TPU cores
+IPU available: False, using: 0 IPUs
+LOCAL_RANK: 0 - CUDA_VISIBLE_DEVICES: [0,1]
+Traceback (most recent call last):
+  File "&lt;string&gt;", line 1, in &lt;module&gt;
+  File "/home/atj39/anaconda3/envs/graphein-dev/lib/python3.8/multiprocessing/spawn.py", line 116, in spawn_main
+    exitcode = _main(fd, parent_sentinel)
+  File "/home/atj39/anaconda3/envs/graphein-dev/lib/python3.8/multiprocessing/spawn.py", line 126, in _main
+    self = reduction.pickle.load(from_parent)
+AttributeError: Can't get attribute 'GraphNets' on &lt;module '__main__' (built-in)&gt;
+</pre></div></div>
+</div>
 <div class="nboutput nblast docutils container">
 <div class="prompt empty docutils container">
 </div>
 <div class="output_area docutils container">
 <div class="highlight"><pre>
 <span class="ansi-red-fg">---------------------------------------------------------------------------</span>
-<span class="ansi-red-fg">NameError</span>                                 Traceback (most recent call last)
-<span class="ansi-green-fg">/var/folders/p1/0qtk6t_520n7k4bvk1p26l_w0000gn/T/ipykernel_80675/2011870372.py</span> in <span class="ansi-cyan-fg">&lt;module&gt;</span>
-<span class="ansi-green-intense-fg ansi-bold">      1</span> <span class="ansi-red-fg"># NBVAL_SKIP</span>
-<span class="ansi-green-intense-fg ansi-bold">      2</span> <span class="ansi-red-fg"># Train Model</span>
-<span class="ansi-green-fg">----&gt; 3</span><span class="ansi-red-fg"> </span>model <span class="ansi-blue-fg">=</span> GraphNets<span class="ansi-blue-fg">(</span><span class="ansi-blue-fg">)</span>
-<span class="ansi-green-intense-fg ansi-bold">      4</span> trainer <span class="ansi-blue-fg">=</span> pl<span class="ansi-blue-fg">.</span>Trainer<span class="ansi-blue-fg">(</span>max_epochs<span class="ansi-blue-fg">=</span><span class="ansi-cyan-fg">200</span><span class="ansi-blue-fg">,</span> gpus<span class="ansi-blue-fg">=</span><span class="ansi-blue-fg">-</span><span class="ansi-cyan-fg">1</span><span class="ansi-blue-fg">,</span> callbacks<span class="ansi-blue-fg">=</span><span class="ansi-blue-fg">[</span>checkpoint_callback<span class="ansi-blue-fg">]</span><span class="ansi-blue-fg">)</span>
-<span class="ansi-green-intense-fg ansi-bold">      5</span> trainer<span class="ansi-blue-fg">.</span>fit<span class="ansi-blue-fg">(</span>model<span class="ansi-blue-fg">,</span> train_loader<span class="ansi-blue-fg">,</span> valid_loader<span class="ansi-blue-fg">)</span>
-
-<span class="ansi-green-fg">/var/folders/p1/0qtk6t_520n7k4bvk1p26l_w0000gn/T/ipykernel_80675/3508986430.py</span> in <span class="ansi-cyan-fg">__init__</span><span class="ansi-blue-fg">(self)</span>
+<span class="ansi-red-fg">KeyboardInterrupt</span>                         Traceback (most recent call last)
+<span class="ansi-green-fg">/tmp/ipykernel_3426530/3685191286.py</span> in <span class="ansi-cyan-fg">&lt;module&gt;</span>
+<span class="ansi-green-intense-fg ansi-bold">      2</span> model <span class="ansi-blue-fg">=</span> GraphNets<span class="ansi-blue-fg">(</span><span class="ansi-blue-fg">)</span>
+<span class="ansi-green-intense-fg ansi-bold">      3</span> trainer <span class="ansi-blue-fg">=</span> pl<span class="ansi-blue-fg">.</span>Trainer<span class="ansi-blue-fg">(</span>max_epochs<span class="ansi-blue-fg">=</span><span class="ansi-cyan-fg">200</span><span class="ansi-blue-fg">,</span> gpus<span class="ansi-blue-fg">=</span><span class="ansi-blue-fg">-</span><span class="ansi-cyan-fg">1</span><span class="ansi-blue-fg">,</span> callbacks<span class="ansi-blue-fg">=</span><span class="ansi-blue-fg">[</span>checkpoint_callback<span class="ansi-blue-fg">]</span><span class="ansi-blue-fg">)</span>
+<span class="ansi-green-fg">----&gt; 4</span><span class="ansi-red-fg"> </span>trainer<span class="ansi-blue-fg">.</span>fit<span class="ansi-blue-fg">(</span>model<span class="ansi-blue-fg">,</span> train_loader<span class="ansi-blue-fg">,</span> valid_loader<span class="ansi-blue-fg">)</span>
 <span class="ansi-green-intense-fg ansi-bold">      5</span>
-<span class="ansi-green-intense-fg ansi-bold">      6</span>         <span class="ansi-green-fg">if</span> model_name <span class="ansi-blue-fg">==</span> <span class="ansi-blue-fg">'GCN'</span><span class="ansi-blue-fg">:</span>
-<span class="ansi-green-fg">----&gt; 7</span><span class="ansi-red-fg">             </span>self<span class="ansi-blue-fg">.</span>layer1 <span class="ansi-blue-fg">=</span> GCNConv<span class="ansi-blue-fg">(</span>in_channels<span class="ansi-blue-fg">=</span><span class="ansi-cyan-fg">3</span><span class="ansi-blue-fg">,</span> out_channels<span class="ansi-blue-fg">=</span>config<span class="ansi-blue-fg">.</span>n_hid<span class="ansi-blue-fg">)</span>
-<span class="ansi-green-intense-fg ansi-bold">      8</span>             self<span class="ansi-blue-fg">.</span>layer2 <span class="ansi-blue-fg">=</span> GCNConv<span class="ansi-blue-fg">(</span>in_channels<span class="ansi-blue-fg">=</span>config<span class="ansi-blue-fg">.</span>n_hid<span class="ansi-blue-fg">,</span> out_channels<span class="ansi-blue-fg">=</span>config<span class="ansi-blue-fg">.</span>n_out<span class="ansi-blue-fg">)</span>
-<span class="ansi-green-intense-fg ansi-bold">      9</span>
+<span class="ansi-green-intense-fg ansi-bold">      6</span> <span class="ansi-red-fg"># evaluate on the model with the best validation set</span>
 
-<span class="ansi-red-fg">NameError</span>: name 'GCNConv' is not defined
+<span class="ansi-green-fg">~/anaconda3/envs/graphein-dev/lib/python3.8/site-packages/pytorch_lightning/trainer/trainer.py</span> in <span class="ansi-cyan-fg">fit</span><span class="ansi-blue-fg">(self, model, train_dataloaders, val_dataloaders, datamodule, train_dataloader)</span>
+<span class="ansi-green-intense-fg ansi-bold">    551</span>         self<span class="ansi-blue-fg">.</span>checkpoint_connector<span class="ansi-blue-fg">.</span>resume_start<span class="ansi-blue-fg">(</span><span class="ansi-blue-fg">)</span>
+<span class="ansi-green-intense-fg ansi-bold">    552</span>
+<span class="ansi-green-fg">--&gt; 553</span><span class="ansi-red-fg">         </span>self<span class="ansi-blue-fg">.</span>_run<span class="ansi-blue-fg">(</span>model<span class="ansi-blue-fg">)</span>
+<span class="ansi-green-intense-fg ansi-bold">    554</span>
+<span class="ansi-green-intense-fg ansi-bold">    555</span>         <span class="ansi-green-fg">assert</span> self<span class="ansi-blue-fg">.</span>state<span class="ansi-blue-fg">.</span>stopped
+
+<span class="ansi-green-fg">~/anaconda3/envs/graphein-dev/lib/python3.8/site-packages/pytorch_lightning/trainer/trainer.py</span> in <span class="ansi-cyan-fg">_run</span><span class="ansi-blue-fg">(self, model)</span>
+<span class="ansi-green-intense-fg ansi-bold">    916</span>
+<span class="ansi-green-intense-fg ansi-bold">    917</span>         <span class="ansi-red-fg"># dispatch `start_training` or `start_evaluating` or `start_predicting`</span>
+<span class="ansi-green-fg">--&gt; 918</span><span class="ansi-red-fg">         </span>self<span class="ansi-blue-fg">.</span>_dispatch<span class="ansi-blue-fg">(</span><span class="ansi-blue-fg">)</span>
+<span class="ansi-green-intense-fg ansi-bold">    919</span>
+<span class="ansi-green-intense-fg ansi-bold">    920</span>         <span class="ansi-red-fg"># plugin will finalized fitting (e.g. ddp_spawn will load trained model)</span>
+
+<span class="ansi-green-fg">~/anaconda3/envs/graphein-dev/lib/python3.8/site-packages/pytorch_lightning/trainer/trainer.py</span> in <span class="ansi-cyan-fg">_dispatch</span><span class="ansi-blue-fg">(self)</span>
+<span class="ansi-green-intense-fg ansi-bold">    984</span>             self<span class="ansi-blue-fg">.</span>accelerator<span class="ansi-blue-fg">.</span>start_predicting<span class="ansi-blue-fg">(</span>self<span class="ansi-blue-fg">)</span>
+<span class="ansi-green-intense-fg ansi-bold">    985</span>         <span class="ansi-green-fg">else</span><span class="ansi-blue-fg">:</span>
+<span class="ansi-green-fg">--&gt; 986</span><span class="ansi-red-fg">             </span>self<span class="ansi-blue-fg">.</span>accelerator<span class="ansi-blue-fg">.</span>start_training<span class="ansi-blue-fg">(</span>self<span class="ansi-blue-fg">)</span>
+<span class="ansi-green-intense-fg ansi-bold">    987</span>
+<span class="ansi-green-intense-fg ansi-bold">    988</span>     <span class="ansi-green-fg">def</span> run_stage<span class="ansi-blue-fg">(</span>self<span class="ansi-blue-fg">)</span><span class="ansi-blue-fg">:</span>
+
+<span class="ansi-green-fg">~/anaconda3/envs/graphein-dev/lib/python3.8/site-packages/pytorch_lightning/accelerators/accelerator.py</span> in <span class="ansi-cyan-fg">start_training</span><span class="ansi-blue-fg">(self, trainer)</span>
+<span class="ansi-green-intense-fg ansi-bold">     90</span>
+<span class="ansi-green-intense-fg ansi-bold">     91</span>     <span class="ansi-green-fg">def</span> start_training<span class="ansi-blue-fg">(</span>self<span class="ansi-blue-fg">,</span> trainer<span class="ansi-blue-fg">:</span> <span class="ansi-blue-fg">"pl.Trainer"</span><span class="ansi-blue-fg">)</span> <span class="ansi-blue-fg">-&gt;</span> <span class="ansi-green-fg">None</span><span class="ansi-blue-fg">:</span>
+<span class="ansi-green-fg">---&gt; 92</span><span class="ansi-red-fg">         </span>self<span class="ansi-blue-fg">.</span>training_type_plugin<span class="ansi-blue-fg">.</span>start_training<span class="ansi-blue-fg">(</span>trainer<span class="ansi-blue-fg">)</span>
+<span class="ansi-green-intense-fg ansi-bold">     93</span>
+<span class="ansi-green-intense-fg ansi-bold">     94</span>     <span class="ansi-green-fg">def</span> start_evaluating<span class="ansi-blue-fg">(</span>self<span class="ansi-blue-fg">,</span> trainer<span class="ansi-blue-fg">:</span> <span class="ansi-blue-fg">"pl.Trainer"</span><span class="ansi-blue-fg">)</span> <span class="ansi-blue-fg">-&gt;</span> <span class="ansi-green-fg">None</span><span class="ansi-blue-fg">:</span>
+
+<span class="ansi-green-fg">~/anaconda3/envs/graphein-dev/lib/python3.8/site-packages/pytorch_lightning/plugins/training_type/ddp_spawn.py</span> in <span class="ansi-cyan-fg">start_training</span><span class="ansi-blue-fg">(self, trainer)</span>
+<span class="ansi-green-intense-fg ansi-bold">    156</span>
+<span class="ansi-green-intense-fg ansi-bold">    157</span>     <span class="ansi-green-fg">def</span> start_training<span class="ansi-blue-fg">(</span>self<span class="ansi-blue-fg">,</span> trainer<span class="ansi-blue-fg">)</span><span class="ansi-blue-fg">:</span>
+<span class="ansi-green-fg">--&gt; 158</span><span class="ansi-red-fg">         </span>mp<span class="ansi-blue-fg">.</span>spawn<span class="ansi-blue-fg">(</span>self<span class="ansi-blue-fg">.</span>new_process<span class="ansi-blue-fg">,</span> <span class="ansi-blue-fg">**</span>self<span class="ansi-blue-fg">.</span>mp_spawn_kwargs<span class="ansi-blue-fg">)</span>
+<span class="ansi-green-intense-fg ansi-bold">    159</span>         <span class="ansi-red-fg"># reset optimizers, since main process is never used for training and thus does not have a valid optim state</span>
+<span class="ansi-green-intense-fg ansi-bold">    160</span>         trainer<span class="ansi-blue-fg">.</span>optimizers <span class="ansi-blue-fg">=</span> <span class="ansi-blue-fg">[</span><span class="ansi-blue-fg">]</span>
+
+<span class="ansi-green-fg">~/anaconda3/envs/graphein-dev/lib/python3.8/site-packages/torch/multiprocessing/spawn.py</span> in <span class="ansi-cyan-fg">spawn</span><span class="ansi-blue-fg">(fn, args, nprocs, join, daemon, start_method)</span>
+<span class="ansi-green-intense-fg ansi-bold">    228</span>                ' torch.multiprocessing.start_processes(...)' % start_method)
+<span class="ansi-green-intense-fg ansi-bold">    229</span>         warnings<span class="ansi-blue-fg">.</span>warn<span class="ansi-blue-fg">(</span>msg<span class="ansi-blue-fg">)</span>
+<span class="ansi-green-fg">--&gt; 230</span><span class="ansi-red-fg">     </span><span class="ansi-green-fg">return</span> start_processes<span class="ansi-blue-fg">(</span>fn<span class="ansi-blue-fg">,</span> args<span class="ansi-blue-fg">,</span> nprocs<span class="ansi-blue-fg">,</span> join<span class="ansi-blue-fg">,</span> daemon<span class="ansi-blue-fg">,</span> start_method<span class="ansi-blue-fg">=</span><span class="ansi-blue-fg">'spawn'</span><span class="ansi-blue-fg">)</span>
+
+<span class="ansi-green-fg">~/anaconda3/envs/graphein-dev/lib/python3.8/site-packages/torch/multiprocessing/spawn.py</span> in <span class="ansi-cyan-fg">start_processes</span><span class="ansi-blue-fg">(fn, args, nprocs, join, daemon, start_method)</span>
+<span class="ansi-green-intense-fg ansi-bold">    177</span>             daemon<span class="ansi-blue-fg">=</span>daemon<span class="ansi-blue-fg">,</span>
+<span class="ansi-green-intense-fg ansi-bold">    178</span>         )
+<span class="ansi-green-fg">--&gt; 179</span><span class="ansi-red-fg">         </span>process<span class="ansi-blue-fg">.</span>start<span class="ansi-blue-fg">(</span><span class="ansi-blue-fg">)</span>
+<span class="ansi-green-intense-fg ansi-bold">    180</span>         error_queues<span class="ansi-blue-fg">.</span>append<span class="ansi-blue-fg">(</span>error_queue<span class="ansi-blue-fg">)</span>
+<span class="ansi-green-intense-fg ansi-bold">    181</span>         processes<span class="ansi-blue-fg">.</span>append<span class="ansi-blue-fg">(</span>process<span class="ansi-blue-fg">)</span>
+
+<span class="ansi-green-fg">~/anaconda3/envs/graphein-dev/lib/python3.8/multiprocessing/process.py</span> in <span class="ansi-cyan-fg">start</span><span class="ansi-blue-fg">(self)</span>
+<span class="ansi-green-intense-fg ansi-bold">    119</span>                <span class="ansi-blue-fg">'daemonic processes are not allowed to have children'</span>
+<span class="ansi-green-intense-fg ansi-bold">    120</span>         _cleanup<span class="ansi-blue-fg">(</span><span class="ansi-blue-fg">)</span>
+<span class="ansi-green-fg">--&gt; 121</span><span class="ansi-red-fg">         </span>self<span class="ansi-blue-fg">.</span>_popen <span class="ansi-blue-fg">=</span> self<span class="ansi-blue-fg">.</span>_Popen<span class="ansi-blue-fg">(</span>self<span class="ansi-blue-fg">)</span>
+<span class="ansi-green-intense-fg ansi-bold">    122</span>         self<span class="ansi-blue-fg">.</span>_sentinel <span class="ansi-blue-fg">=</span> self<span class="ansi-blue-fg">.</span>_popen<span class="ansi-blue-fg">.</span>sentinel
+<span class="ansi-green-intense-fg ansi-bold">    123</span>         <span class="ansi-red-fg"># Avoid a refcycle if the target function holds an indirect</span>
+
+<span class="ansi-green-fg">~/anaconda3/envs/graphein-dev/lib/python3.8/multiprocessing/context.py</span> in <span class="ansi-cyan-fg">_Popen</span><span class="ansi-blue-fg">(process_obj)</span>
+<span class="ansi-green-intense-fg ansi-bold">    282</span>         <span class="ansi-green-fg">def</span> _Popen<span class="ansi-blue-fg">(</span>process_obj<span class="ansi-blue-fg">)</span><span class="ansi-blue-fg">:</span>
+<span class="ansi-green-intense-fg ansi-bold">    283</span>             <span class="ansi-green-fg">from</span> <span class="ansi-blue-fg">.</span>popen_spawn_posix <span class="ansi-green-fg">import</span> Popen
+<span class="ansi-green-fg">--&gt; 284</span><span class="ansi-red-fg">             </span><span class="ansi-green-fg">return</span> Popen<span class="ansi-blue-fg">(</span>process_obj<span class="ansi-blue-fg">)</span>
+<span class="ansi-green-intense-fg ansi-bold">    285</span>
+<span class="ansi-green-intense-fg ansi-bold">    286</span>     <span class="ansi-green-fg">class</span> ForkServerProcess<span class="ansi-blue-fg">(</span>process<span class="ansi-blue-fg">.</span>BaseProcess<span class="ansi-blue-fg">)</span><span class="ansi-blue-fg">:</span>
+
+<span class="ansi-green-fg">~/anaconda3/envs/graphein-dev/lib/python3.8/multiprocessing/popen_spawn_posix.py</span> in <span class="ansi-cyan-fg">__init__</span><span class="ansi-blue-fg">(self, process_obj)</span>
+<span class="ansi-green-intense-fg ansi-bold">     30</span>     <span class="ansi-green-fg">def</span> __init__<span class="ansi-blue-fg">(</span>self<span class="ansi-blue-fg">,</span> process_obj<span class="ansi-blue-fg">)</span><span class="ansi-blue-fg">:</span>
+<span class="ansi-green-intense-fg ansi-bold">     31</span>         self<span class="ansi-blue-fg">.</span>_fds <span class="ansi-blue-fg">=</span> <span class="ansi-blue-fg">[</span><span class="ansi-blue-fg">]</span>
+<span class="ansi-green-fg">---&gt; 32</span><span class="ansi-red-fg">         </span>super<span class="ansi-blue-fg">(</span><span class="ansi-blue-fg">)</span><span class="ansi-blue-fg">.</span>__init__<span class="ansi-blue-fg">(</span>process_obj<span class="ansi-blue-fg">)</span>
+<span class="ansi-green-intense-fg ansi-bold">     33</span>
+<span class="ansi-green-intense-fg ansi-bold">     34</span>     <span class="ansi-green-fg">def</span> duplicate_for_child<span class="ansi-blue-fg">(</span>self<span class="ansi-blue-fg">,</span> fd<span class="ansi-blue-fg">)</span><span class="ansi-blue-fg">:</span>
+
+<span class="ansi-green-fg">~/anaconda3/envs/graphein-dev/lib/python3.8/multiprocessing/popen_fork.py</span> in <span class="ansi-cyan-fg">__init__</span><span class="ansi-blue-fg">(self, process_obj)</span>
+<span class="ansi-green-intense-fg ansi-bold">     17</span>         self<span class="ansi-blue-fg">.</span>returncode <span class="ansi-blue-fg">=</span> <span class="ansi-green-fg">None</span>
+<span class="ansi-green-intense-fg ansi-bold">     18</span>         self<span class="ansi-blue-fg">.</span>finalizer <span class="ansi-blue-fg">=</span> <span class="ansi-green-fg">None</span>
+<span class="ansi-green-fg">---&gt; 19</span><span class="ansi-red-fg">         </span>self<span class="ansi-blue-fg">.</span>_launch<span class="ansi-blue-fg">(</span>process_obj<span class="ansi-blue-fg">)</span>
+<span class="ansi-green-intense-fg ansi-bold">     20</span>
+<span class="ansi-green-intense-fg ansi-bold">     21</span>     <span class="ansi-green-fg">def</span> duplicate_for_child<span class="ansi-blue-fg">(</span>self<span class="ansi-blue-fg">,</span> fd<span class="ansi-blue-fg">)</span><span class="ansi-blue-fg">:</span>
+
+<span class="ansi-green-fg">~/anaconda3/envs/graphein-dev/lib/python3.8/multiprocessing/popen_spawn_posix.py</span> in <span class="ansi-cyan-fg">_launch</span><span class="ansi-blue-fg">(self, process_obj)</span>
+<span class="ansi-green-intense-fg ansi-bold">     60</span>             self<span class="ansi-blue-fg">.</span>sentinel <span class="ansi-blue-fg">=</span> parent_r
+<span class="ansi-green-intense-fg ansi-bold">     61</span>             <span class="ansi-green-fg">with</span> open<span class="ansi-blue-fg">(</span>parent_w<span class="ansi-blue-fg">,</span> <span class="ansi-blue-fg">'wb'</span><span class="ansi-blue-fg">,</span> closefd<span class="ansi-blue-fg">=</span><span class="ansi-green-fg">False</span><span class="ansi-blue-fg">)</span> <span class="ansi-green-fg">as</span> f<span class="ansi-blue-fg">:</span>
+<span class="ansi-green-fg">---&gt; 62</span><span class="ansi-red-fg">                 </span>f<span class="ansi-blue-fg">.</span>write<span class="ansi-blue-fg">(</span>fp<span class="ansi-blue-fg">.</span>getbuffer<span class="ansi-blue-fg">(</span><span class="ansi-blue-fg">)</span><span class="ansi-blue-fg">)</span>
+<span class="ansi-green-intense-fg ansi-bold">     63</span>         <span class="ansi-green-fg">finally</span><span class="ansi-blue-fg">:</span>
+<span class="ansi-green-intense-fg ansi-bold">     64</span>             fds_to_close <span class="ansi-blue-fg">=</span> <span class="ansi-blue-fg">[</span><span class="ansi-blue-fg">]</span>
+
+<span class="ansi-red-fg">KeyboardInterrupt</span>:
 </pre></div></div>
 </div>
-<script type="application/vnd.jupyter.widget-state+json">
-{"state": {"067f8f3c184846b0a0ff193fb02b2b9a": {"model_name": "LayoutModel", "model_module": "@jupyter-widgets/base", "model_module_version": "1.2.0", "state": {"_model_module": "@jupyter-widgets/base", "_model_module_version": "1.2.0", "_model_name": "LayoutModel", "_view_count": null, "_view_module": "@jupyter-widgets/base", "_view_module_version": "1.2.0", "_view_name": "LayoutView", "align_content": null, "align_items": null, "align_self": null, "border": null, "bottom": null, "display": null, "flex": null, "flex_flow": null, "grid_area": null, "grid_auto_columns": null, "grid_auto_flow": null, "grid_auto_rows": null, "grid_column": null, "grid_gap": null, "grid_row": null, "grid_template_areas": null, "grid_template_columns": null, "grid_template_rows": null, "height": null, "justify_content": null, "justify_items": null, "left": null, "margin": null, "max_height": null, "max_width": null, "min_height": null, "min_width": null, "object_fit": null, "object_position": null, "order": null, "overflow": null, "overflow_x": null, "overflow_y": null, "padding": null, "right": null, "top": null, "visibility": null, "width": "20px"}}, "f89bce4a345b4e81a4eea007ec7fcae8": {"model_name": "ProgressStyleModel", "model_module": "@jupyter-widgets/controls", "model_module_version": "1.5.0", "state": {"_model_module": "@jupyter-widgets/controls", "_model_module_version": "1.5.0", "_model_name": "ProgressStyleModel", "_view_count": null, "_view_module": "@jupyter-widgets/base", "_view_module_version": "1.2.0", "_view_name": "StyleView", "bar_color": null, "description_width": ""}}, "7ad9f7b1c007454bb38e56015ec6413f": {"model_name": "FloatProgressModel", "model_module": "@jupyter-widgets/controls", "model_module_version": "1.5.0", "state": {"_dom_classes": [], "_model_module": "@jupyter-widgets/controls", "_model_module_version": "1.5.0", "_model_name": "FloatProgressModel", "_view_count": null, "_view_module": "@jupyter-widgets/controls", "_view_module_version": "1.5.0", "_view_name": "ProgressView", "bar_style": "success", "description": "", "description_tooltip": null, "layout": "IPY_MODEL_067f8f3c184846b0a0ff193fb02b2b9a", "max": 1.0, "min": 0.0, "orientation": "horizontal", "style": "IPY_MODEL_f89bce4a345b4e81a4eea007ec7fcae8", "value": 0.0}}, "6c74c14e6a0e42e694b75058e1e5eee6": {"model_name": "LayoutModel", "model_module": "@jupyter-widgets/base", "model_module_version": "1.2.0", "state": {"_model_module": "@jupyter-widgets/base", "_model_module_version": "1.2.0", "_model_name": "LayoutModel", "_view_count": null, "_view_module": "@jupyter-widgets/base", "_view_module_version": "1.2.0", "_view_name": "LayoutView", "align_content": null, "align_items": null, "align_self": null, "border": null, "bottom": null, "display": null, "flex": null, "flex_flow": null, "grid_area": null, "grid_auto_columns": null, "grid_auto_flow": null, "grid_auto_rows": null, "grid_column": null, "grid_gap": null, "grid_row": null, "grid_template_areas": null, "grid_template_columns": null, "grid_template_rows": null, "height": null, "justify_content": null, "justify_items": null, "left": null, "margin": null, "max_height": null, "max_width": null, "min_height": null, "min_width": null, "object_fit": null, "object_position": null, "order": null, "overflow": null, "overflow_x": null, "overflow_y": null, "padding": null, "right": null, "top": null, "visibility": null, "width": null}}, "9cd6adcd12584420a96f00e13c23aa97": {"model_name": "DescriptionStyleModel", "model_module": "@jupyter-widgets/controls", "model_module_version": "1.5.0", "state": {"_model_module": "@jupyter-widgets/controls", "_model_module_version": "1.5.0", "_model_name": "DescriptionStyleModel", "_view_count": null, "_view_module": "@jupyter-widgets/base", "_view_module_version": "1.2.0", "_view_name": "StyleView", "description_width": ""}}, "5c9139fdc77a45649774a4b7967ec0fe": {"model_name": "HTMLModel", "model_module": "@jupyter-widgets/controls", "model_module_version": "1.5.0", "state": {"_dom_classes": [], "_model_module": "@jupyter-widgets/controls", "_model_module_version": "1.5.0", "_model_name": "HTMLModel", "_view_count": null, "_view_module": "@jupyter-widgets/controls", "_view_module_version": "1.5.0", "_view_name": "HTMLView", "description": "", "description_tooltip": null, "layout": "IPY_MODEL_6c74c14e6a0e42e694b75058e1e5eee6", "placeholder": "\u200b", "style": "IPY_MODEL_9cd6adcd12584420a96f00e13c23aa97", "value": ""}}, "aef29c904d794399ad03ea6966ad974d": {"model_name": "LayoutModel", "model_module": "@jupyter-widgets/base", "model_module_version": "1.2.0", "state": {"_model_module": "@jupyter-widgets/base", "_model_module_version": "1.2.0", "_model_name": "LayoutModel", "_view_count": null, "_view_module": "@jupyter-widgets/base", "_view_module_version": "1.2.0", "_view_name": "LayoutView", "align_content": null, "align_items": null, "align_self": null, "border": null, "bottom": null, "display": null, "flex": null, "flex_flow": null, "grid_area": null, "grid_auto_columns": null, "grid_auto_flow": null, "grid_auto_rows": null, "grid_column": null, "grid_gap": null, "grid_row": null, "grid_template_areas": null, "grid_template_columns": null, "grid_template_rows": null, "height": null, "justify_content": null, "justify_items": null, "left": null, "margin": null, "max_height": null, "max_width": null, "min_height": null, "min_width": null, "object_fit": null, "object_position": null, "order": null, "overflow": null, "overflow_x": null, "overflow_y": null, "padding": null, "right": null, "top": null, "visibility": null, "width": null}}, "23f7d9666553401b916320502dfaa550": {"model_name": "DescriptionStyleModel", "model_module": "@jupyter-widgets/controls", "model_module_version": "1.5.0", "state": {"_model_module": "@jupyter-widgets/controls", "_model_module_version": "1.5.0", "_model_name": "DescriptionStyleModel", "_view_count": null, "_view_module": "@jupyter-widgets/base", "_view_module_version": "1.2.0", "_view_name": "StyleView", "description_width": ""}}, "8806d7b7a7ea40359a1e460f025edb1f": {"model_name": "HTMLModel", "model_module": "@jupyter-widgets/controls", "model_module_version": "1.5.0", "state": {"_dom_classes": [], "_model_module": "@jupyter-widgets/controls", "_model_module_version": "1.5.0", "_model_name": "HTMLModel", "_view_count": null, "_view_module": "@jupyter-widgets/controls", "_view_module_version": "1.5.0", "_view_name": "HTMLView", "description": "", "description_tooltip": null, "layout": "IPY_MODEL_aef29c904d794399ad03ea6966ad974d", "placeholder": "\u200b", "style": "IPY_MODEL_23f7d9666553401b916320502dfaa550", "value": " 0/0 [00:00&lt;?, ?it/s]"}}, "cd0f3f81427b416cb4002c22e1d48388": {"model_name": "LayoutModel", "model_module": "@jupyter-widgets/base", "model_module_version": "1.2.0", "state": {"_model_module": "@jupyter-widgets/base", "_model_module_version": "1.2.0", "_model_name": "LayoutModel", "_view_count": null, "_view_module": "@jupyter-widgets/base", "_view_module_version": "1.2.0", "_view_name": "LayoutView", "align_content": null, "align_items": null, "align_self": null, "border": null, "bottom": null, "display": null, "flex": null, "flex_flow": null, "grid_area": null, "grid_auto_columns": null, "grid_auto_flow": null, "grid_auto_rows": null, "grid_column": null, "grid_gap": null, "grid_row": null, "grid_template_areas": null, "grid_template_columns": null, "grid_template_rows": null, "height": null, "justify_content": null, "justify_items": null, "left": null, "margin": null, "max_height": null, "max_width": null, "min_height": null, "min_width": null, "object_fit": null, "object_position": null, "order": null, "overflow": null, "overflow_x": null, "overflow_y": null, "padding": null, "right": null, "top": null, "visibility": null, "width": null}}, "44897a3cb1eb4cc6a02b0e0a1301e721": {"model_name": "HBoxModel", "model_module": "@jupyter-widgets/controls", "model_module_version": "1.5.0", "state": {"_dom_classes": [], "_model_module": "@jupyter-widgets/controls", "_model_module_version": "1.5.0", "_model_name": "HBoxModel", "_view_count": null, "_view_module": "@jupyter-widgets/controls", "_view_module_version": "1.5.0", "_view_name": "HBoxView", "box_style": "", "children": ["IPY_MODEL_5c9139fdc77a45649774a4b7967ec0fe", "IPY_MODEL_7ad9f7b1c007454bb38e56015ec6413f", "IPY_MODEL_8806d7b7a7ea40359a1e460f025edb1f"], "layout": "IPY_MODEL_cd0f3f81427b416cb4002c22e1d48388"}}}, "version_major": 2, "version_minor": 0}
-</script></div>
+</div>
 </div>
 
         </article>
@@ -1421,7 +1158,6 @@ div.rendered_html tbody tr:hover {
     <script src="../_static/tabs.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.1.10/require.min.js"></script>
     <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
-    <script src="https://unpkg.com/@jupyter-widgets/html-manager@^0.20.0/dist/embed-amd.js"></script>
     <script type="text/x-mathjax-config">MathJax.Hub.Config({"tex2jax": {"inlineMath": [["$", "$"], ["\\(", "\\)"]], "processEscapes": true, "ignoreClass": "document", "processClass": "math|output_area"}})</script>
     <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@2/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
     </body>
