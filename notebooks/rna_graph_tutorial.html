@@ -27,7 +27,7 @@
   <link rel="index" title="Index" href="../genindex.html" /><link rel="search" title="Search" href="../search.html" /><link rel="next" title="PPI Networks" href="../ppi_notebooks.html" /><link rel="prev" title="RNA Graphs" href="../rna_notebooks.html" />
 
     <meta name="generator" content="sphinx-4.4.0, furo 2022.02.14.1"/>
-        <title>Graphein RNA Graph Construction Tutorial - Graphein 1.2.0</title>
+        <title>Graphein RNA Graph Construction Tutorial - Graphein 1.2.1</title>
       <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
     <link rel="stylesheet" type="text/css" href="../_static/styles/furo.css?digest=a8f031f701c6af50c9919b48f173a5785af06fac" />
     <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
@@ -142,7 +142,7 @@
       </label>
     </div>
     <div class="header-center">
-      <a href="../index.html"><div class="brand">Graphein 1.2.0</div></a>
+      <a href="../index.html"><div class="brand">Graphein 1.2.1</div></a>
     </div>
     <div class="header-right">
       <div class="theme-toggle-container theme-toggle-header">
@@ -168,7 +168,7 @@
     <img class="sidebar-logo" src="../_static/graphein.png" alt="Logo"/>
   </div>
   
-  <span class="sidebar-brand-text">Graphein 1.2.0</span>
+  <span class="sidebar-brand-text">Graphein 1.2.1</span>
   
 </a><form class="sidebar-search-container" method="get" action="../search.html" role="search">
   <input class="sidebar-search" placeholder=Search name="q" aria-label="Search">
@@ -522,7 +522,7 @@ div.rendered_html tbody tr:hover {
 </pre></div>
 </div>
 </div>
-<div class="nbinput nblast docutils container">
+<div class="nbinput docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[2]:
 </pre></div>
 </div>
@@ -541,6 +541,18 @@ div.rendered_html tbody tr:hover {
 <span class="p">)</span>
 </pre></div>
 </div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+To use the Graphein submodule graphein.protein.visualisation, you need to install pytorch3d.
+
+To do so, use the following command:
+
+    conda install -c pytorch3d pytorch3d
+</pre></div></div>
 </div>
 <div class="section" id="Construction-with-a-Dotbracket">
 <h2>Construction with a Dotbracket<a class="headerlink" href="#Construction-with-a-Dotbracket" title="Permalink to this headline">#</a></h2>
@@ -710,7 +722,6 @@ WARNING:graphein.rna.visualisation:No sequence data found in graph. Skipping bas
     <script src="../_static/tabs.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.1.10/require.min.js"></script>
     <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
-    <script src="https://unpkg.com/@jupyter-widgets/html-manager@^0.20.0/dist/embed-amd.js"></script>
     <script type="text/x-mathjax-config">MathJax.Hub.Config({"tex2jax": {"inlineMath": [["$", "$"], ["\\(", "\\)"]], "processEscapes": true, "ignoreClass": "document", "processClass": "math|output_area"}})</script>
     <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@2/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
     </body>

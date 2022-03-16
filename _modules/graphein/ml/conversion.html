@@ -15,7 +15,7 @@
     <link rel="index" title="Index" href="../../../genindex.html" /><link rel="search" title="Search" href="../../../search.html" />
 
     <meta name="generator" content="sphinx-4.4.0, furo 2022.02.14.1"/>
-        <title>graphein.ml.conversion - Graphein 1.2.0</title>
+        <title>graphein.ml.conversion - Graphein 1.2.1</title>
       <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css" />
     <link rel="stylesheet" type="text/css" href="../../../_static/styles/furo.css?digest=a8f031f701c6af50c9919b48f173a5785af06fac" />
     <link rel="stylesheet" type="text/css" href="../../../_static/copybutton.css" />
@@ -130,7 +130,7 @@
       </label>
     </div>
     <div class="header-center">
-      <a href="../../../index.html"><div class="brand">Graphein 1.2.0</div></a>
+      <a href="../../../index.html"><div class="brand">Graphein 1.2.1</div></a>
     </div>
     <div class="header-right">
       <div class="theme-toggle-container theme-toggle-header">
@@ -156,7 +156,7 @@
     <img class="sidebar-logo" src="../../../_static/graphein.png" alt="Logo"/>
   </div>
   
-  <span class="sidebar-brand-text">Graphein 1.2.0</span>
+  <span class="sidebar-brand-text">Graphein 1.2.1</span>
   
 </a><form class="sidebar-search-container" method="get" action="../../../search.html" role="search">
   <input class="sidebar-search" placeholder=Search name="q" aria-label="Search">
@@ -246,7 +246,15 @@
         </div>
         <article role="main">
           <h1>Source code for graphein.ml.conversion</h1><div class="highlight"><pre>
-<span></span><span class="kn">from</span> <span class="nn">__future__</span> <span class="kn">import</span> <span class="n">annotations</span>
+<span></span><span class="sd">"""Utilities for converting Graphein Networks to Geometric Deep Learning formats.</span>
+<span class="sd">"""</span>
+<span class="c1"># %%</span>
+<span class="c1"># Graphein</span>
+<span class="c1"># Author: Kexin Huang, Arian Jamasb &lt;arian@jamasb.io&gt;</span>
+<span class="c1"># License: MIT</span>
+<span class="c1"># Project Website: https://github.com/a-r-j/graphein</span>
+<span class="c1"># Code Repository: https://github.com/a-r-j/graphein</span>
+<span class="kn">from</span> <span class="nn">__future__</span> <span class="kn">import</span> <span class="n">annotations</span>
 
 <span class="kn">from</span> <span class="nn">typing</span> <span class="kn">import</span> <span class="n">List</span><span class="p">,</span> <span class="n">Optional</span>
 
@@ -520,7 +528,7 @@
 <div class="viewcode-block" id="GraphFormatConvertor.convert_nx_to_nx"><a class="viewcode-back" href="../../../modules/graphein.ml.html#graphein.ml.conversion.GraphFormatConvertor.convert_nx_to_nx">[docs]</a>    <span class="nd">@staticmethod</span>
     <span class="k">def</span> <span class="nf">convert_nx_to_nx</span><span class="p">(</span><span class="n">G</span><span class="p">:</span> <span class="n">nx</span><span class="o">.</span><span class="n">Graph</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">nx</span><span class="o">.</span><span class="n">Graph</span><span class="p">:</span>
         <span class="sd">"""</span>
-<span class="sd">        Converts NetworkX graph (``nx.Graph``) to NetworkX graph (``nx.Graph``) object. Redundant - returns itself</span>
+<span class="sd">        Converts NetworkX graph (``nx.Graph``) to NetworkX graph (``nx.Graph``) object. Redundant - returns itself.</span>
 
 <span class="sd">        :param G: NetworkX Graph</span>
 <span class="sd">        :type G: nx.Graph</span>

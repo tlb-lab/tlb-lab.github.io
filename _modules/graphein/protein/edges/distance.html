@@ -15,7 +15,7 @@
     <link rel="index" title="Index" href="../../../../genindex.html" /><link rel="search" title="Search" href="../../../../search.html" />
 
     <meta name="generator" content="sphinx-4.4.0, furo 2022.02.14.1"/>
-        <title>graphein.protein.edges.distance - Graphein 1.2.0</title>
+        <title>graphein.protein.edges.distance - Graphein 1.2.1</title>
       <link rel="stylesheet" type="text/css" href="../../../../_static/pygments.css" />
     <link rel="stylesheet" type="text/css" href="../../../../_static/styles/furo.css?digest=a8f031f701c6af50c9919b48f173a5785af06fac" />
     <link rel="stylesheet" type="text/css" href="../../../../_static/copybutton.css" />
@@ -130,7 +130,7 @@
       </label>
     </div>
     <div class="header-center">
-      <a href="../../../../index.html"><div class="brand">Graphein 1.2.0</div></a>
+      <a href="../../../../index.html"><div class="brand">Graphein 1.2.1</div></a>
     </div>
     <div class="header-right">
       <div class="theme-toggle-container theme-toggle-header">
@@ -156,7 +156,7 @@
     <img class="sidebar-logo" src="../../../../_static/graphein.png" alt="Logo"/>
   </div>
   
-  <span class="sidebar-brand-text">Graphein 1.2.0</span>
+  <span class="sidebar-brand-text">Graphein 1.2.1</span>
   
 </a><form class="sidebar-search-container" method="get" action="../../../../search.html" role="search">
   <input class="sidebar-search" placeholder=Search name="q" aria-label="Search">
@@ -256,7 +256,7 @@
 
 <span class="kn">import</span> <span class="nn">logging</span>
 <span class="kn">from</span> <span class="nn">itertools</span> <span class="kn">import</span> <span class="n">combinations</span>
-<span class="kn">from</span> <span class="nn">typing</span> <span class="kn">import</span> <span class="n">Dict</span><span class="p">,</span> <span class="n">List</span><span class="p">,</span> <span class="n">Optional</span><span class="p">,</span> <span class="n">Tuple</span>
+<span class="kn">from</span> <span class="nn">typing</span> <span class="kn">import</span> <span class="n">Dict</span><span class="p">,</span> <span class="n">List</span><span class="p">,</span> <span class="n">Optional</span><span class="p">,</span> <span class="n">Tuple</span><span class="p">,</span> <span class="n">Union</span>
 
 <span class="kn">import</span> <span class="nn">networkx</span> <span class="k">as</span> <span class="nn">nx</span>
 <span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
@@ -380,6 +380,9 @@
     <span class="n">hydrophobics_df</span> <span class="o">=</span> <span class="n">filter_dataframe</span><span class="p">(</span>
         <span class="n">rgroup_df</span><span class="p">,</span> <span class="s2">"residue_name"</span><span class="p">,</span> <span class="n">HYDROPHOBIC_RESIS</span><span class="p">,</span> <span class="kc">True</span>
     <span class="p">)</span>
+    <span class="n">hydrophobics_df</span> <span class="o">=</span> <span class="n">filter_dataframe</span><span class="p">(</span>
+        <span class="n">hydrophobics_df</span><span class="p">,</span> <span class="s2">"node_id"</span><span class="p">,</span> <span class="nb">list</span><span class="p">(</span><span class="n">G</span><span class="o">.</span><span class="n">nodes</span><span class="p">()),</span> <span class="kc">True</span>
+    <span class="p">)</span>
     <span class="n">distmat</span> <span class="o">=</span> <span class="n">compute_distmat</span><span class="p">(</span><span class="n">hydrophobics_df</span><span class="p">)</span>
     <span class="n">interacting_atoms</span> <span class="o">=</span> <span class="n">get_interacting_atoms</span><span class="p">(</span><span class="mi">5</span><span class="p">,</span> <span class="n">distmat</span><span class="p">)</span>
     <span class="n">add_interacting_resis</span><span class="p">(</span>
@@ -428,6 +431,7 @@
     <span class="c1"># For these atoms, find those that are within 3.5A of one another.</span>
     <span class="k">if</span> <span class="n">rgroup_df</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
         <span class="n">rgroup_df</span> <span class="o">=</span> <span class="n">G</span><span class="o">.</span><span class="n">graph</span><span class="p">[</span><span class="s2">"rgroup_df"</span><span class="p">]</span>
+    <span class="n">rgroup_df</span> <span class="o">=</span> <span class="n">filter_dataframe</span><span class="p">(</span><span class="n">rgroup_df</span><span class="p">,</span> <span class="s2">"node_id"</span><span class="p">,</span> <span class="nb">list</span><span class="p">(</span><span class="n">G</span><span class="o">.</span><span class="n">nodes</span><span class="p">()),</span> <span class="kc">True</span><span class="p">)</span>
     <span class="n">HBOND_ATOMS</span> <span class="o">=</span> <span class="p">[</span>
         <span class="s2">"ND"</span><span class="p">,</span>  <span class="c1"># histidine and asparagine</span>
         <span class="s2">"NE"</span><span class="p">,</span>  <span class="c1"># glutamate, tryptophan, arginine, histidine</span>
@@ -472,6 +476,7 @@
     <span class="k">if</span> <span class="n">rgroup_df</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
         <span class="n">rgroup_df</span> <span class="o">=</span> <span class="n">G</span><span class="o">.</span><span class="n">graph</span><span class="p">[</span><span class="s2">"rgroup_df"</span><span class="p">]</span>
     <span class="n">ionic_df</span> <span class="o">=</span> <span class="n">filter_dataframe</span><span class="p">(</span><span class="n">rgroup_df</span><span class="p">,</span> <span class="s2">"residue_name"</span><span class="p">,</span> <span class="n">IONIC_RESIS</span><span class="p">,</span> <span class="kc">True</span><span class="p">)</span>
+    <span class="n">ionic_df</span> <span class="o">=</span> <span class="n">filter_dataframe</span><span class="p">(</span><span class="n">rgroup_df</span><span class="p">,</span> <span class="s2">"node_id"</span><span class="p">,</span> <span class="nb">list</span><span class="p">(</span><span class="n">G</span><span class="o">.</span><span class="n">nodes</span><span class="p">()),</span> <span class="kc">True</span><span class="p">)</span>
     <span class="n">distmat</span> <span class="o">=</span> <span class="n">compute_distmat</span><span class="p">(</span><span class="n">ionic_df</span><span class="p">)</span>
     <span class="n">interacting_atoms</span> <span class="o">=</span> <span class="n">get_interacting_atoms</span><span class="p">(</span><span class="mi">6</span><span class="p">,</span> <span class="n">distmat</span><span class="p">)</span>
     <span class="n">add_interacting_resis</span><span class="p">(</span><span class="n">G</span><span class="p">,</span> <span class="n">interacting_atoms</span><span class="p">,</span> <span class="n">ionic_df</span><span class="p">,</span> <span class="p">[</span><span class="s2">"ionic"</span><span class="p">])</span>
@@ -522,6 +527,9 @@
     <span class="n">dfs</span> <span class="o">=</span> <span class="p">[]</span>
     <span class="k">for</span> <span class="n">resi</span> <span class="ow">in</span> <span class="n">AROMATIC_RESIS</span><span class="p">:</span>
         <span class="n">resi_rings_df</span> <span class="o">=</span> <span class="n">get_ring_atoms</span><span class="p">(</span><span class="n">pdb_df</span><span class="p">,</span> <span class="n">resi</span><span class="p">)</span>
+        <span class="n">resi_rings_df</span> <span class="o">=</span> <span class="n">filter_dataframe</span><span class="p">(</span>
+            <span class="n">resi_rings_df</span><span class="p">,</span> <span class="s2">"node_id"</span><span class="p">,</span> <span class="nb">list</span><span class="p">(</span><span class="n">G</span><span class="o">.</span><span class="n">nodes</span><span class="p">()),</span> <span class="kc">True</span>
+        <span class="p">)</span>
         <span class="n">resi_centroid_df</span> <span class="o">=</span> <span class="n">get_ring_centroids</span><span class="p">(</span><span class="n">resi_rings_df</span><span class="p">)</span>
         <span class="n">dfs</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">resi_centroid_df</span><span class="p">)</span>
     <span class="n">aromatic_df</span> <span class="o">=</span> <span class="p">(</span>
@@ -560,9 +568,12 @@
     <span class="n">aromatic_sulphur_df</span> <span class="o">=</span> <span class="n">filter_dataframe</span><span class="p">(</span>
         <span class="n">rgroup_df</span><span class="p">,</span> <span class="s2">"residue_name"</span><span class="p">,</span> <span class="n">RESIDUES</span><span class="p">,</span> <span class="kc">True</span>
     <span class="p">)</span>
+    <span class="n">aromatic_sulphur_df</span> <span class="o">=</span> <span class="n">filter_dataframe</span><span class="p">(</span>
+        <span class="n">aromatic_sulphur_df</span><span class="p">,</span> <span class="s2">"node_id"</span><span class="p">,</span> <span class="nb">list</span><span class="p">(</span><span class="n">G</span><span class="o">.</span><span class="n">nodes</span><span class="p">()),</span> <span class="kc">True</span>
+    <span class="p">)</span>
     <span class="n">distmat</span> <span class="o">=</span> <span class="n">compute_distmat</span><span class="p">(</span><span class="n">aromatic_sulphur_df</span><span class="p">)</span>
     <span class="n">interacting_atoms</span> <span class="o">=</span> <span class="n">get_interacting_atoms</span><span class="p">(</span><span class="mf">5.3</span><span class="p">,</span> <span class="n">distmat</span><span class="p">)</span>
-    <span class="n">interacting_atoms</span> <span class="o">=</span> <span class="nb">zip</span><span class="p">(</span><span class="n">interacting_atoms</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">interacting_atoms</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span>
+    <span class="n">interacting_atoms</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="nb">zip</span><span class="p">(</span><span class="n">interacting_atoms</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">interacting_atoms</span><span class="p">[</span><span class="mi">1</span><span class="p">]))</span>
 
     <span class="k">for</span> <span class="p">(</span><span class="n">a1</span><span class="p">,</span> <span class="n">a2</span><span class="p">)</span> <span class="ow">in</span> <span class="n">interacting_atoms</span><span class="p">:</span>
         <span class="n">resi1</span> <span class="o">=</span> <span class="n">aromatic_sulphur_df</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">a1</span><span class="p">,</span> <span class="s2">"node_id"</span><span class="p">]</span>
@@ -587,9 +598,12 @@
     <span class="n">cation_pi_df</span> <span class="o">=</span> <span class="n">filter_dataframe</span><span class="p">(</span>
         <span class="n">rgroup_df</span><span class="p">,</span> <span class="s2">"residue_name"</span><span class="p">,</span> <span class="n">CATION_PI_RESIS</span><span class="p">,</span> <span class="kc">True</span>
     <span class="p">)</span>
+    <span class="n">cation_pi_df</span> <span class="o">=</span> <span class="n">filter_dataframe</span><span class="p">(</span>
+        <span class="n">cation_pi_df</span><span class="p">,</span> <span class="s2">"node_id"</span><span class="p">,</span> <span class="nb">list</span><span class="p">(</span><span class="n">G</span><span class="o">.</span><span class="n">nodes</span><span class="p">()),</span> <span class="kc">True</span>
+    <span class="p">)</span>
     <span class="n">distmat</span> <span class="o">=</span> <span class="n">compute_distmat</span><span class="p">(</span><span class="n">cation_pi_df</span><span class="p">)</span>
     <span class="n">interacting_atoms</span> <span class="o">=</span> <span class="n">get_interacting_atoms</span><span class="p">(</span><span class="mi">6</span><span class="p">,</span> <span class="n">distmat</span><span class="p">)</span>
-    <span class="n">interacting_atoms</span> <span class="o">=</span> <span class="nb">zip</span><span class="p">(</span><span class="n">interacting_atoms</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">interacting_atoms</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span>
+    <span class="n">interacting_atoms</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="nb">zip</span><span class="p">(</span><span class="n">interacting_atoms</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">interacting_atoms</span><span class="p">[</span><span class="mi">1</span><span class="p">]))</span>
 
     <span class="k">for</span> <span class="p">(</span><span class="n">a1</span><span class="p">,</span> <span class="n">a2</span><span class="p">)</span> <span class="ow">in</span> <span class="n">interacting_atoms</span><span class="p">:</span>
         <span class="n">resi1</span> <span class="o">=</span> <span class="n">cation_pi_df</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">a1</span><span class="p">,</span> <span class="s2">"node_id"</span><span class="p">]</span>
@@ -659,7 +673,7 @@
 
     <span class="n">tri</span> <span class="o">=</span> <span class="n">Delaunay</span><span class="p">(</span><span class="n">coords</span><span class="p">)</span>  <span class="c1"># this is the triangulation</span>
     <span class="n">log</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span>
-        <span class="sa">f</span><span class="s2">"Detected </span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">tri</span><span class="o">.</span><span class="n">simplices</span><span class="p">)</span><span class="si">}</span><span class="s2"> simplices in the Delaunay Triangulaton."</span>
+        <span class="sa">f</span><span class="s2">"Detected </span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">tri</span><span class="o">.</span><span class="n">simplices</span><span class="p">)</span><span class="si">}</span><span class="s2"> simplices in the Delaunay Triangulation."</span>
     <span class="p">)</span>
     <span class="k">for</span> <span class="n">simplex</span> <span class="ow">in</span> <span class="n">tri</span><span class="o">.</span><span class="n">simplices</span><span class="p">:</span>
         <span class="n">nodes</span> <span class="o">=</span> <span class="p">[</span><span class="n">node_map</span><span class="p">[</span><span class="n">s</span><span class="p">]</span> <span class="k">for</span> <span class="n">s</span> <span class="ow">in</span> <span class="n">simplex</span><span class="p">]</span>
@@ -687,10 +701,14 @@
 <span class="sd">    :type threshold: float</span>
 <span class="sd">    :return: Graph with distance-based edges added</span>
 <span class="sd">    """</span>
-    <span class="n">dist_mat</span> <span class="o">=</span> <span class="n">compute_distmat</span><span class="p">(</span><span class="n">G</span><span class="o">.</span><span class="n">graph</span><span class="p">[</span><span class="s2">"pdb_df"</span><span class="p">])</span>
+    <span class="n">pdb_df</span> <span class="o">=</span> <span class="n">filter_dataframe</span><span class="p">(</span>
+        <span class="n">G</span><span class="o">.</span><span class="n">graph</span><span class="p">[</span><span class="s2">"pdb_df"</span><span class="p">],</span> <span class="s2">"node_id"</span><span class="p">,</span> <span class="nb">list</span><span class="p">(</span><span class="n">G</span><span class="o">.</span><span class="n">nodes</span><span class="p">()),</span> <span class="kc">True</span>
+    <span class="p">)</span>
+    <span class="n">dist_mat</span> <span class="o">=</span> <span class="n">compute_distmat</span><span class="p">(</span><span class="n">pdb_df</span><span class="p">)</span>
     <span class="n">interacting_nodes</span> <span class="o">=</span> <span class="n">get_interacting_atoms</span><span class="p">(</span><span class="n">threshold</span><span class="p">,</span> <span class="n">distmat</span><span class="o">=</span><span class="n">dist_mat</span><span class="p">)</span>
     <span class="n">interacting_nodes</span> <span class="o">=</span> <span class="nb">zip</span><span class="p">(</span><span class="n">interacting_nodes</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">interacting_nodes</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span>
 
+    <span class="n">log</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="sa">f</span><span class="s2">"Found: </span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="nb">list</span><span class="p">(</span><span class="n">interacting_nodes</span><span class="p">))</span><span class="si">}</span><span class="s2"> distance edges"</span><span class="p">)</span>
     <span class="k">for</span> <span class="n">a1</span><span class="p">,</span> <span class="n">a2</span> <span class="ow">in</span> <span class="n">interacting_nodes</span><span class="p">:</span>
         <span class="n">n1</span> <span class="o">=</span> <span class="n">G</span><span class="o">.</span><span class="n">graph</span><span class="p">[</span><span class="s2">"pdb_df"</span><span class="p">]</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">a1</span><span class="p">,</span> <span class="s2">"node_id"</span><span class="p">]</span>
         <span class="n">n2</span> <span class="o">=</span> <span class="n">G</span><span class="o">.</span><span class="n">graph</span><span class="p">[</span><span class="s2">"pdb_df"</span><span class="p">]</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">a2</span><span class="p">,</span> <span class="s2">"node_id"</span><span class="p">]</span>
@@ -704,7 +722,7 @@
             <span class="nb">abs</span><span class="p">(</span><span class="n">n1_position</span> <span class="o">-</span> <span class="n">n2_position</span><span class="p">)</span> <span class="o">&gt;</span> <span class="n">long_interaction_threshold</span>
         <span class="p">)</span>
 
-        <span class="k">if</span> <span class="n">condition_1</span> <span class="ow">or</span> <span class="p">(</span><span class="n">condition_2</span> <span class="ow">and</span> <span class="ow">not</span> <span class="n">condition_1</span><span class="p">):</span>
+        <span class="k">if</span> <span class="n">condition_1</span> <span class="ow">or</span> <span class="n">condition_2</span><span class="p">:</span>
             <span class="k">if</span> <span class="n">G</span><span class="o">.</span><span class="n">has_edge</span><span class="p">(</span><span class="n">n1</span><span class="p">,</span> <span class="n">n2</span><span class="p">):</span>
                 <span class="n">G</span><span class="o">.</span><span class="n">edges</span><span class="p">[</span><span class="n">n1</span><span class="p">,</span> <span class="n">n2</span><span class="p">][</span><span class="s2">"kind"</span><span class="p">]</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="s2">"distance_threshold"</span><span class="p">)</span>
             <span class="k">else</span><span class="p">:</span>
@@ -746,7 +764,10 @@
 <span class="sd">    :return: Graph with knn-based edges added</span>
 <span class="sd">    :rtype: nx.Graph</span>
 <span class="sd">    """</span>
-    <span class="n">dist_mat</span> <span class="o">=</span> <span class="n">compute_distmat</span><span class="p">(</span><span class="n">G</span><span class="o">.</span><span class="n">graph</span><span class="p">[</span><span class="s2">"pdb_df"</span><span class="p">])</span>
+    <span class="n">pdb_df</span> <span class="o">=</span> <span class="n">filter_dataframe</span><span class="p">(</span>
+        <span class="n">G</span><span class="o">.</span><span class="n">graph</span><span class="p">[</span><span class="s2">"pdb_df"</span><span class="p">],</span> <span class="s2">"node_id"</span><span class="p">,</span> <span class="nb">list</span><span class="p">(</span><span class="n">G</span><span class="o">.</span><span class="n">nodes</span><span class="p">()),</span> <span class="kc">True</span>
+    <span class="p">)</span>
+    <span class="n">dist_mat</span> <span class="o">=</span> <span class="n">compute_distmat</span><span class="p">(</span><span class="n">pdb_df</span><span class="p">)</span>
 
     <span class="n">nn</span> <span class="o">=</span> <span class="n">kneighbors_graph</span><span class="p">(</span>
         <span class="n">X</span><span class="o">=</span><span class="n">dist_mat</span><span class="p">,</span>
@@ -760,8 +781,8 @@
     <span class="c1"># Create iterable of node indices</span>
     <span class="n">outgoing</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">repeat</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">G</span><span class="o">.</span><span class="n">graph</span><span class="p">[</span><span class="s2">"pdb_df"</span><span class="p">]))),</span> <span class="n">k</span><span class="p">)</span>
     <span class="n">incoming</span> <span class="o">=</span> <span class="n">nn</span><span class="o">.</span><span class="n">indices</span>
-    <span class="n">interacting_nodes</span> <span class="o">=</span> <span class="nb">zip</span><span class="p">(</span><span class="n">outgoing</span><span class="p">,</span> <span class="n">incoming</span><span class="p">)</span>
-
+    <span class="n">interacting_nodes</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="nb">zip</span><span class="p">(</span><span class="n">outgoing</span><span class="p">,</span> <span class="n">incoming</span><span class="p">))</span>
+    <span class="n">log</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="sa">f</span><span class="s2">"Found: </span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">interacting_nodes</span><span class="p">)</span><span class="si">}</span><span class="s2"> KNN edges"</span><span class="p">)</span>
     <span class="k">for</span> <span class="n">a1</span><span class="p">,</span> <span class="n">a2</span> <span class="ow">in</span> <span class="n">interacting_nodes</span><span class="p">:</span>
         <span class="c1"># Get nodes IDs from indices</span>
         <span class="n">n1</span> <span class="o">=</span> <span class="n">G</span><span class="o">.</span><span class="n">graph</span><span class="p">[</span><span class="s2">"pdb_df"</span><span class="p">]</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">a1</span><span class="p">,</span> <span class="s2">"node_id"</span><span class="p">]</span>
@@ -784,7 +805,7 @@
 
         <span class="c1"># If not on same chain add edge or</span>
         <span class="c1"># If on same chain and separation is sufficient add edge</span>
-        <span class="k">if</span> <span class="n">condition_1</span> <span class="ow">or</span> <span class="p">(</span><span class="n">condition_2</span> <span class="ow">and</span> <span class="ow">not</span> <span class="n">condition_1</span><span class="p">):</span>
+        <span class="k">if</span> <span class="n">condition_1</span> <span class="ow">or</span> <span class="n">condition_2</span><span class="p">:</span>
             <span class="k">if</span> <span class="n">G</span><span class="o">.</span><span class="n">has_edge</span><span class="p">(</span><span class="n">n1</span><span class="p">,</span> <span class="n">n2</span><span class="p">):</span>
                 <span class="n">G</span><span class="o">.</span><span class="n">edges</span><span class="p">[</span><span class="n">n1</span><span class="p">,</span> <span class="n">n2</span><span class="p">][</span><span class="s2">"kind"</span><span class="p">]</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="s2">"k_nn"</span><span class="p">)</span>
             <span class="k">else</span><span class="p">:</span>
@@ -887,7 +908,7 @@
 
 <div class="viewcode-block" id="add_interacting_resis"><a class="viewcode-back" href="../../../../modules/graphein.protein.html#graphein.protein.edges.distance.add_interacting_resis">[docs]</a><span class="k">def</span> <span class="nf">add_interacting_resis</span><span class="p">(</span>
     <span class="n">G</span><span class="p">:</span> <span class="n">nx</span><span class="o">.</span><span class="n">Graph</span><span class="p">,</span>
-    <span class="n">interacting_atoms</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">,</span>
+    <span class="n">interacting_atoms</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">,</span>
     <span class="n">dataframe</span><span class="p">:</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">,</span>
     <span class="n">kind</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="nb">str</span><span class="p">],</span>
 <span class="p">):</span>

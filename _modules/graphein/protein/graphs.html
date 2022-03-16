@@ -15,7 +15,7 @@
     <link rel="index" title="Index" href="../../../genindex.html" /><link rel="search" title="Search" href="../../../search.html" />
 
     <meta name="generator" content="sphinx-4.4.0, furo 2022.02.14.1"/>
-        <title>graphein.protein.graphs - Graphein 1.2.0</title>
+        <title>graphein.protein.graphs - Graphein 1.2.1</title>
       <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css" />
     <link rel="stylesheet" type="text/css" href="../../../_static/styles/furo.css?digest=a8f031f701c6af50c9919b48f173a5785af06fac" />
     <link rel="stylesheet" type="text/css" href="../../../_static/copybutton.css" />
@@ -130,7 +130,7 @@
       </label>
     </div>
     <div class="header-center">
-      <a href="../../../index.html"><div class="brand">Graphein 1.2.0</div></a>
+      <a href="../../../index.html"><div class="brand">Graphein 1.2.1</div></a>
     </div>
     <div class="header-right">
       <div class="theme-toggle-container theme-toggle-header">
@@ -156,7 +156,7 @@
     <img class="sidebar-logo" src="../../../_static/graphein.png" alt="Logo"/>
   </div>
   
-  <span class="sidebar-brand-text">Graphein 1.2.0</span>
+  <span class="sidebar-brand-text">Graphein 1.2.1</span>
   
 </a><form class="sidebar-search-container" method="get" action="../../../search.html" role="search">
   <input class="sidebar-search" placeholder=Search name="q" aria-label="Search">
@@ -272,6 +272,7 @@
 <span class="kn">from</span> <span class="nn">graphein.protein.edges.distance</span> <span class="kn">import</span> <span class="n">compute_distmat</span>
 <span class="kn">from</span> <span class="nn">graphein.protein.resi_atoms</span> <span class="kn">import</span> <span class="n">BACKBONE_ATOMS</span>
 <span class="kn">from</span> <span class="nn">graphein.protein.utils</span> <span class="kn">import</span> <span class="p">(</span>
+    <span class="n">compute_rgroup_dataframe</span><span class="p">,</span>
     <span class="n">filter_dataframe</span><span class="p">,</span>
     <span class="n">get_protein_name_from_filename</span><span class="p">,</span>
     <span class="n">three_to_one_with_mods</span><span class="p">,</span>
@@ -435,17 +436,6 @@
 <span class="sd">    :rtype pd.DataFrame</span>
 <span class="sd">    """</span>
     <span class="k">return</span> <span class="p">[</span><span class="n">df</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">df</span><span class="p">[</span><span class="s2">"residue_name"</span><span class="p">]</span> <span class="o">==</span> <span class="n">hetatm</span><span class="p">]</span> <span class="k">for</span> <span class="n">hetatm</span> <span class="ow">in</span> <span class="n">keep_hets</span><span class="p">]</span></div>
-
-
-<div class="viewcode-block" id="compute_rgroup_dataframe"><a class="viewcode-back" href="../../../modules/graphein.protein.html#graphein.protein.graphs.compute_rgroup_dataframe">[docs]</a><span class="k">def</span> <span class="nf">compute_rgroup_dataframe</span><span class="p">(</span><span class="n">pdb_df</span><span class="p">:</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">:</span>
-    <span class="sd">"""Return the atoms that are in R-groups and not the backbone chain.</span>
-
-<span class="sd">    :param pdb_df: DataFrame to compute R group dataframe from.</span>
-<span class="sd">    :type pdb_df: pd.DataFrame</span>
-<span class="sd">    :returns: Dataframe containing R-groups only (backbone atoms removed).</span>
-<span class="sd">    :rtype: pd.DataFrame</span>
-<span class="sd">    """</span>
-    <span class="k">return</span> <span class="n">filter_dataframe</span><span class="p">(</span><span class="n">pdb_df</span><span class="p">,</span> <span class="s2">"atom_name"</span><span class="p">,</span> <span class="n">BACKBONE_ATOMS</span><span class="p">,</span> <span class="kc">False</span><span class="p">)</span></div>
 
 
 <div class="viewcode-block" id="process_dataframe"><a class="viewcode-back" href="../../../modules/graphein.protein.html#graphein.protein.graphs.process_dataframe">[docs]</a><span class="k">def</span> <span class="nf">process_dataframe</span><span class="p">(</span>

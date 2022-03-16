@@ -15,7 +15,7 @@
     <link rel="index" title="Index" href="../../../genindex.html" /><link rel="search" title="Search" href="../../../search.html" />
 
     <meta name="generator" content="sphinx-4.4.0, furo 2022.02.14.1"/>
-        <title>graphein.protein.visualisation - Graphein 1.2.0</title>
+        <title>graphein.protein.visualisation - Graphein 1.2.1</title>
       <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css" />
     <link rel="stylesheet" type="text/css" href="../../../_static/styles/furo.css?digest=a8f031f701c6af50c9919b48f173a5785af06fac" />
     <link rel="stylesheet" type="text/css" href="../../../_static/copybutton.css" />
@@ -130,7 +130,7 @@
       </label>
     </div>
     <div class="header-center">
-      <a href="../../../index.html"><div class="brand">Graphein 1.2.0</div></a>
+      <a href="../../../index.html"><div class="brand">Graphein 1.2.1</div></a>
     </div>
     <div class="header-right">
       <div class="theme-toggle-container theme-toggle-header">
@@ -156,7 +156,7 @@
     <img class="sidebar-logo" src="../../../_static/graphein.png" alt="Logo"/>
   </div>
   
-  <span class="sidebar-brand-text">Graphein 1.2.0</span>
+  <span class="sidebar-brand-text">Graphein 1.2.1</span>
   
 </a><form class="sidebar-search-container" method="get" action="../../../search.html" role="search">
   <input class="sidebar-search" placeholder=Search name="q" aria-label="Search">
@@ -652,6 +652,106 @@
         <span class="n">plt</span><span class="o">.</span><span class="n">close</span><span class="p">(</span><span class="s2">"all"</span><span class="p">)</span>
 
     <span class="k">return</span> <span class="n">ax</span></div>
+
+
+<div class="viewcode-block" id="add_vector_to_plot"><a class="viewcode-back" href="../../../modules/graphein.protein.html#graphein.protein.visualisation.add_vector_to_plot">[docs]</a><span class="k">def</span> <span class="nf">add_vector_to_plot</span><span class="p">(</span>
+    <span class="n">g</span><span class="p">:</span> <span class="n">nx</span><span class="o">.</span><span class="n">Graph</span><span class="p">,</span>
+    <span class="n">fig</span><span class="p">,</span>
+    <span class="n">vector</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">"sidechain_vector"</span><span class="p">,</span>
+    <span class="n">scale</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mi">5</span><span class="p">,</span>
+    <span class="n">colour</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">"red"</span><span class="p">,</span>
+    <span class="n">width</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">10</span><span class="p">,</span>
+<span class="p">)</span> <span class="o">-&gt;</span> <span class="n">go</span><span class="o">.</span><span class="n">Figure</span><span class="p">:</span>
+    <span class="sd">"""Adds representations of vector features to the protein graph.</span>
+
+<span class="sd">    Requires all nodes have a vector feature (1 x 3 array).</span>
+
+<span class="sd">    :param g: Protein graph containing vector features</span>
+<span class="sd">    :type g: nx.Graph</span>
+<span class="sd">    :param fig: 3D plotly figure to add vectors to.</span>
+<span class="sd">    :type fig: go.Figure</span>
+<span class="sd">    :param vector: Name of node vector feature to add, defaults to "sidechain_vector"</span>
+<span class="sd">    :type vector: str, optional</span>
+<span class="sd">    :param scale: How much to scale the vectors by, defaults to 5</span>
+<span class="sd">    :type scale: float, optional</span>
+<span class="sd">    :param colour: Colours for vectors, defaults to "red"</span>
+<span class="sd">    :type colour: str, optional</span>
+<span class="sd">    :return: 3D Plotly plot with vectors added.</span>
+<span class="sd">    :rtype: go.Figure</span>
+<span class="sd">    """</span>
+    <span class="c1"># Compute line segment positions</span>
+    <span class="n">x_edges</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="n">y_edges</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="n">z_edges</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="n">edge_text</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="k">for</span> <span class="n">_</span><span class="p">,</span> <span class="n">d</span> <span class="ow">in</span> <span class="n">g</span><span class="o">.</span><span class="n">nodes</span><span class="p">(</span><span class="n">data</span><span class="o">=</span><span class="kc">True</span><span class="p">):</span>
+        <span class="n">x_edges</span><span class="o">.</span><span class="n">extend</span><span class="p">(</span>
+            <span class="p">[</span><span class="n">d</span><span class="p">[</span><span class="s2">"coords"</span><span class="p">][</span><span class="mi">0</span><span class="p">],</span> <span class="n">d</span><span class="p">[</span><span class="s2">"coords"</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span> <span class="o">+</span> <span class="n">d</span><span class="p">[</span><span class="n">vector</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span> <span class="o">*</span> <span class="n">scale</span><span class="p">,</span> <span class="kc">None</span><span class="p">]</span>
+        <span class="p">)</span>
+        <span class="n">y_edges</span><span class="o">.</span><span class="n">extend</span><span class="p">(</span>
+            <span class="p">[</span><span class="n">d</span><span class="p">[</span><span class="s2">"coords"</span><span class="p">][</span><span class="mi">1</span><span class="p">],</span> <span class="n">d</span><span class="p">[</span><span class="s2">"coords"</span><span class="p">][</span><span class="mi">1</span><span class="p">]</span> <span class="o">+</span> <span class="n">d</span><span class="p">[</span><span class="n">vector</span><span class="p">][</span><span class="mi">1</span><span class="p">]</span> <span class="o">*</span> <span class="n">scale</span><span class="p">,</span> <span class="kc">None</span><span class="p">]</span>
+        <span class="p">)</span>
+        <span class="n">z_edges</span><span class="o">.</span><span class="n">extend</span><span class="p">(</span>
+            <span class="p">[</span><span class="n">d</span><span class="p">[</span><span class="s2">"coords"</span><span class="p">][</span><span class="mi">2</span><span class="p">],</span> <span class="n">d</span><span class="p">[</span><span class="s2">"coords"</span><span class="p">][</span><span class="mi">2</span><span class="p">]</span> <span class="o">+</span> <span class="n">d</span><span class="p">[</span><span class="n">vector</span><span class="p">][</span><span class="mi">2</span><span class="p">]</span> <span class="o">*</span> <span class="n">scale</span><span class="p">,</span> <span class="kc">None</span><span class="p">]</span>
+        <span class="p">)</span>
+        <span class="n">edge_text</span><span class="o">.</span><span class="n">extend</span><span class="p">([</span><span class="kc">None</span><span class="p">,</span> <span class="sa">f</span><span class="s2">"</span><span class="si">{</span><span class="n">vector</span><span class="si">}</span><span class="s2">"</span><span class="p">,</span> <span class="kc">None</span><span class="p">])</span>
+
+    <span class="n">edge_trace</span> <span class="o">=</span> <span class="n">go</span><span class="o">.</span><span class="n">Scatter3d</span><span class="p">(</span>
+        <span class="n">x</span><span class="o">=</span><span class="n">x_edges</span><span class="p">,</span>
+        <span class="n">y</span><span class="o">=</span><span class="n">y_edges</span><span class="p">,</span>
+        <span class="n">z</span><span class="o">=</span><span class="n">z_edges</span><span class="p">,</span>
+        <span class="n">mode</span><span class="o">=</span><span class="s2">"lines"</span><span class="p">,</span>
+        <span class="n">line</span><span class="o">=</span><span class="p">{</span><span class="s2">"color"</span><span class="p">:</span> <span class="n">colour</span><span class="p">,</span> <span class="s2">"width"</span><span class="p">:</span> <span class="n">width</span><span class="p">},</span>
+        <span class="n">text</span><span class="o">=</span><span class="mi">3</span> <span class="o">*</span> <span class="p">[</span><span class="sa">f</span><span class="s2">"</span><span class="si">{</span><span class="n">vector</span><span class="si">}</span><span class="s2">"</span> <span class="k">for</span> <span class="n">_</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">g</span><span class="p">))],</span>
+        <span class="n">hoverinfo</span><span class="o">=</span><span class="s2">"text"</span><span class="p">,</span>
+    <span class="p">)</span>
+    <span class="c1"># Compute cone positions.</span>
+    <span class="n">arrow_tip_ratio</span> <span class="o">=</span> <span class="mf">0.1</span>
+    <span class="n">arrow_starting_ratio</span> <span class="o">=</span> <span class="mf">0.98</span>
+    <span class="n">x</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="n">y</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="n">z</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="n">u</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="n">v</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="n">w</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="k">for</span> <span class="n">_</span><span class="p">,</span> <span class="n">d</span> <span class="ow">in</span> <span class="n">g</span><span class="o">.</span><span class="n">nodes</span><span class="p">(</span><span class="n">data</span><span class="o">=</span><span class="kc">True</span><span class="p">):</span>
+        <span class="n">x</span><span class="o">.</span><span class="n">extend</span><span class="p">(</span>
+            <span class="p">[</span><span class="n">d</span><span class="p">[</span><span class="s2">"coords"</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span> <span class="o">+</span> <span class="n">d</span><span class="p">[</span><span class="n">vector</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span> <span class="o">*</span> <span class="n">scale</span> <span class="o">*</span> <span class="n">arrow_starting_ratio</span><span class="p">]</span>
+        <span class="p">)</span>
+        <span class="n">y</span><span class="o">.</span><span class="n">extend</span><span class="p">(</span>
+            <span class="p">[</span><span class="n">d</span><span class="p">[</span><span class="s2">"coords"</span><span class="p">][</span><span class="mi">1</span><span class="p">]</span> <span class="o">+</span> <span class="n">d</span><span class="p">[</span><span class="n">vector</span><span class="p">][</span><span class="mi">1</span><span class="p">]</span> <span class="o">*</span> <span class="n">scale</span> <span class="o">*</span> <span class="n">arrow_starting_ratio</span><span class="p">]</span>
+        <span class="p">)</span>
+        <span class="n">z</span><span class="o">.</span><span class="n">extend</span><span class="p">(</span>
+            <span class="p">[</span><span class="n">d</span><span class="p">[</span><span class="s2">"coords"</span><span class="p">][</span><span class="mi">2</span><span class="p">]</span> <span class="o">+</span> <span class="n">d</span><span class="p">[</span><span class="n">vector</span><span class="p">][</span><span class="mi">2</span><span class="p">]</span> <span class="o">*</span> <span class="n">scale</span> <span class="o">*</span> <span class="n">arrow_starting_ratio</span><span class="p">]</span>
+        <span class="p">)</span>
+        <span class="n">u</span><span class="o">.</span><span class="n">extend</span><span class="p">([</span><span class="n">d</span><span class="p">[</span><span class="n">vector</span><span class="p">][</span><span class="mi">0</span><span class="p">]])</span>  <span class="c1"># * arrow_tip_ratio])</span>
+        <span class="n">v</span><span class="o">.</span><span class="n">extend</span><span class="p">([</span><span class="n">d</span><span class="p">[</span><span class="n">vector</span><span class="p">][</span><span class="mi">1</span><span class="p">]])</span>  <span class="c1"># * arrow_tip_ratio])</span>
+        <span class="n">w</span><span class="o">.</span><span class="n">extend</span><span class="p">([</span><span class="n">d</span><span class="p">[</span><span class="n">vector</span><span class="p">][</span><span class="mi">2</span><span class="p">]])</span>  <span class="c1"># * arrow_tip_ratio])</span>
+
+    <span class="k">if</span> <span class="n">colour</span> <span class="o">==</span> <span class="s2">"red"</span><span class="p">:</span>
+        <span class="n">colour</span> <span class="o">=</span> <span class="p">[[</span><span class="mi">0</span><span class="p">,</span> <span class="s2">"rgb(255,0,0)"</span><span class="p">],</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="s2">"rgb(255,0,0)"</span><span class="p">]]</span>
+    <span class="k">elif</span> <span class="n">colour</span> <span class="o">==</span> <span class="s2">"blue"</span><span class="p">:</span>
+        <span class="n">colour</span> <span class="o">=</span> <span class="p">[[</span><span class="mi">0</span><span class="p">,</span> <span class="s2">"rgb(0,0,255)"</span><span class="p">],</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="s2">"rgb(0,0,255)"</span><span class="p">]]</span>
+    <span class="k">elif</span> <span class="n">colour</span> <span class="o">==</span> <span class="s2">"green"</span><span class="p">:</span>
+        <span class="n">colour</span> <span class="o">=</span> <span class="p">[[</span><span class="mi">0</span><span class="p">,</span> <span class="s2">"rgb(0,255,0)"</span><span class="p">],</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="s2">"rgb(0,255,0)"</span><span class="p">]]</span>
+
+    <span class="n">cone_trace</span> <span class="o">=</span> <span class="n">go</span><span class="o">.</span><span class="n">Cone</span><span class="p">(</span>
+        <span class="n">x</span><span class="o">=</span><span class="n">x</span><span class="p">,</span>
+        <span class="n">y</span><span class="o">=</span><span class="n">y</span><span class="p">,</span>
+        <span class="n">z</span><span class="o">=</span><span class="n">z</span><span class="p">,</span>
+        <span class="n">u</span><span class="o">=</span><span class="n">u</span><span class="p">,</span>
+        <span class="n">v</span><span class="o">=</span><span class="n">v</span><span class="p">,</span>
+        <span class="n">w</span><span class="o">=</span><span class="n">w</span><span class="p">,</span>
+        <span class="n">text</span><span class="o">=</span><span class="p">[</span><span class="sa">f</span><span class="s2">"</span><span class="si">{</span><span class="n">vector</span><span class="si">}</span><span class="s2">"</span> <span class="k">for</span> <span class="n">_</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">g</span><span class="o">.</span><span class="n">nodes</span><span class="p">()))],</span>
+        <span class="n">hoverinfo</span><span class="o">=</span><span class="s2">"u+v+w+text"</span><span class="p">,</span>
+        <span class="n">colorscale</span><span class="o">=</span><span class="n">colour</span><span class="p">,</span>
+        <span class="n">showlegend</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
+        <span class="n">showscale</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
+        <span class="n">sizemode</span><span class="o">=</span><span class="s2">"absolute"</span><span class="p">,</span>
+    <span class="p">)</span>
+    <span class="n">fig</span><span class="o">.</span><span class="n">add_trace</span><span class="p">(</span><span class="n">edge_trace</span><span class="p">)</span>
+    <span class="n">fig</span><span class="o">.</span><span class="n">add_trace</span><span class="p">(</span><span class="n">cone_trace</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">fig</span></div>
 
 
 <div class="viewcode-block" id="plot_distance_matrix"><a class="viewcode-back" href="../../../modules/graphein.protein.html#graphein.protein.visualisation.plot_distance_matrix">[docs]</a><span class="k">def</span> <span class="nf">plot_distance_matrix</span><span class="p">(</span>
